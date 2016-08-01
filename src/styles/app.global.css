@@ -1,0 +1,58 @@
+@import 'normalize.css';
+@import '_vars';
+
+* {
+  box-sizing: border-box;
+  &:before,
+  &:after {
+    box-sizing: border-box;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.clearfix {}
+.clearfix:before {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left:  calc(var(--grid-gutter-width) / 2);
+  padding-right: calc(var(--grid-gutter-width) / 2);
+  &:before {
+    content: ' ';
+    display: table;
+  }
+  &:after {
+    content: ' ';
+    display: table;
+    clear: both;
+  }
+}
+
+@media (--screen-sm) {
+  .container {
+    width: var(--container-sm);
+  }
+}
+@media (--screen-md) {
+  .container {
+    width: var(--container-md);
+  }
+}
+@media (--screen-lg) {
+  .container {
+    width: var(--container-lg);
+  }
+}

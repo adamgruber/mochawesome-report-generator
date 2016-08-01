@@ -1,0 +1,32 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "color-named": "never",
+    "comment-word-blacklist": ["/^TODO:/"],
+    "custom-property-no-outside-root": true,
+    "declaration-block-no-duplicate-properties": true,
+    "declaration-block-properties-order": [["composes", "content", "display", "position"], { unspecified: "bottom" }],
+    "declaration-no-important": true,
+    "font-family-name-quotes": "always-unless-keyword",
+    "font-weight-notation": "numeric",
+    "max-empty-lines": 2,
+    "max-nesting-depth": 3,
+    "no-duplicate-selectors": true,
+    "no-unknown-animations": true,
+    "number-max-precision": 3,
+    "property-no-vendor-prefix": true,
+    "root-no-standard-properties": true,
+    "selector-max-compound-selectors": 3,
+    "selector-no-id": true,
+    "selector-no-vendor-prefix": true,
+    "selector-pseudo-class-no-unknown": [ true, { ignorePseudoClasses: ["global"] } ],
+    "selector-pseudo-element-colon-notation": "single",
+    "selector-root-no-composition": true,
+    "string-quotes": "single",
+    "stylelint-disable-reason": "always-after",
+    "time-no-imperceptible": true,
+    "unit-whitelist": ["px", "rem", "em", "%", "deg", "s"],
+    "value-no-vendor-prefix": true
+  },
+  "ignoreFiles": ["node_modules/**/*.css", "app/styles/reboot.css"]
+}
