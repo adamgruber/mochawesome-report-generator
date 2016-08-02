@@ -1,0 +1,144 @@
+@import '../../styles/vars';
+
+.cnt {
+  display: none;
+  float: left;
+}
+
+.list {
+  @apply --clearfix;
+  opacity: 0;
+  transition: opacity .2s ease-out;
+  margin: 11px 10px 0 0;
+  padding-right: 4px;
+  border-right: 1px solid color(var(--gray-base) tint(40%));
+}
+
+.item {
+  composes: cond-normal from 'fonts.css';
+  user-select: none;
+  cursor: default;
+  font-size: 18px;
+  margin: 0 8px;
+  border-bottom: 1px solid transparent;
+  float: left;
+}
+
+/* Filter Btns */
+.item[data-filter] {
+  transition: border .2s ease-out;
+}
+
+/* Icons / Colors */
+.item {
+  &:before {
+    @apply --ma-icon;
+    top: 1px;
+    font-size: 15px;
+    margin-right: 4px;
+  }
+
+  &.suites {
+    color: var(--gray-lighter);
+    &:before {
+      content: var(--ma-icon-suites);
+      margin-right: 6px;
+    }
+    &.active {
+      color: var(--gray-lighter);
+    }
+  }
+
+  &.tests {
+    color: var(--gray-lighter);
+    &:before {
+      content: var(--ma-icon-tests);
+    }
+    &.active {
+      color: var(--gray-lighter);
+    }
+  }
+
+  &.passes {
+    color: var(--brand-success);
+    &:before {
+      content: var(--ma-icon-passed);
+    }
+    &:hover {
+      border-color: var(--brand-success);
+    }
+    &.active {
+      color: var(--brand-success);
+    }
+    &.active:hover {
+      color: color(var(--brand-success) shade(11%));
+      border-color: color(var(--brand-success) shade(11%));
+    }
+  }
+
+  &.failures {
+    color: var(--brand-danger);
+    &:before {
+      content: var(--ma-icon-failed);
+    }
+    &:hover {
+      border-color: var(--brand-danger);
+    }
+    &.active {
+      color: var(--brand-danger);
+    }
+    &.active:hover {
+      color: color(var(--brand-danger) shade(11%));
+      border-color: color(var(--brand-danger) shade(11%));
+    }
+  }
+
+  &.pending {
+    color: var(--brand-info);
+    &:before {
+      content: var(--ma-icon-pending);
+      top: 2px;
+      margin-right: 1px;
+    }
+    &:hover {
+      border-color: var(--brand-info);
+    }
+    &.active {
+      color: var(--brand-info);
+    }
+    &.active:hover {
+      color: color(var(--brand-info) shade(11%));
+      border-color: color(var(--brand-info) shade(11%));
+    }
+  }
+
+  &.duration {
+    color: var(--gray-lighter);
+    &:before {
+      content: var(--ma-icon-duration);
+      top: 0;
+    }
+    &.active {
+      color: var(--gray-lighter);
+    }
+    & span {
+      font-size: 14px;
+    }
+  }
+}
+
+.show-quick-summary {
+  & .list {
+    opacity: 1;
+  }
+  & .item[data-filter] {
+    cursor: pointer;
+  }
+}
+
+/* Tablet 768 and up */
+@media (--screen-sm) {
+  .cnt {
+    display: block;
+  }
+}

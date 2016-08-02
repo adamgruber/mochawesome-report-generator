@@ -421,11 +421,55 @@ textarea {
   font: inherit; /* 2 */
 }
 
-:root { /* #222 */   /* #333 */ /* #555 */ /* #777 */ /* #bbb */ /* #eee */ /* #337ab7 */
+:root { /* #222 */   /* #333 */ /* #555 */ /* #777 */ /* #bbb */ /* #eee */ /* #337ab7 */ /* 20/14 */
 }
 
 .trans-color {
   transition: color .2s ease-out;
+}
+
+@font-face {
+    font-family: 'roboto_condensedlight';
+    src: url(RobotoCondensed-Light-webfont.eot);
+    src: url(RobotoCondensed-Light-webfont.eot?#iefix) format('embedded-opentype'),
+         url(RobotoCondensed-Light-webfont.woff) format('woff'),
+         url(RobotoCondensed-Light-webfont.ttf) format('truetype'),
+         url(RobotoCondensed-Light-webfont.svg#roboto_condensedlight) format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto_condensedregular';
+    src: url(RobotoCondensed-Regular-webfont.eot);
+    src: url(RobotoCondensed-Regular-webfont.eot?#iefix) format('embedded-opentype'),
+         url(RobotoCondensed-Regular-webfont.woff) format('woff'),
+         url(RobotoCondensed-Regular-webfont.ttf) format('truetype'),
+         url(RobotoCondensed-Regular-webfont.svg#roboto_condensedregular) format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto_condensedbold';
+    src: url(RobotoCondensed-Bold-webfont.eot);
+    src: url(RobotoCondensed-Bold-webfont.eot?#iefix) format('embedded-opentype'),
+         url(RobotoCondensed-Bold-webfont.woff) format('woff'),
+         url(RobotoCondensed-Bold-webfont.ttf) format('truetype'),
+         url(RobotoCondensed-Bold-webfont.svg#roboto_condensedbold) format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto_slabregular';
+    src: url(RobotoSlab-Regular-webfont.eot);
+    src: url(RobotoSlab-Regular-webfont.eot?#iefix) format('embedded-opentype'),
+         url(RobotoSlab-Regular-webfont.woff) format('woff'),
+         url(RobotoSlab-Regular-webfont.ttf) format('truetype'),
+         url(RobotoSlab-Regular-webfont.svg#roboto_slabregular) format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 * {
@@ -440,6 +484,14 @@ textarea {
 html {
   position: relative;
   min-height: 100%;
+}
+
+body {
+  font-family: 'roboto_condensedregular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: rgb(51, 51, 51);
+  background-color: #fff;
 }
 
 .clearfix {}
@@ -496,7 +548,7 @@ body {
 
 .report--report---32C4Z {
   background: green;
-}:root { /* #222 */   /* #333 */ /* #555 */ /* #777 */ /* #bbb */ /* #eee */ /* #337ab7 */
+}:root { /* #222 */   /* #333 */ /* #555 */ /* #777 */ /* #bbb */ /* #eee */ /* #337ab7 */ /* 20/14 */
 }
 
 ._vars--trans-color---HmRw_ {
@@ -507,24 +559,24 @@ body {
 ._fonts--font-medium---27vDV { font-weight: 500; }
 ._fonts--font-bold---2orgN { font-weight: 700; }
 ._fonts--font-cond-light---CbJeV {
-  font-family: 'Roboto Condensed';
+  font-family: 'roboto_condensedlight';
 }
 ._fonts--font-cond-normal---13bkG {
-  font-family: 'Roboto Condensed';
+  font-family: 'roboto_condensedregular';
 }
 ._fonts--font-cond-bold---F3BNa {
-  font-family: 'Roboto Condensed';
+  font-family: 'roboto_condensedbold';
 }
 ._fonts--font-slab-light---GTGOL {
   font-family: 'Roboto Slab';
 }
 ._fonts--font-slab-normal---gRmGF {
-  font-family: 'Roboto Slab';
+  font-family: 'roboto_slabregular';
 }
 ._fonts--font-slab-bold---1X1Ue {
   font-family: 'Roboto Slab';
 }
-:root { /* #222 */   /* #333 */ /* #555 */ /* #777 */ /* #bbb */ /* #eee */ /* #337ab7 */
+:root { /* #222 */   /* #333 */ /* #555 */ /* #777 */ /* #bbb */ /* #eee */ /* #337ab7 */ /* 20/14 */
 }
 
 .navbar--trans-color---16xYm {

@@ -1,10 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { Navbar } from './index';
+import { Navbar, Summary } from './index';
 import 'styles/app.global.css';
-import styles from './report.css';
-import classNames from 'classnames/bind';
-
-const cx = classNames.bind(styles);
 
 class MochawesomeReport extends Component {
   static propTypes = {
@@ -16,9 +12,9 @@ class MochawesomeReport extends Component {
   render() {
     const { reportTitle, stats } = this.props.data;
     return (
-      <div className={ cx('report') }>
+      <div>
         <Navbar reportTitle={ reportTitle } stats={ stats } />
-        { /* <Summary /> */ }
+        <Summary stats={ stats } />
         { /* <StatusBar /> */ }
       </div>
     );

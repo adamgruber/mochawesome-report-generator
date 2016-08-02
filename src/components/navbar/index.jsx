@@ -14,11 +14,11 @@ const Navbar = (props) => {
   return (
     <div className={ cx('navbar') } role='navigation'>
       <div className='container'>
-        <div className='report-info-cnt'>
-          <h1 className='report-title'>{ reportTitle }</h1>
-          <h3 className='report-date'>{ reportDate }</h3>
+        <div className={ cx('report-info-cnt') }>
+          <h1 className={ cx('report-title') }>{ reportTitle }</h1>
+          <h3 className={ cx('report-date') }>{ reportDate }</h3>
         </div>
-        <div className='nav-right'>
+        <div className={ cx('nav-right') }>
           <QuickSummary stats={ stats } />
           <button className='nav-menu-btn open-menu'><i className='icon-menu'></i></button>
         </div>

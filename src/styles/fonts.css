@@ -1,0 +1,26 @@
+.light { font-weight: 300; }
+.normal { font-weight: 400; }
+.medium { font-weight: 500; }
+.bold { font-weight: 700; }
+
+.cond-light {
+  font-family: 'roboto_condensedlight';
+}
+
+.cond-normal {
+  font-family: 'roboto_condensedregular';
+}
+
+.cond-bold {
+  font-family: 'roboto_condensedbold';
+}
+
+.slab-light {
+  font-family: 'Roboto Slab';
+}
+.slab-normal {
+  font-family: 'roboto_slabregular';
+}
+.slab-bold {
+  font-family: 'Roboto Slab';
+}

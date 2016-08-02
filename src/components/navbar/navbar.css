@@ -1,15 +1,21 @@
-@import '../../styles/_vars';
+@import '../../styles/vars';
 
 .navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
   min-height: var(--navbar-height);
   height: var(--navbar-height);
   margin-bottom: 0;
   border: none;
-  background: color(var(--gray-darker) alpha(95%));
+  background: var(--gray-darker-faded);
+  @apply --clearfix;
 }
 
 .nav-menu-btn {
-  composes: trans-color from '_vars.css';
+  composes: trans-color from 'vars.css';
   float: left;
   color: #fff;
   margin-top: 11px;
@@ -27,7 +33,7 @@
 }
 
 .report-title {
-  composes: font-slab-normal from '_fonts.css';
+  composes: slab-normal from 'fonts.css';
   color: #fff;
   font-size: 16px;
   margin: 4px 0;
@@ -37,14 +43,14 @@
 }
 
 .report-date {
-  composes: font-cond-normal from '_fonts.css';
+  composes: cond-normal from 'fonts.css';
   font-size: 13px;
   text-transform: uppercase;
   color: var(--gray-medium);
   margin: 5px 0 0 0;
 }
 
-// Tablet 768 and up
+/* Tablet 768 and up */
 @media (--screen-sm) {
   .report-title {
     font-size: 1.3em;
