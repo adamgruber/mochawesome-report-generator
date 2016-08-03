@@ -76,6 +76,14 @@ body {
   line-height: var(--line-height-base);
   color: var(--text-color);
   background-color: var(--body-bg);
+  margin-bottom: var(--footer-height);
+}
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .clearfix, .cf {

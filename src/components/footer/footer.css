@@ -1,0 +1,24 @@
+@import '../../styles/vars';
+
+.component {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: var(--footer-height);
+  background-color: var(--gray-dark);
+  color: var(--gray-light);
+  text-align: center;
+
+  & p {
+    margin: 10px 0;
+  }
+
+  & a {
+    @apply --link-transition;
+    color: var(--gray-lighter);
+    &:hover {
+      color: #fff;
+    }
+  }  
+}
