@@ -15,7 +15,7 @@
     "no-unknown-animations": true,
     "number-max-precision": 3,
     "property-no-vendor-prefix": true,
-    "selector-type-no-unknown": [ true, { ignoreTypes: ["/--ma-icon/", "--msa-icon"] } ],
+    "selector-type-no-unknown": [ true, { ignoreTypes: ["/^--/"] } ],
     "selector-max-compound-selectors": 3,
     "selector-no-id": true,
     "selector-no-vendor-prefix": true,
