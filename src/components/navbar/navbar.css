@@ -14,8 +14,11 @@
   @apply --clearfix;
 }
 
-.nav-menu-btn {
-  composes: trans-color from 'vars.css';
+.menu-button {
+  @apply --button-base;
+  font-size: 21px;
+  width: 26px;
+  height: 26px;
   float: left;
   color: #fff;
   margin-top: 11px;

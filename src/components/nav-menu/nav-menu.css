@@ -1,0 +1,145 @@
+@import '../../styles/vars';
+
+.wrap {
+  position: fixed;
+  z-index: 2010;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.overlay {
+  display: none;
+  background: #000;
+}
+
+.menu {
+  transition: all .2s ease-out;
+  transform: translate(100%, 0);
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  padding: 48px 0;
+  background: var(--gray-lighter);
+}
+
+.close-button {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  color: var(--gray);
+  &:hover {
+    color: var(--gray-dark);
+  }
+}
+
+
+.wrap.open {
+  visibility: visible;
+  & .overlay {
+    opacity: 0.4;
+  }
+  & .menu {
+    transform: translate(0, 0);
+  }
+}
+
+.main {
+  padding: 0 28px;
+}
+
+.sub {
+  padding-left: 14px;
+}
+
+.item {
+  @apply --clearfix;
+}
+
+.link {
+  @apply --link-transition;
+  display: block;
+  padding: 4px 0;
+  color: var(--gray);
+
+  &:before {
+    @apply --ma-icon;
+    font-size: 12px;
+    top: 1px;
+    margin-right: 4px;
+  }
+
+  &.has-failures {
+    &:before {
+      content: var(--ma-icon-failed);
+      color: var(--brand-danger);
+    }
+  }
+
+  &.has-passes {
+    &:before {
+      content: var(--ma-icon-passed);
+      color: var(--brand-success);
+    }
+  }
+
+  &.has-pending {
+    &:before {
+      content: var(--ma-icon-pending);
+      color: var(--brand-info);
+    }
+  }
+
+  &.has-skipped {
+    &:before {
+      content: var(--ma-icon-skipped);
+      color: color(#999 tint(15%));
+      visibility: visible;
+    }
+  }
+
+  &:hover {
+    color: var(--link-hover-color);
+    text-decoration: none;
+  }
+  &:active,
+  &:focus {
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+.button {
+  @apply --button-base;
+  font-size: 21px;
+  width: 26px;
+  height: 26px;
+}
+
+/* Tablet 768 and up */
+@media (--screen-sm) {
+  .wrap {
+    & .menu {
+      width: 320px;
+      left: auto;
+    }
+    & .overlay {
+      transition: all .2s ease-out;
+      display: block;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      cursor: pointer;
+      opacity: 0;
+    }
+  }
+}

@@ -11,6 +11,10 @@ const Navbar = (props) => {
   const { reportTitle, stats } = props;
   const reportDate = moment(stats.end).format('dddd, MMMM D YYYY, hh:mma');
 
+  const onClickFn = () => {
+    // do something
+  };
+
   return (
     <div className={ cx('navbar') } role='navigation'>
       <div className='container'>
@@ -20,7 +24,11 @@ const Navbar = (props) => {
         </div>
         <div className={ cx('nav-right') }>
           <QuickSummary stats={ stats } />
-          <button className='nav-menu-btn open-menu'><i className='icon-menu'></i></button>
+          <button
+            onClick={ onClickFn }
+            className={ cx('menu-button', 'open-menu') }>
+            <i className='icon-menu'></i>
+          </button>
         </div>
       </div>
     </div>
