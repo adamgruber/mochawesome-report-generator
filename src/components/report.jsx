@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Navbar, Summary } from './index';
+import { Navbar, Summary, StatusBar } from './index';
 import 'styles/app.global.css';
 
 class MochawesomeReport extends Component {
@@ -15,7 +15,7 @@ class MochawesomeReport extends Component {
       <div>
         <Navbar reportTitle={ reportTitle } stats={ stats } />
         <Summary stats={ stats } />
-        { /* <StatusBar /> */ }
+        <StatusBar stats={ stats } />
       </div>
     );
   }
