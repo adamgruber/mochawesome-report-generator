@@ -1,15 +1,18 @@
 import React, { PropTypes } from 'react';
+import { Test } from 'components';
+import { formatDuration } from '../../utils';
 import classNames from 'classnames/bind';
 import styles from './suite.css';
 
 const cx = classNames.bind(styles);
 
-const Test = () => <div />;
-
 const Suite = (props) => {
   const { suite } = props;
-  const { root, rootEmpty, suites, tests, uuid, title, file, hasSuites, hasTests, hasFailures, hasPending, hasSkipped, hasPasses,
-  duration, totalTests, totalPasses, totalFailures, totalPending, totalSkipped } = suite;
+  const { root, rootEmpty, suites, tests, uuid, title, file,
+    hasSuites, hasTests, hasFailures, hasPending, hasSkipped,
+    hasPasses, duration, totalTests, totalPasses, totalFailures,
+    totalPending, totalSkipped } = suite;
+
   const subSuites = () => !!suites && suites.map((subSuite, i) => <Suite key={ i } suite={ subSuite } />);
 
   const cxname = cx('component', {
@@ -46,17 +49,22 @@ const Suite = (props) => {
             </div>
             <div className={ cx('data-wrap') }>
               <ul className={ cx('summary', 'list-unstyled') }>
-                <li className={ cx('summary-item', 'duration') }>{ duration }</li>
+                <li className={ cx('summary-item', 'duration') }>{ formatDuration(duration) }</li>
                 <li className={ cx('summary-item', 'tests') }>{ totalTests }</li>
                 <li className={ cx('summary-item', 'passed') }>{ totalPasses }</li>
                 <li className={ cx('summary-item', 'failed') }>{ totalFailures }</li>
                 <li className={ cx('summary-item', 'pending') }>{ totalPending }</li>
               </ul>
               <div className={ cx('test-wrap') }>
-                <div className={ cx('test-header') } data-toggle='collapse' data-target={ `#${uuid}-test-list` }>
+                <div
+                  className={ cx('test-header') }
+                  data-toggle='collapse'
+                  data-target={ `#${uuid}-test-list` }>
                   <h4 className={ cx('test-header-title') }>Tests</h4>
                 </div>
-                <div id={ `${uuid}-test-list` } className={ cx('list-group', 'test-list', 'collapse', 'in') }>
+                <div
+                  id={ `${uuid}-test-list` }
+                  className={ cx('list-group', 'test-list', 'collapse', 'in') }>
                   { !!tests && tests.map((test, i) => <Test key={ i } test={ test } />) }
                 </div>
               </div>
