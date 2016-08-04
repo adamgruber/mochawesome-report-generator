@@ -71,7 +71,7 @@
   }
 }
 
-// Tablet 768 and up
+/* Tablet 768 and up */
 @media (--screen-sm) {
   .component {
     position: static;

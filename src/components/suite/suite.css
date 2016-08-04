@@ -1,0 +1,196 @@
+@import '../../styles/vars';
+
+/*.filterActive(@color) {
+  border-color: var(--color);
+}*/
+
+.filters-active {
+  .suite-data-wrap,
+  .suite-chart-wrap {
+    display: none;
+  }
+  &.filter-passed .suite.has-passed,
+  &.filter-failed .suite.has-failed,
+  &.filter-pending .suite.has-pending {
+    .suite-data-wrap,
+    .suite-chart-wrap {
+      display: block;
+    }
+  }
+}
+
+.wrap {
+  & > .component > .wrap {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  & .component .component {
+    margin: 10px;
+  }
+}
+
+.test-wrap {
+  @apply --column;
+  float: left;
+  width: 100%;
+}
+.data-wrap {
+  @apply --clearfix;
+}
+
+.component {
+  @apply --row;
+  position: relative;
+  border: 1px solid var(--gray-border);
+  padding: 8px 0 10px 0;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.title {
+  composes: slab-normal from 'fonts.css';
+  padding: 0 70px 0 10px;
+  margin: 0;
+}
+
+.filename {
+  composes: cond-light from 'fonts.css';
+  color: var(--gray-light);
+  margin-top: 4px;
+  padding: 0 10px;
+}
+
+:global(.details) > .wrap > .component {
+  border: none;
+}
+
+.chart-wrap {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.summary {
+  @apply --clearfix;
+  composes: cond-normal from 'fonts.css';
+  font-size: 18px;
+  padding: 0 15px;
+}
+
+.summary-item {
+  transition: border .2s ease-out;
+  float: left;
+  margin: 0 10px;
+  color: var(--gray-dark);
+  border-bottom: 1px solid transparent;
+  &:first-child {
+    margin-left: 0;
+  }
+  &:before {
+    @apply --ma-icon;
+    font-size: 15px;
+    top: 1px;
+    margin-right: 2px;
+  }
+  &.tests {
+    &:before {
+      content: var(--ma-icon-tests);
+    }
+  }
+  &.passed {
+    color: var(--brand-success);
+    &:before {
+      content: var(--ma-icon-passed);
+      color: var(--brand-success);
+    }
+  }
+  &.failed {
+    color: var(--brand-danger);
+    &:before {
+      content: var(--ma-icon-failed);
+      color: var(--brand-danger);
+    }
+  }
+  &.pending {
+    color: var(--brand-info);
+    &:before {
+      content: var(--ma-icon-pending);
+      color: var(--brand-info);
+      top: 2px;
+    }
+  }
+  &.duration {
+    &:before {
+      color: var(--gray-light);
+      content: var(--ma-icon-duration);
+    }
+  }
+}
+
+  /* Filter Styles
+  .filter-passed & {
+    &.passed {
+      .filterActive(var(--brand-success));
+    }
+  }
+  .filter-failed & {
+    &.failed {
+      .filterActive(var(--brand-danger));
+    }
+  }
+  .filter-pending & {
+    &.pending {
+      .filterActive(var(--brand-info));
+    }
+  } */
+
+
+.test-header {
+  padding: 4px 8px 6px 8px;
+  cursor: pointer;
+  border-top: 1px solid var(--list-group-border);
+  border-bottom: 1px solid var(--list-group-border);
+}
+
+.test-list {
+  margin-bottom: 0;
+}
+
+.test-header-title {
+  @apply --link-transition;
+  composes: slab-normal from 'fonts.css';
+  font-size: 16px;
+  color: #ccc;
+  margin: 0;
+
+  @nest .test-header:hover & {
+    color: var(--gray-dark);
+  }
+
+  &:after {
+    @apply --ma-icon;
+    transition: transform .2s ease-out;
+    content: var(--ma-icon-right-chevron);
+    position: absolute;
+    font-size: 20px;
+    right: 15px;
+    transform: rotate(90deg);
+    @nest .collapsed & {
+      transform: rotate(0);
+    }
+  }
+}
+
+/* Tablet 768 and up */
+@media (--screen-sm) {
+  :global(.details) > .wrap > .component {
+    border: 1px solid var(--gray-border);
+  }
+  .chart-wrap {
+    width: 65px;
+    height: 65px;
+  }
+}

@@ -99,9 +99,7 @@ a {
 }
 
 .row {
-  @apply --clearfix;
-  margin-left: calc(var(--grid-gutter-width) / -2);
-  margin-right: calc(var(--grid-gutter-width) / -2);
+  @apply --row;
 }
 
 [data-icon],
@@ -161,10 +159,17 @@ a {
   &:before { content: var(--ma-icon-menu); }
 }
 
+.details {
+  padding-top: calc(var(--navbar-height) + var(--summary-height-stacked) + var(--statusbar-height-stacked));
+  padding-bottom: 20px;
+}
 
 @media (--screen-sm) {
   .container {
     width: var(--container-sm);
+  }
+  .details {
+    padding-top: 10px;
   }
 }
 @media (--screen-md) {

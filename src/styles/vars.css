@@ -21,6 +21,7 @@
   --gray-medium: color(var(--gray-base) tint(73.5%)); /* #bbb */
   --gray-lighter: color(var(--gray-base) tint(93.5%)); /* #eee */
   --gray-lighter-faded: color(var(--gray-lighter) alpha(95%));
+  --gray-border: color(var(--gray-base) tint(80%)); /* #ccc */
 
   /* Brand Colors */
   --brand-primary: color(#428bca shade(6.5%)); /* #337ab7 */
@@ -32,6 +33,7 @@
   --body-bg: #fff;
   --link-color: var(--brand-primary);
   --link-hover-color: color(var(--link-color) shade(15%));
+  --list-group-border: #ddd;
 
   /* Type */
   --font-family-sans-serif: 'roboto_condensedregular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -117,6 +119,12 @@
     min-height: 1px;
     padding-left: calc(var(--grid-gutter-width) / 2);
     padding-right: calc(var(--grid-gutter-width) / 2);
+  }
+
+  --row: {
+    @apply --clearfix;
+    margin-left: calc(var(--grid-gutter-width) / -2);
+    margin-right: calc(var(--grid-gutter-width) / -2);
   }
 }
 
