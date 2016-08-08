@@ -1,7 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import { Footer, Navbar, NavMenu, Summary, StatusBar, Suite } from './index';
+import { observer } from 'mobx-react';
+import DevTools from 'mobx-react-devtools';
+import { Footer, Navbar, NavMenu, Summary, StatusBar } from './index';
+import { SuiteList } from 'components/suite';
 import 'styles/app.global.css';
 
+@observer
 class MochawesomeReport extends Component {
   static propTypes = {
     data: PropTypes.object
@@ -10,17 +14,18 @@ class MochawesomeReport extends Component {
   state = {};
 
   render() {
-    const { reportTitle, stats, suites } = this.props.data;
+    const { reportTitle, stats, suites } = this.props.data.data;
     return (
       <div>
         <Navbar reportTitle={ reportTitle } stats={ stats } />
         <Summary stats={ stats } />
         <StatusBar stats={ stats } />
         <div className='details container'>
-          { suites.suites.map((suite, i) => <Suite key={ i } suite={ suite } />) }
+          <SuiteList suites={ suites.suites } />
         </div>
         <Footer />
         <NavMenu suites={ suites } />
+        <DevTools />
       </div>
     );
   }

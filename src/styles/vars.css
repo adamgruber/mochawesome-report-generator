@@ -126,6 +126,11 @@
     margin-left: calc(var(--grid-gutter-width) / -2);
     margin-right: calc(var(--grid-gutter-width) / -2);
   }
+
+  --list-unstyled: {
+    list-style: none;
+    padding-left: 0;
+  }
 }
 
 @custom-media --screen-sm (width >= 768px);

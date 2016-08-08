@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import { QuickSummary } from 'components/';
+import { observer } from 'mobx-react';
+import reportStore from '../../js/reportStore';
 import moment from 'moment';
 import classNames from 'classnames/bind';
 import styles from './navbar.css';
@@ -7,12 +9,13 @@ import styles from './navbar.css';
 const cx = classNames.bind(styles);
 
 
-const Navbar = (props) => {
+const Navbar = observer((props) => {
   const { reportTitle, stats } = props;
   const reportDate = moment(stats.end).format('dddd, MMMM D YYYY, hh:mma');
 
   const onClickFn = () => {
     // do something
+    reportStore.sideNavOpen = true;
   };
 
   return (
@@ -33,7 +36,7 @@ const Navbar = (props) => {
       </div>
     </div>
   );
-};
+});
 
 Navbar.propTypes = {
   reportTitle: PropTypes.string,

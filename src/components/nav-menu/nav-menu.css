@@ -31,15 +31,18 @@
 }
 
 .close-button {
+  @apply --button-base;
   position: absolute;
   top: 14px;
   right: 14px;
+  font-size: 21px;
+  width: 26px;
+  height: 26px;
   color: var(--gray);
   &:hover {
     color: var(--gray-dark);
   }
 }
-
 
 .wrap.open {
   visibility: visible;
@@ -114,13 +117,6 @@
     outline: none;
     text-decoration: none;
   }
-}
-
-.button {
-  @apply --button-base;
-  font-size: 21px;
-  width: 26px;
-  height: 26px;
 }
 
 /* Tablet 768 and up */

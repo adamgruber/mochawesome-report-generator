@@ -75,6 +75,7 @@
 
 .summary {
   @apply --clearfix;
+  composes: list-unstyled from 'type.css';
   composes: cond-normal from 'fonts.css';
   font-size: 18px;
   padding: 0 15px;

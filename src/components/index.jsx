@@ -4,6 +4,5 @@ export { default as Navbar } from './navbar';
 export { default as NavMenu } from './nav-menu';
 export { default as QuickSummary } from './quick-summary';
 export { default as StatusBar } from './status-bar';
-export { default as Suite } from './suite';
 export { default as Summary } from './summary';
-export { default as Test } from './test';
+export { default as TestList } from './test/test-list';

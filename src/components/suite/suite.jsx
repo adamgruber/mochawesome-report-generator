@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import { Test } from 'components';
-import { formatDuration } from '../../utils';
+import { TestList } from 'components';
+import { SuiteChart, SuiteList, SuiteSummary } from 'components/suite';
 import classNames from 'classnames/bind';
 import styles from './suite.css';
 
@@ -13,7 +13,7 @@ const Suite = (props) => {
     hasPasses, duration, totalTests, totalPasses, totalFailures,
     totalPending, totalSkipped } = suite;
 
-  const subSuites = () => !!suites && suites.map((subSuite, i) => <Suite key={ i } suite={ subSuite } />);
+  const subSuites = () => <SuiteList suites={ suites } />;
 
   const cxname = cx('component', {
     'root-suite': root,
@@ -24,6 +24,9 @@ const Suite = (props) => {
     'has-pending': hasPending,
     'has-skipped': hasSkipped
   });
+
+  const summaryProps = { duration, totalTests, totalPasses, totalFailures, totalPending };
+  const chartProps = { uuid, totalPasses, totalFailures, totalPending, totalSkipped };
 
   if (rootEmpty) {
     return subSuites();
@@ -36,25 +39,9 @@ const Suite = (props) => {
         <h5 className={ cx('filename') }>{ file === '' ? ' ' : file }</h5>
         { hasTests && (
           <div>
-            <div className={ cx('chart-wrap') }>
-              <canvas
-                id={ uuid }
-                className='chart'
-                width='50'
-                height='50'
-                data-total-passes={ totalPasses }
-                data-total-failures={ totalFailures }
-                data-total-pending={ totalPending }
-                data-total-skipped={ totalSkipped }></canvas>
-            </div>
+            <SuiteChart { ...chartProps } />
             <div className={ cx('data-wrap') }>
-              <ul className={ cx('summary', 'list-unstyled') }>
-                <li className={ cx('summary-item', 'duration') }>{ formatDuration(duration) }</li>
-                <li className={ cx('summary-item', 'tests') }>{ totalTests }</li>
-                <li className={ cx('summary-item', 'passed') }>{ totalPasses }</li>
-                <li className={ cx('summary-item', 'failed') }>{ totalFailures }</li>
-                <li className={ cx('summary-item', 'pending') }>{ totalPending }</li>
-              </ul>
+              <SuiteSummary { ...summaryProps } />
               <div className={ cx('test-wrap') }>
                 <div
                   className={ cx('test-header') }
@@ -62,11 +49,10 @@ const Suite = (props) => {
                   data-target={ `#${uuid}-test-list` }>
                   <h4 className={ cx('test-header-title') }>Tests</h4>
                 </div>
-                <div
-                  id={ `${uuid}-test-list` }
-                  className={ cx('list-group', 'test-list', 'collapse', 'in') }>
-                  { !!tests && tests.map((test, i) => <Test key={ i } test={ test } />) }
-                </div>
+                <TestList
+                  uuid={ uuid }
+                  className={ cx('list-group', 'test-list', 'collapse', 'in') }
+                  tests={ tests } />
               </div>
             </div>
           </div>
