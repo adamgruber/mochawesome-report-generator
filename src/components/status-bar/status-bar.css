@@ -46,7 +46,7 @@
   top: calc(var(--navbar-height) + var(--summary-height-stacked));
   padding: 4px 0;
   color: var(--gray);
-  background: fade(#fff, 95%);
+  background: color(#fff alpha(95%));
   border-bottom: 1px solid var(--gray-border);
   z-index: 1030;
   transition: border 0.2s ease-out;
@@ -77,7 +77,7 @@
     position: static;
     border-bottom: none;
   }
-  .show-quick-summary .component {
+  .component.qs {
     position: fixed;
     top: var(--navbar-height);
     width: 100%;

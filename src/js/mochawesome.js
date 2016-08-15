@@ -11,7 +11,7 @@ bodyEl.removeAttribute('data-raw');
 bodyEl.removeAttribute('data-config');
 
 // Set data in the store
-reportStore.data = data;
+reportStore.setInitialData({ data, config });
 
 ReactDOM.render(
   <MochawesomeReport data={ reportStore } config={ config } />,

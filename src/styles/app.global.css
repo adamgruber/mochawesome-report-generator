@@ -162,6 +162,9 @@ a {
 .details {
   padding-top: calc(var(--navbar-height) + var(--summary-height-stacked) + var(--statusbar-height-stacked));
   padding-bottom: 20px;
+  &.qs {
+    padding-top: 43px; /* height of full statusbar plus base padding (33 + 10) */
+  }
 }
 
 @media (--screen-sm) {

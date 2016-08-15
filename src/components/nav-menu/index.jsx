@@ -9,9 +9,8 @@ import styles from './nav-menu.css';
 const cx = classNames.bind(styles);
 
 
-const NavMenu = observer((props) => {
+const NavMenu = observer(({ suites }) => {
   const closeSideNav = action('closeSideNav', () => (reportStore.sideNavOpen = false));
-  const { suites } = props;
   return (
     <div className={ cx('wrap', { open: reportStore.sideNavOpen }) }>
       <div onClick={ closeSideNav } className={ cx('overlay') }></div>

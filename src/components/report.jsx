@@ -1,8 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import { observer } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
-import { Footer, Navbar, NavMenu, Summary, StatusBar } from './index';
+import throttle from 'lodash/throttle';
+import { observer } from 'mobx-react';
+import reportStore from '../js/reportStore';
+import { DomNodeWrapper, Footer, Navbar, NavMenu, Summary, StatusBar } from './index';
 import { SuiteList } from 'components/suite';
+import cx from 'classnames';
 import 'styles/app.global.css';
 
 @observer
@@ -13,19 +16,41 @@ class MochawesomeReport extends Component {
 
   state = {};
 
+  componentDidMount() {
+    window.addEventListener('scroll', this.windowScrollHandler.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.windowScrollHandler.bind(this));
+  }
+
+  windowScrollHandler = throttle(() => {
+    // todo: move this to summary
+    const navbarH = this.refs.navbar.getMeasurements('height');
+    const summaryRect = this.refs.summary.getMeasurements();
+    const summaryHeight = summaryRect.height - navbarH;
+    reportStore.showQuickSummary = summaryRect.top < (-summaryHeight);
+  }, 200);
+
   render() {
-    const { reportTitle, stats, suites } = this.props.data.data;
+    const { data } = this.props;
+    const { stats, suites } = data.data;
+    const { reportTitle } = data;
     return (
       <div>
-        <Navbar reportTitle={ reportTitle } stats={ stats } />
-        <Summary stats={ stats } />
+        <DomNodeWrapper ref='navbar'>
+          <Navbar reportTitle={ reportTitle } stats={ stats } />
+        </DomNodeWrapper>
+        <DomNodeWrapper ref='summary'>
+          <Summary stats={ stats } />
+        </DomNodeWrapper>
         <StatusBar stats={ stats } />
-        <div className='details container'>
+        <div className={ cx('details', 'container', { qs: reportStore.showQuickSummary }) }>
           <SuiteList suites={ suites.suites } />
         </div>
         <Footer />
         <NavMenu suites={ suites } />
-        <DevTools />
+        <DevTools position={ { bottom: 0, right: 20 } } />
       </div>
     );
   }

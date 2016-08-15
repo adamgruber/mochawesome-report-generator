@@ -12,6 +12,9 @@
   margin: 11px 10px 0 0;
   padding-right: 4px;
   border-right: 1px solid color(var(--gray-base) tint(40%));
+  @nest .show & {
+    opacity: 1;
+  }
 }
 
 .item {

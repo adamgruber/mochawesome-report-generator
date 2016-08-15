@@ -6,3 +6,4 @@ export { default as QuickSummary } from './quick-summary';
 export { default as StatusBar } from './status-bar';
 export { default as Summary } from './summary';
 export { default as TestList } from './test/test-list';
+export { default as DomNodeWrapper } from './dom-node-wrapper';
