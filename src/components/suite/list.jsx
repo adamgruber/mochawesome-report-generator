@@ -1,17 +1,14 @@
 import React, { PropTypes } from 'react';
 import Suite from './suite';
 
-const SuiteList = (props) => {
-  const { suites } = props;
-  return (
-    <div>
-      { !!suites && suites.map(suite => <Suite key={ suite.uuid } suite={ suite } />) }
-    </div>
-  );
-};
+const SuiteList = ({ suites }) => (
+  <div>
+    { !!suites && suites.map(suite => <Suite key={ suite.uuid } suite={ suite } />) }
+  </div>
+);
 
 SuiteList.propTypes = {
-  suites: PropTypes.object
+  suites: PropTypes.array
 };
 
 SuiteList.displayName = 'SuiteList';

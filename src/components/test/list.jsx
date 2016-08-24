@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Test from 'components/test';
+import Test from './test';
 import classNames from 'classnames/bind';
 import styles from './test.css';
 
@@ -20,7 +20,7 @@ const TestList = (props) => {
 TestList.propTypes = {
   className: PropTypes.string,
   uuid: PropTypes.string,
-  tests: PropTypes.object
+  tests: PropTypes.array
 };
 
 TestList.displayName = 'TestList';

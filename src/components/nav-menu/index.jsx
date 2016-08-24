@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
+import { ToggleSwitch } from 'components';
 import reportStore from '../../js/reportStore';
 import NavMenuItem from './nav-menu-item';
 import classNames from 'classnames/bind';
@@ -11,6 +12,7 @@ const cx = classNames.bind(styles);
 
 const NavMenu = observer(({ suites }) => {
   const closeSideNav = action('closeSideNav', () => (reportStore.sideNavOpen = false));
+  const { showPassed, showFailed, showPending } = reportStore;
   return (
     <div className={ cx('wrap', { open: reportStore.sideNavOpen }) }>
       <div onClick={ closeSideNav } className={ cx('overlay') }></div>
@@ -20,16 +22,31 @@ const NavMenu = observer(({ suites }) => {
           className={ cx('close-button') }>
           <i className='icon-failed'></i>
         </button>
-        <ul className={ cx('list-unstyled', 'main') }>
-          { suites.suites.map((suite, i) => <NavMenuItem key={ i } suite={ suite } />) }
-        </ul>
+        <div>
+          <ToggleSwitch
+            label='Show Passed'
+            active={ showPassed }
+            toggleFn={ () => (reportStore.showPassed = !showPassed) } />
+          <ToggleSwitch
+            label='Show Failed'
+            active={ showFailed }
+            toggleFn={ () => (reportStore.showFailed = !showFailed) } />
+          <ToggleSwitch
+            label='Show Pending'
+            active={ showPending }
+            toggleFn={ () => (reportStore.showPending = !showPending) } />
+        </div>
+        { !!suites && suites.map(suite => (
+          <ul key={ suite.uuid } className={ cx('list-unstyled', 'main') }>
+            { !!suite.suites && suite.suites.map(subSuite => <NavMenuItem key={ subSuite.uuid } suite={ subSuite } />) }
+          </ul>)) }
       </nav>
     </div>
   );
 });
 
 NavMenu.propTypes = {
-  suites: PropTypes.object
+  suites: PropTypes.array
 };
 
 NavMenu.displayName = 'NavMenu';

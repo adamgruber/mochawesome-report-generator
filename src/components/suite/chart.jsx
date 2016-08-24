@@ -22,7 +22,7 @@ const SuiteChart = (props) => {
 };
 
 SuiteChart.propTypes = {
-  uuid: PropTypes.number,
+  uuid: PropTypes.string,
   totalPasses: PropTypes.number,
   totalFailures: PropTypes.number,
   totalPending: PropTypes.number,

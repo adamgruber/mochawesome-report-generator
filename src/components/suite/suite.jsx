@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { TestList } from 'components';
+import { TestList } from 'components/test';
 import { SuiteChart, SuiteList, SuiteSummary } from 'components/suite';
 import classNames from 'classnames/bind';
 import styles from './suite.css';
@@ -7,13 +7,13 @@ import styles from './suite.css';
 const cx = classNames.bind(styles);
 
 const Suite = (props) => {
-  const { suite } = props;
-  const { root, rootEmpty, suites, tests, uuid, title, file,
+  const { className, suite } = props;
+  const { root, rootEmpty, displaySuites, displayTests, uuid, title, file,
     hasSuites, hasTests, hasFailures, hasPending, hasSkipped,
     hasPasses, duration, totalTests, totalPasses, totalFailures,
     totalPending, totalSkipped } = suite;
 
-  const subSuites = () => <SuiteList suites={ suites } />;
+  const subSuites = () => <SuiteList suites={ displaySuites } />;
 
   const cxname = cx('component', {
     'root-suite': root,
@@ -28,12 +28,14 @@ const Suite = (props) => {
   const summaryProps = { duration, totalTests, totalPasses, totalFailures, totalPending };
   const chartProps = { uuid, totalPasses, totalFailures, totalPending, totalSkipped };
 
+  console.log(suite);
+
   if (rootEmpty) {
     return subSuites();
   }
 
   return (
-    <section className={ cx('wrap') }>
+    <section className={ cx('wrap', className) }>
       <div id={ uuid } className={ cxname }>
         <h3 className={ cx('title') }>{ title === '' ? ' ' : title }</h3>
         <h5 className={ cx('filename') }>{ file === '' ? ' ' : file }</h5>
@@ -52,7 +54,7 @@ const Suite = (props) => {
                 <TestList
                   uuid={ uuid }
                   className={ cx('list-group', 'test-list', 'collapse', 'in') }
-                  tests={ tests } />
+                  tests={ displayTests } />
               </div>
             </div>
           </div>
@@ -64,7 +66,8 @@ const Suite = (props) => {
 };
 
 Suite.propTypes = {
-  suite: PropTypes.object
+  suite: PropTypes.object,
+  className: PropTypes.any
 };
 
 export default Suite;

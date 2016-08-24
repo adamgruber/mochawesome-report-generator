@@ -1,0 +1,24 @@
+@import '../../styles/vars';
+
+.component {
+  @apply --clearfix;
+  position: relative;
+  float: left;
+  margin-top: 11px;
+}
+
+.dropdown-menu {
+  background: red;
+}
+
+.toggle {
+  @apply --button-base;
+  font-size: 21px;
+  width: 26px;
+  height: 26px;
+  float: left;
+  color: #fff;
+  & i {
+    top: 1px;
+  }
+}

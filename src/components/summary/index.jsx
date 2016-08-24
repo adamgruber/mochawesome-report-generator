@@ -24,15 +24,15 @@ const Summary = (props) => {
             <h1 className={ cx('count') }>{ testsRegistered }</h1>
             <h4 className={ cx('label') }>{ testsRegistered.length > 1 ? 'Tests' : 'Test' }</h4>
           </div>
-          <div className={ cx('col', 'passes') } data-filter='passed' title='Passed'>
+          <div className={ cx('col', 'passes') } title='Passed'>
             <h1 className={ cx('count') }>{ passes }</h1>
             <h4 className={ cx('label') }>Passed</h4>
           </div>
-          <div className={ cx('col', 'failures') } data-filter='failed' title='Failed'>
+          <div className={ cx('col', 'failures') } title='Failed'>
             <h1 className={ cx('count') }>{ failures }</h1>
             <h4 className={ cx('label') }>Failed</h4>
           </div>
-          <div className={ cx('col', 'pending') } data-filter='pending' title='Pending'>
+          <div className={ cx('col', 'pending') } title='Pending'>
             <h1 className={ cx('count') }>{ pending }</h1>
             <h4 className={ cx('label') }>Pending</h4>
           </div>

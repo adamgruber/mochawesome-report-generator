@@ -48,12 +48,7 @@
   }
 }
 
-// Filter Links
-.col[data-filter] {
-  cursor: pointer;
-}
-
-// Colors / Icons
+/* Colors / Icons */
 .duration {
   & .count:before {
     content: var(--ma-icon-duration);
@@ -91,10 +86,6 @@
   & .count {
     @apply --link-transition;
 
-    @nest :hover& {
-      color: var(--brand-success);
-    }
-
     @nest .active& {
       color: var(--brand-success);
       border-bottom: 2px solid var(--brand-success);
@@ -123,10 +114,6 @@
   & .count {
     @apply --link-transition;
 
-    @nest :hover& {
-      color: var(--brand-danger);
-    }
-
     @nest .active& {
       color: var(--brand-danger);
       border-bottom: 2px solid var(--brand-danger);
@@ -153,10 +140,6 @@
   & .label:after,
   & .count {
     @apply --link-transition;
-
-    @nest :hover& {
-      color: var(--brand-info);
-    }
 
     @nest .active& {
       color: var(--brand-info);
@@ -197,13 +180,5 @@
   }
   .label {
     display: inline-block;
-    @nest [data-filter] & {
-      &:after {
-        @apply --ma-icon;
-        content: var(--ma-icon-filter);
-        color: #ccc;
-        top: 2px;
-      }
-    }
   }
 }
