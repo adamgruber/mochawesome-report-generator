@@ -27,11 +27,6 @@
   float: left;
 }
 
-/* Filter Btns */
-.item[data-filter] {
-  transition: border .2s ease-out;
-}
-
 /* Icons / Colors */
 .item {
   &:before {
@@ -47,18 +42,12 @@
       content: var(--ma-icon-suites);
       margin-right: 6px;
     }
-    &.active {
-      color: var(--gray-lighter);
-    }
   }
 
   &.tests {
     color: var(--gray-lighter);
     &:before {
       content: var(--ma-icon-tests);
-    }
-    &.active {
-      color: var(--gray-lighter);
     }
   }
 
@@ -67,32 +56,12 @@
     &:before {
       content: var(--ma-icon-passed);
     }
-    &:hover {
-      border-color: var(--brand-success);
-    }
-    &.active {
-      color: var(--brand-success);
-    }
-    &.active:hover {
-      color: color(var(--brand-success) shade(11%));
-      border-color: color(var(--brand-success) shade(11%));
-    }
   }
 
   &.failures {
     color: var(--brand-danger);
     &:before {
       content: var(--ma-icon-failed);
-    }
-    &:hover {
-      border-color: var(--brand-danger);
-    }
-    &.active {
-      color: var(--brand-danger);
-    }
-    &.active:hover {
-      color: color(var(--brand-danger) shade(11%));
-      border-color: color(var(--brand-danger) shade(11%));
     }
   }
 
@@ -103,16 +72,6 @@
       top: 2px;
       margin-right: 1px;
     }
-    &:hover {
-      border-color: var(--brand-info);
-    }
-    &.active {
-      color: var(--brand-info);
-    }
-    &.active:hover {
-      color: color(var(--brand-info) shade(11%));
-      border-color: color(var(--brand-info) shade(11%));
-    }
   }
 
   &.duration {
@@ -120,9 +79,6 @@
     &:before {
       content: var(--ma-icon-duration);
       top: 0;
-    }
-    &.active {
-      color: var(--gray-lighter);
     }
     & span {
       font-size: 14px;
@@ -133,9 +89,6 @@
 .show-quick-summary {
   & .list {
     opacity: 1;
-  }
-  & .item[data-filter] {
-    cursor: pointer;
   }
 }
 
