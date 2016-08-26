@@ -11,10 +11,7 @@ const cx = classNames.bind(styles);
 const Navbar = ({ reportTitle, stats }) => {
   const reportDate = moment(stats.end).format('dddd, MMMM D YYYY, hh:mma');
 
-  const onClickFn = () => {
-    // do something
-    reportStore.sideNavOpen = true;
-  };
+  const onClickFn = () => (reportStore.openSideNav());
 
   return (
     <div className={ cx('navbar') } role='navigation'>

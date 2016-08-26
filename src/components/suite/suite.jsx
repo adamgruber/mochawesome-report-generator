@@ -8,12 +8,12 @@ const cx = classNames.bind(styles);
 
 const Suite = (props) => {
   const { className, suite } = props;
-  const { root, rootEmpty, displaySuites, displayTests, uuid, title, file,
+  const { root, rootEmpty, suites, tests, uuid, title, file,
     hasSuites, hasTests, hasFailures, hasPending, hasSkipped,
     hasPasses, duration, totalTests, totalPasses, totalFailures,
     totalPending, totalSkipped } = suite;
 
-  const subSuites = () => <SuiteList suites={ displaySuites } />;
+  const subSuites = () => <SuiteList suites={ suites } />;
 
   const cxname = cx('component', {
     'root-suite': root,
@@ -54,7 +54,7 @@ const Suite = (props) => {
                 <TestList
                   uuid={ uuid }
                   className={ cx('list-group', 'test-list', 'collapse', 'in') }
-                  tests={ displayTests } />
+                  tests={ tests } />
               </div>
             </div>
           </div>

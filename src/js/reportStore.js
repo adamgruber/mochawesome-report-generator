@@ -1,14 +1,18 @@
 /* eslint-disable no-console, max-len */
-import { observable, computed } from 'mobx';
+import { observable, computed, action } from 'mobx';
 // import find from 'lodash/find';
 import filter from 'lodash/filter';
+import map from 'lodash/map';
+import compact from 'lodash/compact';
 
 class ReportStore {
   @observable showQuickSummary = false;
   @observable sideNavOpen = false;
-  @observable showPassed = false;
-  @observable showFailed = false;
-  @observable showPending = false;
+  @observable showPassed = true;
+  @observable showFailed = true;
+  @observable showPending = true;
+  @observable visibleTests = [];
+  @observable visibleSuites = [];
 
   constructor(data = {}) {
     this.data = data;
@@ -20,10 +24,40 @@ class ReportStore {
   }
 
   @computed get suites() {
-    // TODO: turn this into a map
-    const derived = filter(this.allSuites, this._filterSuites.bind(this));
+    const derived = compact(map(this.allSuites, this._mapSuites.bind(this)));
     console.log(derived);
     return derived;
+  }
+
+  @action openSideNav() {
+    this.sideNavOpen = true;
+  }
+
+  @action closeSideNav() {
+    this.sideNavOpen = false;
+  }
+
+  _mapSuites(suite) {
+    const suites = compact(map(suite.suites, this._mapSuites.bind(this)));
+    const tests = filter(suite.tests, test => (
+      (this.showPassed && test.pass)
+      || (this.showFailed && test.fail)
+      || (this.showPending && test.pending)
+    ));
+
+    return (tests.length > 0 || suites.length > 0)
+      ? Object.assign({}, suite, { suites, tests })
+      : null;
+
+    // const newSuite = Object.assign({}, suite, {
+    //   suites: mappedSuites,
+    //   tests: filteredTests
+    // });
+
+    // console.group(newSuite.title);
+    // console.log(`hasTests: ${newSuite.hasTests}, hasSuites: ${newSuite.hasSuites}`)
+    // console.log(`displayTests: ${newSuite.tests && newSuite.tests.length}, displaySuites: ${newSuite.suites && newSuite.suites.length}\n`);
+    // console.groupEnd();
   }
 
   setInitialData({ data, config }) {

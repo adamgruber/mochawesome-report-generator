@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import { ToggleSwitch } from 'components';
 import reportStore from '../../js/reportStore';
@@ -11,7 +10,7 @@ const cx = classNames.bind(styles);
 
 
 const NavMenu = observer(({ suites }) => {
-  const closeSideNav = action('closeSideNav', () => (reportStore.sideNavOpen = false));
+  const closeSideNav = () => (reportStore.closeSideNav());
   const { showPassed, showFailed, showPending } = reportStore;
   return (
     <div className={ cx('wrap', { open: reportStore.sideNavOpen }) }>

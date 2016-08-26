@@ -32,28 +32,6 @@ class MochawesomeReport extends Component {
     reportStore.showQuickSummary = summaryRect.top < (-summaryHeight);
   }, 200);
 
-  _renderSuites = suite => {
-    const suiteList = () => (
-      <Suite
-        key={ suite.uuid }
-        suite={ suite }
-        className={ cx({ 'root-suite': suite.root }) } />
-    );
-
-    // If this is the root suite and there are tests inside
-    // we need to show a suite for ittest list
-    // if (suite.root && !!suite.displayTests.length) {
-    //   return (
-    //     <div key={ suite.uuid }>
-    //       <Suite suite={ suite } />
-    //       { suiteList() }
-    //     </div>
-    //   );
-    // }
-
-    return suiteList();
-  }
-
   render() {
     const { data } = this.props;
     const { stats } = data.data;
@@ -68,7 +46,11 @@ class MochawesomeReport extends Component {
         </DomNodeWrapper>
         <StatusBar stats={ stats } />
         <div className={ cx('details', 'container', { qs: reportStore.showQuickSummary }) }>
-          { reportStore.suites.map(this._renderSuites) }
+          { reportStore.suites.map(suite => (
+            <Suite
+              key={ suite.uuid }
+              suite={ suite }
+              className={ cx({ 'root-suite': suite.root }) } />)) }
         </div>
         <Footer />
         <NavMenu suites={ reportStore.allSuites } />
