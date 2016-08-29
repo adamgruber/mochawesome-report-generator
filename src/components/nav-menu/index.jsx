@@ -21,16 +21,19 @@ const NavMenu = observer(({ suites }) => {
           className={ cx('close-button') }>
           <i className='icon-failed'></i>
         </button>
-        <div>
+        <div className={ cx('toggles-wrap') }>
           <ToggleSwitch
+            className={ cx('toggle') }
             label='Show Passed'
             active={ showPassed }
             toggleFn={ () => (reportStore.showPassed = !showPassed) } />
           <ToggleSwitch
+            className={ cx('toggle') }
             label='Show Failed'
             active={ showFailed }
             toggleFn={ () => (reportStore.showFailed = !showFailed) } />
           <ToggleSwitch
+            className={ cx('toggle') }
             label='Show Pending'
             active={ showPending }
             toggleFn={ () => (reportStore.showPending = !showPending) } />

@@ -7,6 +7,7 @@ const cx = classNames.bind(styles);
 class ToggleSwitch extends Component {
   static propTypes = {
     active: PropTypes.bool.isRequired,
+    className: PropTypes.any,
     label: PropTypes.string,
     toggleFn: PropTypes.func.isRequired
   };
@@ -16,11 +17,12 @@ class ToggleSwitch extends Component {
   };
 
   render() {
+    const { active, className, label, toggleFn } = this.props;
     return (
-      <div>
-        <div className={ cx('track') }>
-          <span className={ cx('label') }>{ this.props.label }</span>
-          <button className={ cx('toggle') } onClick={ this.props.toggleFn }>{ this.props.active ? 'On' : 'Off' }</button>
+      <div className={ cx('component', className) }>
+        <label className={ cx('label') }>{ label }</label>
+        <div className={ cx('switch', { off: !active }) } onClick={ toggleFn }>
+          <span className={ cx('toggle') }></span>
         </div>
       </div>
     );

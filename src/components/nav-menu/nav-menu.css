@@ -17,7 +17,7 @@
 }
 
 .menu {
-  transition: all .2s ease-out;
+  transition: all .15s cubic-bezier(.25,1,0.8,1);
   transform: translate(100%, 0);
   position: absolute;
   z-index: 1;
@@ -42,6 +42,20 @@
   &:hover {
     color: var(--gray-dark);
   }
+}
+
+.toggle {
+  margin-top: 4px;
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.toggles-wrap {
+  margin: 0 28px 8px 28px;
+  padding: 8px 0;
+  border-top: 1px solid var(--gray-medium);
+  border-bottom: 1px solid var(--gray-medium);
 }
 
 .wrap.open {
