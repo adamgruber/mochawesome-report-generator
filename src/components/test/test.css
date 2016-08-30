@@ -1,1 +1,133 @@
 @import '../../styles/vars';
+
+.component {
+  padding: 6px 8px 8px 6px;
+  border-top: 1px solid var(--gray-border);
+  &:first-child {
+    /* border: none; */
+  }
+}
+
+.header {
+  @apply --clearfix;
+}
+
+.title {
+  composes: normal from '../../styles/fonts.css';
+  font-size: 14px;
+  margin: 0;
+  float: left;
+  &:before {
+    @apply --ma-icon;
+    font-size: 12px;
+    top: 2px;
+    margin-right: 4px;
+  }
+}
+
+.info {
+  float: right;
+}
+
+.actions {
+  float: left;
+}
+
+.btn {
+  @apply --button-base;
+  margin-left: 8px;
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.duration {
+  composes: cond-bold from '../../styles/fonts.css';
+  float: left;
+  &:before {
+    content: '';
+    height: 10px;
+    display: inline-block;
+    border-left: 1px solid var(--gray-light);
+    margin: 0 6px;
+  }
+  &.slow {
+    color: var(--brand-danger);
+  }
+  &.medium {
+    color: var(--brand-warning);
+  }
+}
+
+.toggle-btn {
+  @apply --link-transition;
+  border: none;
+  padding: 0;
+  outline: none;
+  text-decoration: none;
+  &:before {
+    content: "Hide ";
+  }
+  &.collapsed:before {
+    content: "Show ";
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.toggle-code {
+  float: left;
+  vertical-align: top;
+  line-height: 1.7;
+}
+
+.toggle-stack {
+  float: right;
+}
+
+.error-message {
+  @apply --clearfix;
+  font-size: 12px;
+  margin: 4px 0 0 17px;
+  color: var(--brand-danger);
+}
+
+pre {
+  margin: 10px 0 0 0;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.code-snippet {
+  font-size: 11px;
+}
+
+.title {
+  @nest .passed & {
+    &:before {
+      content: var(--ma-icon-passed);
+      color: var(--brand-success);
+    }
+  }
+  @nest .failed & {
+    &:before {
+      content: var(--ma-icon-failed);
+      color: var(--brand-danger);
+    }
+  }
+  @nest .pending & {
+    &:before {
+      content: var(--ma-icon-pending);
+      color: var(--brand-info);
+    }
+  }
+  @nest .skipped & {
+    color: #999;
+    &:before {
+      content: var(--ma-icon-skipped);
+      color: lighten(#999, 15%);
+    }
+  }
+}

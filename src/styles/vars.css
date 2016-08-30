@@ -38,6 +38,7 @@
   /* Type */
   --font-family-sans-serif: 'roboto_condensedregular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-family-base: var(--font-family-sans-serif);
+  --font-family-mono: 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
   --font-size-base: 14px;
   --line-height-base: 1.429; /* 1.428571429 20/14 */
   --line-height-computed: 20px; /* floor((--font-size-base * --line-height-base)); */

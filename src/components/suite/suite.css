@@ -131,25 +131,8 @@
   }
 }
 
-  /* Filter Styles
-  .filter-passed & {
-    &.passed {
-      .filterActive(var(--brand-success));
-    }
-  }
-  .filter-failed & {
-    &.failed {
-      .filterActive(var(--brand-danger));
-    }
-  }
-  .filter-pending & {
-    &.pending {
-      .filterActive(var(--brand-info));
-    }
-  } */
-
-
 .test-header {
+  display: none;
   padding: 4px 8px 6px 8px;
   cursor: pointer;
   border-top: 1px solid var(--list-group-border);

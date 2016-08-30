@@ -116,3 +116,8 @@ ol {
     padding-right: 5px;
   }
 }
+
+/* Pre and Code */
+code {
+  font-family: var(--font-family-mono);
+}
