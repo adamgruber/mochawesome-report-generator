@@ -21,7 +21,7 @@
     "react"
   ],
   "engine": "node >= 0.10.0",
-  "main": "mochawesome.js",
+  "main": "mochawesome-report.js",
   "dependencies": {
     "highlight.js": "^9.6.0",
     "json-stringify-safe": "^5.0.0",
