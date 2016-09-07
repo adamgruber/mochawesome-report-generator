@@ -5,7 +5,8 @@
   "scripts": {
     "test": "gulp build",
     "start": "node ./lib/main.js",
-    "build": "rm -rf dist/ && $(npm bin)/webpack",
+    "build": "rm -rf dist/ && npm run pack",
+    "pack": "$(npm bin)/webpack",
     "dev": "$(npm bin)/webpack-dev-server --inline --watch --hot"
   },
   "author": "Adam Gruber",
