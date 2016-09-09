@@ -5,9 +5,10 @@
   "scripts": {
     "test": "gulp build",
     "start": "node ./lib/main.js",
-    "build": "rm -rf dist/ && npm run pack",
-    "pack": "$(npm bin)/webpack",
-    "dev": "$(npm bin)/webpack-dev-server --inline --watch --hot"
+    "build:assets": "rm -rf dist/assets && npm run pack && npm run pack:inline",
+    "pack": "$(npm bin)/webpack --config ./webpack/external.config.js",
+    "pack:inline": "$(npm bin)/webpack --config ./webpack/inline.config.js",
+    "dev": "$(npm bin)/webpack-dev-server --config ./webpack/external.config.js --inline --watch --hot"
   },
   "author": "Adam Gruber",
   "license": "ISC",
