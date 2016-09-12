@@ -6,6 +6,7 @@
     "test": "gulp build",
     "start": "node ./lib/main.js",
     "build:assets": "rm -rf dist/assets && npm run pack && npm run pack:inline",
+    "build:assets:prod": "NODE_ENV=production npm run build:assets",
     "pack": "$(npm bin)/webpack --config ./webpack/external.config.js",
     "pack:inline": "$(npm bin)/webpack --config ./webpack/inline.config.js",
     "dev": "$(npm bin)/webpack-dev-server --config ./webpack/external.config.js --inline --watch --hot"
@@ -25,8 +26,10 @@
   "engine": "node >= 0.10.0",
   "main": "mochawesome-report.js",
   "dependencies": {
+    "fs-extra": "^0.30.0",
     "highlight.js": "^9.6.0",
     "json-stringify-safe": "^5.0.0",
+    "material-design-icons": "^3.0.1",
     "mkdirp": "^0.5.1",
     "mocha": "*",
     "moment": "^2.14.1",

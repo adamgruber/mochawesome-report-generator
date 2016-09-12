@@ -5,13 +5,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const JS_REGEX = /\.js$|\.jsx$|\.es6$|\.babel$/;
 
+// Set output path
+baseConfig.output.path = path.resolve(__dirname, '..', 'dist', 'assets', 'external');
+
 module.exports = Object.assign({}, baseConfig, {
-  output: {
-    path: path.resolve(__dirname, '..', 'dist', 'assets', 'external'),
-    publicPath: 'http://localhost:8080/dist/assets',
-    filename: '[name].js'
-    // chunkFilename: '[name]-[hash].js'
-  },
   module: {
     preLoaders: [
       { test: JS_REGEX, exclude: /node_modules/, loader: 'eslint' }
@@ -35,9 +32,6 @@ module.exports = Object.assign({}, baseConfig, {
     }, {
       test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'url?limit=1000&mimetype=application/octet-stream&name=[name].[ext]'
-    }, {
-      test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file?name=[name].[ext]'
     }, {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'url?limit=1000&mimetype=image/svg+xml&name=[name].[ext]'

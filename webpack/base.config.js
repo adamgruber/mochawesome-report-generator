@@ -3,15 +3,19 @@ const env = (!!process.env.BABEL_ENV && process.env.BABEL_ENV) ||
           (!!process.env.NODE_ENV && process.env.NODE_ENV) ||
           'development';
 
+const isDev = env === 'development';
+const publicPath = isDev ? 'http://localhost:8080/dist/assets' : '';
+const devtool = isDev ? 'source-map' : '';
+
 module.exports = {
-  devtool: 'source-map',
+  devtool,
   env,
   entry: {
     app: './src/js/mochawesome.js'
   },
   output: {
     path: path.resolve(__dirname, '..', 'dist', 'assets'),
-    publicPath: 'http://localhost:8080/dist/assets',
+    publicPath,
     filename: '[name].js'
     // chunkFilename: '[name]-[hash].js'
   },
