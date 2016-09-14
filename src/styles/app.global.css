@@ -4,35 +4,29 @@
 @import '../../node_modules/highlight.js/styles/tomorrow-night';
 
 @font-face {
-    font-family: 'roboto_condensedlight';
-    src: url('../fonts/RobotoCondensed-Light-webfont.woff') format('woff'),
-         url('../fonts/RobotoCondensed-Light-webfont.ttf') format('truetype');
+    font-family: 'robotolight';
+    src: url('../fonts/roboto-light-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-light-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'roboto_condensedregular';
-    src: url('../fonts/RobotoCondensed-Regular-webfont.woff') format('woff'),
-         url('../fonts/RobotoCondensed-Regular-webfont.ttf') format('truetype');
+    font-family: 'robotomedium';
+    src: url('../fonts/roboto-medium-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-medium-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+
 }
 
 @font-face {
-    font-family: 'roboto_condensedbold';
-    src: url('../fonts/RobotoCondensed-Bold-webfont.woff') format('woff'),
-         url('../fonts/RobotoCondensed-Bold-webfont.ttf') format('truetype');
+    font-family: 'robotoregular';
+    src: url('../fonts/roboto-regular-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-}
 
-@font-face {
-    font-family: 'roboto_slabregular';
-    src: url('../fonts/RobotoSlab-Regular-webfont.woff') format('woff'),
-         url('../fonts/RobotoSlab-Regular-webfont.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
 }
 
 @font-face {

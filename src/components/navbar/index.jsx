@@ -16,17 +16,17 @@ const Navbar = ({ reportTitle, stats }) => {
   return (
     <div className={ cx('navbar') } role='navigation'>
       <div className='container'>
+        <button
+          onClick={ onClickFn }
+          className={ cx('menu-button', 'open-menu') }>
+          <i className='icon-menu'></i>
+        </button>
         <div className={ cx('report-info-cnt') }>
           <h1 className={ cx('report-title') }>{ reportTitle }</h1>
           <h3 className={ cx('report-date') }>{ reportDate }</h3>
         </div>
         <div className={ cx('nav-right') }>
           <QuickSummary stats={ stats } />
-          <button
-            onClick={ onClickFn }
-            className={ cx('menu-button', 'open-menu') }>
-            <i className='icon-menu'></i>
-          </button>
         </div>
       </div>
     </div>

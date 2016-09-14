@@ -24,22 +24,27 @@ const Test = (props) => {
         <div className={ cx('info') }>
           <div className={ cx('actions') }>
             <button className={ cx('btn') }>Code</button>
-            <button className={ cx('btn') }>Error</button>
             <button className={ cx('btn') }>Diff</button>
+            <button className={ cx('btn') }>Stack</button>
             <button className={ cx('btn') }>Extra</button>
           </div>
           <span className={ cx('duration', speed) }>{ formatDuration(duration) }</span>
         </div>
       </header>
-      { !!err && <p className={ cx('error-message') }>{ `${err.name}: ${err.message}` }</p> }
+      { !!err.name && !!err.message && <p className={ cx('error-message') }>{ `${err.name}: ${err.message}` }</p> }
+      { !!err.estack && (
+        <div className={ cx('error-stack') }>
+          <CodeSnippet className={ cx('code-snippet') } code={ err.estack } lang='bash' />
+        </div>)
+      }
+      { !!err.diff && (
+        <div className={ cx('error-diff') }>
+          <CodeSnippet className={ cx('code-snippet') } code={ err.diff } lang='diff' />
+        </div>)
+      }
       { !!code && (
         <div className={ cx('code') }>
           <CodeSnippet className={ cx('code-snippet') } code={ code } />
-        </div>)
-      }
-      { !!err && (
-        <div className={ cx('error-stack') }>
-          <CodeSnippet className={ cx('code-snippet') } code={ err.stack } lang='bash' />
         </div>)
       }
     </section>

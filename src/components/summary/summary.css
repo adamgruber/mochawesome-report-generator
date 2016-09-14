@@ -24,7 +24,7 @@
 }
 
 .label {
-  composes: cond-light from 'fonts.css';
+  composes: font-light from 'fonts.css';
   color: var(--gray);
   text-transform: uppercase;
   display: none;
@@ -32,7 +32,7 @@
 }
 
 .count {
-  composes: cond-normal from 'fonts.css';
+  composes: font-regular from 'fonts.css';
   display: inline;
   color: var(--gray-light);
   text-align: center;

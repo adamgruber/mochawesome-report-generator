@@ -42,7 +42,7 @@
 }
 
 .duration {
-  composes: cond-bold from '../../styles/fonts.css';
+  composes: font-medium from '../../styles/fonts.css';
   float: left;
   &:before {
     content: '';

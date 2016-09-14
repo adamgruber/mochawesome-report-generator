@@ -53,7 +53,7 @@
 }
 
 .item {
-  composes: cond-normal from 'fonts.css';
+  composes: font-regular from 'fonts.css';
   font-size: 18px;
   text-transform: uppercase;
   text-align: center;

@@ -18,7 +18,7 @@
 }
 
 .item {
-  composes: cond-normal from 'fonts.css';
+  composes: font-regular from 'fonts.css';
   user-select: none;
   cursor: default;
   font-size: 18px;

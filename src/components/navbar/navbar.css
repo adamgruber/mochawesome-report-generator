@@ -36,7 +36,7 @@
 }
 
 .report-title {
-  composes: slab-normal from 'fonts.css';
+  composes: font-medium from 'fonts.css';
   color: #fff;
   font-size: 16px;
   margin: 4px 0;
@@ -46,7 +46,7 @@
 }
 
 .report-date {
-  composes: cond-normal from 'fonts.css';
+  composes: font-regular from 'fonts.css';
   font-size: 13px;
   text-transform: uppercase;
   color: var(--gray-medium);

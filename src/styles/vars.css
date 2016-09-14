@@ -36,7 +36,7 @@
   --list-group-border: #ddd;
 
   /* Type */
-  --font-family-sans-serif: 'roboto_condensedregular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-family-sans-serif: 'robotolight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-family-base: var(--font-family-sans-serif);
   --font-family-mono: 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
   --font-size-base: 14px;

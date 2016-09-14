@@ -3,7 +3,8 @@ const { PropTypes } = React;
 
 function MainHTML(props) {
   const { data, options, scripts, styles } = props;
-  const clientScript = options.dev ? 'http://localhost:8080/dist/app.js' : 'assets/app.js';
+  const clientScript = options.dev ? 'http://localhost:8080/app.js' : 'assets/app.js';
+  const clientStyle = options.dev ? 'http://localhost:8080/app.css' : 'assets/app.css';
   return (
     <html lang='en'>
       <head>
@@ -13,7 +14,7 @@ function MainHTML(props) {
         <title>{ options.reportPageTitle }</title>
         { options.inlineAssets
           ? <style dangerouslySetInnerHTML={ { __html: styles } } />
-          : <link rel='stylesheet' href='assets/app.css' /> }
+          : <link rel='stylesheet' href={ clientStyle } /> }
       </head>
       <body data-raw={ data } data-config={ JSON.stringify(options) }>
         <div id='report'></div>

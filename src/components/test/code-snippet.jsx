@@ -31,9 +31,13 @@ class CodeSnippet extends Component {
 
   render() {
     const { className, code, lang } = this.props;
+    let c = code;
+    if (lang === 'diff') {
+      c = `- expected + actual\n${code}`;
+    }
     return (
       <pre className={ classNames(className, lang) }>
-        <code dangerouslySetInnerHTML={ { __html: code } } />
+        <code dangerouslySetInnerHTML={ { __html: c } } />
       </pre>
     );
   }

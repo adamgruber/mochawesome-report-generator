@@ -49,13 +49,13 @@
 }
 
 .title {
-  composes: slab-normal from 'fonts.css';
+  composes: font-light from 'fonts.css';
   padding: 0 70px 0 10px;
   margin: 0;
 }
 
 .filename {
-  composes: cond-light from 'fonts.css';
+  composes: font-light from 'fonts.css';
   color: var(--gray-light);
   margin-top: 4px;
   padding: 0 10px;
@@ -76,7 +76,7 @@
 .summary {
   @apply --clearfix;
   composes: list-unstyled from 'type.css';
-  composes: cond-normal from 'fonts.css';
+  composes: font-regular from 'fonts.css';
   font-size: 18px;
   padding: 0 15px;
 }
@@ -145,7 +145,7 @@
 
 .test-header-title {
   @apply --link-transition;
-  composes: slab-normal from 'fonts.css';
+  composes: font-light from 'fonts.css';
   font-size: 16px;
   color: #ccc;
   margin: 0;
