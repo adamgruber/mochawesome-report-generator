@@ -4,7 +4,7 @@ const env = (!!process.env.BABEL_ENV && process.env.BABEL_ENV) ||
           'development';
 
 const isDev = env === 'development';
-const publicPath = isDev ? 'http://localhost:8080/dist/assets' : '';
+const publicPath = isDev ? 'http://localhost:8080/' : '';
 const devtool = isDev ? 'source-map' : '';
 
 module.exports = {
