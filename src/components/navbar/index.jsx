@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { QuickSummary } from 'components/';
+import { QuickSummary, Icon } from 'components/';
 import reportStore from '../../js/reportStore';
 import moment from 'moment';
 import classNames from 'classnames/bind';
@@ -19,7 +19,7 @@ const Navbar = ({ reportTitle, stats }) => {
         <button
           onClick={ onClickFn }
           className={ cx('menu-button', 'open-menu') }>
-          <i className='icon-menu'></i>
+          <Icon name='menu' />
         </button>
         <div className={ cx('report-info-cnt') }>
           <h1 className={ cx('report-title') }>{ reportTitle }</h1>

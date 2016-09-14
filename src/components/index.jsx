@@ -1,6 +1,8 @@
+export { default as DomNodeWrapper } from './dom-node-wrapper';
 export { default as Dropdown } from './dropdown';
 export { default as FilterMenu } from './filter-menu';
 export { default as Footer } from './footer';
+export { default as Icon } from './material-icon';
 export { default as MochawesomeReport } from './report';
 export { default as Navbar } from './navbar';
 export { default as NavMenu } from './nav-menu';
@@ -8,4 +10,3 @@ export { default as QuickSummary } from './quick-summary';
 export { default as StatusBar } from './status-bar';
 export { default as Summary } from './summary';
 export { default as ToggleSwitch } from './toggle-switch';
-export { default as DomNodeWrapper } from './dom-node-wrapper';

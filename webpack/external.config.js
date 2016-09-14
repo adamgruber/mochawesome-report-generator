@@ -18,6 +18,9 @@ module.exports = Object.assign({}, baseConfig, {
       exclude: /node_modules/,
       loader: 'babel'
     }, {
+      test: /\.json$/,
+      loader: 'json'
+    }, {
       test: /\.global\.css$/,
       loader: ExtractTextPlugin.extract('style-loader', 'css-loader?minimize&importLoaders=1!postcss-loader')
     }, {
