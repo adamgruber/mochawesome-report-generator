@@ -13,21 +13,19 @@
 
 .overlay {
   display: none;
-  background: #000;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .menu {
   transition: all .15s cubic-bezier(.25,1,0.8,1);
-  transform: translate(100%, 0);
+  transform: translate(-100%, 0);
   position: absolute;
   z-index: 1;
   top: 0;
-  right: 0;
   bottom: 0;
   left: 0;
   overflow: auto;
-  padding: 48px 0;
-  background: var(--gray-lighter);
+  background: #fff;
 }
 
 .close-button {
@@ -44,32 +42,49 @@
   }
 }
 
+.date {
+  color: var(--black54);
+}
+
 .toggle {
-  margin-top: 4px;
-  &:first-child {
-    margin-top: 0;
-  }
+  margin: 8px 0;
+}
+
+.toggle-icon-passed {
+  color: var(--green500);
+}
+
+.toggle-icon-failed {
+  color: var(--red500);
+}
+
+.toggle-icon-pending {
+  color: var(--ltblue500);
 }
 
 .toggles-wrap {
-  margin: 0 28px 8px 28px;
-  padding: 8px 0;
-  border-top: 1px solid var(--gray-medium);
-  border-bottom: 1px solid var(--gray-medium);
 }
 
 .wrap.open {
   visibility: visible;
   & .overlay {
-    opacity: 0.4;
+    opacity: 1;
   }
   & .menu {
     transform: translate(0, 0);
   }
 }
 
+.section {
+  padding: 0 16px;
+  border-bottom: 1px solid var(--grey300);
+}
+
+.section.toc-wrap {
+  padding: 0;
+}
+
 .main {
-  padding: 0 28px;
 }
 
 .sub {

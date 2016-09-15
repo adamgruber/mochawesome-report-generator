@@ -35,7 +35,7 @@ const Suite = (props) => {
   }
 
   return (
-    <section className={ cx('wrap', className) }>
+    <section className={ cx('wrap', className, { 'z-depth-1': !root }) }>
       <div id={ uuid } className={ cxname }>
         <h3 className={ cx('title') }>{ title === '' ? ' ' : title }</h3>
         <h5 className={ cx('filename') }>{ file === '' ? ' ' : file }</h5>

@@ -7,81 +7,52 @@
 
 .list {
   @apply --clearfix;
-  opacity: 0;
+  opacity: 1;
   transition: opacity .2s ease-out;
-  margin: 11px 10px 0 0;
-  padding-right: 4px;
-  border-right: 1px solid color(var(--gray-base) tint(40%));
+  padding: 15px 24px;
+  margin: 0;
   @nest .show & {
     opacity: 1;
   }
 }
 
 .item {
-  composes: font-regular from 'fonts.css';
-  user-select: none;
-  cursor: default;
+  @apply --font-light;
   font-size: 18px;
-  margin: 0 8px;
-  border-bottom: 1px solid transparent;
+  margin: 0 12px;
+  /*border-bottom: 1px solid transparent;*/
   float: left;
 }
 
 /* Icons / Colors */
+.icon {
+  margin-right: 4px;
+  float: left;
+}
+
 .item {
-  &:before {
-    @apply --ma-icon;
-    top: 1px;
-    font-size: 15px;
-    margin-right: 4px;
-  }
+  color: #fff;
 
   &.suites {
-    color: var(--gray-lighter);
-    &:before {
-      content: var(--ma-icon-suites);
-      margin-right: 6px;
-    }
   }
 
   &.tests {
-    color: var(--gray-lighter);
-    &:before {
-      content: var(--ma-icon-tests);
-    }
+    color: #fff;
   }
 
   &.passes {
-    color: var(--brand-success);
-    &:before {
-      content: var(--ma-icon-passed);
-    }
   }
 
   &.failures {
-    color: var(--brand-danger);
-    &:before {
-      content: var(--ma-icon-failed);
-    }
   }
 
   &.pending {
-    color: var(--brand-info);
-    &:before {
-      content: var(--ma-icon-pending);
-      top: 2px;
-      margin-right: 1px;
-    }
   }
 
   &.duration {
-    color: var(--gray-lighter);
-    &:before {
-      content: var(--ma-icon-duration);
-      top: 0;
-    }
     & span {
       font-size: 14px;
+      text-transform: lowercase;
     }
   }
 }

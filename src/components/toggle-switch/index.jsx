@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Icon } from '../../components';
 import classNames from 'classnames/bind';
 import styles from './toggle-switch.css';
 
@@ -8,7 +9,10 @@ class ToggleSwitch extends Component {
   static propTypes = {
     active: PropTypes.bool.isRequired,
     className: PropTypes.any,
+    labelClassName: PropTypes.string,
     label: PropTypes.string,
+    icon: PropTypes.string,
+    iconClassName: PropTypes.string,
     toggleFn: PropTypes.func.isRequired
   };
 
@@ -17,12 +21,13 @@ class ToggleSwitch extends Component {
   };
 
   render() {
-    const { active, className, label, toggleFn } = this.props;
+    const { active, className, labelClassName, label, icon, iconClassName, toggleFn } = this.props;
     return (
       <div className={ cx('component', className) }>
-        <label className={ cx('label') }>{ label }</label>
+        { !!icon && <Icon name={ icon } className={ iconClassName } /> }
+        <label className={ cx('label', { 'with-icon': !!icon }, labelClassName) }>{ label }</label>
         <div className={ cx('switch', { off: !active }) } onClick={ toggleFn }>
-          <span className={ cx('toggle') }></span>
+          <span className={ cx('toggle', 'z-depth-1') }></span>
         </div>
       </div>
     );

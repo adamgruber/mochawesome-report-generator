@@ -1,6 +1,7 @@
 @import '../../styles/vars';
 
 .navbar {
+  @apply --clearfix;
   position: fixed;
   top: 0;
   right: 0;
@@ -10,20 +11,17 @@
   height: var(--navbar-height);
   margin-bottom: 0;
   border: none;
-  background: var(--gray-darker-faded);
-  @apply --clearfix;
+  background: var(--bluegrey500);
 }
 
 .menu-button {
   @apply --button-base;
-  font-size: 21px;
-  width: 26px;
-  height: 26px;
+  padding: 16px 24px;
+  height: 24px;
   float: left;
-  color: #fff;
-  margin-top: 11px;
-  & i {
-    top: 1px;
+  color: var(--light-icon-inactive);
+  &:hover {
+    color: var(--light-icon-active);
   }
 }
 
@@ -36,30 +34,16 @@
 }
 
 .report-title {
-  composes: font-medium from 'fonts.css';
+  @apply --font-light;
   color: #fff;
-  font-size: 16px;
-  margin: 4px 0;
+  font-size: 18px;
+  line-height: calc(var(--navbar-height) - 4);
+  margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.report-date {
-  composes: font-regular from 'fonts.css';
-  font-size: 13px;
-  text-transform: uppercase;
-  color: var(--gray-medium);
-  margin: 5px 0 0 0;
-}
-
 /* Tablet 768 and up */
 @media (--screen-sm) {
-  .report-title {
-    font-size: 1.3em;
-  }
-  .report-date {
-    font-size: 14px;
-    margin: 0;
-  }
 }

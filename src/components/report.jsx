@@ -53,7 +53,7 @@ class MochawesomeReport extends Component {
               className={ cx({ 'root-suite': suite.root }) } />)) }
         </div>
         <Footer />
-        <NavMenu suites={ reportStore.allSuites } />
+        <NavMenu reportTitle={ reportTitle } stats={ stats } suites={ reportStore.allSuites } />
         <DevTools position={ { bottom: 0, right: 20 } } />
       </div>
     );
