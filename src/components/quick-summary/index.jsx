@@ -19,7 +19,7 @@ const QuickSummary = observer(({ stats }) => {
           <span>{ getSummaryDurationUnits(duration) }</span>
         </li>
         <li className={ cx('item', 'suites') } title='Suites'>
-          <Icon name='apps' className={ cx('icon') } />{ suites }
+          <Icon name='library_books' className={ cx('icon') } />{ suites }
         </li>
         <li className={ cx('item', 'tests') } title='Tests'>
           <Icon name='assignment' className={ cx('icon') } />{ testsRegistered }

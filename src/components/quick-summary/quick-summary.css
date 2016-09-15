@@ -41,12 +41,33 @@
   }
 
   &.passes {
+    & .icon {
+      color: var(--green700);
+      font-size: 18px;
+      background-color: #C8E6C9;
+      border-radius: 50%;
+      padding: 3px;
+    }
   }
 
   &.failures {
+    & .icon {
+      color: var(--red700);
+      font-size: 18px;
+      background-color: #FFCDD2;
+      border-radius: 50%;
+      padding: 3px;
+    }
   }
 
   &.pending {
+    & .icon {
+      color: var(--ltblue700);
+      font-size: 18px;
+      background-color: #B3E5FC;
+      border-radius: 50%;
+      padding: 3px;
+    }
   }
 
   &.duration {
