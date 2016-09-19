@@ -1,61 +1,97 @@
 @import '../../styles/vars';
 
 .component {
-  padding: 12px 24px;
-  border-top: 1px solid var(--grey300);
-  &:first-child {
-    /* border: none; */
-  }
+  padding: 10px 24px;
+  border-bottom: 1px solid var(--grey300);
 }
 
 .header {
   @apply --clearfix;
+  position: relative;
 }
 
 .title {
   @apply --font-regular;
+  @apply --text-overflow;
   font-size: 13px;
+  line-height: 24px;
   margin: 0;
-  float: left;
-  &:before {
-    @apply --ma-icon;
-    font-size: 12px;
-    top: 2px;
-    margin-right: 4px;
+  padding: 0 60px 0 40px;
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 3px;
+  border-radius: 50%;
+  color: #fff;
+  margin-right: 16px;
+  &.pass {
+    color: var(--green100);
+    background-color: var(--green500);
+  }
+  &.fail {
+    color: var(--red100);
+    background-color: var(--red500);
+  }
+  &.pending {
+    color: var(--ltblue100);
+    background-color: var(--ltblue500);
   }
 }
 
 .info {
-  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .actions {
+  height: 24px;
   float: left;
+  display: none;
+  @nest .component:hover & {
+    display: block;
+  }
 }
 
 .btn {
   @apply --button-base;
+  color: var(--black54);
+  width: 24px;
+  height: 24px;
+  line-height: 1;
+  float: left;
   margin-left: 8px;
   &:first-child {
     margin-left: 0;
   }
+  &:hover {
+    color: var(--black87);
+  }
+}
+.action-icon {
+  font-size: 18px;
+  padding: 3px;
 }
 
 .duration {
-  composes: font-medium from '../../styles/fonts.css';
+  @apply --font-regular;
+  color: var(--black54);
   float: left;
-  &:before {
+  /*&:before {
     content: '';
     height: 10px;
     display: inline-block;
     border-left: 1px solid var(--gray-light);
     margin: 0 6px;
-  }
+  }*/
   &.slow {
-    color: var(--brand-danger);
+    color: var(--red500);
   }
   &.medium {
-    color: var(--brand-warning);
+    color: var(--amber500);
   }
 }
 
@@ -106,30 +142,3 @@ pre {
   background-color: var(--grey50) !important;
 }
 
-.title {
-  @nest .passed & {
-    &:before {
-      content: var(--ma-icon-passed);
-      color: var(--brand-success);
-    }
-  }
-  @nest .failed & {
-    &:before {
-      content: var(--ma-icon-failed);
-      color: var(--brand-danger);
-    }
-  }
-  @nest .pending & {
-    &:before {
-      content: var(--ma-icon-pending);
-      color: var(--brand-info);
-    }
-  }
-  @nest .skipped & {
-    color: #999;
-    &:before {
-      content: var(--ma-icon-skipped);
-      color: lighten(#999, 15%);
-    }
-  }
-}

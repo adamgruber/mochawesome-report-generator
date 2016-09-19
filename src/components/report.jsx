@@ -46,10 +46,7 @@ class MochawesomeReport extends Component {
         </DomNodeWrapper>
         <div className={ cx('details', 'container', { qs: reportStore.showQuickSummary }) }>
           { reportStore.suites.map(suite => (
-            <Suite
-              key={ suite.uuid }
-              suite={ suite }
-              className={ cx({ 'root-suite': suite.root }) } />)) }
+            <Suite key={ suite.uuid } suite={ suite } />)) }
         </div>
         <Footer />
         <NavMenu reportTitle={ reportTitle } stats={ stats } suites={ reportStore.allSuites } />

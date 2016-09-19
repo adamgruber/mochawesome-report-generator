@@ -16,14 +16,15 @@ const Suite = (props) => {
   const subSuites = () => hasSuites && <SuiteList suites={ suites } />;
 
   const testListComp = () => hasTests && (
-    <TestList className={ cx('test-list') } uuid={ uuid } tests={ tests } />
+    <TestList uuid={ uuid } tests={ tests } />
   );
 
   const cxname = cx('component', className, {
-    'z-depth-1': true,
     'root-suite': root,
     'has-suites': hasSuites,
+    'no-suites': !hasSuites,
     'has-tests': hasTests,
+    'no-tests': !hasTests,
     'has-passed': hasPasses,
     'has-failed': hasFailures,
     'has-pending': hasPending,
@@ -33,7 +34,6 @@ const Suite = (props) => {
   const summaryProps = { duration, totalTests, totalPasses, totalFailures, totalPending };
   const chartProps = { uuid, totalPasses, totalFailures, totalPending, totalSkipped };
 
-  console.log(suite);
 
   if (rootEmpty) {
     return subSuites();

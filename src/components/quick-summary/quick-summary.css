@@ -44,7 +44,7 @@
     & .icon {
       color: var(--green700);
       font-size: 18px;
-      background-color: #C8E6C9;
+      background-color: var(--green100);
       border-radius: 50%;
       padding: 3px;
     }
@@ -54,7 +54,7 @@
     & .icon {
       color: var(--red700);
       font-size: 18px;
-      background-color: #FFCDD2;
+      background-color: var(--red100);
       border-radius: 50%;
       padding: 3px;
     }
@@ -64,7 +64,7 @@
     & .icon {
       color: var(--ltblue700);
       font-size: 18px;
-      background-color: #B3E5FC;
+      background-color: var(--ltblue100);
       border-radius: 50%;
       padding: 3px;
     }

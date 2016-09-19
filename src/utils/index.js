@@ -30,13 +30,13 @@ const formatDuration = (context) => {
   if (hrs < 1) {
     if (min < 1) {
       if (sec < 1) {
-        return `${context} ms`;
+        return `${context}ms`;
       }
-      return `${sec}.${ms} s`;
+      return `${sec}.${ms}s`;
     }
-    return `${min}:${sec < 10 ? `0${sec}` : sec}.${ms} m`;
+    return `${min}:${sec < 10 ? `0${sec}` : sec}.${ms}m`;
   }
-  return `${hrs}:${min < 10 ? `0${min}` : min}:${sec < 10 ? `0${sec}` : sec}.${ms} h`;
+  return `${hrs}:${min < 10 ? `0${min}` : min}:${sec < 10 ? `0${sec}` : sec}.${ms}h`;
 };
 
 const getSummaryDurationUnits = (context) => {
