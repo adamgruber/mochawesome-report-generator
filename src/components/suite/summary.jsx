@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
+import { Icon } from '../../components';
 import { formatDuration } from '../../utils';
 import classNames from 'classnames/bind';
-import styles from './suite.css';
+import styles from './suite-summary.css';
 
 const cx = classNames.bind(styles);
 
@@ -9,12 +10,23 @@ const SuiteSummary = (props) => {
   const { duration, totalTests, totalPasses, totalFailures, totalPending } = props;
 
   return (
-    <ul className={ cx('summary') }>
-      <li className={ cx('summary-item', 'duration') }>{ formatDuration(duration) }</li>
-      <li className={ cx('summary-item', 'tests') }>{ totalTests }</li>
-      <li className={ cx('summary-item', 'passed') }>{ totalPasses }</li>
-      <li className={ cx('summary-item', 'failed') }>{ totalFailures }</li>
-      <li className={ cx('summary-item', 'pending') }>{ totalPending }</li>
+    <ul className={ cx('component') }>
+      <li className={ cx('summary-item', 'duration') }>
+        <Icon name='timer' className={ cx('icon') } size={ 18 } />
+        { formatDuration(duration) }
+      </li>
+      <li className={ cx('summary-item', 'tests') }>
+        <Icon name='assignment' className={ cx('icon') } size={ 18 } />{ totalTests }
+      </li>
+      <li className={ cx('summary-item', 'passed') }>
+        <Icon name='check' className={ cx('icon') } size={ 18 } />{ totalPasses }
+      </li>
+      <li className={ cx('summary-item', 'failed') }>
+        <Icon name='close' className={ cx('icon') } size={ 18 } />{ totalFailures }
+      </li>
+      <li className={ cx('summary-item', 'pending') }>
+        <Icon name='pause' className={ cx('icon') } size={ 18 } />{ totalPending }
+      </li>
     </ul>
   );
 };

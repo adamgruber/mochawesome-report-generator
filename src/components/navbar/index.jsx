@@ -13,6 +13,9 @@ const Navbar = ({ reportTitle, stats }) => {
 
   const onClickFn = () => (reportStore.openSideNav());
 
+  const { passPercent, pendingPercent } = stats;
+  const failPercent = 100 - passPercent - pendingPercent;
+
   return (
     <div className={ cx('navbar', 'z-depth-1') } role='navigation'>
       <button
@@ -25,6 +28,20 @@ const Navbar = ({ reportTitle, stats }) => {
       </div>
       <div className={ cx('nav-right') }>
         <QuickSummary stats={ stats } />
+      </div>
+      <div className={ cx('pct-bar') }>
+        <span
+          className={ cx('pct-bar-segment', 'pass') }
+          style={ { width: `${passPercent}%` } }
+          title={ `${passPercent}% Passing` } />
+        <span
+          className={ cx('pct-bar-segment', 'fail') }
+          style={ { width: `${failPercent}%` } }
+          title={ `${failPercent}% Failing` } />
+        <span
+          className={ cx('pct-bar-segment', 'pend') }
+          style={ { width: `${pendingPercent}%` } }
+          title={ `${pendingPercent}% Pending` } />
       </div>
     </div>
   );

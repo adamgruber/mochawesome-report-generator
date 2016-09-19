@@ -23,11 +23,14 @@
   --gray-lighter-faded: color(var(--gray-lighter) alpha(95%));
   --gray-border: color(var(--gray-base) tint(80%)); /* #ccc */
 
-  --grey500: #9e9e9e;
+  --grey50: #eceff1;
   --grey300: #e0e0e0;
+  --grey500: #9e9e9e;
   --green200: #a5d6a7;
+  --green300: #81c784;
   --green500: #4caf50;
   --green700: #388e3c;
+  --red300: #e57373;
   --red500: #f44336;
   --red700: #d32f2f;
   --ltblue300: #4fc3f7;
@@ -37,6 +40,8 @@
   --black54: rgba(0, 0, 0, 0.54);
   --black38: rgba(0, 0, 0, 0.38);
   --bluegrey500: #607d8b;
+  --bluegrey800: #37474f;
+  --bluegrey900: #263238;
   --light-icon-active: rgba(255, 255, 255, 1);
   --light-icon-inactive: rgba(255, 255, 255, 0.5);
   --dark-icon-active: var(--black54);
@@ -132,9 +137,13 @@
     transition: color 0.2s ease-out;
   }
 
-  --column: {
+  --column-base: {
     position: relative;
     min-height: 1px;
+  }
+
+  --column: {
+    @apply --column-base;
     padding-left: calc(var(--grid-gutter-width) / 2);
     padding-right: calc(var(--grid-gutter-width) / 2);
   }

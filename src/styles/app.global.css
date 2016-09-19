@@ -1,7 +1,7 @@
 @import 'normalize.css';
 @import 'vars';
 @import 'type';
-@import '../../node_modules/highlight.js/styles/tomorrow-night';
+@import '../../node_modules/highlight.js/styles/solarized-light';
 /*@import '../../node_modules/materialize-css/dist/css/materialize.min';*/
 
 @font-face {
@@ -233,7 +233,7 @@ code {
     width: var(--container-sm);
   }
   .details {
-    padding-top: 10px;
+    padding-top: calc(var(--navbar-height) + 24);
   }
 }
 @media (--screen-md) {

@@ -1,0 +1,37 @@
+@import '../../styles/vars';
+
+.component {
+  @apply --clearfix;
+  @apply --font-regular;
+  composes: list-unstyled from 'type.css';
+  font-size: 15px;
+  margin: 16px 0 0 0;
+}
+
+.summary-item {
+  float: left;
+  line-height: 18px;
+  margin: 0 8px;
+  color: var(--black54);
+  &:first-child {
+    margin-left: 0;
+  }
+  &.tests,
+  &.duration {
+    color: var(--black54);
+  }
+  &.passed .icon {
+    color: var(--green500);
+  }
+  &.failed .icon {
+    color: var(--red500);
+  }
+  &.pending .icon {
+    color: var(--ltblue500);
+  }
+}
+
+.icon {
+  float: left;
+  margin-right: 4px;
+}

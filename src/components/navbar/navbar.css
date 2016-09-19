@@ -11,7 +11,7 @@
   height: var(--navbar-height);
   margin-bottom: 0;
   border: none;
-  background: var(--bluegrey500);
+  background: var(--bluegrey800);
 }
 
 .menu-button {
@@ -42,6 +42,29 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.pct-bar {
+  @apply --clearfix;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  & .pass {
+    background-color: var(--green500);
+  }
+  & .fail {
+    background-color: var(--red500);
+  }
+  & .pend {
+    background-color: var(--ltblue500);
+  }
+}
+
+.pct-bar-segment {
+  height: 4px;
+  float: left;
 }
 
 /* Tablet 768 and up */

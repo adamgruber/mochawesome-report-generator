@@ -13,9 +13,14 @@ const Suite = (props) => {
     hasPasses, duration, totalTests, totalPasses, totalFailures,
     totalPending, totalSkipped } = suite;
 
-  const subSuites = () => <SuiteList suites={ suites } />;
+  const subSuites = () => hasSuites && <SuiteList suites={ suites } />;
 
-  const cxname = cx('component', {
+  const testListComp = () => hasTests && (
+    <TestList className={ cx('test-list') } uuid={ uuid } tests={ tests } />
+  );
+
+  const cxname = cx('component', className, {
+    'z-depth-1': true,
     'root-suite': root,
     'has-suites': hasSuites,
     'has-tests': hasTests,
@@ -35,30 +40,15 @@ const Suite = (props) => {
   }
 
   return (
-    <section className={ cx('wrap', className, { 'z-depth-1': !root }) }>
-      <div id={ uuid } className={ cxname }>
+    <section className={ cxname } id={ uuid }>
+      <header className={ cx('header') }>
         <h3 className={ cx('title') }>{ title === '' ? ' ' : title }</h3>
-        <h5 className={ cx('filename') }>{ file === '' ? ' ' : file }</h5>
-        { hasTests && (
-          <div>
-            <SuiteChart { ...chartProps } />
-            <div className={ cx('data-wrap') }>
-              <SuiteSummary { ...summaryProps } />
-              <div className={ cx('test-wrap') }>
-                <div
-                  className={ cx('test-header') }
-                  data-toggle='collapse'
-                  data-target={ `#${uuid}-test-list` }>
-                  <h4 className={ cx('test-header-title') }>Tests</h4>
-                </div>
-                <TestList
-                  uuid={ uuid }
-                  className={ cx('list-group', 'test-list', 'collapse', 'in') }
-                  tests={ tests } />
-              </div>
-            </div>
-          </div>
-        ) }
+        <h6 className={ cx('filename') }>{ file === '' ? ' ' : file }</h6>
+        { hasTests && <SuiteChart { ...chartProps } /> }
+        { hasTests && <SuiteSummary { ...summaryProps } /> }
+      </header>
+      <div className={ cx('body') }>
+        { testListComp() }
         { subSuites() }
       </div>
     </section>

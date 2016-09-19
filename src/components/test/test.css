@@ -1,8 +1,8 @@
 @import '../../styles/vars';
 
 .component {
-  padding: 6px 8px 8px 6px;
-  border-top: 1px solid var(--gray-border);
+  padding: 12px 24px;
+  border-top: 1px solid var(--grey300);
   &:first-child {
     /* border: none; */
   }
@@ -13,8 +13,8 @@
 }
 
 .title {
-  composes: normal from '../../styles/fonts.css';
-  font-size: 14px;
+  @apply --font-regular;
+  font-size: 13px;
   margin: 0;
   float: left;
   &:before {
@@ -102,6 +102,8 @@ pre {
 
 .code-snippet {
   font-size: 11px;
+  display: none !important;
+  background-color: var(--grey50) !important;
 }
 
 .title {

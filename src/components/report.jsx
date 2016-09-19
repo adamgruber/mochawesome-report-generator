@@ -3,7 +3,7 @@ import DevTools from 'mobx-react-devtools';
 import throttle from 'lodash/throttle';
 import { observer } from 'mobx-react';
 import reportStore from '../js/reportStore';
-import { DomNodeWrapper, Footer, Navbar, NavMenu, Summary, StatusBar } from './index';
+import { DomNodeWrapper, Footer, Navbar, NavMenu, Summary } from './index';
 import { Suite } from 'components/suite';
 import cx from 'classnames';
 import 'styles/app.global.css';
@@ -17,11 +17,11 @@ class MochawesomeReport extends Component {
   state = {};
 
   componentDidMount() {
-    window.addEventListener('scroll', this.windowScrollHandler.bind(this));
+    // window.addEventListener('scroll', this.windowScrollHandler.bind(this));
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.windowScrollHandler.bind(this));
+    // window.removeEventListener('scroll', this.windowScrollHandler.bind(this));
   }
 
   windowScrollHandler = throttle(() => {
@@ -44,7 +44,6 @@ class MochawesomeReport extends Component {
         <DomNodeWrapper ref='summary'>
           <Summary stats={ stats } />
         </DomNodeWrapper>
-        <StatusBar stats={ stats } />
         <div className={ cx('details', 'container', { qs: reportStore.showQuickSummary }) }>
           { reportStore.suites.map(suite => (
             <Suite

@@ -1,69 +1,50 @@
 @import '../../styles/vars';
 
-/*.filterActive(@color) {
-  border-color: var(--color);
-}*/
-
-.filters-active {
-  .suite-data-wrap,
-  .suite-chart-wrap {
-    display: none;
-  }
-  &.filter-passed .suite.has-passed,
-  &.filter-failed .suite.has-failed,
-  &.filter-pending .suite.has-pending {
-    .suite-data-wrap,
-    .suite-chart-wrap {
-      display: block;
-    }
-  }
-}
-
-.wrap {
-  & > .component > div > .wrap {
-    margin: 10px;
-  }
-
-  & .component .component {
-    margin: 10px;
-  }
-}
-
-.test-wrap {
-  @apply --column;
-  float: left;
-  width: 100%;
-}
-.data-wrap {
-  @apply --clearfix;
-}
-
 .component {
   @apply --clearfix;
   position: relative;
   /*border: 1px solid var(--gray-border);*/
   background-color: #fff;
-  padding: 8px 0 10px 0;
-  border-radius: 4px;
-  margin-bottom: 10px;
+  /*padding: 8px 0 10px 0;*/
+  margin-bottom: 24px;
+  &:not(.has-tests) {
+    box-shadow: none;
+    background: none;
+  }
+}
+
+.header {
+  @apply --clearfix;
+  padding: 12px 24px;
 }
 
 .title {
-  composes: font-light from 'fonts.css';
-  padding: 0 70px 0 10px;
+  @apply --font-light;
   margin: 0;
 }
 
 .filename {
-  composes: font-light from 'fonts.css';
-  color: var(--gray-light);
-  margin-top: 4px;
-  padding: 0 10px;
+  @apply --font-regular;
+  color: var(--black54);
+  margin: 6px 0 0 0;
 }
 
-:global(.details) > .wrap > .component {
-  border: none;
+.body {
+  @apply --clearfix;
 }
+.wrap {
+  & .component .component {
+    margin: 10px 10px 24px 10px;
+  }
+}
+
+.test-wrap {
+  @apply --column-base;
+  float: left;
+  width: 100%;
+}
+
+
 
 .chart-wrap {
   width: 50px;
@@ -71,64 +52,6 @@
   position: absolute;
   top: 12px;
   right: 12px;
-}
-
-.summary {
-  @apply --clearfix;
-  composes: list-unstyled from 'type.css';
-  composes: font-regular from 'fonts.css';
-  font-size: 18px;
-  padding: 0 15px;
-}
-
-.summary-item {
-  transition: border .2s ease-out;
-  float: left;
-  margin: 0 10px;
-  color: var(--gray-dark);
-  border-bottom: 1px solid transparent;
-  &:first-child {
-    margin-left: 0;
-  }
-  &:before {
-    @apply --ma-icon;
-    font-size: 15px;
-    top: 1px;
-    margin-right: 2px;
-  }
-  &.tests {
-    &:before {
-      content: var(--ma-icon-tests);
-    }
-  }
-  &.passed {
-    color: var(--brand-success);
-    &:before {
-      content: var(--ma-icon-passed);
-      color: var(--brand-success);
-    }
-  }
-  &.failed {
-    color: var(--brand-danger);
-    &:before {
-      content: var(--ma-icon-failed);
-      color: var(--brand-danger);
-    }
-  }
-  &.pending {
-    color: var(--brand-info);
-    &:before {
-      content: var(--ma-icon-pending);
-      color: var(--brand-info);
-      top: 2px;
-    }
-  }
-  &.duration {
-    &:before {
-      color: var(--gray-light);
-      content: var(--ma-icon-duration);
-    }
-  }
 }
 
 .test-header {
