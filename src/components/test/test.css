@@ -1,8 +1,22 @@
 @import '../../styles/vars';
 
 .component {
-  padding: 10px 24px;
+  padding: 10px 24px 10px 21px;
   border-bottom: 1px solid var(--grey300);
+  border-left: 3px solid transparent;
+  &:not(.pending) {
+    cursor: pointer;
+  }
+  &:hover:not(.pending) {
+    border-left-color: var(--grey500);
+  }
+  &.expanded.passed {
+    border-left-color: var(--green500);
+  }
+  &.expanded.failed {
+    border-left-color: var(--red500);
+  }
+  transition: border-color 0.2s ease-out;
 }
 
 .header {
@@ -47,98 +61,60 @@
   right: 0;
 }
 
-.actions {
-  height: 24px;
+.duration {
+  @apply --font-regular;
+  line-height: 24px;
+  color: var(--black54);
   float: left;
+  @nest .component:hover:not(.pending) & {
+    color: var(--black87);
+  }
+  @nest .expanded & {
+    color: var(--black87);
+  }
+  transition: color 0.2s ease-out;
+}
+
+.duration-icon {
+  float: right;
+  margin-left: 4px;
+  line-height: 24px !important;
+  color: var(--black38);
+  &.slow {
+    color: var(--red300);
+  }
+  &.medium {
+    color: var(--yellow700);
+  }
+}
+
+.body {
   display: none;
-  @nest .component:hover & {
+  background-color: var(--grey50);
+  border-radius: 4px;
+  @nest .expanded & {
     display: block;
   }
 }
 
-.btn {
-  @apply --button-base;
-  color: var(--black54);
-  width: 24px;
-  height: 24px;
-  line-height: 1;
-  float: left;
-  margin-left: 8px;
-  &:first-child {
-    margin-left: 0;
-  }
-  &:hover {
-    color: var(--black87);
-  }
-}
-.action-icon {
-  font-size: 18px;
-  padding: 3px;
-}
-
-.duration {
-  @apply --font-regular;
-  color: var(--black54);
-  float: left;
-  /*&:before {
-    content: '';
-    height: 10px;
-    display: inline-block;
-    border-left: 1px solid var(--gray-light);
-    margin: 0 6px;
-  }*/
-  &.slow {
-    color: var(--red500);
-  }
-  &.medium {
-    color: var(--amber500);
-  }
-}
-
-.toggle-btn {
-  @apply --link-transition;
-  border: none;
-  padding: 0;
-  outline: none;
-  text-decoration: none;
-  &:before {
-    content: "Hide ";
-  }
-  &.collapsed:before {
-    content: "Show ";
-  }
-  &:focus {
-    outline: none;
-  }
-}
-
-.toggle-code {
-  float: left;
-  vertical-align: top;
-  line-height: 1.7;
-}
-
-.toggle-stack {
-  float: right;
-}
-
 .error-message {
-  @apply --clearfix;
   font-size: 12px;
-  margin: 4px 0 0 17px;
-  color: var(--brand-danger);
-}
-
-pre {
   margin: 10px 0 0 0;
-  padding: 0;
-  background: none;
-  border: none;
+  color: var(--red500);
 }
 
 .code-snippet {
   font-size: 11px;
-  display: none !important;
-  background-color: var(--grey50) !important;
+  margin: 0;
+  border-radius: 0;
+  &:first-child {
+    margin-top: 10px;
+  }
+  & + .code-snippet {
+    border-top: 1px solid #fff;
+  }
+  &:global(.hljs) {
+    padding: 1em;
+    background: none;
+  }
 }
-

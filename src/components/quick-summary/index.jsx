@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 import { observer } from 'mobx-react';
-import { Icon } from '../../components';
+import { Duration, Icon } from '../../components';
 import reportStore from '../../js/reportStore';
-import { formatSummaryDuration, getSummaryDurationUnits } from '../../utils';
 import classNames from 'classnames/bind';
 import styles from './quick-summary.css';
 
@@ -15,8 +14,7 @@ const QuickSummary = observer(({ stats }) => {
       <ul className={ cx('list-unstyled', 'list') }>
         <li className={ cx('item', 'duration') } title='Duration'>
           <Icon name='timer' className={ cx('icon') } />
-          { formatSummaryDuration(duration) }
-          <span>{ getSummaryDurationUnits(duration) }</span>
+          <Duration unitsClassName={ cx('duration-units') } timer={ duration } isSummary />
         </li>
         <li className={ cx('item', 'suites') } title='Suites'>
           <Icon name='library_books' className={ cx('icon') } />{ suites }

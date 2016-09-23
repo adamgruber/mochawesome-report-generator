@@ -49,7 +49,11 @@
   --light-icon-inactive: rgba(255, 255, 255, 0.5);
   --dark-icon-active: var(--black54);
   --dark-icon-inactive: var(--black38);
+  --amber300: #ffd54f;
+  --amber400: #ffca28;
   --amber500: #ffc107;
+  --yellow700: #fbc02d;
+  --yellow800: #f9a825;
 
   /* Brand Colors */
   --brand-primary: color(#428bca shade(6.5%)); /* #337ab7 */

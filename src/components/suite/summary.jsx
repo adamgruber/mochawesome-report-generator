@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Icon } from '../../components';
-import { formatDuration } from '../../utils';
+import { Duration, Icon } from '../../components';
 import classNames from 'classnames/bind';
 import styles from './suite-summary.css';
 
@@ -13,7 +12,7 @@ const SuiteSummary = (props) => {
     <ul className={ cx('component') }>
       <li className={ cx('summary-item', 'duration') }>
         <Icon name='timer' className={ cx('icon') } size={ 18 } />
-        { formatDuration(duration) }
+        <Duration timer={ duration } />
       </li>
       <li className={ cx('summary-item', 'tests') }>
         <Icon name='assignment' className={ cx('icon') } size={ 18 } />{ totalTests }
