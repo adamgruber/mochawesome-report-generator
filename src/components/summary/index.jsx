@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { formatSummaryDuration, getSummaryDurationUnits } from '../../utils';
+import { Duration } from 'components';
 import classNameNames from 'classNames/bind';
 import styles from './summary.css';
 
@@ -13,8 +13,8 @@ const Summary = (props) => {
       <div className='container'>
         <div className='row'>
           <div className={ cx('col', 'duration') }>
-            <h1 className={ cx('count') }>{ formatSummaryDuration(duration) }<span>{ getSummaryDurationUnits(duration) }</span></h1>
-            <h4 className={ cx('label') }>{ getSummaryDurationUnits(duration) }</h4>
+            <h1 className={ cx('count') }><Duration timer={ duration } isSummary /></h1>
+            <h4 className={ cx('label') }>{ }</h4>
           </div>
           <div className={ cx('col', 'suites') } title='Suites'>
             <h1 className={ cx('count') }>{ suites }</h1>

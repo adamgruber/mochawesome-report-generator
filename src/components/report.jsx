@@ -3,7 +3,7 @@ import DevTools from 'mobx-react-devtools';
 import throttle from 'lodash/throttle';
 import { observer } from 'mobx-react';
 import reportStore from '../js/reportStore';
-import { DomNodeWrapper, Footer, Navbar, NavMenu, Summary } from './index';
+import { DomNodeWrapper, Footer, Navbar, NavMenu } from './index';
 import { Suite } from 'components/suite';
 import cx from 'classnames';
 import 'styles/app.global.css';
@@ -40,9 +40,6 @@ class MochawesomeReport extends Component {
       <div>
         <DomNodeWrapper ref='navbar'>
           <Navbar reportTitle={ reportTitle } stats={ stats } />
-        </DomNodeWrapper>
-        <DomNodeWrapper ref='summary'>
-          <Summary stats={ stats } />
         </DomNodeWrapper>
         <div className={ cx('details', 'container', { qs: reportStore.showQuickSummary }) }>
           { reportStore.suites.map(suite => (
