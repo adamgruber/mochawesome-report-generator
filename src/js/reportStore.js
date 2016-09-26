@@ -24,7 +24,7 @@ class ReportStore {
   }
 
   @computed get suites() {
-    const derived = compact(map(this.allSuites, this._mapSuites.bind(this)));
+    const derived = compact(map(this.allSuites, this._mapSuites));
     console.log(derived);
     return derived;
   }
@@ -37,8 +37,8 @@ class ReportStore {
     this.sideNavOpen = false;
   }
 
-  _mapSuites(suite) {
-    const suites = compact(map(suite.suites, this._mapSuites.bind(this)));
+  _mapSuites = suite => {
+    const suites = compact(map(suite.suites, this._mapSuites));
     const tests = filter(suite.tests, test => (
       (this.showPassed && test.pass)
       || (this.showFailed && test.fail)
@@ -48,39 +48,34 @@ class ReportStore {
     return (tests.length > 0 || suites.length > 0)
       ? Object.assign({}, suite, { suites, tests })
       : null;
+  }
 
-    // const newSuite = Object.assign({}, suite, {
-    //   suites: mappedSuites,
-    //   tests: filteredTests
-    // });
+  _testShouldDisplay = test => {
+    const { pass, fail, pending } = test;
+    return (this.showPassed && pass) || (this.showFailed && fail) || (this.showPending && pending);
+  }
 
-    // console.group(newSuite.title);
-    // console.log(`hasTests: ${newSuite.hasTests}, hasSuites: ${newSuite.hasSuites}`)
-    // console.log(`displayTests: ${newSuite.tests && newSuite.tests.length}, displaySuites: ${newSuite.suites && newSuite.suites.length}\n`);
-    // console.groupEnd();
+  _mapSuites2 = suite => {
+    map(suite.suites, this._mapSuites2);
+    const displayTests = filter(suite.tests, this._testShouldDisplay);
+    map(suite.tests, test => {
+      test.visible = this._testShouldDisplay(test);
+      return test;
+    });
+
+    suite.visible = displayTests.length > 0 || map(suite.suites, { visible: true }).length > 0;
+
+    return suite;
+
+    // return (displayTests.length > 0 || suites.length > 0)
+    //   ? Object.assign({}, suite, { suites })
+    //   : null;
   }
 
   setInitialData({ data, config }) {
     const reportTitle = config.reportTitle || data.reportTitle;
     Object.assign(this, { reportTitle, data, config });
     this.allSuites = [ data.suites ];
-  }
-
-  _filterSuites(suite) {
-    suite.displaySuites = filter(suite.suites, this._filterSuites.bind(this));
-    suite.displayTests = filter(suite.tests, test => (
-      (this.showPassed && test.pass)
-      || (this.showFailed && test.fail)
-      || (this.showPending && test.pending)
-    ));
-
-    // console.group(suite.title);
-    // console.log(`hasTests: ${suite.hasTests}, hasSuites: ${suite.hasSuites}`)
-    // console.log(`displayTests: ${suite.displayTests && suite.displayTests.length}, displaySuites: ${suite.displaySuites && suite.displaySuites.length}\n`);
-    // console.groupEnd();
-
-    // Return a suite if it has tests or suites to display
-    return (suite.displayTests.length > 0 || suite.displaySuites.length > 0);
   }
 }
 

@@ -1,10 +1,13 @@
 import React, { PropTypes } from 'react';
+import { observer } from 'mobx-react';
+import reportStore from '../../js/reportStore';
 import classNames from 'classnames/bind';
 import styles from './nav-menu.css';
 
 const cx = classNames.bind(styles);
 
-const NavMenuItem = (props) => {
+const NavMenuItem = observer((props) => {
+  const { showPassed, showFailed, showPending } = reportStore;
   const { suite } = props;
   const { rootEmpty, suites, uuid, title, hasTests, hasFailures, hasPending, hasSkipped, hasPasses } = suite;
 
@@ -12,7 +15,9 @@ const NavMenuItem = (props) => {
     'has-failures': hasTests && hasFailures,
     'has-pending': hasTests && hasPending && !hasFailures,
     'has-skipped': hasTests && hasSkipped && !hasFailures && !hasPending,
-    'has-passes': hasTests && hasPasses && !hasFailures && !hasPending && !hasSkipped
+    'has-passes': hasTests && hasPasses && !hasFailures && !hasPending && !hasSkipped,
+    // this is wrong, need much more logic to determine if item should be disabled
+    disabled: (hasPasses && !showPassed) || (hasFailures && !showFailed) || (hasPending && !showPending)
   });
 
   if (rootEmpty) {
@@ -29,7 +34,7 @@ const NavMenuItem = (props) => {
       ) }
     </li>
   );
-};
+});
 
 NavMenuItem.propTypes = {
   suite: PropTypes.object
