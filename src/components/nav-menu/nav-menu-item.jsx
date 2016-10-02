@@ -1,34 +1,80 @@
 import React, { PropTypes } from 'react';
 import { observer } from 'mobx-react';
 import reportStore from '../../js/reportStore';
+import { Icon } from 'components/';
 import classNames from 'classnames/bind';
 import styles from './nav-menu.css';
 
 const cx = classNames.bind(styles);
 
 const NavMenuItem = observer((props) => {
-  const { showPassed, showFailed, showPending } = reportStore;
+  const { showPassed, showFailed, showPending, showSkipped } = reportStore;
   const { suite } = props;
-  const { rootEmpty, suites, uuid, title, hasTests, hasFailures, hasPending, hasSkipped, hasPasses } = suite;
+  const { rootEmpty, suites, uuid, title,
+    hasTests, hasFailures, hasPending, hasSkipped, hasPasses } = suite;
+
+  const fail = hasTests && hasFailures;
+  const pend = hasTests && hasPending && !hasFailures;
+  const skip = hasTests && hasSkipped && !hasFailures && !hasPending;
+  const pass = hasTests && hasPasses && !hasFailures && !hasPending && !hasSkipped;
+
+  const shouldBeDisabled = () => {
+    let count = 0;
+    if (!hasTests && suites) count++;
+    if (hasPasses) count++;
+    if (hasFailures) count++;
+    if (hasPending) count++;
+    if (hasSkipped) count++;
+
+    if (!showSkipped && hasSkipped) count--;
+    if (!showPending && hasPending) count--;
+    if (!showFailed && hasFailures) count--;
+    if (!showPassed && hasPasses) count--;
+    if (!showSkipped && !showPending && !showFailed && !showPassed && !hasTests) count--;
+
+    return count <= 0;
+  };
 
   const anchorCxName = cx('link', {
-    'has-failures': hasTests && hasFailures,
-    'has-pending': hasTests && hasPending && !hasFailures,
-    'has-skipped': hasTests && hasSkipped && !hasFailures && !hasPending,
-    'has-passes': hasTests && hasPasses && !hasFailures && !hasPending && !hasSkipped,
-    // this is wrong, need much more logic to determine if item should be disabled
-    disabled: (hasPasses && !showPassed) || (hasFailures && !showFailed) || (hasPending && !showPending)
+    disabled: shouldBeDisabled()
   });
 
+  const suiteIcon = () => {
+    let iconName;
+    let iconClassName;
+    if (pass) {
+      iconName = 'check';
+      iconClassName = 'pass';
+    }
+    if (skip) {
+      iconName = 'stop';
+      iconClassName = 'skipped';
+    }
+    if (pend) {
+      iconName = 'pause';
+      iconClassName = 'pending';
+    }
+    if (fail) {
+      iconName = 'close';
+      iconClassName = 'fail';
+    }
+    return <Icon name={ iconName } className={ cx('link-icon', iconClassName) } size={ 18 } />;
+  };
+
   if (rootEmpty) {
-    return !!suites && suites.map((subSuite, i) => <NavMenuItem key={ i } suite={ subSuite } />);
+    return !!suites && suites.map(subSuite => (
+      <NavMenuItem key={ subSuite.uuid } suite={ subSuite } />)
+    );
   }
 
   return (
     <li className={ cx('item') }>
-      <a href={ `#${uuid}` } className={ anchorCxName }>{ title === '' ? uuid : title }</a>
-      { !!suites && suites.map((subSuite, i) => (
-        <ul key={ i } className={ cx('list-unstyled', 'sub') }>
+      <a href={ `#${uuid}` } className={ anchorCxName }>
+        { suiteIcon() }
+        { title === '' ? uuid : title }
+      </a>
+      { !!suites && suites.map(subSuite => (
+        <ul key={ subSuite.uuid } className={ cx('list-unstyled', 'sub') }>
           <NavMenuItem suite={ subSuite } />
         </ul>)
       ) }

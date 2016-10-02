@@ -7,10 +7,11 @@ import compact from 'lodash/compact';
 
 class ReportStore {
   @observable showQuickSummary = false;
-  @observable sideNavOpen = false;
+  @observable sideNavOpen = true;
   @observable showPassed = true;
   @observable showFailed = true;
   @observable showPending = true;
+  @observable showSkipped = false;
   @observable visibleTests = [];
   @observable visibleSuites = [];
 
@@ -19,7 +20,8 @@ class ReportStore {
     this.filterDropdownList = [
       { title: 'Passed' },
       { title: 'Failed' },
-      { title: 'Pending' }
+      { title: 'Pending' },
+      { title: 'Skipped' }
     ];
   }
 
@@ -43,6 +45,7 @@ class ReportStore {
       (this.showPassed && test.pass)
       || (this.showFailed && test.fail)
       || (this.showPending && test.pending)
+      || (this.showSkipped && test.skipped)
     ));
 
     return (tests.length > 0 || suites.length > 0)
@@ -51,31 +54,18 @@ class ReportStore {
   }
 
   _testShouldDisplay = test => {
-    const { pass, fail, pending } = test;
-    return (this.showPassed && pass) || (this.showFailed && fail) || (this.showPending && pending);
-  }
-
-  _mapSuites2 = suite => {
-    map(suite.suites, this._mapSuites2);
-    const displayTests = filter(suite.tests, this._testShouldDisplay);
-    map(suite.tests, test => {
-      test.visible = this._testShouldDisplay(test);
-      return test;
-    });
-
-    suite.visible = displayTests.length > 0 || map(suite.suites, { visible: true }).length > 0;
-
-    return suite;
-
-    // return (displayTests.length > 0 || suites.length > 0)
-    //   ? Object.assign({}, suite, { suites })
-    //   : null;
+    const { pass, fail, pending, skipped } = test;
+    return (this.showPassed && pass)
+      || (this.showFailed && fail)
+      || (this.showPending && pending)
+      || (this.showSkipped && skipped);
   }
 
   setInitialData({ data, config }) {
     const reportTitle = config.reportTitle || data.reportTitle;
     Object.assign(this, { reportTitle, data, config });
     this.allSuites = [ data.suites ];
+    this.stats = data.stats;
   }
 }
 

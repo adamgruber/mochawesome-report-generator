@@ -4,10 +4,10 @@
   padding: 10px 24px 10px 21px;
   border-bottom: 1px solid var(--grey300);
   border-left: 3px solid transparent;
-  &:not(.pending) {
+  &:not(.pending):not(.skipped) {
     cursor: pointer;
   }
-  &:hover:not(.pending) {
+  &:hover:not(.pending):not(.skipped) {
     border-left-color: var(--grey500);
   }
   &.expanded.passed {
@@ -52,6 +52,10 @@
   &.pending {
     color: var(--ltblue100);
     background-color: var(--ltblue500);
+  }
+  &.skipped {
+    color: var(--grey100);
+    background-color: var(--grey500);
   }
 }
 

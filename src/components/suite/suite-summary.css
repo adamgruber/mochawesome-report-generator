@@ -20,18 +20,21 @@
   &.duration {
     color: var(--black54);
   }
-  &.passed .icon {
+  &.passed {
     color: var(--green500);
   }
-  &.failed .icon {
+  &.failed {
     color: var(--red500);
   }
-  &.pending .icon {
+  &.pending {
     color: var(--ltblue500);
+  }
+  &.skipped {
+    color: var(--black38);
   }
 }
 
 .icon {
   float: left;
-  margin-right: 4px;
+  margin-right: 2px;
 }

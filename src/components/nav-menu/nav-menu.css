@@ -20,6 +20,7 @@
   transition: all .15s cubic-bezier(.25,1,0.8,1);
   transform: translate(-100%, 0);
   position: absolute;
+  width: 100%;
   z-index: 1;
   top: 0;
   bottom: 0;
@@ -62,7 +63,8 @@
   color: var(--ltblue500);
 }
 
-.toggles-wrap {
+.toggle-icon-skipped {
+  color: var(--grey500);
 }
 
 .wrap.open {
@@ -80,62 +82,30 @@
   border-bottom: 1px solid var(--grey300);
 }
 
-.section.toc-wrap {
-  padding: 0;
+.main {
+  margin: 8px 0 16px 0;
 }
 
-.main {
+.no-tests > .item > .sub {
+  padding-left: 0;
+}
+
+.no-tests > .item > .link {
+  padding-left: 0;
 }
 
 .sub {
-  padding-left: 14px;
-}
-
-.item {
-  @apply --clearfix;
+  padding-left: 24px;
+  margin: 0 0 2px 0;
 }
 
 .link {
   @apply --link-transition;
+  @apply --text-overflow;
+  position: relative;
   display: block;
-  padding: 4px 0;
+  padding: 3px 16px 3px 22px;
   color: var(--gray);
-
-  &:before {
-    @apply --ma-icon;
-    font-size: 12px;
-    top: 1px;
-    margin-right: 4px;
-  }
-
-  &.has-failures {
-    &:before {
-      content: var(--ma-icon-failed);
-      color: var(--brand-danger);
-    }
-  }
-
-  &.has-passes {
-    &:before {
-      content: var(--ma-icon-passed);
-      color: var(--brand-success);
-    }
-  }
-
-  &.has-pending {
-    &:before {
-      content: var(--ma-icon-pending);
-      color: var(--brand-info);
-    }
-  }
-
-  &.has-skipped {
-    &:before {
-      content: var(--ma-icon-skipped);
-      color: color(#999 tint(15%));
-      visibility: visible;
-    }
-  }
 
   &:hover {
     color: var(--link-hover-color);
@@ -146,6 +116,29 @@
     outline: none;
     text-decoration: none;
   }
+}
+
+.link-icon {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  &.pass {
+    color: var(--green500);
+  }
+  &.fail {
+    color: var(--red500);
+  }
+  &.pending {
+    color: var(--ltblue500);
+  }
+  &.skipped {
+    color: var(--grey500);
+  }
+}
+
+.disabled {
+  opacity: 0.3;
+  pointer-events: none;
 }
 
 /* Tablet 768 and up */

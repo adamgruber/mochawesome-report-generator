@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { QuickSummary, Icon } from 'components/';
 import reportStore from '../../js/reportStore';
-// import moment from 'moment';
 import classNames from 'classnames/bind';
 import styles from './navbar.css';
 
@@ -9,8 +8,6 @@ const cx = classNames.bind(styles);
 
 
 const Navbar = ({ reportTitle, stats }) => {
-  // const reportDate = moment(stats.end).format('dddd, MMMM D YYYY, hh:mma');
-
   const onClickFn = () => (reportStore.openSideNav());
 
   const { passPercent, pendingPercent } = stats;

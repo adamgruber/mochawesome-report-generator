@@ -6,7 +6,7 @@ import styles from './suite-summary.css';
 const cx = classNames.bind(styles);
 
 const SuiteSummary = (props) => {
-  const { duration, totalTests, totalPasses, totalFailures, totalPending } = props;
+  const { duration, totalTests, totalPasses, totalFailures, totalPending, totalSkipped } = props;
 
   return (
     <ul className={ cx('component') }>
@@ -17,15 +17,18 @@ const SuiteSummary = (props) => {
       <li className={ cx('summary-item', 'tests') }>
         <Icon name='assignment' className={ cx('icon') } size={ 18 } />{ totalTests }
       </li>
-      <li className={ cx('summary-item', 'passed') }>
+      { !!totalPasses && <li className={ cx('summary-item', 'passed') }>
         <Icon name='check' className={ cx('icon') } size={ 18 } />{ totalPasses }
-      </li>
-      <li className={ cx('summary-item', 'failed') }>
+      </li> }
+      { !!totalFailures && <li className={ cx('summary-item', 'failed') }>
         <Icon name='close' className={ cx('icon') } size={ 18 } />{ totalFailures }
-      </li>
-      <li className={ cx('summary-item', 'pending') }>
+      </li> }
+      { !!totalPending && <li className={ cx('summary-item', 'pending') }>
         <Icon name='pause' className={ cx('icon') } size={ 18 } />{ totalPending }
-      </li>
+      </li> }
+      { !!totalSkipped && <li className={ cx('summary-item', 'skipped') }>
+        <Icon name='stop' className={ cx('icon') } size={ 18 } />{ totalSkipped }
+      </li> }
     </ul>
   );
 };
@@ -35,7 +38,8 @@ SuiteSummary.propTypes = {
   totalTests: PropTypes.number,
   totalPasses: PropTypes.number,
   totalFailures: PropTypes.number,
-  totalPending: PropTypes.number
+  totalPending: PropTypes.number,
+  totalSkipped: PropTypes.number
 };
 
 SuiteSummary.displayName = 'SuiteSummary';

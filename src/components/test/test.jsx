@@ -16,7 +16,8 @@ class Test extends React.Component {
   }
 
   toggleExpandedState = () => {
-    if (!this.props.test.pending) {
+    const { test } = this.props;
+    if (test.pass || test.fail) {
       this.setState({ expanded: !this.state.expanded });
     }
   }
@@ -26,8 +27,12 @@ class Test extends React.Component {
     const { uuid, title, speed, duration, pass, fail, pending, skipped, err, code } = test;
 
     const testIcon = () => {
-      let iconName = 'check';
-      let iconClassName = 'pass';
+      let iconName;
+      let iconClassName;
+      if (pass) {
+        iconName = 'check';
+        iconClassName = 'pass';
+      }
       if (fail) {
         iconName = 'close';
         iconClassName = 'fail';
@@ -35,6 +40,10 @@ class Test extends React.Component {
       if (pending) {
         iconName = 'pause';
         iconClassName = 'pending';
+      }
+      if (skipped) {
+        iconName = 'stop';
+        iconClassName = 'skipped';
       }
       return <Icon name={ iconName } className={ cx('icon', iconClassName) } size={ 18 } />;
     };

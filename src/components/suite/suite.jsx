@@ -31,7 +31,7 @@ const Suite = (props) => {
     'has-skipped': hasSkipped
   });
 
-  const summaryProps = { duration, totalTests, totalPasses, totalFailures, totalPending };
+  const summaryProps = { duration, totalTests, totalPasses, totalFailures, totalPending, totalSkipped };
   const chartProps = { uuid, totalPasses, totalFailures, totalPending, totalSkipped };
 
 

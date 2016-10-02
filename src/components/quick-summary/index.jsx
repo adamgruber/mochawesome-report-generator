@@ -8,7 +8,7 @@ import styles from './quick-summary.css';
 const cx = classNames.bind(styles);
 
 const QuickSummary = observer(({ stats }) => {
-  const { duration, suites, testsRegistered, passes, failures, pending } = stats;
+  const { duration, suites, testsRegistered, passes, failures, pending, skipped } = stats;
   return (
     <div className={ cx('cnt', { show: reportStore.showQuickSummary }) }>
       <ul className={ cx('list-unstyled', 'list') }>
@@ -28,9 +28,16 @@ const QuickSummary = observer(({ stats }) => {
         <li className={ cx('item', 'failures') } title='Failed'>
           <Icon name='close' className={ cx('icon') } />{ failures }
         </li>
-        <li className={ cx('item', 'pending') } title='Pending'>
-          <Icon name='pause' className={ cx('icon') } />{ pending }
-        </li>
+        { pending > 0 && (
+          <li className={ cx('item', 'pending') } title='Pending'>
+            <Icon name='pause' className={ cx('icon') } />{ pending }
+          </li>)
+        }
+        { skipped > 0 && (
+          <li className={ cx('item', 'skipped') } title='Skipped'>
+            <Icon name='stop' className={ cx('icon') } />{ skipped }
+          </li>)
+        }
       </ul>
     </div>
   );
