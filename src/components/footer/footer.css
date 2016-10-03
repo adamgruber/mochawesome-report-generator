@@ -6,19 +6,19 @@
   width: 100%;
   /* Set the fixed height of the footer here */
   height: var(--footer-height);
-  background-color: var(--gray-dark);
-  color: var(--gray-light);
+  color: var(--black38);
   text-align: center;
 
   & p {
+    font-size: 12px;
     margin: 10px 0;
   }
 
   & a {
     @apply --link-transition;
-    color: var(--gray-lighter);
+    color: var(--black54);
     &:hover {
-      color: #fff;
+      color: var(--black87);
     }
   }  
 }

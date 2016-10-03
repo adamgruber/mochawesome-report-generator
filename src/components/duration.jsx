@@ -66,12 +66,14 @@ class Duration extends React.Component {
   render() {
     const { className, unitsClassName, timer, isSummary } = this.props;
     const duration = this._getDurationObj(timer);
+    const summaryDuration = this.formatSummaryDuration(duration);
+    const units = this.getSummaryDurationUnits(duration);
 
     if (isSummary) {
       return (
         <span>
-          <span className={ classNames(className) }>{ this.formatSummaryDuration(duration) }</span>
-          <span className={ classNames(unitsClassName) }>{ this.getSummaryDurationUnits(duration) }</span>
+          <span className={ classNames(className) }>{ summaryDuration }</span>
+          <span className={ classNames(unitsClassName) }>{ units }</span>
         </span>
       );
     }
