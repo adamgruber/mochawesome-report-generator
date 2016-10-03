@@ -87,18 +87,6 @@
   --font-size-h4: 18px; /* ceil((@font-size-base * 1.25)); */
   --font-size-h5: var(--font-size-base);
   --font-size-h6: 12px; /* ceil((@font-size-base * 0.85)); */
-  --ma-icon-passed: 'a';
-  --ma-icon-failed: 'b';
-  --ma-icon-pending: 'c';
-  --ma-icon-pending-alt: 'd';
-  --ma-icon-skipped: '\65';
-  --ma-icon-suites: 'f';
-  --ma-icon-tests: 'g';
-  --ma-icon-tests-alt: 'j';
-  --ma-icon-duration: 'h';
-  --ma-icon-right-chevron: 'i';
-  --ma-icon-filter: 'k';
-  --ma-icon-menu: '\6c';
 
   /* Apply Rules */
   --clearfix: {
@@ -127,19 +115,6 @@
     @apply --button-reset;
     @apply --link-transition;
     cursor: pointer;
-  }
-
-  --ma-icon: {
-    position: relative;
-    font-family: 'mochawesome';
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    speak: none;
-    line-height: 1;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
   }
 
   --link-transition: {
