@@ -61,6 +61,15 @@ const NavMenuItem = observer((props) => {
     return <Icon name={ iconName } className={ cx('link-icon', iconClassName) } size={ 18 } />;
   };
 
+  const scrollToSuite = (e, suiteId) => {
+    e.preventDefault();
+    const suiteEl = document.getElementById(suiteId);
+    const top = suiteEl.getBoundingClientRect().top;
+    const scrollY = top - 84;
+    console.log(top, scrollY);
+    window.scrollTo(0, top - 84);
+  };
+
   if (rootEmpty) {
     return !!suites && suites.map(subSuite => (
       <NavMenuItem key={ subSuite.uuid } suite={ subSuite } />)
@@ -69,7 +78,7 @@ const NavMenuItem = observer((props) => {
 
   return (
     <li className={ cx('item') }>
-      <a href={ `#${uuid}` } className={ anchorCxName }>
+      <a href={ `#${uuid}` } className={ anchorCxName } onClick={ (e) => scrollToSuite(e, uuid) }>
         { suiteIcon() }
         { title === '' ? uuid : title }
       </a>
