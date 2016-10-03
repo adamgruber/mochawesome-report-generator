@@ -63,11 +63,18 @@ const NavMenuItem = observer((props) => {
 
   const scrollToSuite = (e, suiteId) => {
     e.preventDefault();
+    // Find element to scroll to
     const suiteEl = document.getElementById(suiteId);
+    // Get its top value
     const top = suiteEl.getBoundingClientRect().top;
-    const scrollY = top - 84;
-    console.log(top, scrollY);
-    window.scrollTo(0, top - 84);
+    // Get the details container and get its top padding
+    const detailsCnt = document.getElementById('details');
+    let topPad = window.getComputedStyle(detailsCnt).getPropertyValue('padding-top');
+    topPad = parseInt(topPad, 10);
+    // Calc the y position to scroll to
+    // 4px offset due to shadow
+    const scrollY = document.body.scrollTop + top - topPad + 4;
+    window.scrollTo(0, scrollY);
   };
 
   if (rootEmpty) {
