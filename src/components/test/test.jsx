@@ -72,7 +72,7 @@ class Test extends React.Component {
           <p className={ cx('error-message') }>{ `${err.name}: ${err.message}` }</p>
         ) }
         <div className={ cx('body') }>
-          { <CodeSnippet className={ cx('code-snippet') } code={ err.estack } lang='bash' /> }
+          { <CodeSnippet className={ cx('code-snippet') } code={ err.estack } highlight={ false } /> }
           { <CodeSnippet className={ cx('code-snippet') } code={ err.diff } lang='diff' /> }
           { <CodeSnippet className={ cx('code-snippet') } code={ code } /> }
         </div>

@@ -122,3 +122,10 @@
     background: none;
   }
 }
+
+.code-diff-expected span{
+  color: #dc322f;
+}
+.code-diff-actual span {
+  color: #859900;
+}
