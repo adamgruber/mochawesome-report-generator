@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { observer } from 'mobx-react';
-import { ToggleSwitch } from 'components';
+import { Icon, ToggleSwitch } from 'components';
 import reportStore from '../../js/reportStore';
 import NavMenuItem from './nav-menu-item';
 import moment from 'moment';
@@ -18,11 +18,14 @@ const NavMenu = observer(({ reportTitle, stats, suites }) => {
     <div className={ cx('wrap', { open: reportStore.sideNavOpen }) }>
       <div onClick={ closeSideNav } className={ cx('overlay') }></div>
       <nav className={ cx('menu') }>
-        <div className={ cx('section', 'toggles-wrap') }>
+        <button onClick={ closeSideNav } className={ cx('close-btn') }>
+          <Icon name='close' />
+        </button>
+        <div className={ cx('section') }>
           <h3 className={ cx('title') }>{ reportTitle }</h3>
           <h6 className={ cx('date') }>{ reportDate }</h6>
         </div>
-        <div className={ cx('section', 'toggles-wrap') }>
+        <div className={ cx('section') }>
           { !!passes && <ToggleSwitch
             className={ cx('toggle') }
             label='Show Passed'
@@ -56,7 +59,7 @@ const NavMenu = observer(({ reportTitle, stats, suites }) => {
             active={ showSkipped }
             toggleFn={ () => (reportStore.showSkipped = !showSkipped) } /> }
         </div>
-        <div className={ cx('section', 'toc-wrap') }>
+        <div className={ cx('section') }>
           { !!suites && suites.map(suite => (
             <ul key={ suite.uuid } className={ cx('list-unstyled', 'main', { 'no-tests': !suite.hasTests }) }>
               { !!suite.suites && suite.suites.map(subSuite => <NavMenuItem key={ subSuite.uuid } suite={ subSuite } />) }

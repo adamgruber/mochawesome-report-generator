@@ -111,14 +111,14 @@
     }
   }
 
+  --link-transition: {
+    transition: color 0.2s ease-out;
+  }
+
   --button-base: {
     @apply --button-reset;
     @apply --link-transition;
     cursor: pointer;
-  }
-
-  --link-transition: {
-    transition: color 0.2s ease-out;
   }
 
   --column-base: {

@@ -10,10 +10,12 @@
   &:hover:not(.pending):not(.skipped) {
     border-left-color: var(--grey500);
   }
-  &.expanded.passed {
+  &.expanded.passed,
+  &.expanded.passed:hover {
     border-left-color: var(--green500);
   }
-  &.expanded.failed {
+  &.expanded.failed,
+  &.expanded.failed:hover {
     border-left-color: var(--red500);
   }
   transition: border-color 0.2s ease-out;
