@@ -28,7 +28,7 @@
   "main": "mochawesome-report.js",
   "dependencies": {
     "fs-extra": "^0.30.0",
-    "highlight.js": "^9.6.0",
+    "highlight.js": "^9.7.0",
     "json-loader": "^0.5.4",
     "json-stringify-safe": "^5.0.0",
     "material-design-icons": "^3.0.1",
