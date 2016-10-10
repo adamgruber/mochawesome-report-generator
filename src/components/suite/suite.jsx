@@ -32,7 +32,7 @@ const Suite = (props) => {
   });
 
   const summaryProps = { duration, totalTests, totalPasses, totalFailures, totalPending, totalSkipped };
-  const chartProps = { uuid, totalPasses, totalFailures, totalPending, totalSkipped };
+  const chartProps = { totalPasses, totalFailures, totalPending, totalSkipped };
 
 
   if (rootEmpty) {
