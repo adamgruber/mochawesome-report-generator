@@ -1,5 +1,5 @@
+/* eslint-disable import/no-dynamic-require */
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 import isEqual from 'lodash/isEqual';
 import hljs from 'highlight.js/lib/highlight';
 import classNames from 'classnames/bind';
@@ -8,8 +8,10 @@ import styles from './test.css';
 const cx = classNames.bind(styles);
 
 class CodeSnippet extends Component {
+  static displayName = 'CodeSnippet';
+
   static propTypes = {
-    className: PropTypes.any,
+    className: PropTypes.string,
     code: PropTypes.string,
     lang: PropTypes.string,
     highlight: PropTypes.bool
@@ -29,9 +31,8 @@ class CodeSnippet extends Component {
   highlightCode() {
     const { code, lang, highlight } = this.props;
     if (highlight && code) {
-      const node = ReactDOM.findDOMNode(this);
       hljs.registerLanguage(lang, require(`highlight.js/lib/languages/${lang}`));
-      hljs.highlightBlock(node);
+      hljs.highlightBlock(this.node);
     }
   }
 
@@ -46,8 +47,10 @@ class CodeSnippet extends Component {
       codeHtml = `${expected}&nbsp;&nbsp;${actual}\n\n${code}`;
     }
 
+    const cxName = cx(className, lang, { hljs: !highlight });
+
     return !!code && (
-      <pre className={ classNames(className, lang, { hljs: !highlight }) }>
+      <pre className={ cxName } ref={ node => (this.node = node) }>
         <code dangerouslySetInnerHTML={ { __html: codeHtml } } />
       </pre>
     );

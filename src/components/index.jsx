@@ -1,4 +1,3 @@
-export { default as DomNodeWrapper } from './dom-node-wrapper';
 export { default as Dropdown } from './dropdown';
 export { default as Duration } from './duration';
 export { default as FilterMenu } from './filter-menu';

@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import DevTools from 'mobx-react-devtools';
-import throttle from 'lodash/throttle';
 import { observer } from 'mobx-react';
 import reportStore from '../js/reportStore';
-import { DomNodeWrapper, Footer, Navbar, NavMenu } from './index';
+import { Footer, Navbar, NavMenu } from './index';
 import { Suite } from 'components/suite';
 import cx from 'classnames';
 import 'styles/app.global.css';
@@ -16,32 +15,14 @@ class MochawesomeReport extends Component {
 
   state = {};
 
-  componentDidMount() {
-    // window.addEventListener('scroll', this.windowScrollHandler.bind(this));
-  }
-
-  componentWillUnmount() {
-    // window.removeEventListener('scroll', this.windowScrollHandler.bind(this));
-  }
-
-  windowScrollHandler = throttle(() => {
-    // todo: move this to summary
-    const navbarH = this.refs.navbar.getMeasurements('height');
-    const summaryRect = this.refs.summary.getMeasurements();
-    const summaryHeight = summaryRect.height - navbarH;
-    reportStore.showQuickSummary = summaryRect.top < (-summaryHeight);
-  }, 200);
-
   render() {
     const { data } = this.props;
     const { stats } = data.data;
     const { reportTitle } = data;
     return (
       <div>
-        <DomNodeWrapper ref='navbar'>
-          <Navbar reportTitle={ reportTitle } stats={ stats } />
-        </DomNodeWrapper>
-        <div id='details' className={ cx('details', 'container', { qs: reportStore.showQuickSummary }) }>
+        <Navbar reportTitle={ reportTitle } stats={ stats } />
+        <div id='details' className={ cx('details', 'container') }>
           { reportStore.suites.map(suite => (
             <Suite key={ suite.uuid } suite={ suite } />)) }
         </div>
