@@ -14,6 +14,6 @@ bodyEl.removeAttribute('data-config');
 reportStore.setInitialData({ data, config });
 
 ReactDOM.render(
-  <MochawesomeReport data={ reportStore } config={ config } />,
+  React.createElement(MochawesomeReport),
   document.getElementById('report')
 );

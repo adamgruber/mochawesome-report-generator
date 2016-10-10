@@ -54,9 +54,10 @@ class ReportStore {
 
   setInitialData({ data, config }) {
     const reportTitle = config.reportTitle || data.reportTitle;
-    Object.assign(this, { reportTitle, data, config });
+    Object.assign(this, { data, ...config, reportTitle });
     this.allSuites = [ data.suites ];
     this.stats = data.stats;
+    this.showChart = true;
   }
 }
 
