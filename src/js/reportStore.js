@@ -1,4 +1,4 @@
-/* eslint-disable no-console, max-len */
+/* eslint-disable no-console */
 import { observable, computed, action } from 'mobx';
 // import find from 'lodash/find';
 import filter from 'lodash/filter';
@@ -6,8 +6,7 @@ import map from 'lodash/map';
 import compact from 'lodash/compact';
 
 class ReportStore {
-  @observable showQuickSummary = false;
-  @observable sideNavOpen = true;
+  @observable sideNavOpen = false;
   @observable showPassed = true;
   @observable showFailed = true;
   @observable showPending = true;
