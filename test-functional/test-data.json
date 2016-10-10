@@ -5,9 +5,9 @@
     "passes": 9,
     "pending": 5,
     "failures": 5,
-    "start": "2016-09-19T16:09:15.813Z",
-    "end": "2016-09-19T16:09:16.336Z",
-    "duration": 523,
+    "start": "2016-09-23T13:36:51.701Z",
+    "end": "2016-09-23T13:36:52.233Z",
+    "duration": 532,
     "testsRegistered": 27,
     "passPercent": 40.9,
     "pendingPercent": 18.5,
@@ -29,25 +29,25 @@
             "suites": [],
             "tests": [
               {
-                "title": "passing test",
-                "fullTitle": "Master Test Suite Test Suite - Basic passing test",
+                "title": "should be passing test if true is not false",
+                "fullTitle": "Master Test Suite Test Suite - Basic should be passing test if true is not false",
                 "timedOut": false,
                 "duration": 1,
                 "state": "passed",
-                "speed": "fast",
+                "speed": "medium",
                 "pass": true,
                 "fail": false,
                 "pending": false,
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "c482608c-8fe4-45d3-af88-02bdc7f53113",
-                "parentUUID": "1c0748df-2df9-4e03-af03-c5dab2885e90",
+                "uuid": "5c3ec47f-307f-4a35-b77a-d0d218acbc4d",
+                "parentUUID": "17bc6546-127d-4fc2-84b7-4aa033a8d2d3",
                 "skipped": false
               },
               {
-                "title": "failing test",
-                "fullTitle": "Master Test Suite Test Suite - Basic failing test",
+                "title": "should fail when returned object does not match expected object",
+                "fullTitle": "Master Test Suite Test Suite - Basic should fail when returned object does not match expected object",
                 "timedOut": false,
                 "duration": 11,
                 "state": "failed",
@@ -57,18 +57,18 @@
                 "code": "var o = retObj();\no.should.eql({});\ndone();",
                 "err": {
                   "name": "AssertionError",
-                  "actual": "{\n  \"adam\": \"adam\"\n}",
+                  "actual": "{\n  \"employees\": {\n    \"employee\": [\n      {\n        \"firstName\": \"Tom\"\n        \"id\": \"1\"\n        \"lastName\": \"Cruise\"\n      }\n      {\n        \"firstName\": \"Maria\"\n        \"id\": \"2\"\n        \"lastName\": \"Sharapova\"\n      }\n      {\n        \"firstName\": \"James\"\n        \"id\": \"3\"\n        \"lastName\": \"Bond\"\n      }\n    ]\n  }\n}",
                   "expected": "{}",
                   "operator": "to equal",
-                  "message": "expected { adam: 'adam' } to equal {}",
+                  "message": "expected { employees: \n   { employee: \n      [ { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n        { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n        { id: '3', firstName: 'James', lastName: 'Bond' } ] } } to equal {}",
                   "generatedMessage": true,
                   "showDiff": true,
-                  "estack": "AssertionError: expected { adam: 'adam' } to equal {}\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:18:16)",
-                  "diff": "- {\n-   \"adam\": \"adam\"\n- }\n+ {}\n"
+                  "estack": "AssertionError: expected { employees: \n   { employee: \n      [ { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n        { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n        { id: '3', firstName: 'James', lastName: 'Bond' } ] } } to equal {}\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:38:16)",
+                  "diff": "- {\n-   \"employees\": {\n-     \"employee\": [\n-       {\n-         \"firstName\": \"Tom\"\n-         \"id\": \"1\"\n-         \"lastName\": \"Cruise\"\n-       }\n-       {\n-         \"firstName\": \"Maria\"\n-         \"id\": \"2\"\n-         \"lastName\": \"Sharapova\"\n-       }\n-       {\n-         \"firstName\": \"James\"\n-         \"id\": \"3\"\n-         \"lastName\": \"Bond\"\n-       }\n-     ]\n-   }\n- }\n+ {}\n"
                 },
                 "isRoot": false,
-                "uuid": "5199b065-58dd-4da7-999e-3b37ae743f64",
-                "parentUUID": "1c0748df-2df9-4e03-af03-c5dab2885e90",
+                "uuid": "9624c695-05c7-4042-9cda-e251d27be2fe",
+                "parentUUID": "17bc6546-127d-4fc2-84b7-4aa033a8d2d3",
                 "skipped": false
               }
             ],
@@ -76,31 +76,31 @@
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "1c0748df-2df9-4e03-af03-c5dab2885e90",
+            "uuid": "17bc6546-127d-4fc2-84b7-4aa033a8d2d3",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [
               {
-                "title": "passing test",
-                "fullTitle": "Master Test Suite Test Suite - Basic passing test",
+                "title": "should be passing test if true is not false",
+                "fullTitle": "Master Test Suite Test Suite - Basic should be passing test if true is not false",
                 "timedOut": false,
                 "duration": 1,
                 "state": "passed",
-                "speed": "fast",
+                "speed": "medium",
                 "pass": true,
                 "fail": false,
                 "pending": false,
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "c482608c-8fe4-45d3-af88-02bdc7f53113",
-                "parentUUID": "1c0748df-2df9-4e03-af03-c5dab2885e90",
+                "uuid": "5c3ec47f-307f-4a35-b77a-d0d218acbc4d",
+                "parentUUID": "17bc6546-127d-4fc2-84b7-4aa033a8d2d3",
                 "skipped": false
               }
             ],
             "failures": [
               {
-                "title": "failing test",
-                "fullTitle": "Master Test Suite Test Suite - Basic failing test",
+                "title": "should fail when returned object does not match expected object",
+                "fullTitle": "Master Test Suite Test Suite - Basic should fail when returned object does not match expected object",
                 "timedOut": false,
                 "duration": 11,
                 "state": "failed",
@@ -110,18 +110,18 @@
                 "code": "var o = retObj();\no.should.eql({});\ndone();",
                 "err": {
                   "name": "AssertionError",
-                  "actual": "{\n  \"adam\": \"adam\"\n}",
+                  "actual": "{\n  \"employees\": {\n    \"employee\": [\n      {\n        \"firstName\": \"Tom\"\n        \"id\": \"1\"\n        \"lastName\": \"Cruise\"\n      }\n      {\n        \"firstName\": \"Maria\"\n        \"id\": \"2\"\n        \"lastName\": \"Sharapova\"\n      }\n      {\n        \"firstName\": \"James\"\n        \"id\": \"3\"\n        \"lastName\": \"Bond\"\n      }\n    ]\n  }\n}",
                   "expected": "{}",
                   "operator": "to equal",
-                  "message": "expected { adam: 'adam' } to equal {}",
+                  "message": "expected { employees: \n   { employee: \n      [ { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n        { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n        { id: '3', firstName: 'James', lastName: 'Bond' } ] } } to equal {}",
                   "generatedMessage": true,
                   "showDiff": true,
-                  "estack": "AssertionError: expected { adam: 'adam' } to equal {}\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:18:16)",
-                  "diff": "- {\n-   \"adam\": \"adam\"\n- }\n+ {}\n"
+                  "estack": "AssertionError: expected { employees: \n   { employee: \n      [ { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n        { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n        { id: '3', firstName: 'James', lastName: 'Bond' } ] } } to equal {}\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:38:16)",
+                  "diff": "- {\n-   \"employees\": {\n-     \"employee\": [\n-       {\n-         \"firstName\": \"Tom\"\n-         \"id\": \"1\"\n-         \"lastName\": \"Cruise\"\n-       }\n-       {\n-         \"firstName\": \"Maria\"\n-         \"id\": \"2\"\n-         \"lastName\": \"Sharapova\"\n-       }\n-       {\n-         \"firstName\": \"James\"\n-         \"id\": \"3\"\n-         \"lastName\": \"Bond\"\n-       }\n-     ]\n-   }\n- }\n+ {}\n"
                 },
                 "isRoot": false,
-                "uuid": "5199b065-58dd-4da7-999e-3b37ae743f64",
-                "parentUUID": "1c0748df-2df9-4e03-af03-c5dab2885e90",
+                "uuid": "9624c695-05c7-4042-9cda-e251d27be2fe",
+                "parentUUID": "17bc6546-127d-4fc2-84b7-4aa033a8d2d3",
                 "skipped": false
               }
             ],
@@ -147,8 +147,8 @@
                 "suites": [],
                 "tests": [
                   {
-                    "title": "passing test",
-                    "fullTitle": "Test Suite - Nested Suites Nested Test Suite passing test",
+                    "title": "should be a passing test",
+                    "fullTitle": "Test Suite - Nested Suites Nested Test Suite should be a passing test",
                     "timedOut": false,
                     "duration": 0,
                     "state": "passed",
@@ -159,8 +159,8 @@
                     "code": "true.should.be.ok;\ndone();",
                     "err": {},
                     "isRoot": false,
-                    "uuid": "7aa82a9a-f34b-443e-9cc6-df62612ae506",
-                    "parentUUID": "a60dc664-41f7-4cc6-9b64-4f39b846077a",
+                    "uuid": "020f2aff-3ca2-4f34-819e-c1eeae8138d1",
+                    "parentUUID": "7da60374-1af4-456a-86d2-e655c4c1338c",
                     "skipped": false
                   }
                 ],
@@ -168,12 +168,12 @@
                 "root": false,
                 "_timeout": 2000,
                 "file": "/test-functional/test.js",
-                "uuid": "a60dc664-41f7-4cc6-9b64-4f39b846077a",
+                "uuid": "7da60374-1af4-456a-86d2-e655c4c1338c",
                 "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
                 "passes": [
                   {
-                    "title": "passing test",
-                    "fullTitle": "Test Suite - Nested Suites Nested Test Suite passing test",
+                    "title": "should be a passing test",
+                    "fullTitle": "Test Suite - Nested Suites Nested Test Suite should be a passing test",
                     "timedOut": false,
                     "duration": 0,
                     "state": "passed",
@@ -184,8 +184,8 @@
                     "code": "true.should.be.ok;\ndone();",
                     "err": {},
                     "isRoot": false,
-                    "uuid": "7aa82a9a-f34b-443e-9cc6-df62612ae506",
-                    "parentUUID": "a60dc664-41f7-4cc6-9b64-4f39b846077a",
+                    "uuid": "020f2aff-3ca2-4f34-819e-c1eeae8138d1",
+                    "parentUUID": "7da60374-1af4-456a-86d2-e655c4c1338c",
                     "skipped": false
                   }
                 ],
@@ -221,8 +221,8 @@
                     "code": "true.should.be.ok;\ndone();",
                     "err": {},
                     "isRoot": false,
-                    "uuid": "7c3acfe9-7640-4e68-b6ab-58236bf72e47",
-                    "parentUUID": "688a43cf-c6ec-454f-8f27-8962d6c3aa4e",
+                    "uuid": "0d4508bb-6124-44a3-9c41-254b0b1989e7",
+                    "parentUUID": "3ab64610-7c6a-4851-9d18-2a315fdaa76c",
                     "skipped": false
                   }
                 ],
@@ -230,7 +230,7 @@
                 "root": false,
                 "_timeout": 2000,
                 "file": "/test-functional/test.js",
-                "uuid": "688a43cf-c6ec-454f-8f27-8962d6c3aa4e",
+                "uuid": "3ab64610-7c6a-4851-9d18-2a315fdaa76c",
                 "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
                 "passes": [
                   {
@@ -246,8 +246,8 @@
                     "code": "true.should.be.ok;\ndone();",
                     "err": {},
                     "isRoot": false,
-                    "uuid": "7c3acfe9-7640-4e68-b6ab-58236bf72e47",
-                    "parentUUID": "688a43cf-c6ec-454f-8f27-8962d6c3aa4e",
+                    "uuid": "0d4508bb-6124-44a3-9c41-254b0b1989e7",
+                    "parentUUID": "3ab64610-7c6a-4851-9d18-2a315fdaa76c",
                     "skipped": false
                   }
                 ],
@@ -272,7 +272,7 @@
                 "title": "passing test",
                 "fullTitle": "Master Test Suite Test Suite - Nested Suites passing test",
                 "timedOut": false,
-                "duration": 1,
+                "duration": 0,
                 "state": "passed",
                 "speed": "fast",
                 "pass": true,
@@ -281,13 +281,13 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "d1964e22-af7c-4bb7-a525-d07814dc8b13",
-                "parentUUID": "0e14f41a-cfcf-4aa8-901d-b60dfdeda8e5",
+                "uuid": "8bb86c99-5bce-4198-bdc1-2cd8430e07da",
+                "parentUUID": "730ccc57-dac2-4361-a3f4-0edc739c5285",
                 "skipped": false
               },
               {
-                "title": "failing test",
-                "fullTitle": "Master Test Suite Test Suite - Nested Suites failing test",
+                "title": "should be a failing test",
+                "fullTitle": "Master Test Suite Test Suite - Nested Suites should be a failing test",
                 "timedOut": false,
                 "duration": 0,
                 "state": "failed",
@@ -301,11 +301,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:41:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:61:7)"
                 },
                 "isRoot": false,
-                "uuid": "739c40e3-c10a-4ba4-b3fd-4f042858a438",
-                "parentUUID": "0e14f41a-cfcf-4aa8-901d-b60dfdeda8e5",
+                "uuid": "701853dc-9a84-45b8-8a0d-3d729b0aad48",
+                "parentUUID": "730ccc57-dac2-4361-a3f4-0edc739c5285",
                 "skipped": false
               }
             ],
@@ -313,14 +313,14 @@
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "0e14f41a-cfcf-4aa8-901d-b60dfdeda8e5",
+            "uuid": "730ccc57-dac2-4361-a3f4-0edc739c5285",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [
               {
                 "title": "passing test",
                 "fullTitle": "Master Test Suite Test Suite - Nested Suites passing test",
                 "timedOut": false,
-                "duration": 1,
+                "duration": 0,
                 "state": "passed",
                 "speed": "fast",
                 "pass": true,
@@ -329,15 +329,15 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "d1964e22-af7c-4bb7-a525-d07814dc8b13",
-                "parentUUID": "0e14f41a-cfcf-4aa8-901d-b60dfdeda8e5",
+                "uuid": "8bb86c99-5bce-4198-bdc1-2cd8430e07da",
+                "parentUUID": "730ccc57-dac2-4361-a3f4-0edc739c5285",
                 "skipped": false
               }
             ],
             "failures": [
               {
-                "title": "failing test",
-                "fullTitle": "Master Test Suite Test Suite - Nested Suites failing test",
+                "title": "should be a failing test",
+                "fullTitle": "Master Test Suite Test Suite - Nested Suites should be a failing test",
                 "timedOut": false,
                 "duration": 0,
                 "state": "failed",
@@ -351,11 +351,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:41:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:61:7)"
                 },
                 "isRoot": false,
-                "uuid": "739c40e3-c10a-4ba4-b3fd-4f042858a438",
-                "parentUUID": "0e14f41a-cfcf-4aa8-901d-b60dfdeda8e5",
+                "uuid": "701853dc-9a84-45b8-8a0d-3d729b0aad48",
+                "parentUUID": "730ccc57-dac2-4361-a3f4-0edc739c5285",
                 "skipped": false
               }
             ],
@@ -371,7 +371,7 @@
             "hasFailures": true,
             "hasPending": false,
             "hasSkipped": false,
-            "duration": 1
+            "duration": 0
           },
           {
             "title": "Test Suite - Nested Suites Failing Before",
@@ -391,7 +391,7 @@
                     "code": "true.should.be.ok;\ndone();",
                     "err": {},
                     "isRoot": false,
-                    "parentUUID": "ad431c3d-130a-408d-8117-9b67c939ca3a",
+                    "parentUUID": "a066b7e1-bc02-4b52-9fce-123e37a54684",
                     "skipped": true
                   }
                 ],
@@ -399,7 +399,7 @@
                 "root": false,
                 "_timeout": 2000,
                 "file": "/test-functional/test.js",
-                "uuid": "ad431c3d-130a-408d-8117-9b67c939ca3a",
+                "uuid": "a066b7e1-bc02-4b52-9fce-123e37a54684",
                 "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
                 "passes": [],
                 "failures": [],
@@ -415,7 +415,7 @@
                     "code": "true.should.be.ok;\ndone();",
                     "err": {},
                     "isRoot": false,
-                    "parentUUID": "ad431c3d-130a-408d-8117-9b67c939ca3a",
+                    "parentUUID": "a066b7e1-bc02-4b52-9fce-123e37a54684",
                     "skipped": true
                   }
                 ],
@@ -445,7 +445,7 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "parentUUID": "6bd2e30f-9f8c-494b-b3c1-8d0240c0fb8f",
+                "parentUUID": "f4abe6b1-0d58-461f-92c8-aaaf4d518647",
                 "skipped": true
               }
             ],
@@ -453,7 +453,7 @@
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "6bd2e30f-9f8c-494b-b3c1-8d0240c0fb8f",
+            "uuid": "f4abe6b1-0d58-461f-92c8-aaaf4d518647",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [],
             "failures": [],
@@ -469,7 +469,7 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "parentUUID": "6bd2e30f-9f8c-494b-b3c1-8d0240c0fb8f",
+                "parentUUID": "f4abe6b1-0d58-461f-92c8-aaaf4d518647",
                 "skipped": true
               }
             ],
@@ -503,8 +503,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "29927b3f-77b1-4995-8556-5ceddca4992c",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "4cf5e887-fc2d-4f0f-b1f1-ab91a1ae4fca",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -518,8 +518,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "2e3cbf35-8cff-4c0f-8ba5-cf20e2d66910",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "500aaaaf-368e-44ea-8db9-8fd21027884d",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -538,11 +538,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:71:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:91:7)"
                 },
                 "isRoot": false,
-                "uuid": "ac9ffb6b-9349-425c-8c99-10414f7318ae",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "1d993fc3-a95a-46b4-8a39-7303e1fb2483",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -558,8 +558,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "5648183f-0092-4e99-86ae-da7f1c9442b2",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "62ea258b-775c-431f-81b1-7778e711d8c1",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -573,8 +573,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "46f8e61f-abd1-458a-a7ef-da4bf5a1db82",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "5d98efca-db9e-4406-b5e8-96e37c851379",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
@@ -590,8 +590,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "2e3cbf35-8cff-4c0f-8ba5-cf20e2d66910",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "500aaaaf-368e-44ea-8db9-8fd21027884d",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -605,15 +605,15 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "46f8e61f-abd1-458a-a7ef-da4bf5a1db82",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "5d98efca-db9e-4406-b5e8-96e37c851379",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [
               {
@@ -629,8 +629,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "29927b3f-77b1-4995-8556-5ceddca4992c",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "4cf5e887-fc2d-4f0f-b1f1-ab91a1ae4fca",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -646,8 +646,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "5648183f-0092-4e99-86ae-da7f1c9442b2",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "62ea258b-775c-431f-81b1-7778e711d8c1",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
@@ -668,11 +668,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:71:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:91:7)"
                 },
                 "isRoot": false,
-                "uuid": "ac9ffb6b-9349-425c-8c99-10414f7318ae",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "1d993fc3-a95a-46b4-8a39-7303e1fb2483",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
@@ -707,8 +707,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e2d9ee1a-c549-4971-967a-baec4ae23557",
-                "parentUUID": "6eb0d611-2007-449d-87e7-dd62a4fcc683",
+                "uuid": "cbbfcdfc-d0a5-45e9-ae87-8978e2a0fded",
+                "parentUUID": "80ff858a-d8ee-48ec-beec-6c94423f3f06",
                 "skipped": false
               }
             ],
@@ -716,7 +716,7 @@
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "6eb0d611-2007-449d-87e7-dd62a4fcc683",
+            "uuid": "80ff858a-d8ee-48ec-beec-6c94423f3f06",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [
               {
@@ -732,8 +732,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e2d9ee1a-c549-4971-967a-baec4ae23557",
-                "parentUUID": "6eb0d611-2007-449d-87e7-dd62a4fcc683",
+                "uuid": "cbbfcdfc-d0a5-45e9-ae87-8978e2a0fded",
+                "parentUUID": "80ff858a-d8ee-48ec-beec-6c94423f3f06",
                 "skipped": false
               }
             ],
@@ -772,11 +772,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:95:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:115:7)"
                 },
                 "isRoot": false,
-                "uuid": "408dff6c-7f7b-4212-b253-74a7ed8c09d8",
-                "parentUUID": "e644953d-c207-41af-95bb-7141a6d8fb2d",
+                "uuid": "e6c4b699-564c-4889-8b68-558a8e9b52b7",
+                "parentUUID": "4206d913-2c30-4646-ab10-c31c9b65aa33",
                 "skipped": false
               }
             ],
@@ -784,7 +784,7 @@
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "e644953d-c207-41af-95bb-7141a6d8fb2d",
+            "uuid": "4206d913-2c30-4646-ab10-c31c9b65aa33",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [],
             "failures": [
@@ -804,11 +804,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:95:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:115:7)"
                 },
                 "isRoot": false,
-                "uuid": "408dff6c-7f7b-4212-b253-74a7ed8c09d8",
-                "parentUUID": "e644953d-c207-41af-95bb-7141a6d8fb2d",
+                "uuid": "e6c4b699-564c-4889-8b68-558a8e9b52b7",
+                "parentUUID": "4206d913-2c30-4646-ab10-c31c9b65aa33",
                 "skipped": false
               }
             ],
@@ -841,8 +841,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "a577d232-da4b-4c3a-822a-f74835c66877",
-                "parentUUID": "176b03ad-42fe-4bc6-89ba-042c616deb50",
+                "uuid": "31b61b3a-7b5d-4950-97d0-60ec78d1cc8c",
+                "parentUUID": "07c377b3-5008-4d20-b4cd-f84079bee00c",
                 "skipped": false
               }
             ],
@@ -858,15 +858,15 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "a577d232-da4b-4c3a-822a-f74835c66877",
-                "parentUUID": "176b03ad-42fe-4bc6-89ba-042c616deb50",
+                "uuid": "31b61b3a-7b5d-4950-97d0-60ec78d1cc8c",
+                "parentUUID": "07c377b3-5008-4d20-b4cd-f84079bee00c",
                 "skipped": false
               }
             ],
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "176b03ad-42fe-4bc6-89ba-042c616deb50",
+            "uuid": "07c377b3-5008-4d20-b4cd-f84079bee00c",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [],
             "failures": [],
@@ -899,7 +899,7 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "parentUUID": "f26171b3-bdf2-498c-9105-c936e2ad75cb",
+                "parentUUID": "a3418f88-b249-4e88-8a58-5379690000ae",
                 "skipped": true
               },
               {
@@ -913,7 +913,7 @@
                 "code": "false.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "parentUUID": "f26171b3-bdf2-498c-9105-c936e2ad75cb",
+                "parentUUID": "a3418f88-b249-4e88-8a58-5379690000ae",
                 "skipped": true
               }
             ],
@@ -921,7 +921,7 @@
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "f26171b3-bdf2-498c-9105-c936e2ad75cb",
+            "uuid": "a3418f88-b249-4e88-8a58-5379690000ae",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [],
             "failures": [],
@@ -937,7 +937,7 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "parentUUID": "f26171b3-bdf2-498c-9105-c936e2ad75cb",
+                "parentUUID": "a3418f88-b249-4e88-8a58-5379690000ae",
                 "skipped": true
               },
               {
@@ -951,7 +951,7 @@
                 "code": "false.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "parentUUID": "f26171b3-bdf2-498c-9105-c936e2ad75cb",
+                "parentUUID": "a3418f88-b249-4e88-8a58-5379690000ae",
                 "skipped": true
               }
             ],
@@ -983,7 +983,7 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "parentUUID": "e69cbda3-e8f9-4bea-89dd-0a2b9f40be63",
+                "parentUUID": "719f501a-3da6-4470-af45-8ce9971622a2",
                 "skipped": true
               },
               {
@@ -997,7 +997,7 @@
                 "code": "false.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "parentUUID": "e69cbda3-e8f9-4bea-89dd-0a2b9f40be63",
+                "parentUUID": "719f501a-3da6-4470-af45-8ce9971622a2",
                 "skipped": true
               }
             ],
@@ -1005,7 +1005,7 @@
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "e69cbda3-e8f9-4bea-89dd-0a2b9f40be63",
+            "uuid": "719f501a-3da6-4470-af45-8ce9971622a2",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [],
             "failures": [],
@@ -1021,7 +1021,7 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "parentUUID": "e69cbda3-e8f9-4bea-89dd-0a2b9f40be63",
+                "parentUUID": "719f501a-3da6-4470-af45-8ce9971622a2",
                 "skipped": true
               },
               {
@@ -1035,7 +1035,7 @@
                 "code": "false.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "parentUUID": "e69cbda3-e8f9-4bea-89dd-0a2b9f40be63",
+                "parentUUID": "719f501a-3da6-4470-af45-8ce9971622a2",
                 "skipped": true
               }
             ],
@@ -1067,8 +1067,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "997d21a8-f524-4313-8736-b22cf7150221",
-                "parentUUID": "a75b2a6d-7f61-4791-af59-ef26aae6bb75",
+                "uuid": "a2b60d0d-0a69-478f-b17f-94ecf8a0f2c8",
+                "parentUUID": "54e778b1-4ec3-47fb-9230-c0c57f5ef8ad",
                 "skipped": true
               },
               {
@@ -1082,7 +1082,7 @@
                 "code": "false.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "parentUUID": "a75b2a6d-7f61-4791-af59-ef26aae6bb75",
+                "parentUUID": "54e778b1-4ec3-47fb-9230-c0c57f5ef8ad",
                 "skipped": true
               }
             ],
@@ -1090,7 +1090,7 @@
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "a75b2a6d-7f61-4791-af59-ef26aae6bb75",
+            "uuid": "54e778b1-4ec3-47fb-9230-c0c57f5ef8ad",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [],
             "failures": [],
@@ -1106,8 +1106,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "997d21a8-f524-4313-8736-b22cf7150221",
-                "parentUUID": "a75b2a6d-7f61-4791-af59-ef26aae6bb75",
+                "uuid": "a2b60d0d-0a69-478f-b17f-94ecf8a0f2c8",
+                "parentUUID": "54e778b1-4ec3-47fb-9230-c0c57f5ef8ad",
                 "skipped": true
               },
               {
@@ -1121,7 +1121,7 @@
                 "code": "false.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "parentUUID": "a75b2a6d-7f61-4791-af59-ef26aae6bb75",
+                "parentUUID": "54e778b1-4ec3-47fb-9230-c0c57f5ef8ad",
                 "skipped": true
               }
             ],
@@ -1155,8 +1155,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "a8f65990-ac33-4cf1-a6f1-0017f877ecbf",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "88690786-3b33-4468-8f00-18372e227988",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -1170,8 +1170,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e5df6258-bd09-47be-ab84-6d71865d37f6",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "1398320a-efc0-470e-b0b2-98253b01e2df",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -1190,11 +1190,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:164:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:184:7)"
                 },
                 "isRoot": false,
-                "uuid": "6d237c54-07ad-4365-8e43-bc29656b46b3",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "33459879-23ca-4286-a077-f380a0698a40",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -1210,8 +1210,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "328de578-409a-4c35-8d53-95e24d71304e",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "01a1794d-d11e-482f-87e0-1d6dee959876",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -1225,8 +1225,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "d702710c-226d-4a7a-b55e-3a0c74bbba07",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "24f2c70e-0dc0-4ef1-98cd-29a0d3f48c27",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
@@ -1242,8 +1242,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e5df6258-bd09-47be-ab84-6d71865d37f6",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "1398320a-efc0-470e-b0b2-98253b01e2df",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -1257,15 +1257,15 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "d702710c-226d-4a7a-b55e-3a0c74bbba07",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "24f2c70e-0dc0-4ef1-98cd-29a0d3f48c27",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [
               {
@@ -1281,8 +1281,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "a8f65990-ac33-4cf1-a6f1-0017f877ecbf",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "88690786-3b33-4468-8f00-18372e227988",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -1298,8 +1298,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "328de578-409a-4c35-8d53-95e24d71304e",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "01a1794d-d11e-482f-87e0-1d6dee959876",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
@@ -1320,11 +1320,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:164:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:184:7)"
                 },
                 "isRoot": false,
-                "uuid": "6d237c54-07ad-4365-8e43-bc29656b46b3",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "33459879-23ca-4286-a077-f380a0698a40",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
@@ -1348,7 +1348,7 @@
         "root": false,
         "_timeout": 2000,
         "file": "/test-functional/test.js",
-        "uuid": "b3ad6aa7-2078-4768-a590-571bccc4dd30",
+        "uuid": "4872ddff-5692-4567-bd34-22e286d1ff54",
         "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
         "passes": [],
         "failures": [],
@@ -1371,7 +1371,7 @@
     "pending": [],
     "root": true,
     "_timeout": 2000,
-    "uuid": "092920a3-e792-43ab-aec4-80233be187ab",
+    "uuid": "7d89be4c-8f86-4cf4-abb4-ef1566cf00e6",
     "fullFile": "",
     "file": "",
     "passes": [],
@@ -1393,25 +1393,25 @@
   },
   "allTests": [
     {
-      "title": "passing test",
-      "fullTitle": "Test Suite - Basic passing test",
+      "title": "should be passing test if true is not false",
+      "fullTitle": "Test Suite - Basic should be passing test if true is not false",
       "timedOut": false,
       "duration": 1,
       "state": "passed",
-      "speed": "fast",
+      "speed": "medium",
       "pass": true,
       "fail": false,
       "pending": false,
       "code": "true.should.be.ok;\ndone();",
       "err": {},
       "isRoot": false,
-      "uuid": "c482608c-8fe4-45d3-af88-02bdc7f53113",
-      "parentUUID": "1c0748df-2df9-4e03-af03-c5dab2885e90",
+      "uuid": "5c3ec47f-307f-4a35-b77a-d0d218acbc4d",
+      "parentUUID": "17bc6546-127d-4fc2-84b7-4aa033a8d2d3",
       "skipped": false
     },
     {
-      "title": "failing test",
-      "fullTitle": "Test Suite - Basic failing test",
+      "title": "should fail when returned object does not match expected object",
+      "fullTitle": "Test Suite - Basic should fail when returned object does not match expected object",
       "timedOut": false,
       "duration": 11,
       "state": "failed",
@@ -1421,25 +1421,25 @@
       "code": "var o = retObj();\no.should.eql({});\ndone();",
       "err": {
         "name": "AssertionError",
-        "actual": "{\n  \"adam\": \"adam\"\n}",
+        "actual": "{\n  \"employees\": {\n    \"employee\": [\n      {\n        \"firstName\": \"Tom\"\n        \"id\": \"1\"\n        \"lastName\": \"Cruise\"\n      }\n      {\n        \"firstName\": \"Maria\"\n        \"id\": \"2\"\n        \"lastName\": \"Sharapova\"\n      }\n      {\n        \"firstName\": \"James\"\n        \"id\": \"3\"\n        \"lastName\": \"Bond\"\n      }\n    ]\n  }\n}",
         "expected": "{}",
         "operator": "to equal",
-        "message": "expected { adam: 'adam' } to equal {}",
+        "message": "expected { employees: \n   { employee: \n      [ { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n        { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n        { id: '3', firstName: 'James', lastName: 'Bond' } ] } } to equal {}",
         "generatedMessage": true,
         "showDiff": true,
-        "estack": "AssertionError: expected { adam: 'adam' } to equal {}\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:18:16)",
-        "diff": "- {\n-   \"adam\": \"adam\"\n- }\n+ {}\n"
+        "estack": "AssertionError: expected { employees: \n   { employee: \n      [ { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n        { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n        { id: '3', firstName: 'James', lastName: 'Bond' } ] } } to equal {}\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:38:16)",
+        "diff": "- {\n-   \"employees\": {\n-     \"employee\": [\n-       {\n-         \"firstName\": \"Tom\"\n-         \"id\": \"1\"\n-         \"lastName\": \"Cruise\"\n-       }\n-       {\n-         \"firstName\": \"Maria\"\n-         \"id\": \"2\"\n-         \"lastName\": \"Sharapova\"\n-       }\n-       {\n-         \"firstName\": \"James\"\n-         \"id\": \"3\"\n-         \"lastName\": \"Bond\"\n-       }\n-     ]\n-   }\n- }\n+ {}\n"
       },
       "isRoot": false,
-      "uuid": "5199b065-58dd-4da7-999e-3b37ae743f64",
-      "parentUUID": "1c0748df-2df9-4e03-af03-c5dab2885e90",
+      "uuid": "9624c695-05c7-4042-9cda-e251d27be2fe",
+      "parentUUID": "17bc6546-127d-4fc2-84b7-4aa033a8d2d3",
       "skipped": false
     },
     {
       "title": "passing test",
       "fullTitle": "Test Suite - Nested Suites passing test",
       "timedOut": false,
-      "duration": 1,
+      "duration": 0,
       "state": "passed",
       "speed": "fast",
       "pass": true,
@@ -1448,13 +1448,13 @@
       "code": "true.should.be.ok;\ndone();",
       "err": {},
       "isRoot": false,
-      "uuid": "d1964e22-af7c-4bb7-a525-d07814dc8b13",
-      "parentUUID": "0e14f41a-cfcf-4aa8-901d-b60dfdeda8e5",
+      "uuid": "8bb86c99-5bce-4198-bdc1-2cd8430e07da",
+      "parentUUID": "730ccc57-dac2-4361-a3f4-0edc739c5285",
       "skipped": false
     },
     {
-      "title": "failing test",
-      "fullTitle": "Test Suite - Nested Suites failing test",
+      "title": "should be a failing test",
+      "fullTitle": "Test Suite - Nested Suites should be a failing test",
       "timedOut": false,
       "duration": 0,
       "state": "failed",
@@ -1468,11 +1468,28 @@
         "operator": "to be truthy",
         "message": "expected false to be truthy",
         "generatedMessage": true,
-        "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:41:7)"
+        "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:61:7)"
       },
       "isRoot": false,
-      "uuid": "739c40e3-c10a-4ba4-b3fd-4f042858a438",
-      "parentUUID": "0e14f41a-cfcf-4aa8-901d-b60dfdeda8e5",
+      "uuid": "701853dc-9a84-45b8-8a0d-3d729b0aad48",
+      "parentUUID": "730ccc57-dac2-4361-a3f4-0edc739c5285",
+      "skipped": false
+    },
+    {
+      "title": "should be a passing test",
+      "fullTitle": "Nested Test Suite should be a passing test",
+      "timedOut": false,
+      "duration": 0,
+      "state": "passed",
+      "speed": "fast",
+      "pass": true,
+      "fail": false,
+      "pending": false,
+      "code": "true.should.be.ok;\ndone();",
+      "err": {},
+      "isRoot": false,
+      "uuid": "020f2aff-3ca2-4f34-819e-c1eeae8138d1",
+      "parentUUID": "7da60374-1af4-456a-86d2-e655c4c1338c",
       "skipped": false
     },
     {
@@ -1488,25 +1505,8 @@
       "code": "true.should.be.ok;\ndone();",
       "err": {},
       "isRoot": false,
-      "uuid": "7aa82a9a-f34b-443e-9cc6-df62612ae506",
-      "parentUUID": "a60dc664-41f7-4cc6-9b64-4f39b846077a",
-      "skipped": false
-    },
-    {
-      "title": "passing test",
-      "fullTitle": "Nested Test Suite passing test",
-      "timedOut": false,
-      "duration": 0,
-      "state": "passed",
-      "speed": "fast",
-      "pass": true,
-      "fail": false,
-      "pending": false,
-      "code": "true.should.be.ok;\ndone();",
-      "err": {},
-      "isRoot": false,
-      "uuid": "7c3acfe9-7640-4e68-b6ab-58236bf72e47",
-      "parentUUID": "688a43cf-c6ec-454f-8f27-8962d6c3aa4e",
+      "uuid": "0d4508bb-6124-44a3-9c41-254b0b1989e7",
+      "parentUUID": "3ab64610-7c6a-4851-9d18-2a315fdaa76c",
       "skipped": false
     },
     {
@@ -1522,8 +1522,8 @@
       "code": "true.should.be.ok;\ndone();",
       "err": {},
       "isRoot": false,
-      "uuid": "29927b3f-77b1-4995-8556-5ceddca4992c",
-      "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+      "uuid": "4cf5e887-fc2d-4f0f-b1f1-ab91a1ae4fca",
+      "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
       "skipped": false
     },
     {
@@ -1537,8 +1537,8 @@
       "code": "",
       "err": {},
       "isRoot": false,
-      "uuid": "2e3cbf35-8cff-4c0f-8ba5-cf20e2d66910",
-      "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+      "uuid": "500aaaaf-368e-44ea-8db9-8fd21027884d",
+      "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
       "skipped": false
     },
     {
@@ -1557,11 +1557,11 @@
         "operator": "to be truthy",
         "message": "expected false to be truthy",
         "generatedMessage": true,
-        "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:71:7)"
+        "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:91:7)"
       },
       "isRoot": false,
-      "uuid": "ac9ffb6b-9349-425c-8c99-10414f7318ae",
-      "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+      "uuid": "1d993fc3-a95a-46b4-8a39-7303e1fb2483",
+      "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
       "skipped": false
     },
     {
@@ -1577,8 +1577,8 @@
       "code": "true.should.be.ok;\ndone();",
       "err": {},
       "isRoot": false,
-      "uuid": "5648183f-0092-4e99-86ae-da7f1c9442b2",
-      "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+      "uuid": "62ea258b-775c-431f-81b1-7778e711d8c1",
+      "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
       "skipped": false
     },
     {
@@ -1592,8 +1592,8 @@
       "code": "",
       "err": {},
       "isRoot": false,
-      "uuid": "46f8e61f-abd1-458a-a7ef-da4bf5a1db82",
-      "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+      "uuid": "5d98efca-db9e-4406-b5e8-96e37c851379",
+      "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
       "skipped": false
     },
     {
@@ -1609,8 +1609,8 @@
       "code": "true.should.be.ok;\ndone();",
       "err": {},
       "isRoot": false,
-      "uuid": "e2d9ee1a-c549-4971-967a-baec4ae23557",
-      "parentUUID": "6eb0d611-2007-449d-87e7-dd62a4fcc683",
+      "uuid": "cbbfcdfc-d0a5-45e9-ae87-8978e2a0fded",
+      "parentUUID": "80ff858a-d8ee-48ec-beec-6c94423f3f06",
       "skipped": false
     },
     {
@@ -1629,11 +1629,11 @@
         "operator": "to be truthy",
         "message": "expected false to be truthy",
         "generatedMessage": true,
-        "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:95:7)"
+        "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:115:7)"
       },
       "isRoot": false,
-      "uuid": "408dff6c-7f7b-4212-b253-74a7ed8c09d8",
-      "parentUUID": "e644953d-c207-41af-95bb-7141a6d8fb2d",
+      "uuid": "e6c4b699-564c-4889-8b68-558a8e9b52b7",
+      "parentUUID": "4206d913-2c30-4646-ab10-c31c9b65aa33",
       "skipped": false
     },
     {
@@ -1647,8 +1647,8 @@
       "code": "",
       "err": {},
       "isRoot": false,
-      "uuid": "a577d232-da4b-4c3a-822a-f74835c66877",
-      "parentUUID": "176b03ad-42fe-4bc6-89ba-042c616deb50",
+      "uuid": "31b61b3a-7b5d-4950-97d0-60ec78d1cc8c",
+      "parentUUID": "07c377b3-5008-4d20-b4cd-f84079bee00c",
       "skipped": false
     },
     {
@@ -1664,8 +1664,8 @@
       "code": "true.should.be.ok;\ndone();",
       "err": {},
       "isRoot": false,
-      "uuid": "a8f65990-ac33-4cf1-a6f1-0017f877ecbf",
-      "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+      "uuid": "88690786-3b33-4468-8f00-18372e227988",
+      "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
       "skipped": false
     },
     {
@@ -1679,8 +1679,8 @@
       "code": "",
       "err": {},
       "isRoot": false,
-      "uuid": "e5df6258-bd09-47be-ab84-6d71865d37f6",
-      "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+      "uuid": "1398320a-efc0-470e-b0b2-98253b01e2df",
+      "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
       "skipped": false
     },
     {
@@ -1699,11 +1699,11 @@
         "operator": "to be truthy",
         "message": "expected false to be truthy",
         "generatedMessage": true,
-        "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:164:7)"
+        "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:184:7)"
       },
       "isRoot": false,
-      "uuid": "6d237c54-07ad-4365-8e43-bc29656b46b3",
-      "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+      "uuid": "33459879-23ca-4286-a077-f380a0698a40",
+      "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
       "skipped": false
     },
     {
@@ -1719,8 +1719,8 @@
       "code": "true.should.be.ok;\ndone();",
       "err": {},
       "isRoot": false,
-      "uuid": "328de578-409a-4c35-8d53-95e24d71304e",
-      "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+      "uuid": "01a1794d-d11e-482f-87e0-1d6dee959876",
+      "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
       "skipped": false
     },
     {
@@ -1734,8 +1734,8 @@
       "code": "",
       "err": {},
       "isRoot": false,
-      "uuid": "d702710c-226d-4a7a-b55e-3a0c74bbba07",
-      "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+      "uuid": "24f2c70e-0dc0-4ef1-98cd-29a0d3f48c27",
+      "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
       "skipped": false
     }
   ],
@@ -1745,7 +1745,7 @@
       "body": "",
       "sync": true,
       "_timeout": 2000,
-      "_slow": 75,
+      "_slow": 1,
       "_enableTimeouts": true,
       "timedOut": false,
       "_trace": {},
@@ -1771,8 +1771,8 @@
             "code": "true.should.be.ok;\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "29927b3f-77b1-4995-8556-5ceddca4992c",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "4cf5e887-fc2d-4f0f-b1f1-ab91a1ae4fca",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           },
           {
@@ -1786,8 +1786,8 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "2e3cbf35-8cff-4c0f-8ba5-cf20e2d66910",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "500aaaaf-368e-44ea-8db9-8fd21027884d",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           },
           {
@@ -1806,11 +1806,11 @@
               "operator": "to be truthy",
               "message": "expected false to be truthy",
               "generatedMessage": true,
-              "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:71:7)"
+              "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:91:7)"
             },
             "isRoot": false,
-            "uuid": "ac9ffb6b-9349-425c-8c99-10414f7318ae",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "1d993fc3-a95a-46b4-8a39-7303e1fb2483",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           },
           {
@@ -1826,8 +1826,8 @@
             "code": "true.should.be.ok;\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "5648183f-0092-4e99-86ae-da7f1c9442b2",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "62ea258b-775c-431f-81b1-7778e711d8c1",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           },
           {
@@ -1841,8 +1841,8 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "46f8e61f-abd1-458a-a7ef-da4bf5a1db82",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "5d98efca-db9e-4406-b5e8-96e37c851379",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           }
         ],
@@ -1858,8 +1858,8 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "2e3cbf35-8cff-4c0f-8ba5-cf20e2d66910",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "500aaaaf-368e-44ea-8db9-8fd21027884d",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           },
           {
@@ -1873,15 +1873,15 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "46f8e61f-abd1-458a-a7ef-da4bf5a1db82",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "5d98efca-db9e-4406-b5e8-96e37c851379",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           }
         ],
         "root": false,
         "_timeout": 2000,
         "file": "/test-functional/test.js",
-        "uuid": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+        "uuid": "4eacd25f-1878-4a61-9625-734c93726e4b",
         "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
         "passes": [
           {
@@ -1897,8 +1897,8 @@
             "code": "true.should.be.ok;\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "29927b3f-77b1-4995-8556-5ceddca4992c",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "4cf5e887-fc2d-4f0f-b1f1-ab91a1ae4fca",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           },
           {
@@ -1914,8 +1914,8 @@
             "code": "true.should.be.ok;\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "5648183f-0092-4e99-86ae-da7f1c9442b2",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "62ea258b-775c-431f-81b1-7778e711d8c1",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           }
         ],
@@ -1936,11 +1936,11 @@
               "operator": "to be truthy",
               "message": "expected false to be truthy",
               "generatedMessage": true,
-              "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:71:7)"
+              "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:91:7)"
             },
             "isRoot": false,
-            "uuid": "ac9ffb6b-9349-425c-8c99-10414f7318ae",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "1d993fc3-a95a-46b4-8a39-7303e1fb2483",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           }
         ],
@@ -1965,7 +1965,7 @@
           "async": 0,
           "sync": true,
           "_timeout": 2000,
-          "_slow": 75,
+          "_slow": 1,
           "_enableTimeouts": true,
           "timedOut": false,
           "_trace": {},
@@ -1990,8 +1990,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "29927b3f-77b1-4995-8556-5ceddca4992c",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "4cf5e887-fc2d-4f0f-b1f1-ab91a1ae4fca",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2005,8 +2005,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "2e3cbf35-8cff-4c0f-8ba5-cf20e2d66910",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "500aaaaf-368e-44ea-8db9-8fd21027884d",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2025,11 +2025,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:71:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:91:7)"
                 },
                 "isRoot": false,
-                "uuid": "ac9ffb6b-9349-425c-8c99-10414f7318ae",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "1d993fc3-a95a-46b4-8a39-7303e1fb2483",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2045,8 +2045,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "5648183f-0092-4e99-86ae-da7f1c9442b2",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "62ea258b-775c-431f-81b1-7778e711d8c1",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2060,8 +2060,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "46f8e61f-abd1-458a-a7ef-da4bf5a1db82",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "5d98efca-db9e-4406-b5e8-96e37c851379",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
@@ -2077,8 +2077,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "2e3cbf35-8cff-4c0f-8ba5-cf20e2d66910",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "500aaaaf-368e-44ea-8db9-8fd21027884d",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2092,15 +2092,15 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "46f8e61f-abd1-458a-a7ef-da4bf5a1db82",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "5d98efca-db9e-4406-b5e8-96e37c851379",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [
               {
@@ -2116,8 +2116,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "29927b3f-77b1-4995-8556-5ceddca4992c",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "4cf5e887-fc2d-4f0f-b1f1-ab91a1ae4fca",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2133,8 +2133,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "5648183f-0092-4e99-86ae-da7f1c9442b2",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "62ea258b-775c-431f-81b1-7778e711d8c1",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
@@ -2155,11 +2155,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:71:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:91:7)"
                 },
                 "isRoot": false,
-                "uuid": "ac9ffb6b-9349-425c-8c99-10414f7318ae",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "1d993fc3-a95a-46b4-8a39-7303e1fb2483",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
@@ -2189,7 +2189,7 @@
           "async": 0,
           "sync": true,
           "_timeout": 2000,
-          "_slow": 75,
+          "_slow": 1,
           "_enableTimeouts": true,
           "timedOut": false,
           "_trace": {},
@@ -2214,8 +2214,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "29927b3f-77b1-4995-8556-5ceddca4992c",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "4cf5e887-fc2d-4f0f-b1f1-ab91a1ae4fca",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2229,8 +2229,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "2e3cbf35-8cff-4c0f-8ba5-cf20e2d66910",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "500aaaaf-368e-44ea-8db9-8fd21027884d",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2249,11 +2249,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:71:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:91:7)"
                 },
                 "isRoot": false,
-                "uuid": "ac9ffb6b-9349-425c-8c99-10414f7318ae",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "1d993fc3-a95a-46b4-8a39-7303e1fb2483",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2269,8 +2269,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "5648183f-0092-4e99-86ae-da7f1c9442b2",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "62ea258b-775c-431f-81b1-7778e711d8c1",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2284,8 +2284,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "46f8e61f-abd1-458a-a7ef-da4bf5a1db82",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "5d98efca-db9e-4406-b5e8-96e37c851379",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
@@ -2301,8 +2301,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "2e3cbf35-8cff-4c0f-8ba5-cf20e2d66910",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "500aaaaf-368e-44ea-8db9-8fd21027884d",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2316,15 +2316,15 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "46f8e61f-abd1-458a-a7ef-da4bf5a1db82",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "5d98efca-db9e-4406-b5e8-96e37c851379",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [
               {
@@ -2340,8 +2340,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "29927b3f-77b1-4995-8556-5ceddca4992c",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "4cf5e887-fc2d-4f0f-b1f1-ab91a1ae4fca",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2357,8 +2357,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "5648183f-0092-4e99-86ae-da7f1c9442b2",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "62ea258b-775c-431f-81b1-7778e711d8c1",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
@@ -2379,11 +2379,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:71:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:91:7)"
                 },
                 "isRoot": false,
-                "uuid": "ac9ffb6b-9349-425c-8c99-10414f7318ae",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "1d993fc3-a95a-46b4-8a39-7303e1fb2483",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
@@ -2408,14 +2408,14 @@
           "_error": null
         }
       },
-      "uuid": "2e3cbf35-8cff-4c0f-8ba5-cf20e2d66910"
+      "uuid": "500aaaaf-368e-44ea-8db9-8fd21027884d"
     },
     {
       "title": "pending test",
       "body": "",
       "sync": true,
       "_timeout": 2000,
-      "_slow": 75,
+      "_slow": 1,
       "_enableTimeouts": true,
       "timedOut": false,
       "_trace": {},
@@ -2441,8 +2441,8 @@
             "code": "true.should.be.ok;\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "29927b3f-77b1-4995-8556-5ceddca4992c",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "4cf5e887-fc2d-4f0f-b1f1-ab91a1ae4fca",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           },
           {
@@ -2456,8 +2456,8 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "2e3cbf35-8cff-4c0f-8ba5-cf20e2d66910",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "500aaaaf-368e-44ea-8db9-8fd21027884d",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           },
           {
@@ -2476,11 +2476,11 @@
               "operator": "to be truthy",
               "message": "expected false to be truthy",
               "generatedMessage": true,
-              "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:71:7)"
+              "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:91:7)"
             },
             "isRoot": false,
-            "uuid": "ac9ffb6b-9349-425c-8c99-10414f7318ae",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "1d993fc3-a95a-46b4-8a39-7303e1fb2483",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           },
           {
@@ -2496,8 +2496,8 @@
             "code": "true.should.be.ok;\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "5648183f-0092-4e99-86ae-da7f1c9442b2",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "62ea258b-775c-431f-81b1-7778e711d8c1",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           },
           {
@@ -2511,8 +2511,8 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "46f8e61f-abd1-458a-a7ef-da4bf5a1db82",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "5d98efca-db9e-4406-b5e8-96e37c851379",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           }
         ],
@@ -2528,8 +2528,8 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "2e3cbf35-8cff-4c0f-8ba5-cf20e2d66910",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "500aaaaf-368e-44ea-8db9-8fd21027884d",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           },
           {
@@ -2543,15 +2543,15 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "46f8e61f-abd1-458a-a7ef-da4bf5a1db82",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "5d98efca-db9e-4406-b5e8-96e37c851379",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           }
         ],
         "root": false,
         "_timeout": 2000,
         "file": "/test-functional/test.js",
-        "uuid": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+        "uuid": "4eacd25f-1878-4a61-9625-734c93726e4b",
         "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
         "passes": [
           {
@@ -2567,8 +2567,8 @@
             "code": "true.should.be.ok;\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "29927b3f-77b1-4995-8556-5ceddca4992c",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "4cf5e887-fc2d-4f0f-b1f1-ab91a1ae4fca",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           },
           {
@@ -2584,8 +2584,8 @@
             "code": "true.should.be.ok;\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "5648183f-0092-4e99-86ae-da7f1c9442b2",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "62ea258b-775c-431f-81b1-7778e711d8c1",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           }
         ],
@@ -2606,11 +2606,11 @@
               "operator": "to be truthy",
               "message": "expected false to be truthy",
               "generatedMessage": true,
-              "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:71:7)"
+              "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:91:7)"
             },
             "isRoot": false,
-            "uuid": "ac9ffb6b-9349-425c-8c99-10414f7318ae",
-            "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "1d993fc3-a95a-46b4-8a39-7303e1fb2483",
+            "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "skipped": false
           }
         ],
@@ -2635,7 +2635,7 @@
           "async": 0,
           "sync": true,
           "_timeout": 2000,
-          "_slow": 75,
+          "_slow": 1,
           "_enableTimeouts": true,
           "timedOut": false,
           "_trace": {},
@@ -2660,8 +2660,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "29927b3f-77b1-4995-8556-5ceddca4992c",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "4cf5e887-fc2d-4f0f-b1f1-ab91a1ae4fca",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2675,8 +2675,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "2e3cbf35-8cff-4c0f-8ba5-cf20e2d66910",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "500aaaaf-368e-44ea-8db9-8fd21027884d",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2695,11 +2695,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:71:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:91:7)"
                 },
                 "isRoot": false,
-                "uuid": "ac9ffb6b-9349-425c-8c99-10414f7318ae",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "1d993fc3-a95a-46b4-8a39-7303e1fb2483",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2715,8 +2715,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "5648183f-0092-4e99-86ae-da7f1c9442b2",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "62ea258b-775c-431f-81b1-7778e711d8c1",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2730,8 +2730,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "46f8e61f-abd1-458a-a7ef-da4bf5a1db82",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "5d98efca-db9e-4406-b5e8-96e37c851379",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
@@ -2747,8 +2747,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "2e3cbf35-8cff-4c0f-8ba5-cf20e2d66910",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "500aaaaf-368e-44ea-8db9-8fd21027884d",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2762,15 +2762,15 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "46f8e61f-abd1-458a-a7ef-da4bf5a1db82",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "5d98efca-db9e-4406-b5e8-96e37c851379",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [
               {
@@ -2786,8 +2786,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "29927b3f-77b1-4995-8556-5ceddca4992c",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "4cf5e887-fc2d-4f0f-b1f1-ab91a1ae4fca",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2803,8 +2803,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "5648183f-0092-4e99-86ae-da7f1c9442b2",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "62ea258b-775c-431f-81b1-7778e711d8c1",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
@@ -2825,11 +2825,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:71:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:91:7)"
                 },
                 "isRoot": false,
-                "uuid": "ac9ffb6b-9349-425c-8c99-10414f7318ae",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "1d993fc3-a95a-46b4-8a39-7303e1fb2483",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
@@ -2859,7 +2859,7 @@
           "async": 0,
           "sync": true,
           "_timeout": 2000,
-          "_slow": 75,
+          "_slow": 1,
           "_enableTimeouts": true,
           "timedOut": false,
           "_trace": {},
@@ -2884,8 +2884,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "29927b3f-77b1-4995-8556-5ceddca4992c",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "4cf5e887-fc2d-4f0f-b1f1-ab91a1ae4fca",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2899,8 +2899,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "2e3cbf35-8cff-4c0f-8ba5-cf20e2d66910",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "500aaaaf-368e-44ea-8db9-8fd21027884d",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2919,11 +2919,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:71:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:91:7)"
                 },
                 "isRoot": false,
-                "uuid": "ac9ffb6b-9349-425c-8c99-10414f7318ae",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "1d993fc3-a95a-46b4-8a39-7303e1fb2483",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2939,8 +2939,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "5648183f-0092-4e99-86ae-da7f1c9442b2",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "62ea258b-775c-431f-81b1-7778e711d8c1",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2954,8 +2954,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "46f8e61f-abd1-458a-a7ef-da4bf5a1db82",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "5d98efca-db9e-4406-b5e8-96e37c851379",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
@@ -2971,8 +2971,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "2e3cbf35-8cff-4c0f-8ba5-cf20e2d66910",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "500aaaaf-368e-44ea-8db9-8fd21027884d",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -2986,15 +2986,15 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "46f8e61f-abd1-458a-a7ef-da4bf5a1db82",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "5d98efca-db9e-4406-b5e8-96e37c851379",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+            "uuid": "4eacd25f-1878-4a61-9625-734c93726e4b",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [
               {
@@ -3010,8 +3010,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "29927b3f-77b1-4995-8556-5ceddca4992c",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "4cf5e887-fc2d-4f0f-b1f1-ab91a1ae4fca",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               },
               {
@@ -3027,8 +3027,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "5648183f-0092-4e99-86ae-da7f1c9442b2",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "62ea258b-775c-431f-81b1-7778e711d8c1",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
@@ -3049,11 +3049,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:71:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:91:7)"
                 },
                 "isRoot": false,
-                "uuid": "ac9ffb6b-9349-425c-8c99-10414f7318ae",
-                "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+                "uuid": "1d993fc3-a95a-46b4-8a39-7303e1fb2483",
+                "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
                 "skipped": false
               }
             ],
@@ -3078,14 +3078,14 @@
           "_error": null
         }
       },
-      "uuid": "46f8e61f-abd1-458a-a7ef-da4bf5a1db82"
+      "uuid": "5d98efca-db9e-4406-b5e8-96e37c851379"
     },
     {
       "title": "pending test",
       "body": "",
       "sync": true,
       "_timeout": 2000,
-      "_slow": 75,
+      "_slow": 1,
       "_enableTimeouts": true,
       "timedOut": false,
       "_trace": {},
@@ -3109,8 +3109,8 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "a577d232-da4b-4c3a-822a-f74835c66877",
-            "parentUUID": "176b03ad-42fe-4bc6-89ba-042c616deb50",
+            "uuid": "31b61b3a-7b5d-4950-97d0-60ec78d1cc8c",
+            "parentUUID": "07c377b3-5008-4d20-b4cd-f84079bee00c",
             "skipped": false
           }
         ],
@@ -3126,15 +3126,15 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "a577d232-da4b-4c3a-822a-f74835c66877",
-            "parentUUID": "176b03ad-42fe-4bc6-89ba-042c616deb50",
+            "uuid": "31b61b3a-7b5d-4950-97d0-60ec78d1cc8c",
+            "parentUUID": "07c377b3-5008-4d20-b4cd-f84079bee00c",
             "skipped": false
           }
         ],
         "root": false,
         "_timeout": 2000,
         "file": "/test-functional/test.js",
-        "uuid": "176b03ad-42fe-4bc6-89ba-042c616deb50",
+        "uuid": "07c377b3-5008-4d20-b4cd-f84079bee00c",
         "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
         "passes": [],
         "failures": [],
@@ -3153,14 +3153,14 @@
         "duration": 0
       },
       "ctx": {},
-      "uuid": "a577d232-da4b-4c3a-822a-f74835c66877"
+      "uuid": "31b61b3a-7b5d-4950-97d0-60ec78d1cc8c"
     },
     {
       "title": "pending test",
       "body": "",
       "sync": true,
       "_timeout": 2000,
-      "_slow": 75,
+      "_slow": 1,
       "_enableTimeouts": true,
       "timedOut": false,
       "_trace": {},
@@ -3186,8 +3186,8 @@
             "code": "true.should.be.ok;\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "a8f65990-ac33-4cf1-a6f1-0017f877ecbf",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "88690786-3b33-4468-8f00-18372e227988",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           },
           {
@@ -3201,8 +3201,8 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "e5df6258-bd09-47be-ab84-6d71865d37f6",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "1398320a-efc0-470e-b0b2-98253b01e2df",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           },
           {
@@ -3221,11 +3221,11 @@
               "operator": "to be truthy",
               "message": "expected false to be truthy",
               "generatedMessage": true,
-              "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:164:7)"
+              "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:184:7)"
             },
             "isRoot": false,
-            "uuid": "6d237c54-07ad-4365-8e43-bc29656b46b3",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "33459879-23ca-4286-a077-f380a0698a40",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           },
           {
@@ -3241,8 +3241,8 @@
             "code": "true.should.be.ok;\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "328de578-409a-4c35-8d53-95e24d71304e",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "01a1794d-d11e-482f-87e0-1d6dee959876",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           },
           {
@@ -3256,8 +3256,8 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "d702710c-226d-4a7a-b55e-3a0c74bbba07",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "24f2c70e-0dc0-4ef1-98cd-29a0d3f48c27",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           }
         ],
@@ -3273,8 +3273,8 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "e5df6258-bd09-47be-ab84-6d71865d37f6",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "1398320a-efc0-470e-b0b2-98253b01e2df",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           },
           {
@@ -3288,15 +3288,15 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "d702710c-226d-4a7a-b55e-3a0c74bbba07",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "24f2c70e-0dc0-4ef1-98cd-29a0d3f48c27",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           }
         ],
         "root": false,
         "_timeout": 2000,
         "file": "/test-functional/test.js",
-        "uuid": "cee29574-dba3-42e6-b5e7-42e22392377f",
+        "uuid": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
         "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
         "passes": [
           {
@@ -3312,8 +3312,8 @@
             "code": "true.should.be.ok;\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "a8f65990-ac33-4cf1-a6f1-0017f877ecbf",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "88690786-3b33-4468-8f00-18372e227988",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           },
           {
@@ -3329,8 +3329,8 @@
             "code": "true.should.be.ok;\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "328de578-409a-4c35-8d53-95e24d71304e",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "01a1794d-d11e-482f-87e0-1d6dee959876",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           }
         ],
@@ -3351,11 +3351,11 @@
               "operator": "to be truthy",
               "message": "expected false to be truthy",
               "generatedMessage": true,
-              "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:164:7)"
+              "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:184:7)"
             },
             "isRoot": false,
-            "uuid": "6d237c54-07ad-4365-8e43-bc29656b46b3",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "33459879-23ca-4286-a077-f380a0698a40",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           }
         ],
@@ -3380,7 +3380,7 @@
           "async": 0,
           "sync": true,
           "_timeout": 2000,
-          "_slow": 75,
+          "_slow": 1,
           "_enableTimeouts": true,
           "timedOut": false,
           "_trace": {},
@@ -3405,8 +3405,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "a8f65990-ac33-4cf1-a6f1-0017f877ecbf",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "88690786-3b33-4468-8f00-18372e227988",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -3420,8 +3420,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e5df6258-bd09-47be-ab84-6d71865d37f6",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "1398320a-efc0-470e-b0b2-98253b01e2df",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -3440,11 +3440,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:164:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:184:7)"
                 },
                 "isRoot": false,
-                "uuid": "6d237c54-07ad-4365-8e43-bc29656b46b3",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "33459879-23ca-4286-a077-f380a0698a40",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -3460,8 +3460,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "328de578-409a-4c35-8d53-95e24d71304e",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "01a1794d-d11e-482f-87e0-1d6dee959876",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -3475,8 +3475,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "d702710c-226d-4a7a-b55e-3a0c74bbba07",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "24f2c70e-0dc0-4ef1-98cd-29a0d3f48c27",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
@@ -3492,8 +3492,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e5df6258-bd09-47be-ab84-6d71865d37f6",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "1398320a-efc0-470e-b0b2-98253b01e2df",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -3507,15 +3507,15 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "d702710c-226d-4a7a-b55e-3a0c74bbba07",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "24f2c70e-0dc0-4ef1-98cd-29a0d3f48c27",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [
               {
@@ -3531,8 +3531,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "a8f65990-ac33-4cf1-a6f1-0017f877ecbf",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "88690786-3b33-4468-8f00-18372e227988",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -3548,8 +3548,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "328de578-409a-4c35-8d53-95e24d71304e",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "01a1794d-d11e-482f-87e0-1d6dee959876",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
@@ -3570,11 +3570,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:164:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:184:7)"
                 },
                 "isRoot": false,
-                "uuid": "6d237c54-07ad-4365-8e43-bc29656b46b3",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "33459879-23ca-4286-a077-f380a0698a40",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
@@ -3604,7 +3604,7 @@
           "async": 0,
           "sync": true,
           "_timeout": 2000,
-          "_slow": 75,
+          "_slow": 1,
           "_enableTimeouts": true,
           "timedOut": false,
           "_trace": {},
@@ -3629,8 +3629,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "a8f65990-ac33-4cf1-a6f1-0017f877ecbf",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "88690786-3b33-4468-8f00-18372e227988",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -3644,8 +3644,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e5df6258-bd09-47be-ab84-6d71865d37f6",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "1398320a-efc0-470e-b0b2-98253b01e2df",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -3664,11 +3664,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:164:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:184:7)"
                 },
                 "isRoot": false,
-                "uuid": "6d237c54-07ad-4365-8e43-bc29656b46b3",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "33459879-23ca-4286-a077-f380a0698a40",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -3684,8 +3684,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "328de578-409a-4c35-8d53-95e24d71304e",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "01a1794d-d11e-482f-87e0-1d6dee959876",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -3699,8 +3699,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "d702710c-226d-4a7a-b55e-3a0c74bbba07",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "24f2c70e-0dc0-4ef1-98cd-29a0d3f48c27",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
@@ -3716,8 +3716,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e5df6258-bd09-47be-ab84-6d71865d37f6",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "1398320a-efc0-470e-b0b2-98253b01e2df",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -3731,15 +3731,15 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "d702710c-226d-4a7a-b55e-3a0c74bbba07",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "24f2c70e-0dc0-4ef1-98cd-29a0d3f48c27",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [
               {
@@ -3755,8 +3755,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "a8f65990-ac33-4cf1-a6f1-0017f877ecbf",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "88690786-3b33-4468-8f00-18372e227988",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -3772,8 +3772,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "328de578-409a-4c35-8d53-95e24d71304e",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "01a1794d-d11e-482f-87e0-1d6dee959876",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
@@ -3794,11 +3794,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:164:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:184:7)"
                 },
                 "isRoot": false,
-                "uuid": "6d237c54-07ad-4365-8e43-bc29656b46b3",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "33459879-23ca-4286-a077-f380a0698a40",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
@@ -3823,14 +3823,14 @@
           "_error": null
         }
       },
-      "uuid": "e5df6258-bd09-47be-ab84-6d71865d37f6"
+      "uuid": "1398320a-efc0-470e-b0b2-98253b01e2df"
     },
     {
       "title": "pending test",
       "body": "",
       "sync": true,
       "_timeout": 2000,
-      "_slow": 75,
+      "_slow": 1,
       "_enableTimeouts": true,
       "timedOut": false,
       "_trace": {},
@@ -3856,8 +3856,8 @@
             "code": "true.should.be.ok;\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "a8f65990-ac33-4cf1-a6f1-0017f877ecbf",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "88690786-3b33-4468-8f00-18372e227988",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           },
           {
@@ -3871,8 +3871,8 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "e5df6258-bd09-47be-ab84-6d71865d37f6",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "1398320a-efc0-470e-b0b2-98253b01e2df",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           },
           {
@@ -3891,11 +3891,11 @@
               "operator": "to be truthy",
               "message": "expected false to be truthy",
               "generatedMessage": true,
-              "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:164:7)"
+              "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:184:7)"
             },
             "isRoot": false,
-            "uuid": "6d237c54-07ad-4365-8e43-bc29656b46b3",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "33459879-23ca-4286-a077-f380a0698a40",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           },
           {
@@ -3911,8 +3911,8 @@
             "code": "true.should.be.ok;\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "328de578-409a-4c35-8d53-95e24d71304e",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "01a1794d-d11e-482f-87e0-1d6dee959876",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           },
           {
@@ -3926,8 +3926,8 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "d702710c-226d-4a7a-b55e-3a0c74bbba07",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "24f2c70e-0dc0-4ef1-98cd-29a0d3f48c27",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           }
         ],
@@ -3943,8 +3943,8 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "e5df6258-bd09-47be-ab84-6d71865d37f6",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "1398320a-efc0-470e-b0b2-98253b01e2df",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           },
           {
@@ -3958,15 +3958,15 @@
             "code": "",
             "err": {},
             "isRoot": false,
-            "uuid": "d702710c-226d-4a7a-b55e-3a0c74bbba07",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "24f2c70e-0dc0-4ef1-98cd-29a0d3f48c27",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           }
         ],
         "root": false,
         "_timeout": 2000,
         "file": "/test-functional/test.js",
-        "uuid": "cee29574-dba3-42e6-b5e7-42e22392377f",
+        "uuid": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
         "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
         "passes": [
           {
@@ -3982,8 +3982,8 @@
             "code": "true.should.be.ok;\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "a8f65990-ac33-4cf1-a6f1-0017f877ecbf",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "88690786-3b33-4468-8f00-18372e227988",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           },
           {
@@ -3999,8 +3999,8 @@
             "code": "true.should.be.ok;\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "328de578-409a-4c35-8d53-95e24d71304e",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "01a1794d-d11e-482f-87e0-1d6dee959876",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           }
         ],
@@ -4021,11 +4021,11 @@
               "operator": "to be truthy",
               "message": "expected false to be truthy",
               "generatedMessage": true,
-              "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:164:7)"
+              "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:184:7)"
             },
             "isRoot": false,
-            "uuid": "6d237c54-07ad-4365-8e43-bc29656b46b3",
-            "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "33459879-23ca-4286-a077-f380a0698a40",
+            "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "skipped": false
           }
         ],
@@ -4050,7 +4050,7 @@
           "async": 0,
           "sync": true,
           "_timeout": 2000,
-          "_slow": 75,
+          "_slow": 1,
           "_enableTimeouts": true,
           "timedOut": false,
           "_trace": {},
@@ -4075,8 +4075,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "a8f65990-ac33-4cf1-a6f1-0017f877ecbf",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "88690786-3b33-4468-8f00-18372e227988",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -4090,8 +4090,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e5df6258-bd09-47be-ab84-6d71865d37f6",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "1398320a-efc0-470e-b0b2-98253b01e2df",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -4110,11 +4110,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:164:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:184:7)"
                 },
                 "isRoot": false,
-                "uuid": "6d237c54-07ad-4365-8e43-bc29656b46b3",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "33459879-23ca-4286-a077-f380a0698a40",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -4130,8 +4130,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "328de578-409a-4c35-8d53-95e24d71304e",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "01a1794d-d11e-482f-87e0-1d6dee959876",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -4145,8 +4145,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "d702710c-226d-4a7a-b55e-3a0c74bbba07",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "24f2c70e-0dc0-4ef1-98cd-29a0d3f48c27",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
@@ -4162,8 +4162,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e5df6258-bd09-47be-ab84-6d71865d37f6",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "1398320a-efc0-470e-b0b2-98253b01e2df",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -4177,15 +4177,15 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "d702710c-226d-4a7a-b55e-3a0c74bbba07",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "24f2c70e-0dc0-4ef1-98cd-29a0d3f48c27",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [
               {
@@ -4201,8 +4201,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "a8f65990-ac33-4cf1-a6f1-0017f877ecbf",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "88690786-3b33-4468-8f00-18372e227988",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -4218,8 +4218,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "328de578-409a-4c35-8d53-95e24d71304e",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "01a1794d-d11e-482f-87e0-1d6dee959876",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
@@ -4240,11 +4240,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:164:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:184:7)"
                 },
                 "isRoot": false,
-                "uuid": "6d237c54-07ad-4365-8e43-bc29656b46b3",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "33459879-23ca-4286-a077-f380a0698a40",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
@@ -4274,7 +4274,7 @@
           "async": 0,
           "sync": true,
           "_timeout": 2000,
-          "_slow": 75,
+          "_slow": 1,
           "_enableTimeouts": true,
           "timedOut": false,
           "_trace": {},
@@ -4299,8 +4299,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "a8f65990-ac33-4cf1-a6f1-0017f877ecbf",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "88690786-3b33-4468-8f00-18372e227988",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -4314,8 +4314,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e5df6258-bd09-47be-ab84-6d71865d37f6",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "1398320a-efc0-470e-b0b2-98253b01e2df",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -4334,11 +4334,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:164:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:184:7)"
                 },
                 "isRoot": false,
-                "uuid": "6d237c54-07ad-4365-8e43-bc29656b46b3",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "33459879-23ca-4286-a077-f380a0698a40",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -4354,8 +4354,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "328de578-409a-4c35-8d53-95e24d71304e",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "01a1794d-d11e-482f-87e0-1d6dee959876",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -4369,8 +4369,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "d702710c-226d-4a7a-b55e-3a0c74bbba07",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "24f2c70e-0dc0-4ef1-98cd-29a0d3f48c27",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
@@ -4386,8 +4386,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e5df6258-bd09-47be-ab84-6d71865d37f6",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "1398320a-efc0-470e-b0b2-98253b01e2df",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -4401,15 +4401,15 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "d702710c-226d-4a7a-b55e-3a0c74bbba07",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "24f2c70e-0dc0-4ef1-98cd-29a0d3f48c27",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
             "root": false,
             "_timeout": 2000,
             "file": "/test-functional/test.js",
-            "uuid": "cee29574-dba3-42e6-b5e7-42e22392377f",
+            "uuid": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
             "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test.js",
             "passes": [
               {
@@ -4425,8 +4425,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "a8f65990-ac33-4cf1-a6f1-0017f877ecbf",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "88690786-3b33-4468-8f00-18372e227988",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               },
               {
@@ -4442,8 +4442,8 @@
                 "code": "true.should.be.ok;\ndone();",
                 "err": {},
                 "isRoot": false,
-                "uuid": "328de578-409a-4c35-8d53-95e24d71304e",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "01a1794d-d11e-482f-87e0-1d6dee959876",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
@@ -4464,11 +4464,11 @@
                   "operator": "to be truthy",
                   "message": "expected false to be truthy",
                   "generatedMessage": true,
-                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:164:7)"
+                  "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:184:7)"
                 },
                 "isRoot": false,
-                "uuid": "6d237c54-07ad-4365-8e43-bc29656b46b3",
-                "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+                "uuid": "33459879-23ca-4286-a077-f380a0698a40",
+                "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
                 "skipped": false
               }
             ],
@@ -4493,32 +4493,32 @@
           "_error": null
         }
       },
-      "uuid": "d702710c-226d-4a7a-b55e-3a0c74bbba07"
+      "uuid": "24f2c70e-0dc0-4ef1-98cd-29a0d3f48c27"
     }
   ],
   "allPasses": [
     {
-      "title": "passing test",
-      "fullTitle": "Test Suite - Basic passing test",
+      "title": "should be passing test if true is not false",
+      "fullTitle": "Test Suite - Basic should be passing test if true is not false",
       "timedOut": false,
       "duration": 1,
       "state": "passed",
-      "speed": "fast",
+      "speed": "medium",
       "pass": true,
       "fail": false,
       "pending": false,
       "code": "true.should.be.ok;\ndone();",
       "err": {},
       "isRoot": false,
-      "uuid": "c482608c-8fe4-45d3-af88-02bdc7f53113",
-      "parentUUID": "1c0748df-2df9-4e03-af03-c5dab2885e90",
+      "uuid": "5c3ec47f-307f-4a35-b77a-d0d218acbc4d",
+      "parentUUID": "17bc6546-127d-4fc2-84b7-4aa033a8d2d3",
       "skipped": false
     },
     {
       "title": "passing test",
       "fullTitle": "Test Suite - Nested Suites passing test",
       "timedOut": false,
-      "duration": 1,
+      "duration": 0,
       "state": "passed",
       "speed": "fast",
       "pass": true,
@@ -4527,8 +4527,25 @@
       "code": "true.should.be.ok;\ndone();",
       "err": {},
       "isRoot": false,
-      "uuid": "d1964e22-af7c-4bb7-a525-d07814dc8b13",
-      "parentUUID": "0e14f41a-cfcf-4aa8-901d-b60dfdeda8e5",
+      "uuid": "8bb86c99-5bce-4198-bdc1-2cd8430e07da",
+      "parentUUID": "730ccc57-dac2-4361-a3f4-0edc739c5285",
+      "skipped": false
+    },
+    {
+      "title": "should be a passing test",
+      "fullTitle": "Nested Test Suite should be a passing test",
+      "timedOut": false,
+      "duration": 0,
+      "state": "passed",
+      "speed": "fast",
+      "pass": true,
+      "fail": false,
+      "pending": false,
+      "code": "true.should.be.ok;\ndone();",
+      "err": {},
+      "isRoot": false,
+      "uuid": "020f2aff-3ca2-4f34-819e-c1eeae8138d1",
+      "parentUUID": "7da60374-1af4-456a-86d2-e655c4c1338c",
       "skipped": false
     },
     {
@@ -4544,25 +4561,8 @@
       "code": "true.should.be.ok;\ndone();",
       "err": {},
       "isRoot": false,
-      "uuid": "7aa82a9a-f34b-443e-9cc6-df62612ae506",
-      "parentUUID": "a60dc664-41f7-4cc6-9b64-4f39b846077a",
-      "skipped": false
-    },
-    {
-      "title": "passing test",
-      "fullTitle": "Nested Test Suite passing test",
-      "timedOut": false,
-      "duration": 0,
-      "state": "passed",
-      "speed": "fast",
-      "pass": true,
-      "fail": false,
-      "pending": false,
-      "code": "true.should.be.ok;\ndone();",
-      "err": {},
-      "isRoot": false,
-      "uuid": "7c3acfe9-7640-4e68-b6ab-58236bf72e47",
-      "parentUUID": "688a43cf-c6ec-454f-8f27-8962d6c3aa4e",
+      "uuid": "0d4508bb-6124-44a3-9c41-254b0b1989e7",
+      "parentUUID": "3ab64610-7c6a-4851-9d18-2a315fdaa76c",
       "skipped": false
     },
     {
@@ -4578,8 +4578,8 @@
       "code": "true.should.be.ok;\ndone();",
       "err": {},
       "isRoot": false,
-      "uuid": "29927b3f-77b1-4995-8556-5ceddca4992c",
-      "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+      "uuid": "4cf5e887-fc2d-4f0f-b1f1-ab91a1ae4fca",
+      "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
       "skipped": false
     },
     {
@@ -4595,8 +4595,8 @@
       "code": "true.should.be.ok;\ndone();",
       "err": {},
       "isRoot": false,
-      "uuid": "5648183f-0092-4e99-86ae-da7f1c9442b2",
-      "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+      "uuid": "62ea258b-775c-431f-81b1-7778e711d8c1",
+      "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
       "skipped": false
     },
     {
@@ -4612,8 +4612,8 @@
       "code": "true.should.be.ok;\ndone();",
       "err": {},
       "isRoot": false,
-      "uuid": "e2d9ee1a-c549-4971-967a-baec4ae23557",
-      "parentUUID": "6eb0d611-2007-449d-87e7-dd62a4fcc683",
+      "uuid": "cbbfcdfc-d0a5-45e9-ae87-8978e2a0fded",
+      "parentUUID": "80ff858a-d8ee-48ec-beec-6c94423f3f06",
       "skipped": false
     },
     {
@@ -4629,8 +4629,8 @@
       "code": "true.should.be.ok;\ndone();",
       "err": {},
       "isRoot": false,
-      "uuid": "a8f65990-ac33-4cf1-a6f1-0017f877ecbf",
-      "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+      "uuid": "88690786-3b33-4468-8f00-18372e227988",
+      "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
       "skipped": false
     },
     {
@@ -4646,15 +4646,15 @@
       "code": "true.should.be.ok;\ndone();",
       "err": {},
       "isRoot": false,
-      "uuid": "328de578-409a-4c35-8d53-95e24d71304e",
-      "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+      "uuid": "01a1794d-d11e-482f-87e0-1d6dee959876",
+      "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
       "skipped": false
     }
   ],
   "allFailures": [
     {
-      "title": "failing test",
-      "fullTitle": "Test Suite - Basic failing test",
+      "title": "should fail when returned object does not match expected object",
+      "fullTitle": "Test Suite - Basic should fail when returned object does not match expected object",
       "timedOut": false,
       "duration": 11,
       "state": "failed",
@@ -4664,23 +4664,23 @@
       "code": "var o = retObj();\no.should.eql({});\ndone();",
       "err": {
         "name": "AssertionError",
-        "actual": "{\n  \"adam\": \"adam\"\n}",
+        "actual": "{\n  \"employees\": {\n    \"employee\": [\n      {\n        \"firstName\": \"Tom\"\n        \"id\": \"1\"\n        \"lastName\": \"Cruise\"\n      }\n      {\n        \"firstName\": \"Maria\"\n        \"id\": \"2\"\n        \"lastName\": \"Sharapova\"\n      }\n      {\n        \"firstName\": \"James\"\n        \"id\": \"3\"\n        \"lastName\": \"Bond\"\n      }\n    ]\n  }\n}",
         "expected": "{}",
         "operator": "to equal",
-        "message": "expected { adam: 'adam' } to equal {}",
+        "message": "expected { employees: \n   { employee: \n      [ { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n        { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n        { id: '3', firstName: 'James', lastName: 'Bond' } ] } } to equal {}",
         "generatedMessage": true,
         "showDiff": true,
-        "estack": "AssertionError: expected { adam: 'adam' } to equal {}\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:18:16)",
-        "diff": "- {\n-   \"adam\": \"adam\"\n- }\n+ {}\n"
+        "estack": "AssertionError: expected { employees: \n   { employee: \n      [ { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n        { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n        { id: '3', firstName: 'James', lastName: 'Bond' } ] } } to equal {}\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:38:16)",
+        "diff": "- {\n-   \"employees\": {\n-     \"employee\": [\n-       {\n-         \"firstName\": \"Tom\"\n-         \"id\": \"1\"\n-         \"lastName\": \"Cruise\"\n-       }\n-       {\n-         \"firstName\": \"Maria\"\n-         \"id\": \"2\"\n-         \"lastName\": \"Sharapova\"\n-       }\n-       {\n-         \"firstName\": \"James\"\n-         \"id\": \"3\"\n-         \"lastName\": \"Bond\"\n-       }\n-     ]\n-   }\n- }\n+ {}\n"
       },
       "isRoot": false,
-      "uuid": "5199b065-58dd-4da7-999e-3b37ae743f64",
-      "parentUUID": "1c0748df-2df9-4e03-af03-c5dab2885e90",
+      "uuid": "9624c695-05c7-4042-9cda-e251d27be2fe",
+      "parentUUID": "17bc6546-127d-4fc2-84b7-4aa033a8d2d3",
       "skipped": false
     },
     {
-      "title": "failing test",
-      "fullTitle": "Test Suite - Nested Suites failing test",
+      "title": "should be a failing test",
+      "fullTitle": "Test Suite - Nested Suites should be a failing test",
       "timedOut": false,
       "duration": 0,
       "state": "failed",
@@ -4694,28 +4694,28 @@
         "operator": "to be truthy",
         "message": "expected false to be truthy",
         "generatedMessage": true,
-        "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:41:7)"
+        "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:61:7)"
       },
       "isRoot": false,
-      "uuid": "739c40e3-c10a-4ba4-b3fd-4f042858a438",
-      "parentUUID": "0e14f41a-cfcf-4aa8-901d-b60dfdeda8e5",
+      "uuid": "701853dc-9a84-45b8-8a0d-3d729b0aad48",
+      "parentUUID": "730ccc57-dac2-4361-a3f4-0edc739c5285",
       "skipped": false
     },
     {
       "title": "\"before all\" hook: nested failing before",
       "fullTitle": "Test Suite - Nested Suites Failing Before \"before all\" hook: nested failing before",
       "timedOut": false,
-      "duration": 0,
+      "duration": 1,
       "state": "failed",
       "pass": false,
       "fail": true,
       "pending": false,
       "code": "console.log(a); // eslint-disable-line",
       "err": {
-        "estack": "ReferenceError: a is not defined\n    at Context.<anonymous> (test-functional/test.js:48:19)"
+        "estack": "ReferenceError: a is not defined\n    at Context.<anonymous> (test-functional/test.js:68:19)"
       },
       "isRoot": false,
-      "parentUUID": "6bd2e30f-9f8c-494b-b3c1-8d0240c0fb8f",
+      "parentUUID": "f4abe6b1-0d58-461f-92c8-aaaf4d518647",
       "skipped": false
     },
     {
@@ -4734,11 +4734,11 @@
         "operator": "to be truthy",
         "message": "expected false to be truthy",
         "generatedMessage": true,
-        "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:71:7)"
+        "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:91:7)"
       },
       "isRoot": false,
-      "uuid": "ac9ffb6b-9349-425c-8c99-10414f7318ae",
-      "parentUUID": "55fcb5b1-8e58-4250-82b8-1ef0bd3ddc0e",
+      "uuid": "1d993fc3-a95a-46b4-8a39-7303e1fb2483",
+      "parentUUID": "4eacd25f-1878-4a61-9625-734c93726e4b",
       "skipped": false
     },
     {
@@ -4757,11 +4757,11 @@
         "operator": "to be truthy",
         "message": "expected false to be truthy",
         "generatedMessage": true,
-        "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:95:7)"
+        "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:115:7)"
       },
       "isRoot": false,
-      "uuid": "408dff6c-7f7b-4212-b253-74a7ed8c09d8",
-      "parentUUID": "e644953d-c207-41af-95bb-7141a6d8fb2d",
+      "uuid": "e6c4b699-564c-4889-8b68-558a8e9b52b7",
+      "parentUUID": "4206d913-2c30-4646-ab10-c31c9b65aa33",
       "skipped": false
     },
     {
@@ -4775,10 +4775,10 @@
       "pending": false,
       "code": "console.log(a); // eslint-disable-line",
       "err": {
-        "estack": "ReferenceError: a is not defined\n    at Context.<anonymous> (test-functional/test.js:109:19)"
+        "estack": "ReferenceError: a is not defined\n    at Context.<anonymous> (test-functional/test.js:129:19)"
       },
       "isRoot": false,
-      "parentUUID": "f26171b3-bdf2-498c-9105-c936e2ad75cb",
+      "parentUUID": "a3418f88-b249-4e88-8a58-5379690000ae",
       "skipped": false
     },
     {
@@ -4792,10 +4792,10 @@
       "pending": false,
       "code": "console.log(a); // eslint-disable-line",
       "err": {
-        "estack": "ReferenceError: a is not defined\n    at Context.<anonymous> (test-functional/test.js:124:19)"
+        "estack": "ReferenceError: a is not defined\n    at Context.<anonymous> (test-functional/test.js:144:19)"
       },
       "isRoot": false,
-      "parentUUID": "e69cbda3-e8f9-4bea-89dd-0a2b9f40be63",
+      "parentUUID": "719f501a-3da6-4470-af45-8ce9971622a2",
       "skipped": false
     },
     {
@@ -4809,10 +4809,10 @@
       "pending": false,
       "code": "console.log(a); // eslint-disable-line",
       "err": {
-        "estack": "ReferenceError: a is not defined\n    at Context.<anonymous> (test-functional/test.js:136:19)"
+        "estack": "ReferenceError: a is not defined\n    at Context.<anonymous> (test-functional/test.js:156:19)"
       },
       "isRoot": false,
-      "parentUUID": "e69cbda3-e8f9-4bea-89dd-0a2b9f40be63",
+      "parentUUID": "719f501a-3da6-4470-af45-8ce9971622a2",
       "skipped": false
     },
     {
@@ -4826,10 +4826,10 @@
       "pending": false,
       "code": "console.log(a); // eslint-disable-line",
       "err": {
-        "estack": "ReferenceError: a is not defined\n    at Context.<anonymous> (test-functional/test.js:142:19)"
+        "estack": "ReferenceError: a is not defined\n    at Context.<anonymous> (test-functional/test.js:162:19)"
       },
       "isRoot": false,
-      "parentUUID": "a75b2a6d-7f61-4791-af59-ef26aae6bb75",
+      "parentUUID": "54e778b1-4ec3-47fb-9230-c0c57f5ef8ad",
       "skipped": false
     },
     {
@@ -4848,11 +4848,11 @@
         "operator": "to be truthy",
         "message": "expected false to be truthy",
         "generatedMessage": true,
-        "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:164:7)"
+        "estack": "AssertionError: expected false to be truthy\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:184:7)"
       },
       "isRoot": false,
-      "uuid": "6d237c54-07ad-4365-8e43-bc29656b46b3",
-      "parentUUID": "cee29574-dba3-42e6-b5e7-42e22392377f",
+      "uuid": "33459879-23ca-4286-a077-f380a0698a40",
+      "parentUUID": "9bb8933f-82e5-44e4-8b0f-ce060ed9c545",
       "skipped": false
     }
   ],
