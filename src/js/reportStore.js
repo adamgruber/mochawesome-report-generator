@@ -53,14 +53,6 @@ class ReportStore {
       : null;
   }
 
-  _testShouldDisplay = test => {
-    const { pass, fail, pending, skipped } = test;
-    return (this.showPassed && pass)
-      || (this.showFailed && fail)
-      || (this.showPending && pending)
-      || (this.showSkipped && skipped);
-  }
-
   setInitialData({ data, config }) {
     const reportTitle = config.reportTitle || data.reportTitle;
     Object.assign(this, { reportTitle, data, config });
