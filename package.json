@@ -25,8 +25,11 @@
     "json",
     "react"
   ],
-  "engine": "node >= 0.10.0",
+  "engine": "node >= 4",
   "main": "mochawesome-report.js",
+  "bin": {
+    "mareport": "./bin/mochawesome-report.js"
+  },
   "dependencies": {
     "chart.js": "^2.3.0",
     "classnames": "^2.2.5",
@@ -41,11 +44,12 @@
     "mobx-react": "^3.5.8",
     "mocha": "*",
     "moment": "^2.15.1",
-    "normalize.css": "^5.0.0",
     "ncp": "^2.0.0",
+    "normalize.css": "^5.0.0",
     "postcss": "^5.2.4",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "yargs": "^6.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",
