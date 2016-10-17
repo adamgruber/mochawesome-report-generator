@@ -57,7 +57,8 @@ class ReportStore {
     Object.assign(this, { data, ...config, reportTitle });
     this.allSuites = [ data.suites ];
     this.stats = data.stats;
-    this.showChart = true;
+    this.showChart = config.enableCharts;
+    this.showCode = config.enableCode;
   }
 }
 
