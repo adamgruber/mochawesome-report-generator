@@ -114,7 +114,8 @@ function validateInFile(dataInFile) {
  *
  */
 function getOptions() {
-  const { reportFilename, reportDir, reportTitle, reportPageTitle, inlineAssets, enableCharts, enableCode } = argv;
+  const { reportFilename, reportDir, reportTitle, reportPageTitle,
+    inlineAssets, enableCharts, enableCode } = argv;
   const filename = `${reportFilename.replace(fileExtRegex, '')}.html`;
   return {
     reportHtmlFile: path.join(reportDir, filename),

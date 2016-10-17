@@ -4,14 +4,14 @@
   "description": "A Gorgeous HTML/CSS Reporter for Mocha.js",
   "scripts": {
     "lint": "eslint lib/main.js src",
-    "test": "gulp build",
     "test:fn": "node ./test-functional/create-report.js",
     "start": "node ./lib/main.js",
     "build:assets": "rm -rf dist/assets && npm run pack && npm run pack:inline",
     "build:assets:prod": "NODE_ENV=production npm run build:assets",
     "pack": "$(npm bin)/webpack --config ./webpack/external.config.js",
     "pack:inline": "$(npm bin)/webpack --config ./webpack/inline.config.js",
-    "dev": "npm run test:fn && open test-functional/reportTest.html && $(npm bin)/webpack-dev-server --config ./webpack/dev.config.js --inline --watch --hot"
+    "devserver": "$(npm bin)/webpack-dev-server --config ./webpack/dev.config.js --inline --watch --hot",
+    "dev": "npm run test:fn && open test-functional/reportTest.html && npm run devserver"
   },
   "author": "Adam Gruber",
   "license": "ISC",
