@@ -1,0 +1,3 @@
+node_modules/**/*.css
+src/components/summary/*.css
+src/styles/type.css

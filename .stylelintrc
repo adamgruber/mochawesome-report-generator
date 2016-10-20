@@ -27,6 +27,5 @@
     "time-no-imperceptible": true,
     "unit-whitelist": ["px", "rem", "em", "%", "deg", "s"],
     "value-no-vendor-prefix": true
-  },
-  "ignoreFiles": ["node_modules/**/*.css", "app/styles/reboot.css"]
+  }
 }

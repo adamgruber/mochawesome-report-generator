@@ -106,6 +106,7 @@
     border: none;
     background: transparent;
     padding: 0;
+
     &:focus {
       outline: none;
     }
@@ -118,6 +119,7 @@
   --button-base: {
     @apply --button-reset;
     @apply --link-transition;
+
     cursor: pointer;
   }
 
@@ -128,12 +130,14 @@
 
   --column: {
     @apply --column-base;
+
     padding-left: calc(var(--grid-gutter-width) / 2);
     padding-right: calc(var(--grid-gutter-width) / 2);
   }
 
   --row: {
     @apply --clearfix;
+
     margin-left: calc(var(--grid-gutter-width) / -2);
     margin-right: calc(var(--grid-gutter-width) / -2);
   }
