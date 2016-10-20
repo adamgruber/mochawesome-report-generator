@@ -1,6 +1,4 @@
-export { default as Dropdown } from './dropdown';
 export { default as Duration } from './duration';
-export { default as FilterMenu } from './filter-menu';
 export { default as Footer } from './footer';
 export { default as Icon } from './material-icon';
 export { default as MochawesomeReport } from './report';

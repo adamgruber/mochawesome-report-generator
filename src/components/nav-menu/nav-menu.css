@@ -95,11 +95,15 @@
   border-bottom: 1px solid var(--grey300);
 }
 
+.list {
+  @apply --list-unstyled;
+}
+
 .main {
   margin: 8px 0 16px 0;
 }
 
-.no-tests > .item > .sub {
+.no-tests > .item > div > .sub {
   padding-left: 0;
 }
 

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Icon } from '../../components';
+import { Icon } from 'components';
 import classNames from 'classnames/bind';
 import styles from './toggle-switch.css';
 
@@ -25,9 +25,9 @@ class ToggleSwitch extends Component {
     return (
       <div className={ cx('component', className) }>
         { !!icon && <Icon name={ icon } className={ iconClassName } /> }
-        <label className={ cx('label', { 'with-icon': !!icon }, labelClassName) }>{ label }</label>
+        <span className={ cx('label', { 'with-icon': !!icon }, labelClassName) }>{ label }</span>
         <div className={ cx('switch', { off: !active }) } onClick={ toggleFn }>
-          <span className={ cx('toggle', 'z-depth-1') }></span>
+          <span className={ cx('toggle', 'z-depth-1') } />
         </div>
       </div>
     );

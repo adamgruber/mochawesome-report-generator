@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Test from './test';
+import { Test } from 'components/test';
 import classNames from 'classnames/bind';
 import styles from './test.css';
 

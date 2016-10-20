@@ -16,12 +16,6 @@ class ReportStore {
 
   constructor(data = {}) {
     this.data = data;
-    this.filterDropdownList = [
-      { title: 'Passed' },
-      { title: 'Failed' },
-      { title: 'Pending' },
-      { title: 'Skipped' }
-    ];
   }
 
   @computed get suites() {
@@ -36,6 +30,10 @@ class ReportStore {
 
   @action closeSideNav() {
     this.sideNavOpen = false;
+  }
+
+  @action toggleFilter(prop) {
+    this[prop] = !this[prop];
   }
 
   _mapSuites = suite => {
@@ -57,8 +55,8 @@ class ReportStore {
     Object.assign(this, { data, ...config, reportTitle });
     this.allSuites = [ data.suites ];
     this.stats = data.stats;
-    this.showChart = config.enableCharts;
-    this.showCode = config.enableCode;
+    this.enableChart = config.enableCharts;
+    this.enableCode = config.enableCode;
   }
 }
 

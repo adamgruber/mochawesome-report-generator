@@ -10,7 +10,7 @@ class Duration extends React.Component {
     isSummary: PropTypes.bool
   }
 
-  _getDurationObj = (durationInMilliseconds) => {
+  _getDurationObj = durationInMilliseconds => {
     const dur = moment.duration(durationInMilliseconds, 'ms');
     return {
       duration: dur,
@@ -21,7 +21,7 @@ class Duration extends React.Component {
     };
   }
 
-  formatSummaryDuration = (context) => {
+  formatSummaryDuration = context => {
     const { hrs, min, sec, ms } = context;
     if (hrs < 1) {
       if (min < 1) {
@@ -35,7 +35,7 @@ class Duration extends React.Component {
     return `${hrs}:${min < 10 ? `0${min}` : min}`;
   }
 
-  formatDuration = (context) => {
+  formatDuration = context => {
     const { hrs, min, sec, ms } = context;
     if (hrs < 1) {
       if (min < 1) {
@@ -49,7 +49,7 @@ class Duration extends React.Component {
     return `${hrs}:${min < 10 ? `0${min}` : min}:${sec < 10 ? `0${sec}` : sec}.${ms}h`;
   }
 
-  getSummaryDurationUnits = (context) => {
+  getSummaryDurationUnits = context => {
     const { hrs, min, sec } = context;
     if (hrs < 1) {
       if (min < 1) {

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import { CodeSnippet } from './';
-import { Duration, Icon } from '../../components';
+import { Duration, Icon } from 'components';
+import { CodeSnippet } from 'components/test';
 import classNames from 'classnames/bind';
 import styles from './test.css';
 

@@ -1,17 +1,14 @@
 import React, { PropTypes } from 'react';
-import { observer } from 'mobx-react';
-import reportStore from '../../js/reportStore';
-import classNameNames from 'classNames/bind';
+import classNames from 'classnames/bind';
 import styles from './status-bar.css';
 
-const cx = classNameNames.bind(styles);
+const cx = classNames.bind(styles);
 
-const StatusBar = observer(({ stats }) => {
+const StatusBar = ({ stats }) => {
   const { hasOther, hasSkipped, other, skipped, pendingPercent, passPercent, passPercentClass } = stats;
   const cxname = cx('component', {
     'has-failed-hooks': hasOther,
-    'has-skipped-tests': hasSkipped,
-    qs: reportStore.showQuickSummary
+    'has-skipped-tests': hasSkipped
   });
   const skippedText = `${skipped} Skipped Test${skipped > 1 ? 's' : ''}`;
   const failedText = `${other} Failed Hook${other > 1 ? 's' : ''}`;
@@ -28,7 +25,7 @@ const StatusBar = observer(({ stats }) => {
       </div>
     </div>
   );
-});
+};
 
 StatusBar.propTypes = {
   stats: PropTypes.object

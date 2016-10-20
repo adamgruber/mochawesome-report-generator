@@ -15,9 +15,9 @@ const Footer = () => {
     <footer className={ cx('component') }>
       <div className='container'>
         <p>
-          &copy;{ copyrightYear }&nbsp;<a href={ urls.site } target='_blank'>Mochawesome</a>
+          &copy;{ copyrightYear }&nbsp;<a href={ urls.site } target='_blank' rel='noopener noreferrer'>Mochawesome</a>
           &nbsp;was designed and built by&nbsp;
-          <a href={ urls.github } target='_blank'>Adam Gruber</a>
+          <a href={ urls.github } target='_blank' rel='noopener noreferrer'>Adam Gruber</a>
         </p>
       </div>
     </footer>

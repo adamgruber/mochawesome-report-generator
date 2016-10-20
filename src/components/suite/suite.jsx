@@ -7,13 +7,13 @@ import styles from './suite.css';
 const cx = classNames.bind(styles);
 
 const Suite = props => {
-  const { className, suite, showChart } = props;
+  const { className, suite, enableChart } = props;
   const { root, rootEmpty, suites, tests, uuid, title, file,
     hasSuites, hasTests, hasFailures, hasPending, hasSkipped,
     hasPasses, duration, totalTests, totalPasses, totalFailures,
     totalPending, totalSkipped } = suite;
 
-  const subSuites = () => hasSuites && <SuiteList suites={ suites } showChart={ showChart } />;
+  const subSuites = () => hasSuites && <SuiteList suites={ suites } enableChart={ enableChart } />;
 
   const testListComp = () => hasTests && (
     <TestList uuid={ uuid } tests={ tests } />
@@ -44,7 +44,7 @@ const Suite = props => {
       <header className={ cx('header') }>
         <h3 className={ cx('title') }>{ title === '' ? ' ' : title }</h3>
         <h6 className={ cx('filename') }>{ file === '' ? ' ' : file }</h6>
-        { hasTests && showChart && <SuiteChart { ...chartProps } /> }
+        { hasTests && enableChart && <SuiteChart { ...chartProps } /> }
         { hasTests && <SuiteSummary { ...summaryProps } /> }
       </header>
       <div className={ cx('body') }>
@@ -58,7 +58,7 @@ const Suite = props => {
 Suite.propTypes = {
   suite: PropTypes.object,
   className: PropTypes.string,
-  showChart: PropTypes.bool
+  enableChart: PropTypes.bool
 };
 
 export default Suite;

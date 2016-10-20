@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
-import { Duration, Icon } from '../../components';
+import { Duration, Icon } from 'components';
 import classNames from 'classnames/bind';
 import styles from './suite-summary.css';
 
 const cx = classNames.bind(styles);
 
-const SuiteSummary = (props) => {
+const SuiteSummary = props => {
   const { duration, totalTests, totalPasses, totalFailures, totalPending, totalSkipped } = props;
 
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MochawesomeReport } from '../components';
+import { MochawesomeReport } from 'components';
 import reportStore from './reportStore';
 
 const bodyEl = document.querySelector('body');

@@ -1,16 +1,14 @@
 import React, { PropTypes } from 'react';
-import { observer } from 'mobx-react';
-import { Duration, Icon } from '../../components';
-import reportStore from '../../js/reportStore';
+import { Duration, Icon } from 'components';
 import classNames from 'classnames/bind';
 import styles from './quick-summary.css';
 
 const cx = classNames.bind(styles);
 
-const QuickSummary = observer(({ stats }) => {
+const QuickSummary = ({ stats }) => {
   const { duration, suites, testsRegistered, passes, failures, pending, skipped } = stats;
   return (
-    <div className={ cx('cnt', { show: reportStore.showQuickSummary }) }>
+    <div className={ cx('cnt') }>
       <ul className={ cx('list-unstyled', 'list') }>
         <li className={ cx('item', 'duration') } title='Duration'>
           <Icon name='timer' className={ cx('icon') } />
@@ -41,11 +39,12 @@ const QuickSummary = observer(({ stats }) => {
       </ul>
     </div>
   );
-});
+};
 
 QuickSummary.propTypes = {
-  stats: PropTypes.object,
-  show: PropTypes.bool
+  stats: PropTypes.object
 };
+
+QuickSummary.displayName = 'QuickSummary';
 
 export default QuickSummary;

@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import { Duration } from 'components';
-import classNameNames from 'classNames/bind';
+import classNames from 'classnames/bind';
 import styles from './summary.css';
 
-const cx = classNameNames.bind(styles);
+const cx = classNames.bind(styles);
 
-const Summary = (props) => {
+const Summary = props => {
   const { stats } = props;
   const { duration, suites, testsRegistered, passes, failures, pending } = stats;
   return (

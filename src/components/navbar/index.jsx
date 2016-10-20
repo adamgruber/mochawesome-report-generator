@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
-import { QuickSummary, Icon } from 'components/';
-import reportStore from '../../js/reportStore';
+import { QuickSummary, Icon } from 'components';
 import classNames from 'classnames/bind';
 import styles from './navbar.css';
+import reportStore from '../../js/reportStore';
 
 const cx = classNames.bind(styles);
 

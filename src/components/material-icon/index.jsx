@@ -1,6 +1,7 @@
+/* eslint-disable no-danger */
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import iconmap from './icon-map';
+import iconmap from './icon-map.json';
 
 const Icon = ({ className, name, size, foreground }) => {
   const iconCode = iconmap[name];
