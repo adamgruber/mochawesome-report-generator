@@ -7,23 +7,25 @@ import reportStore from '../../js/reportStore';
 const cx = classNames.bind(styles);
 
 
-const Navbar = ({ reportTitle, stats }) => {
+const Navbar = ({ reportTitle, stats, qsNodeRef, qsWidth, mobileBreakpoint }) => {
   const onClickFn = () => (reportStore.openSideNav());
 
   const { passPercent, pendingPercent } = stats;
   const failPercent = 100 - passPercent - pendingPercent;
 
+  const titleCntStyle = (!mobileBreakpoint && qsWidth) ? { paddingRight: qsWidth } : null;
+
   return (
-    <div className={ cx('navbar', 'z-depth-1') } role='navigation'>
+    <div className={ cx('component', 'z-depth-1') } role='navigation'>
       <button
         onClick={ onClickFn }
         className={ cx('menu-button', 'open-menu') }>
         <Icon name='menu' />
       </button>
-      <div className={ cx('report-info-cnt') }>
-        <h1 className={ cx('report-title') }>{ reportTitle }</h1>
+      <div className={ cx('report-info-cnt') } style={ titleCntStyle }>
+        <h1 className={ cx('report-title') } title={ reportTitle }>{ reportTitle }</h1>
       </div>
-      <div className={ cx('nav-right') }>
+      <div className={ cx('stats') } ref={ qsNodeRef }>
         <QuickSummary stats={ stats } />
       </div>
       <div className={ cx('pct-bar') }>
@@ -46,7 +48,10 @@ const Navbar = ({ reportTitle, stats }) => {
 
 Navbar.propTypes = {
   reportTitle: PropTypes.string,
-  stats: PropTypes.object
+  stats: PropTypes.object,
+  qsNodeRef: PropTypes.func,
+  qsWidth: PropTypes.number,
+  mobileBreakpoint: PropTypes.bool
 };
 
 Navbar.displayName = 'Navbar';

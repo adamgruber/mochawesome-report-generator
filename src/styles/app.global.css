@@ -133,7 +133,7 @@ code {
 }
 
 .details {
-  padding-top: var(--navbar-height);
+  padding-top: calc(var(--navbar-height) + 24);
 }
 
 // Z-levels
@@ -164,7 +164,7 @@ code {
     width: var(--container-sm);
   }
   .details {
-    padding-top: calc(var(--navbar-height) + 24);
+    padding-top: calc(var(--navbar-height-short) + 24);
   }
 }
 @media (--screen-md) {

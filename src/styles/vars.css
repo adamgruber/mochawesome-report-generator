@@ -6,7 +6,8 @@
   --container-sm: calc(720 + var(--grid-gutter-width));
   --container-md: calc(940 + var(--grid-gutter-width));
   --container-lg: calc(1140 + var(--grid-gutter-width));
-  --navbar-height: 56px;
+  --navbar-height: 122px;
+  --navbar-height-short: 56px;
   --summary-height-stacked: 82px;
   --statusbar-height-stacked: 54px;
   --footer-height: 60px;

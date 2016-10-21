@@ -1,6 +1,6 @@
 @import '../../styles/vars';
 
-.navbar {
+.component {
   @apply --clearfix;
   position: fixed;
   top: 0;
@@ -14,9 +14,15 @@
   background: var(--bluegrey800);
 }
 
+.report-info-cnt {
+  padding: 0 12px 0 48px;
+}
+
 .menu-button {
   @apply --button-base;
-  padding: 16px 24px;
+
+  position: absolute;
+  padding: 16px 12px;
   height: 24px;
   float: left;
   color: var(--light-icon-inactive);
@@ -25,19 +31,11 @@
   }
 }
 
-.nav-right {
-  float: right;
-}
-
-.report-info-cnt {
-  float: left;
-}
-
 .report-title {
   @apply --font-light;
   color: #fff;
   font-size: 18px;
-  line-height: calc(var(--navbar-height) - 4);
+  line-height: calc(var(--navbar-height-short) - 4);
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -69,4 +67,19 @@
 
 /* Tablet 768 and up */
 @media (--screen-sm) {
+  .component {
+    min-height: var(--navbar-height-short);
+    height: var(--navbar-height-short);
+  }
+  .report-info-cnt {
+    padding: 0 530px 0 72px;
+  }
+  .stats {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .menu-button {
+    padding: 16px 24px;
+  }
 }

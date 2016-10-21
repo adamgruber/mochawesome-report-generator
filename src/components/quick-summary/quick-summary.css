@@ -1,32 +1,38 @@
 @import '../../styles/vars';
 
 .cnt {
-  display: none;
-  float: left;
+  padding: 0 12px;
 }
 
 .list {
   @apply --clearfix;
-  opacity: 1;
+  @apply --list-unstyled;
+
   transition: opacity .2s ease-out;
-  padding: 15px 24px;
-  margin: 0;
-  @nest .show & {
-    opacity: 1;
-  }
+  margin: 0 0 8px 0;
 }
 
 .item {
   @apply --font-light;
-  font-size: 18px;
-  margin: 0 12px;
+
+  font-size: 16px;
   float: left;
+  width: 25%;
 }
 
 /* Icons / Colors */
 .icon {
+  position: relative;
+  top: 2px;
+  font-size: 18px;
   margin-right: 4px;
   float: left;
+}
+
+.circle-icon {
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 3px;
 }
 
 .item {
@@ -42,40 +48,28 @@
   &.passes {
     & .icon {
       color: var(--green700);
-      font-size: 18px;
       background-color: var(--green100);
-      border-radius: 50%;
-      padding: 3px;
     }
   }
 
   &.failures {
     & .icon {
       color: var(--red700);
-      font-size: 18px;
       background-color: var(--red100);
-      border-radius: 50%;
-      padding: 3px;
     }
   }
 
   &.pending {
     & .icon {
       color: var(--ltblue700);
-      font-size: 18px;
       background-color: var(--ltblue100);
-      border-radius: 50%;
-      padding: 3px;
     }
   }
 
   &.skipped {
     & .icon {
       color: var(--grey700);
-      font-size: 18px;
       background-color: var(--grey100);
-      border-radius: 50%;
-      padding: 3px;
     }
   }
 
@@ -87,15 +81,28 @@
   }
 }
 
-.show-quick-summary {
-  & .list {
-    opacity: 1;
-  }
-}
-
 /* Tablet 768 and up */
 @media (--screen-sm) {
   .cnt {
     display: block;
+    float: left;
+    padding: 14px 12px 0 24px;
+  }
+  .list {
+    display: inline-block;
+    margin: 0;
+  }
+  .item {
+    font-size: 18px;
+    width: auto;
+    margin: 0 12px;
+  }
+  .icon {
+    font-size: 24px;
+    width: 24px;
+    top: 0;
+  }
+  .circle-icon {
+    font-size: 18px;
   }
 }

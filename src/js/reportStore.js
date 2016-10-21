@@ -11,8 +11,8 @@ class ReportStore {
   @observable showFailed = true;
   @observable showPending = true;
   @observable showSkipped = false;
-  @observable visibleTests = [];
-  @observable visibleSuites = [];
+  @observable quickSummaryWidth = null;
+  @observable windowWidth = null;
 
   constructor(data = {}) {
     this.data = data;
@@ -22,6 +22,10 @@ class ReportStore {
     const derived = compact(map(this.allSuites, this._mapSuites));
     console.log(derived);
     return derived;
+  }
+
+  @computed get mobileBreakpoint() {
+    return this.windowWidth < 768;
   }
 
   @action openSideNav() {
@@ -34,6 +38,10 @@ class ReportStore {
 
   @action toggleFilter(prop) {
     this[prop] = !this[prop];
+  }
+
+  @action setQuickSummaryWidth(width) {
+    this.quickSummaryWidth = width;
   }
 
   _mapSuites = suite => {

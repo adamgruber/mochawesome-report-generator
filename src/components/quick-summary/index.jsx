@@ -9,7 +9,7 @@ const QuickSummary = ({ stats }) => {
   const { duration, suites, testsRegistered, passes, failures, pending, skipped } = stats;
   return (
     <div className={ cx('cnt') }>
-      <ul className={ cx('list-unstyled', 'list') }>
+      <ul className={ cx('list') }>
         <li className={ cx('item', 'duration') } title='Duration'>
           <Icon name='timer' className={ cx('icon') } />
           <Duration unitsClassName={ cx('duration-units') } timer={ duration } isSummary />
@@ -20,20 +20,22 @@ const QuickSummary = ({ stats }) => {
         <li className={ cx('item', 'tests') } title='Tests'>
           <Icon name='assignment' className={ cx('icon') } />{ testsRegistered }
         </li>
+      </ul>
+      <ul className={ cx('list') }>
         <li className={ cx('item', 'passes') } title='Passed'>
-          <Icon name='check' className={ cx('icon') } />{ passes }
+          <Icon name='check' className={ cx('icon', 'circle-icon') } />{ passes }
         </li>
         <li className={ cx('item', 'failures') } title='Failed'>
-          <Icon name='close' className={ cx('icon') } />{ failures }
+          <Icon name='close' className={ cx('icon', 'circle-icon') } />{ failures }
         </li>
-        { pending > 0 && (
+        { pending && (
           <li className={ cx('item', 'pending') } title='Pending'>
-            <Icon name='pause' className={ cx('icon') } />{ pending }
+            <Icon name='pause' className={ cx('icon', 'circle-icon') } />{ pending }
           </li>)
         }
-        { skipped > 0 && (
+        { skipped && (
           <li className={ cx('item', 'skipped') } title='Skipped'>
-            <Icon name='stop' className={ cx('icon') } />{ skipped }
+            <Icon name='stop' className={ cx('icon', 'circle-icon') } />{ skipped }
           </li>)
         }
       </ul>
