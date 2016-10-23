@@ -3,7 +3,8 @@
 .component {
   @apply --clearfix;
   @apply --font-regular;
-  composes: list-unstyled from 'type.css';
+  @apply --list-unstyled;
+
   font-size: 15px;
   margin: 16px 0 0 0;
 }

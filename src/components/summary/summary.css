@@ -25,7 +25,8 @@
 }
 
 .label {
-  composes: font-light from 'fonts.css';
+  @apply --font-light;
+
   color: var(--gray);
   text-transform: uppercase;
   display: none;
@@ -33,7 +34,8 @@
 }
 
 .count {
-  composes: font-regular from 'fonts.css';
+  @apply --font-regular;
+
   display: inline;
   color: var(--gray-light);
   text-align: center;
