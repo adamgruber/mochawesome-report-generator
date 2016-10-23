@@ -44,6 +44,10 @@ class ReportStore {
     this.quickSummaryWidth = width;
   }
 
+  @action setWindowWidth(width) {
+    this.windowWidth = width;
+  }
+
   _mapSuites = suite => {
     const suites = compact(map(suite.suites, this._mapSuites));
     const tests = filter(suite.tests, test => (

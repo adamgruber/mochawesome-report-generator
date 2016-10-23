@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies, no-console */
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import DevTools from 'mobx-react-devtools';
 import { observer } from 'mobx-react';
 import { Footer, Navbar } from 'components';
@@ -7,18 +7,21 @@ import { NavMenu } from 'components/nav-menu';
 import { Suite } from 'components/suite';
 import cx from 'classnames';
 import 'styles/app.global.css';
-import reportStore from '../js/reportStore';
+// import reportStore from '../js/reportStore';
 
 @observer
 class MochawesomeReport extends Component {
   static displayName = 'MochawesomeReport';
+  static propTypes = {
+    store: PropTypes.object
+  };
 
   componentDidMount() {
     window.addEventListener('resize', this.resizeHandler);
     this.resizeHandler();
     setTimeout(() => {
       const w = this.qsNode.getBoundingClientRect().width;
-      reportStore.setQuickSummaryWidth(w);
+      this.props.store.setQuickSummaryWidth(w);
     }, 0);
   }
 
@@ -27,13 +30,13 @@ class MochawesomeReport extends Component {
   }
 
   resizeHandler = () => {
-    reportStore.windowWidth = window.innerWidth;
+    this.props.store.setWindowWidth(window.innerWidth);
   }
 
   render() {
     const { reportTitle, suites, allSuites, stats, enableChart, enableCode,
       showPassed, showFailed, showPending, showSkipped, sideNavOpen,
-      mobileBreakpoint, quickSummaryWidth } = reportStore;
+      mobileBreakpoint, quickSummaryWidth } = this.props.store;
 
     const navMenuProps = {
       reportTitle,
