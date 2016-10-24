@@ -4,7 +4,7 @@
   "description": "A Gorgeous HTML/CSS Reporter for Mocha.js",
   "scripts": {
     "lint": "eslint lib/main.js src",
-    "test": "cross-env UV_THREADPOOL_SIZE=100 BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc $(npm bin)/mocha --require test/helper.js \"test/spec/**/*.test.js\"",
+    "test": "cross-env UV_THREADPOOL_SIZE=100 BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc $(npm bin)/mocha --require test/helper.js \"test/spec/**/*.test.+(js|jsx)\"",
     "test:fn": "node ./test-functional/create-report.js",
     "start": "node ./lib/main.js",
     "build:assets": "rm -rf dist/assets && npm run pack && npm run pack:inline",
