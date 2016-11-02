@@ -13,15 +13,15 @@ describe('<ToggleSwitch />', () => {
   let props;
   let toggleFn;
 
-  const getInstance = (props) => {
-    const wrapper = shallow(<ToggleSwitch { ...props } />);
+  const getInstance = instanceProps => {
+    const wrapper = shallow(<ToggleSwitch { ...instanceProps } />);
     return {
       wrapper,
       icon: wrapper.find(Icon),
       label: wrapper.find('.toggle-switch-label'),
       toggle: wrapper.find('.toggle-switch-switch')
     };
-  }
+  };
 
   beforeEach(() => {
     toggleFn = sinon.spy();

@@ -1,4 +1,4 @@
-/* eslint-disable import/no-dynamic-require */
+/* eslint-disable import/no-dynamic-require, react/no-danger */
 import React, { Component, PropTypes } from 'react';
 import isEqual from 'lodash/isEqual';
 import hljs from 'highlight.js/lib/highlight';
@@ -26,7 +26,9 @@ class CodeSnippet extends Component {
     this.highlightCode();
   }
 
-  shouldComponentUpdate = nextProps => !isEqual(this.props, nextProps)
+  shouldComponentUpdate(nextProps) {
+    return !isEqual(this.props, nextProps);
+  }
 
   highlightCode() {
     const { code, lang, highlight } = this.props;

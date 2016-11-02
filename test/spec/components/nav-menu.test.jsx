@@ -5,13 +5,9 @@ import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
 import proxyquire from 'proxyquire';
 
-// import { NavMenu } from 'components/nav-menu';
 import ToggleSwitch from 'components/toggle-switch';
 import NavMenuList from 'components/nav-menu/nav-menu-list';
-import NavMenuItem from 'components/nav-menu/nav-menu-item';
 
-// import Report from 'components/report';
-// import reportStore from 'js/reportStore';
 import testData from 'sample-data/test-data.json';
 
 proxyquire.noCallThru();
@@ -19,35 +15,30 @@ proxyquire.noCallThru();
 const closeSideNavSpy = sinon.spy();
 const toggleFilterSpy = sinon.spy();
 
-const NavMenuComp = proxyquire('components/nav-menu/nav-menu', {
+const NavMenu = proxyquire('components/nav-menu/nav-menu', {
   '../../js/reportStore': {
     closeSideNav: closeSideNavSpy,
     toggleFilter: toggleFilterSpy
   }
-});
-
-const NavMenu = NavMenuComp.default;
-
-// reportStore.setInitialData({ data: testData, config: {} });
+}).default;
 
 chai.use(chaiEnzyme());
 
 describe('<NavMenu />', () => {
-  let reportStore;
   let props;
 
-  const getInstance = (props) => {
-    const wrapper = mount(<NavMenu { ...props } />);
+  const getInstance = instanceProps => {
+    const wrapper = mount(<NavMenu { ...instanceProps } />);
     return {
       wrapper,
       title: wrapper.find('.title'),
       navList: wrapper.find('.nav-menu-main'),
       toggles: wrapper.find(ToggleSwitch)
     };
-  }
+  };
 
   beforeEach(() => {
-    props = { 
+    props = {
       suites: [ testData.suites ],
       reportTitle: 'test',
       stats: testData.stats,
@@ -60,7 +51,7 @@ describe('<NavMenu />', () => {
   });
 
   it('renders with toggles and suites', () => {
-    const { wrapper, title, navList, toggles } = getInstance(props);
+    const { title, navList, toggles } = getInstance(props);
 
     expect(title.text()).to.equal('test');
     expect(navList).to.have.lengthOf(1);
@@ -78,7 +69,7 @@ describe('<NavMenu />', () => {
       suites: null,
       stats: newStats
     });
-    const { wrapper, title, navList, toggles } = getInstance(newProps);
+    const { title, navList, toggles } = getInstance(newProps);
 
     expect(title.text()).to.equal('test');
     expect(navList).to.have.lengthOf(0);
