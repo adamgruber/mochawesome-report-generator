@@ -7,6 +7,11 @@ import styles from './test.css';
 const cx = classNames.bind(styles);
 
 class Test extends React.Component {
+  constructor() {
+    super();
+    this.toggleExpandedState = this.toggleExpandedState.bind(this);
+  }
+
   static propTypes = {
     test: PropTypes.object
   }
@@ -15,7 +20,7 @@ class Test extends React.Component {
     expanded: false
   }
 
-  toggleExpandedState = () => {
+  toggleExpandedState() {
     const { test } = this.props;
     if (test.pass || test.fail) {
       this.setState({ expanded: !this.state.expanded });
