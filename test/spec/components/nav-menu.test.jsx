@@ -52,7 +52,6 @@ describe('<NavMenu />', () => {
 
   it('renders with toggles and suites', () => {
     const { title, navList, toggles } = getInstance(props);
-
     expect(title.text()).to.equal('test');
     expect(navList).to.have.lengthOf(1);
     expect(toggles).to.have.lengthOf(4);

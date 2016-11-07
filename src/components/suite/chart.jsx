@@ -28,7 +28,9 @@ class SuiteChart extends Component {
     this.renderChart();
   }
 
-  shouldComponentUpdate = nextProps => !isEqual(this.props, nextProps)
+  shouldComponentUpdate(nextProps) {
+    return !isEqual(this.props, nextProps);
+  }
 
   _getChartData = () => {
     const { pass, fail, pend, skip } = chartColors;

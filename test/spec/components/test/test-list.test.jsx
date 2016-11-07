@@ -2,14 +2,13 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
-import sinon from 'sinon';
 
 import TestList from 'components/test/list';
 import Test from 'components/test/test';
 
 chai.use(chaiEnzyme());
 
-const sampleTests = [{
+const sampleTests = [ {
   title: 'should be passing test if true is not false',
   fullTitle: 'Master Test Suite Test Suite - Basic should be passing test if true is not false',
   timedOut: false,
@@ -78,7 +77,7 @@ const sampleTests = [{
   uuid: 'a3418f88-b249-4e88-8a58-5379690000fe',
   parentUUID: 'a3418f88-b249-4e88-8a58-5379690000ae',
   skipped: true
-}];
+} ];
 
 describe('<TestList />', () => {
   const getInstance = instanceProps => {

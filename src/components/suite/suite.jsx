@@ -6,8 +6,7 @@ import styles from './suite.css';
 
 const cx = classNames.bind(styles);
 
-const Suite = props => {
-  const { className, suite, enableChart } = props;
+const Suite = ({ className, suite, enableChart }) => {
   const { root, rootEmpty, suites, tests, uuid, title, file,
     hasSuites, hasTests, hasFailures, hasPending, hasSkipped,
     hasPasses, duration, totalTests, totalPasses, totalFailures,
@@ -31,9 +30,10 @@ const Suite = props => {
     'has-skipped': hasSkipped
   });
 
-  const summaryProps = { duration, totalTests, totalPasses, totalFailures, totalPending, totalSkipped };
+  const summaryProps = {
+    duration, totalTests, totalPasses, totalFailures, totalPending, totalSkipped
+  };
   const chartProps = { totalPasses, totalFailures, totalPending, totalSkipped };
-
 
   if (rootEmpty) {
     return subSuites();
