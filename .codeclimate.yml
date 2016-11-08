@@ -1,6 +1,21 @@
-languages:
-  JavaScript: true
+---
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+ratings:
+  paths:
+  - "src/**/*.css"
+  - "src/**/*.js"
+  - "src/**/*.jsx"
+  - "lib/**/*.js"
+  - "bin/**/*.js"
 exclude_paths:
-- "dist/*"
-- "test/*"
-- "lib/config.js"
+- dist/*
+- test/*
