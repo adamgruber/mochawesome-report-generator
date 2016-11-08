@@ -1,8 +1,6 @@
 languages:
   JavaScript: true
 exclude_paths:
-- "gulpfile.js"
-- "src/js/lodash.custom.js"
-- "dist/js/*.js"
+- "dist/*"
 - "test/*"
-- "lib/templates.js"
+- "lib/config.js"

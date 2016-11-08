@@ -5,29 +5,27 @@
 /*@import '../../node_modules/materialize-css/dist/css/materialize.min';*/
 
 @font-face {
-    font-family: 'robotolight';
-    src: url('../fonts/roboto-light-webfont.woff2') format('woff2'),
-         url('../fonts/roboto-light-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'robotolight';
+  src: url('../fonts/roboto-light-webfont.woff2') format('woff2'),
+       url('../fonts/roboto-light-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'robotomedium';
-    src: url('../fonts/roboto-medium-webfont.woff2') format('woff2'),
-         url('../fonts/roboto-medium-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
+  font-family: 'robotomedium';
+  src: url('../fonts/roboto-medium-webfont.woff2') format('woff2'),
+       url('../fonts/roboto-medium-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'robotoregular';
-    src: url('../fonts/roboto-regular-webfont.woff2') format('woff2'),
-         url('../fonts/roboto-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
+  font-family: 'robotoregular';
+  src: url('../fonts/roboto-regular-webfont.woff2') format('woff2'),
+       url('../fonts/roboto-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
@@ -79,6 +77,7 @@
 
 * {
   box-sizing: border-box;
+
   &:before,
   &:after {
     box-sizing: border-box;
@@ -101,6 +100,7 @@ body {
 
 a {
   text-decoration: none;
+
   &:hover {
     text-decoration: underline;
   }
@@ -110,10 +110,6 @@ pre {
   word-break: break-all;
   word-wrap: break-word;
   border-radius: 4px;
-}
-
-code {
-  
 }
 
 .clearfix, .cf {
