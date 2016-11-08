@@ -4,7 +4,8 @@ engines:
     enabled: true
     config:
       languages:
-      - javascript
+        javascript:
+          mass_threshold: 90
   eslint:
     enabled: true
   fixme:
@@ -19,3 +20,4 @@ ratings:
 exclude_paths:
 - dist/*
 - test/*
+- webpack/*
