@@ -1,4 +1,4 @@
-/* eslint-disable no-danger */
+/* eslint-disable react/no-danger, max-len */
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import iconmap from './icon-map.json';

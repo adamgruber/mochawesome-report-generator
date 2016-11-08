@@ -62,8 +62,12 @@ const NavMenu = props => {
         </div>
         <div className={ cx('section') }>
           { !!suites && suites.map(suite => (
-            <ul key={ suite.uuid } className={ cx('list', 'main', { 'no-tests': !suite.hasTests }) }>
-              { !!suite.suites && suite.suites.map(subSuite => <NavMenuItem key={ subSuite.uuid } suite={ subSuite } { ...navItemProps } />) }
+            <ul
+              key={ suite.uuid }
+              className={ cx('list', 'main', { 'no-tests': !suite.hasTests }) }>
+              { !!suite.suites && suite.suites.map(subSuite => (
+                <NavMenuItem key={ subSuite.uuid } suite={ subSuite } { ...navItemProps } />
+              )) }
             </ul>)) }
         </div>
       </nav>

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { PropTypes } from 'react';
 import { Duration, Icon } from 'components';
 import { CodeSnippet } from 'components/test';

@@ -76,7 +76,7 @@ const JsonErrRegex = /^Unexpected token .* in JSON/;
 const fileExtRegex = /\.[^.]*?$/;
 const ERRORS = {
   NO_FILE: 'You must supply a mochawesome data file to create a report.',
-  BAD_JSON: 'There was a problem parsing the mochawesome data. Please ensure the JSON file is valid.'
+  BAD_JSON: 'There was a problem parsing mochawesome data. Please ensure the JSON file is valid.'
 };
 
 let dataIn;

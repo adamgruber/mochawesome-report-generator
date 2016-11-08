@@ -1,4 +1,6 @@
+/* eslint-disable react/no-danger */
 const React = require('react');
+
 const { PropTypes } = React;
 
 function MainHTML(props) {
@@ -17,10 +19,10 @@ function MainHTML(props) {
           : <link rel='stylesheet' href={ clientStyle } /> }
       </head>
       <body data-raw={ data } data-config={ JSON.stringify(options) }>
-        <div id='report'></div>
+        <div id='report' />
         { options.inlineAssets
           ? <script type='text/javascript' dangerouslySetInnerHTML={ { __html: scripts } } />
-          : <script src={ clientScript }></script> }
+          : <script src={ clientScript } /> }
       </body>
     </html>
   );
