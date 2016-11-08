@@ -3,8 +3,10 @@ lib-cov
 *.log
 
 node_modules
+mochawesome-report
 mochawesome-reports
 npm-debug.log
 
 coverage
 .nyc_output
+test-functional/*.html

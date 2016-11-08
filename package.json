@@ -1,7 +1,7 @@
 {
   "name": "mochawesome-report",
-  "version": "0.1.0",
-  "description": "A Gorgeous HTML/CSS Reporter for Mocha.js",
+  "version": "1.0.0",
+  "description": "Generates gorgeous HTML reports in Mocha.js from mochawesome reporter.",
   "scripts": {
     "lint": "eslint lib/main.js src test/spec",
     "test": "cross-env UV_THREADPOOL_SIZE=100 BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc $(npm bin)/mocha --require test/helper.js \"test/spec/**/*.test.+(js|jsx)\"",
@@ -22,6 +22,7 @@
     "url": "https://github.com/adamgruber/mochawesome-report"
   },
   "keywords": [
+    "mochawesome",
     "mocha",
     "reporter",
     "json",
