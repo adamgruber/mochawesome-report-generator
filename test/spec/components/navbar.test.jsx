@@ -20,7 +20,6 @@ const Navbar = proxyquire('components/navbar', {
 chai.use(chaiEnzyme());
 
 describe('<Navbar />', () => {
-  let reportStore;
   let props;
 
   const getInstance = instanceProps => {
@@ -32,10 +31,10 @@ describe('<Navbar />', () => {
       menuBtn: wrapper.find('.navbar-menu-button'),
       pctBar: wrapper.find('.navbar-pct-bar')
     };
-  }
+  };
 
   beforeEach(() => {
-    props = { 
+    props = {
       qsNodeRef: () => {},
       reportTitle: 'test',
       stats: testData.stats,
