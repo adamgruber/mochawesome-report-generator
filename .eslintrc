@@ -61,6 +61,6 @@
     "semi": [1, "always"],
     "global-require": 0,
     "import/no-unresolved": 0,
-    "import/no-extraneous-dependencies": [2, { "devDependencies": [ "**/*.test.+(js|jsx)" ] }]
+    "import/no-extraneous-dependencies": [2, { "devDependencies": [ "!**/*.test.+(js|jsx)", "!lib/main.js" ] }]
   }
 }

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "A Gorgeous HTML/CSS Reporter for Mocha.js",
   "scripts": {
-    "lint": "eslint lib/main.js src",
+    "lint": "eslint lib/main.js src test/spec",
     "test": "cross-env UV_THREADPOOL_SIZE=100 BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc $(npm bin)/mocha --require test/helper.js \"test/spec/**/*.test.+(js|jsx)\"",
     "test:single": "cross-env UV_THREADPOOL_SIZE=100 BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc $(npm bin)/mocha --require test/helper.js ",
     "test:fn": "node ./test-functional/create-report.js",
@@ -64,7 +64,6 @@
     "json-stringify-safe": "^5.0.1",
     "lodash": "^4.16.4",
     "material-design-icons": "^3.0.1",
-    "mkdirp": "^0.5.1",
     "mobx": "^2.6.0",
     "mobx-react": "^3.5.8",
     "mocha": "*",

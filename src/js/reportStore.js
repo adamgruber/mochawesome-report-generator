@@ -1,6 +1,4 @@
-/* eslint-disable no-console */
 import { observable, computed, action } from 'mobx';
-// import find from 'lodash/find';
 import filter from 'lodash/filter';
 import map from 'lodash/map';
 import compact from 'lodash/compact';
@@ -20,7 +18,6 @@ class ReportStore {
 
   @computed get suites() {
     const derived = compact(map(this.allSuites, this._mapSuites));
-    console.log(derived);
     return derived;
   }
 
@@ -73,8 +70,6 @@ class ReportStore {
 }
 
 const reportStore = new ReportStore();
-
-window.reportStore = reportStore;
 
 export default reportStore;
 
