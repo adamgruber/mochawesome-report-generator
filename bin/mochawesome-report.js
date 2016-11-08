@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 const report = require('../lib/main');
 const yargs = require('yargs');
 
