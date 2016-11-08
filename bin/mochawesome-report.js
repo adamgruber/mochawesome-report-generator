@@ -149,4 +149,3 @@ if (dataIn) {
 /* Required Args
  * @argument {string} test-data Data to use for rendering report
  */
-
