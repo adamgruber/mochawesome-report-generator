@@ -6,6 +6,7 @@ import sinon from 'sinon';
 
 import Report from 'components/report';
 import reportStore from 'js/reportStore';
+
 import testData from 'sample-data/test-data.json';
 
 chai.use(chaiEnzyme());
@@ -42,5 +43,18 @@ describe('<MochawesomeReport />', () => {
 
     wrapper.find('.toggle-switch-switch').at(3).simulate('click');
     expect(reportStore.toggleFilter.calledOnce).to.equal(true);
+  });
+
+  it('should scroll to a suite', () => {
+    const node = document.createElement('div');
+    node.setAttribute('id', 'app');
+    document.body.appendChild(node);
+    const wrapper = mount(<Report store={ reportStore } />, {
+      attachTo: node
+    });
+    expect(window.scrollTop).to.equal(0);
+    wrapper.find('.nav-menu-link').last().simulate('click');
+
+    document.getElementById('app').remove();
   });
 });

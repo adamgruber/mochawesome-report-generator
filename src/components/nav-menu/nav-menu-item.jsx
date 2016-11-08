@@ -22,10 +22,9 @@ class NavMenuItem extends Component {
 
   render() {
     const { suite, showPassed, showFailed, showPending, showSkipped } = this.props;
-    const { rootEmpty, suites, uuid, title,
-      hasTests, hasFailures, hasPending, hasSkipped, hasPasses } = suite;
+    const { suites, uuid, title, hasTests,
+      hasFailures, hasPending, hasSkipped, hasPasses } = suite;
     const navItemProps = { showPassed, showFailed, showPending, showSkipped };
-
 
     const fail = hasTests && hasFailures;
     const pend = hasTests && hasPending && !hasFailures;
@@ -91,17 +90,11 @@ class NavMenuItem extends Component {
       window.scrollTo(0, scrollY);
     };
 
-    if (rootEmpty) {
-      return !!suites && suites.map(subSuite => (
-        <NavMenuItem key={ subSuite.uuid } suite={ subSuite } { ...navItemProps } />)
-      );
-    }
-
     return (
       <li className={ cx('item') }>
         <a href={ `#${uuid}` } className={ anchorCxName } onClick={ e => scrollToSuite(e, uuid) }>
           { suiteIcon() }
-          { title === '' ? uuid : title }
+          <span>{ title === '' ? uuid : title }</span>
         </a>
         <NavMenuList suites={ suites } { ...navItemProps } />
       </li>
