@@ -15,6 +15,8 @@ const mareport = require('./cli-main');
  * @property {boolean} inlineAssets     Should assets be inlined into HTML file (default: false)
  * @property {boolean} charts           Should charts be enabled (default: true)
  * @property {boolean} code             Should test code output be enabled (default: true)
+ * @property {boolean} dev              Enable dev mode in the report,
+ *                                      asssets loaded via webpack (default: false)
  */
 
 // Setup yargs
@@ -66,6 +68,11 @@ yargs
       alias: [ 'enableCode' ],
       default: true,
       describe: 'Display test code',
+      boolean: true
+    },
+    dev: {
+      default: false,
+      describe: 'Enable dev mode',
       boolean: true
     }
   })

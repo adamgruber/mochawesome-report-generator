@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Generates gorgeous HTML reports in Mocha.js from mochawesome reporter.",
   "scripts": {
-    "lint": "eslint bin lib/main.js src test/spec",
+    "lint": "eslint bin/ lib/ src/ test/spec",
     "test": "cross-env UV_THREADPOOL_SIZE=100 BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc $(npm bin)/mocha --require test/helper.js \"test/spec/**/*.test.+(js|jsx)\"",
     "test:single": "cross-env UV_THREADPOOL_SIZE=100 BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc $(npm bin)/mocha --require test/helper.js ",
     "test:fn": "node ./test-functional/create-report.js",
@@ -90,6 +90,7 @@
     "bootstrap": "^3.3.7",
     "canvas": "^1.6.2",
     "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
     "chai-enzyme": "^0.6.0",
     "cross-env": "^3.1.3",
     "css-loader": "^0.25.0",
