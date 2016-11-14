@@ -13,7 +13,8 @@
     "pack": "$(npm bin)/webpack --config ./webpack/external.config.js",
     "pack:inline": "$(npm bin)/webpack --config ./webpack/inline.config.js",
     "devserver": "$(npm bin)/webpack-dev-server --config ./webpack/dev.config.js --inline --watch --hot",
-    "dev": "npm run test:fn && open test-functional/reportTest.html && npm run devserver"
+    "cli": "node ./bin/cli test/sample-data/test-data.json --dev",
+    "dev": "npm run cli && npm run devserver"
   },
   "author": "Adam Gruber",
   "license": "ISC",
@@ -67,6 +68,7 @@
     "material-design-icons": "^3.0.1",
     "mobx": "^2.6.0",
     "mobx-react": "^3.5.8",
+    "mobx-react-devtools": "^4.2.9",
     "mocha": "*",
     "moment": "^2.15.1",
     "ncp": "^2.0.0",
@@ -106,7 +108,6 @@
     "jsdom": "^9.8.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
-    "mobx-react-devtools": "^4.2.9",
     "nyc": "^8.3.2",
     "postcss-cssnext": "^2.8.0",
     "postcss-import": "^8.1.2",
