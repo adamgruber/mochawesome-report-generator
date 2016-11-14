@@ -4,10 +4,10 @@
   padding: 10px 24px 10px 21px;
   border-bottom: 1px solid var(--grey300);
   border-left: 3px solid transparent;
-  &:not(.pending):not(.skipped) {
+  &:not(.inactive) {
     cursor: pointer;
   }
-  &:hover:not(.pending):not(.skipped) {
+  &:hover:not(.inactive) {
     border-left-color: var(--grey500);
   }
   &.expanded.passed,

@@ -7,7 +7,6 @@ import { NavMenu } from 'components/nav-menu';
 import { Suite } from 'components/suite';
 import cx from 'classnames';
 import 'styles/app.global.css';
-// import reportStore from '../js/reportStore';
 
 @observer
 class MochawesomeReport extends Component {
@@ -36,7 +35,7 @@ class MochawesomeReport extends Component {
   render() {
     const { reportTitle, suites, allSuites, stats, enableChart, enableCode,
       showPassed, showFailed, showPending, showSkipped, sideNavOpen,
-      mobileBreakpoint, quickSummaryWidth } = this.props.store;
+      mobileBreakpoint, quickSummaryWidth, devMode } = this.props.store;
 
     const navMenuProps = {
       reportTitle,
@@ -67,7 +66,7 @@ class MochawesomeReport extends Component {
         </div>
         <Footer />
         <NavMenu suites={ allSuites } { ...navMenuProps } />
-        <DevTools position={ { bottom: 0, right: 20 } } />
+        { devMode && <DevTools position={ { bottom: 0, right: 20 } } /> }
       </div>
     );
   }

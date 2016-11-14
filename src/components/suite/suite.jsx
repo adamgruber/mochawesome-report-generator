@@ -6,16 +6,18 @@ import styles from './suite.css';
 
 const cx = classNames.bind(styles);
 
-const Suite = ({ className, suite, enableChart }) => {
+const Suite = ({ className, suite, enableChart, enableCode }) => {
   const { root, rootEmpty, suites, tests, uuid, title, file,
     hasSuites, hasTests, hasFailures, hasPending, hasSkipped,
     hasPasses, duration, totalTests, totalPasses, totalFailures,
     totalPending, totalSkipped } = suite;
 
-  const subSuites = () => hasSuites && <SuiteList suites={ suites } enableChart={ enableChart } />;
+  const subSuites = () => hasSuites && (
+    <SuiteList suites={ suites } enableChart={ enableChart } enableCode={ enableCode } />
+  );
 
   const testListComp = () => hasTests && (
-    <TestList uuid={ uuid } tests={ tests } />
+    <TestList uuid={ uuid } tests={ tests } enableCode={ enableCode } />
   );
 
   const cxname = cx('component', className, {
@@ -58,7 +60,8 @@ const Suite = ({ className, suite, enableChart }) => {
 Suite.propTypes = {
   suite: PropTypes.object,
   className: PropTypes.string,
-  enableChart: PropTypes.bool
+  enableChart: PropTypes.bool,
+  enableCode: PropTypes.bool
 };
 
 export default Suite;

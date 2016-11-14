@@ -14,7 +14,8 @@ class Test extends React.Component {
   }
 
   static propTypes = {
-    test: PropTypes.object
+    test: PropTypes.object,
+    enableCode: PropTypes.bool
   }
 
   state = {
@@ -22,14 +23,14 @@ class Test extends React.Component {
   }
 
   toggleExpandedState() {
-    const { test } = this.props;
-    if (test.pass || test.fail) {
+    const { test, enableCode } = this.props;
+    if ((enableCode && test.pass) || test.fail) {
       this.setState({ expanded: !this.state.expanded });
     }
   }
 
   render() {
-    const { test } = this.props;
+    const { test, enableCode } = this.props;
     const { uuid, title, speed, duration, pass, fail, pending, skipped, err, code } = test;
 
     const testIcon = () => {
@@ -59,7 +60,8 @@ class Test extends React.Component {
       passed: pass,
       failed: fail,
       pending,
-      skipped
+      skipped,
+      inactive: pending || skipped || (!enableCode && pass)
     });
 
     return (
@@ -80,7 +82,7 @@ class Test extends React.Component {
         <div className={ cx('body') }>
           { <CodeSnippet className={ cx('code-snippet') } code={ err.estack } highlight={ false } /> }
           { <CodeSnippet className={ cx('code-snippet') } code={ err.diff } lang='diff' /> }
-          { <CodeSnippet className={ cx('code-snippet') } code={ code } /> }
+          { enableCode && <CodeSnippet className={ cx('code-snippet') } code={ code } /> }
         </div>
       </section>
     );

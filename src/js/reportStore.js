@@ -65,12 +65,11 @@ class ReportStore {
     this.allSuites = [ data.suites ];
     this.stats = data.stats;
     this.enableChart = config.enableCharts;
-    this.enableCode = config.enableCode;
+    this.devMode = config.dev;
   }
 }
 
 const reportStore = new ReportStore();
-
 export default reportStore;
 
 export { ReportStore };

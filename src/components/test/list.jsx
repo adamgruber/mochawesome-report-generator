@@ -5,15 +5,18 @@ import styles from './test.css';
 
 const cx = classNames.bind(styles);
 
-const TestList = ({ className, tests }) => (
+const TestList = ({ className, tests, enableCode }) => (
   <div className={ cx(className) }>
-    { !!tests && tests.map(test => <Test key={ test.uuid } test={ test } />) }
+    { !!tests && tests.map(test => (
+      <Test key={ test.uuid } test={ test } enableCode={ enableCode } />)
+    ) }
   </div>
 );
 
 TestList.propTypes = {
   className: PropTypes.string,
-  tests: PropTypes.array
+  tests: PropTypes.array,
+  enableCode: PropTypes.bool
 };
 
 TestList.displayName = 'TestList';
