@@ -1,10 +1,15 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import proxyquire from 'proxyquire';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
 
-import SuiteChart from 'components/suite/chart';
+proxyquire.noCallThru();
+
+const SuiteChart = proxyquire('components/suite/chart', {
+  'chart.js': () => {}
+}).default;
 
 chai.use(chaiEnzyme());
 
@@ -16,7 +21,7 @@ describe('<SuiteChart />', () => {
       attachTo: node
     });
     return wrapper;
-  }
+  };
 
   beforeEach(() => {
     node = document.createElement('div');
@@ -36,7 +41,7 @@ describe('<SuiteChart />', () => {
       totalSkipped: 1
     };
     getInstance(props);
-    expect(document.querySelectorAll('.chartjs-hidden-iframe').length).to.equal(1);
+    expect(document.querySelectorAll('canvas').length).to.equal(1);
   });
 
   it('calls shouldComponentUpdate', () => {
