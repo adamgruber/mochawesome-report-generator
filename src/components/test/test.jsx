@@ -18,6 +18,10 @@ class Test extends React.Component {
     enableCode: PropTypes.bool
   }
 
+  static defaultProps = {
+    enableCode: true
+  }
+
   state = {
     expanded: false
   }
