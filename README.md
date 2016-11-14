@@ -1,11 +1,8 @@
-mochawesome
-===========
-[![npm](https://img.shields.io/npm/v/mochawesome.svg?style=flat-square)](http://www.npmjs.com/package/mochawesome) [![Build Status](https://img.shields.io/travis/adamgruber/mochawesome/master.svg?style=flat-square)](https://travis-ci.org/adamgruber/mochawesome) [![Code Climate](https://img.shields.io/codeclimate/github/adamgruber/mochawesome.svg?style=flat-square)](https://codeclimate.com/github/adamgruber/mochawesome)
+mochawesome-report
+==================
+[![npm](https://img.shields.io/npm/v/mochawesome-report.svg?style=flat-square)](http://www.npmjs.com/package/mochawesome-report) [![Build Status](https://img.shields.io/travis/adamgruber/mochawesome-report/master.svg?style=flat-square)](https://travis-ci.org/adamgruber/mochawesome-report) [![Code Climate](https://img.shields.io/codeclimate/github/adamgruber/mochawesome-report.svg?style=flat-square)](https://codeclimate.com/github/adamgruber/mochawesome-report)
 
-Mochawesome is a custom reporter for use with the Javascript testing framework, [mocha][1]. It generates a full fledged HTML/CSS report that helps visualize your test suites.
-
-##New in 1.4.0
-- Added a slide-over navigation menu. Save time by quickly jumping to a specific test suite. The menu also gives you a quick way to see which suites are passing or have failing, skipped, or pending tests.
+mochawesome-report is the counterpart to a [mochawesome][2], a custom reporter for use with the Javascript testing framework, [mocha][1]. This package takes the JSON output from [mochawesome][2] and generates a full fledged HTML/CSS report that helps visualize your test suites.
 
 ##Features
 - At-a-glance stats including pass percentage
@@ -17,13 +14,13 @@ Mochawesome is a custom reporter for use with the Javascript testing framework, 
 - Review test code inline
 - Stack trace for failed tests
 - Responsive and mobile-friendly
-- Saves JSON output for further processing
 - Custom report [options](#options)
 - Offline viewing
+- CLI for generating reports independent of [mochawesome][2]
 
 ##Browser Support
 Tested to work in Chrome. *Should* work in any modern web browser including IE9+.
-Mochawesome generates a self-contained report that can be viewed offline. 
+mochawesome-report generates a self-contained report that can be viewed offline. 
 
 ##Sample Report
 
@@ -33,125 +30,58 @@ Mochawesome generates a self-contained report that can be viewed offline.
 
 ##Usage
 
-1. Add Mochawesome to your project:
+**via CLI**
 
-  `npm install --save-dev mochawesome`
+Install mochawesome-report package
+```bash
+npm install -g mochawesome-report
+```
 
-2. Tell mocha to use the Mochawesome reporter:
+Run the command
+```bash
+mareport [test-output.json] <options>
+```
 
-  `mocha testfile.js --reporter mochawesome`
+**via Mochawesome reporter**
 
-3. If using mocha programatically:
-
-  ```js
-  var mocha = new Mocha({
-      reporter: 'mochawesome'
-  });
-  ```
+See mochawesome [docs][2].
 
 ##Output
-Mochawesome generates the following inside your project directory:
+mochawesome-report generates the following inside your project directory:
 ```
-mochawesome-reports/
-├── css
-│   └── mochawesome.css
-├── fonts
-│   ├── Roboto+Condensed_300_normal.ttf
-│   ├── Roboto+Condensed_300_normal.woff
-│   ├── Roboto+Condensed_400_normal.svg
-│   ├── Roboto+Condensed_400_normal.ttf
-│   ├── Roboto+Condensed_400_normal.woff
-│   ├── Roboto+Condensed_700_normal.ttf
-│   ├── Roboto+Condensed_700_normal.woff
-│   ├── Roboto+Slab_400_normal.svg
-│   ├── Roboto+Slab_400_normal.ttf
-│   ├── Roboto+Slab_400_normal.woff
-│   ├── mochawesome.eot
-│   ├── mochawesome.svg
-│   ├── mochawesome.ttf
-│   └── mochawesome.woff
-├── js
-│   ├── mochawesome.js
-│   └── vendor.js
-├── mochawesome.html
-└── mochawesome.json
+mochawesome-report/
+├── assets
+│   ├── app.css
+│   ├── app.js
+│   ├── MaterialIcons-Regular.woff
+│   ├── MaterialIcons-Regular.woff2
+│   ├── roboto-light-webfont.woff
+│   ├── roboto-light-webfont.woff2
+│   ├── roboto-medium-webfont.woff
+│   ├── roboto-medium-webfont.woff2
+│   ├── roboto-regular-webfont.woff
+│   └── roboto-regular-webfont.woff2
+└── mochawesome.html
 ```
 
-The two main files to be aware of are:
+##CLI Options
 
-**mochawesome.html** - The rendered report file
+mochawesome-report can be configured via command line flags
 
-**mochawesome.json** - The raw json output used to render the report
-
-
-##Options
-Mochawesome supports options via environment variables or passed in to mocha via `--reporter-options`.
-
-- `reportDir: {String}` - changes the name of the report directory
-- `reportName: {String}` - changes the name of the report file
-- `reportTitle: {Sring}` - changes the title of the report
-- `inlineAssets: {Boolean}` - when `true` inlines all report assets into a self-contained report file
-
-*Setting a custom filename will change both the report html and json files.*
-
-**Options passed in will take precedence over environment variables.**
+Flag | Type | Default | Description 
+:--- | :--- | :------ | :----------
+-f, --reportFilename | string | mochawesome | Filename of saved report
+-o, --reportDir | string | [cwd]/mochawesome-report | Path to save report
+-t, --reportTitle | string | mochawesome | Report title
+-p, --reportPageTitle | string | mochawesome-report | Browser title
+-i, --inline | boolean | false | Inline report assets (scripts, styles)
+--charts | boolean | true | Display Suite charts
+--code | boolean | true | Display test code
+--dev | boolean | false | Enable dev mode (requires local webpack dev server)
+-h, --help | | | Show CLI help
 
 
-####Environment variables
-```bash
-$ export MOCHAWESOME_REPORTDIR=customReportDir
-$ export MOCHAWESOME_REPORTNAME=customReportName
-$ export MOCHAWESOME_REPORTTITLE=customReportTitle
-$ export MOCHAWESOME_INLINEASSETS=true
-```
-
-####Mocha options
-```bash
-$ mocha test.js --reporter mochawesome --reporter-options reportDir=customReportDir,reportName=customReportName,reportTitle=customReportTitle,inlineAssets=true
-```
-
-```js
-var mocha = new Mocha({
-    reporter: 'mochawesome',
-    reporterOptions: {
-      reportDir: 'customReportDir',
-      reportName: 'customReportName',
-      reportTitle: 'customReportTitle',
-      inlineAssets: true
-    }
-});
-  ```
-
-
-##Development
-If you wish to make changes to the reporter you will need to clone the repo and build locally. Building requires you to have [gulp](https://github.com/gulpjs/gulp) installed.
-
-###Installation
-```sh
-$ git clone https://github.dowjones.net/grubera/mochawesome
-```
-###Modifying
-Reporter files are found in `/lib` directory.
-Templates, styles, and client-side scripts are in the `/src` directory.
-
-###Building
-There are several gulp tasks available but the main ones to be aware of are:
-
-####`gulp build` - Full Build
-Runs jshint, parses LESS, compiles templates, concatenates and minifies scripts.
-*Note: This task will fail if linting fails.*
-
-####`gulp watch` - Watch Files
-Watches for changes to JS, LESS, and MU and builds when a change is detected. If a change is detected in a JS file this will run jshint first before building and will fail on any lint errors.
-
-####`gulp lint` - Lint JS
-This will run jshint only, no building will occur.
-
-####`gulp test` - Run Test
-After building you can run this to test the reporter and see the output.
-*Note: The default gulp task will run this task.*
-
-####`gulp testOpts` - Run Test with Options
-After building you can run this to test the reporter and see the output.
+*Boolean options can be negated by adding `--no` before the option. For example: `--no-code` would set `code` to `false`.*
 
 [1]: http://visionmedia.github.io/mocha/
+[2]: https://github.com/adamgruber/mochawesome
