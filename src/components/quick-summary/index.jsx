@@ -28,12 +28,12 @@ const QuickSummary = ({ stats }) => {
         <li className={ cx('item', 'failures') } title='Failed'>
           <Icon name='close' className={ cx('icon', 'circle-icon') } />{ failures }
         </li>
-        { pending && (
+        { !!pending && (
           <li className={ cx('item', 'pending') } title='Pending'>
             <Icon name='pause' className={ cx('icon', 'circle-icon') } />{ pending }
           </li>)
         }
-        { skipped && (
+        { !!skipped && (
           <li className={ cx('item', 'skipped') } title='Skipped'>
             <Icon name='stop' className={ cx('icon', 'circle-icon') } />{ skipped }
           </li>)
