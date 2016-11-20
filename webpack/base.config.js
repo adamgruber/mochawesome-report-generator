@@ -1,4 +1,5 @@
 const path = require('path');
+
 const env = (!!process.env.BABEL_ENV && process.env.BABEL_ENV) ||
           (!!process.env.NODE_ENV && process.env.NODE_ENV) ||
           'development';
@@ -28,7 +29,7 @@ module.exports = {
       'styles'
     ]
   },
-  postcss: (wp) => [
+  postcss: wp => [
     require('postcss-import')({
       addDependencyTo: wp,
       plugins: [ require('stylelint')() ]
