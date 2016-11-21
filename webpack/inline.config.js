@@ -1,7 +1,7 @@
+/* eslint-disable max-len */
 const path = require('path');
-const webpack = require('webpack');
-const baseConfig = require('./base.config');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const baseConfig = require('./base.config');
 
 const JS_REGEX = /\.js$|\.jsx$|\.es6$|\.babel$/;
 
@@ -16,7 +16,7 @@ module.exports = Object.assign({}, baseConfig, {
     loaders: [ {
       test: JS_REGEX,
       exclude: /node_modules/,
-      loader: 'babel'
+      loader: 'babel-loader'
     }, {
       test: /\.json$/,
       loader: 'json'
@@ -27,7 +27,8 @@ module.exports = Object.assign({}, baseConfig, {
       test: /^((?!\.global).)*\.css$/,
       loader: ExtractTextPlugin.extract('style-loader', 'css-loader?minimize&modules&importLoaders=1&localIdentName=[name]--[local]---[hash:base64:5]!postcss-loader')
     }, {
-      test: /\.less$/, exclude: /node_modules/,
+      test: /\.less$/,
+      exclude: /node_modules/,
       loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')
     }, {
       test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
@@ -39,10 +40,5 @@ module.exports = Object.assign({}, baseConfig, {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'url?limit=100000&mimetype=image/svg+xml&name=[name].[ext]'
     } ]
-  },
-  plugins: [
-    new webpack.optimize.AggressiveMergingPlugin(),
-    new ExtractTextPlugin('[name].css', { allChunks: true })
-    // new webpack.optimize.UglifyJsPlugin({ compress: true })
-  ]
+  }
 });

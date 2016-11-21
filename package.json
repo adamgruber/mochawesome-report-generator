@@ -1,6 +1,6 @@
 {
   "name": "mochawesome-report",
-  "version": "1.0.0-alpha",
+  "version": "1.0.1-alpha",
   "description": "Generates gorgeous HTML reports in Mocha.js from mochawesome reporter.",
   "scripts": {
     "lint": "eslint bin lib src test/spec",
@@ -8,6 +8,9 @@
     "test:single": "cross-env UV_THREADPOOL_SIZE=100 BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc $(npm bin)/mocha --require test/helper.js ",
     "test:fn": "node ./test-functional/create-report.js",
     "start": "node ./lib/main.js",
+    "compile:main": "babel ./lib/main.js --out-dir dist",
+    "build:main": "$(npm bin)/webpack --config ./webpack/main.config.js",
+    "build:main:prod": "NODE_ENV=production $(npm bin)/webpack --config ./webpack/main.config.js",
     "build:assets": "rm -rf dist/assets && npm run pack && npm run pack:inline",
     "build:assets:prod": "NODE_ENV=production npm run build:assets",
     "pack": "$(npm bin)/webpack --config ./webpack/external.config.js",
@@ -30,7 +33,7 @@
     "react"
   ],
   "engine": "node >= 4",
-  "main": "mochawesome-report.js",
+  "main": "dist/main.js",
   "bin": {
     "mareport": "./bin/cli.js"
   },

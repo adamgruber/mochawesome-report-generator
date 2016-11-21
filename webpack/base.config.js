@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const env = (!!process.env.BABEL_ENV && process.env.BABEL_ENV) ||
           (!!process.env.NODE_ENV && process.env.NODE_ENV) ||
@@ -7,6 +9,22 @@ const env = (!!process.env.BABEL_ENV && process.env.BABEL_ENV) ||
 const isDev = env === 'development';
 const publicPath = isDev ? 'http://localhost:8080/' : '';
 const devtool = isDev ? 'source-map' : '';
+
+const plugins = [
+  new ExtractTextPlugin('[name].css', { allChunks: true }),
+  new webpack.optimize.OccurrenceOrderPlugin()
+];
+
+if (env === 'production') {
+  plugins.push(new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify('production')
+    }
+  }));
+  plugins.push(new webpack.optimize.UglifyJsPlugin({
+    compress: { warnings: false }
+  }));
+}
 
 module.exports = {
   devtool,
@@ -18,7 +36,6 @@ module.exports = {
     path: path.resolve(__dirname, '..', 'dist', 'assets'),
     publicPath,
     filename: '[name].js'
-    // chunkFilename: '[name]-[hash].js'
   },
   resolve: {
     extensions: [ '', '.js', '.json', '.jsx', '.es6', '.babel', '.css', 'less' ],
@@ -29,6 +46,7 @@ module.exports = {
       'styles'
     ]
   },
+  plugins,
   postcss: wp => [
     require('postcss-import')({
       addDependencyTo: wp,
@@ -38,8 +56,6 @@ module.exports = {
     require('postcss-cssnext')({
       browsers: [ 'last 2 versions', 'not ie <= 8' ]
     }),
-    // add additional plugins here
-    // require('postcss-browser-reporter')(),
     require('postcss-reporter')()
   ]
 };

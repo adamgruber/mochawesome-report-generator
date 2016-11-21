@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+require('babel-core/register');
 const path = require('path');
 const fs = require('fs-extra');
 const report = require('../lib/main');

@@ -1,5 +1,4 @@
-const path = require('path');
-const webpack = require('webpack');
+/* eslint-disable max-len */
 const baseConfig = require('./base.config');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -13,7 +12,10 @@ module.exports = Object.assign({}, baseConfig, {
     loaders: [ {
       test: JS_REGEX,
       exclude: /node_modules/,
-      loader: 'babel'
+      loader: 'babel-loader',
+      query: {
+        plugins: [ 'transform-runtime' ]
+      }
     }, {
       test: /\.json$/,
       loader: 'json'
@@ -30,10 +32,5 @@ module.exports = Object.assign({}, baseConfig, {
       test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'url?limit=1000&mimetype=application/octet-stream&name=[name].[ext]'
     } ]
-  },
-  plugins: [
-    new webpack.optimize.AggressiveMergingPlugin(),
-    new ExtractTextPlugin('[name].css', { allChunks: true })
-    // new webpack.optimize.UglifyJsPlugin({ compress: true })
-  ]
+  }
 });
