@@ -12,10 +12,7 @@ module.exports = Object.assign({}, baseConfig, {
     loaders: [ {
       test: JS_REGEX,
       exclude: /node_modules/,
-      loader: 'babel-loader',
-      query: {
-        plugins: [ 'transform-runtime' ]
-      }
+      loader: 'babel-loader'
     }, {
       test: /\.json$/,
       loader: 'json'
