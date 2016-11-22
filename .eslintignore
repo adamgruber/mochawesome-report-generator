@@ -1,3 +1,4 @@
 webpack/
 coverage/
 dist/
+lib/main-html.js
