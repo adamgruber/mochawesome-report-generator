@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
-import sinon from 'sinon';
 
 import QuickSummary from 'components/quick-summary';
 
@@ -15,10 +14,9 @@ describe('<QuickSummary />', () => {
     const wrapper = shallow(<QuickSummary { ...instanceProps } />);
     return {
       wrapper,
-      lists: wrapper.find('.quick-summary-list'),
-      items: wrapper.find('.quick-summary-item')
+      lists: wrapper.find('.quick-summary-list')
     };
-  }
+  };
 
   beforeEach(() => {
     props = {
@@ -35,7 +33,7 @@ describe('<QuickSummary />', () => {
   });
 
   it('renders with all items', () => {
-    const { lists, items } = getInstance(props);
+    const { lists } = getInstance(props);
     expect(lists).to.have.lengthOf(2);
     expect(lists.at(0).find('.quick-summary-item')).to.have.lengthOf(3);
     expect(lists.at(1).find('.quick-summary-item')).to.have.lengthOf(4);
@@ -44,7 +42,7 @@ describe('<QuickSummary />', () => {
   it('renders without pending or skipped', () => {
     props.stats.pending = 0;
     props.stats.skipped = 0;
-    const { lists, items } = getInstance(props);
+    const { lists } = getInstance(props);
     expect(lists).to.have.lengthOf(2);
     expect(lists.at(0).find('.quick-summary-item')).to.have.lengthOf(3);
     expect(lists.at(1).find('.quick-summary-item')).to.have.lengthOf(2);

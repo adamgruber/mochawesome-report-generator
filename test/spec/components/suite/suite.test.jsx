@@ -9,8 +9,8 @@ import SuiteChart from 'components/suite/chart';
 import SuiteList from 'components/suite/list';
 import TestList from 'components/test/list';
 
-import basicSuite from 'sample-data/suite.json'
-import nestedSuite from 'sample-data/test-data.json'
+import basicSuite from 'sample-data/suite.json';
+import nestedSuite from 'sample-data/test-data.json';
 
 chai.use(chaiEnzyme());
 
@@ -52,7 +52,7 @@ describe('<Suite />', () => {
     const instProps = Object.assign({}, props, {
       suite: newSuite
     });
-    const { wrapper, chart, summary, testList } = getInstance(instProps);
+    const { wrapper } = getInstance(instProps);
     expect(wrapper.find('.suite-title').text()).to.equal(' ');
     expect(wrapper.find('.suite-filename').text()).to.equal(' ');
   });

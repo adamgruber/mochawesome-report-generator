@@ -8,7 +8,6 @@ import CodeSnippet from 'components/test/code-snippet';
 chai.use(chaiEnzyme());
 
 describe('<CodeSnippet />', () => {
-  let reportStore;
   let node;
 
   const getInstance = instanceProps => {
@@ -16,7 +15,7 @@ describe('<CodeSnippet />', () => {
       attachTo: node
     });
     return wrapper;
-  }
+  };
 
   beforeEach(() => {
     node = document.createElement('div');
@@ -32,7 +31,7 @@ describe('<CodeSnippet />', () => {
     const props = {
       code: 'function(){console.log(\'sample code\');}'
     };
-    const wrapper = getInstance(props);
+    getInstance(props);
     expect(document.querySelectorAll('.hljs-keyword').length).to.equal(1);
   });
 
@@ -41,7 +40,7 @@ describe('<CodeSnippet />', () => {
       code: 'function(){console.log(\'sample code\');}',
       lang: 'diff'
     };
-    const wrapper = getInstance(props);
+    getInstance(props);
     expect(document.querySelectorAll('.test-code-diff-expected').length).to.equal(1);
     expect(document.querySelectorAll('.test-code-diff-actual').length).to.equal(1);
   });

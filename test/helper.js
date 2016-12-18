@@ -8,14 +8,17 @@ require('app-module-path').addPath(path.join(__dirname, '..', 'src'));
 require('babel-register');
 
 // CSS Modules Runtime
-var cssHook = require('css-modules-require-hook');
+const cssHook = require('css-modules-require-hook');
+
 cssHook({
   generateScopedName: '[name]-[local]'
 });
 
 // Setup browser environment
 const exposedProperties = [ 'window', 'navigator', 'document' ];
+
 global.document = require('jsdom').jsdom('<body></body>');
+
 global.window = document.defaultView;
 Object.keys(document.defaultView).forEach(property => {
   if (typeof global[property] === 'undefined') {

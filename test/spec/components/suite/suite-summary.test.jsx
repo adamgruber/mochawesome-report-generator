@@ -23,7 +23,7 @@ describe('<SuiteSummary />', () => {
       totalPasses: 1,
       totalFailures: 1,
       totalPending: 1,
-      totalSkipped: 1,
+      totalSkipped: 1
     };
     const { items } = getInstance(props);
     expect(items).to.have.lengthOf(6);
@@ -32,7 +32,7 @@ describe('<SuiteSummary />', () => {
   it('renders summary without test counts', () => {
     const props = {
       duration: 12,
-      totalTests: 0,
+      totalTests: 0
     };
     const { items } = getInstance(props);
     expect(items).to.have.lengthOf(2);

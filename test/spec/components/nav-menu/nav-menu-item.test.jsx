@@ -29,7 +29,7 @@ describe('<NavMenuItem />', () => {
       showPending: true,
       showSkipped: true
     };
-  })
+  });
 
   it('should render', () => {
     const testProps = Object.assign({}, props, {

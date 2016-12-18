@@ -1,3 +1,4 @@
+/* eslint-disable max-len, no-useless-escape */
 import React from 'react';
 import { shallow } from 'enzyme';
 import chai, { expect } from 'chai';
