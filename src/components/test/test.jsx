@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, { PropTypes } from 'react';
 import { Duration, Icon } from 'components';
-import { CodeSnippet } from 'components/test';
+import { CodeSnippet, TestContext } from 'components/test';
 import classNames from 'classnames/bind';
 import styles from './test.css';
 
@@ -35,7 +35,7 @@ class Test extends React.Component {
 
   render() {
     const { test, enableCode } = this.props;
-    const { uuid, title, speed, duration, pass, fail, pending, skipped, err, code } = test;
+    const { uuid, title, speed, duration, pass, fail, pending, skipped, err, code, context } = test;
 
     const testIcon = () => {
       let iconName;
@@ -84,9 +84,10 @@ class Test extends React.Component {
           <p className={ cx('error-message') }>{ `${err.name}: ${err.message}` }</p>
         ) }
         <div className={ cx('body') }>
-          { <CodeSnippet className={ cx('code-snippet') } code={ err.estack } highlight={ false } /> }
-          { <CodeSnippet className={ cx('code-snippet') } code={ err.diff } lang='diff' /> }
-          { enableCode && <CodeSnippet className={ cx('code-snippet') } code={ code } /> }
+          { <CodeSnippet className={ cx('code-snippet') } code={ err.estack } highlight={ false } label='Stack Trace' /> }
+          { <CodeSnippet className={ cx('code-snippet') } code={ err.diff } lang='diff' label='Diff' /> }
+          { enableCode && <CodeSnippet className={ cx('code-snippet') } code={ code } label='Test Code' /> }
+          { !!context && <TestContext context={ context } /> }
         </div>
       </section>
     );

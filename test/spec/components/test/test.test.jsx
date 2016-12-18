@@ -5,8 +5,7 @@ import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
 
-import Test from 'components/test/test';
-import CodeSnippet from 'components/test/code-snippet';
+import { Test, CodeSnippet, TestContext } from 'components/test';
 
 chai.use(chaiEnzyme());
 
@@ -26,6 +25,25 @@ const passingTest = {
   uuid: '5c3ec47f-307f-4a35-b77a-d0d218acbc4d',
   parentUUID: '17bc6546-127d-4fc2-84b7-4aa033a8d2d3',
   skipped: false
+};
+
+const passingTestWithContext = {
+  title: 'should be passing test if true is not false',
+  fullTitle: 'Master Test Suite Test Suite - Basic should be passing test if true is not false',
+  timedOut: false,
+  duration: 1,
+  state: 'passed',
+  speed: 'medium',
+  pass: true,
+  fail: false,
+  pending: false,
+  code: 'true.should.be.ok;\ndone();',
+  err: {},
+  isRoot: false,
+  uuid: '5c3ec47f-307f-4a35-b77a-d0d218acbc4d',
+  parentUUID: '17bc6546-127d-4fc2-84b7-4aa033a8d2d3',
+  skipped: false,
+  context: "\'sample context\'"
 };
 
 const failingTest = {
@@ -94,7 +112,8 @@ describe('<Test />', () => {
     return {
       wrapper,
       snippets: wrapper.find(CodeSnippet),
-      errorMsg: wrapper.find('.test-error-message')
+      errorMsg: wrapper.find('.test-error-message'),
+      ctx: wrapper.find(TestContext)
     };
   };
 
@@ -109,9 +128,20 @@ describe('<Test />', () => {
   });
 
   it('renders passing test', () => {
-    const { wrapper, snippets, errorMsg } = getInstance({ test: passingTest });
+    const { wrapper, snippets, errorMsg, ctx } = getInstance({ test: passingTest });
     expect(snippets).to.have.lengthOf(3);
     expect(errorMsg).to.have.lengthOf(0);
+    expect(ctx).to.have.lengthOf(0);
+    wrapper.simulate('click');
+    expect(toggleSpy.calledOnce).to.equal(true);
+    expect(setStateSpy.calledOnce).to.equal(true);
+  });
+
+  it('renders passing test with context', () => {
+    const { wrapper, snippets, errorMsg, ctx } = getInstance({ test: passingTestWithContext });
+    expect(snippets).to.have.lengthOf(3);
+    expect(errorMsg).to.have.lengthOf(0);
+    expect(ctx).to.have.lengthOf(1);
     wrapper.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.calledOnce).to.equal(true);

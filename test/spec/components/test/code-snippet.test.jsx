@@ -50,8 +50,18 @@ describe('<CodeSnippet />', () => {
       code: 'function(){console.log(\'sample code\');}',
       highlight: false
     };
-    const wrapper = getInstance(props);
+    getInstance(props);
     expect(document.querySelectorAll('.hljs-keyword').length).to.equal(0);
+  });
+
+  it('renders label', () => {
+    const props = {
+      code: 'function(){console.log(\'sample code\');}',
+      showLabel: true,
+      label: 'code'
+    };
+    getInstance(props);
+    expect(document.querySelectorAll('.test-code-label').length).to.equal(1);
   });
 
   it('does not render when code is not passed', () => {

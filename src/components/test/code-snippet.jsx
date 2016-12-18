@@ -14,12 +14,15 @@ class CodeSnippet extends Component {
     className: PropTypes.string,
     code: PropTypes.string,
     lang: PropTypes.string,
-    highlight: PropTypes.bool
+    highlight: PropTypes.bool,
+    label: PropTypes.string,
+    showLabel: PropTypes.bool
   };
 
   static defaultProps = {
     lang: 'javascript',
-    highlight: true
+    highlight: true,
+    showLabel: false
   };
 
   componentDidMount() {
@@ -39,7 +42,7 @@ class CodeSnippet extends Component {
   }
 
   render() {
-    const { className, code, lang, highlight } = this.props;
+    const { className, code, lang, highlight, label, showLabel } = this.props;
     let codeHtml = code;
 
     // Add - expected + actual to top of diffs
@@ -54,6 +57,7 @@ class CodeSnippet extends Component {
     return !!code && (
       <pre className={ cxName } ref={ node => (this.node = node) }>
         <code dangerouslySetInnerHTML={ { __html: codeHtml } } />
+        { !!label && showLabel && <span className={ cx('code-label') }>{ label }</span> }
       </pre>
     );
   }

@@ -97,9 +97,11 @@
 .body {
   display: none;
   background-color: var(--grey50);
+  border: 1px solid var(--grey50);
   border-radius: 4px;
   @nest .expanded & {
     display: block;
+    margin-top: 10px;
   }
 }
 
@@ -110,12 +112,10 @@
 }
 
 .code-snippet {
+  position: relative;
   font-size: 11px;
   margin: 0;
   border-radius: 0;
-  &:first-child {
-    margin-top: 10px;
-  }
   & + .code-snippet {
     border-top: 1px solid #fff;
   }
@@ -130,4 +130,49 @@
 }
 .code-diff-actual span {
   color: #859900;
+}
+
+.code-label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.2em 0.6em;
+  background-color: var(--grey500);
+  color: #fff;
+  @apply --font-regular;
+}
+
+.context {
+  background-color: #fff;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.context-title {
+  @apply --font-regular;
+  @apply --text-overflow;
+  font-size: 13px;
+  line-height: 24px;
+  color: var(--black54);
+  margin: 0;
+  padding: 1em 1em 0 1em;
+}
+
+.context-item-title {
+  @apply --font-medium;
+  @apply --text-overflow;
+  font-size: 13px;
+  margin: 0;
+  padding: 1em 1em 0 1em;
+}
+
+.image-link {
+  display: block;
+  padding: 1em 1em 0 1em;
+}
+
+.image {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
