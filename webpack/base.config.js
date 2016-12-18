@@ -47,9 +47,8 @@ module.exports = {
     ]
   },
   plugins,
-  postcss: wp => [
+  postcss: () => [
     require('postcss-import')({
-      addDependencyTo: wp,
       plugins: [ require('stylelint')() ]
     }),
     require('postcss-url')(),
