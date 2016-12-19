@@ -1,7 +1,7 @@
 {
-  "name": "mochawesome-report",
-  "version": "1.0.0-alpha.2",
-  "description": "Generates gorgeous HTML reports in Mocha.js from mochawesome reporter.",
+  "name": "mochawesome-report-generator",
+  "version": "1.0.0",
+  "description": "Generates gorgeous HTML reports from mochawesome reporter.",
   "scripts": {
     "lint": "eslint bin lib src/js src/components/**/*.js src/components/**/*.jsx test/**/*.js test/**/*.jsx",
     "test": "cross-env UV_THREADPOOL_SIZE=100 BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc $(npm bin)/mocha --require test/helper.js \"test/spec/**/*.test.+(js|jsx)\"",
@@ -19,19 +19,20 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/adamgruber/mochawesome-report"
+    "url": "https://github.com/adamgruber/mochawesome-report-generator"
   },
   "keywords": [
     "mochawesome",
     "mocha",
     "reporter",
     "json",
-    "react"
+    "react",
+    "report generator"
   ],
   "engine": "node >= 4",
   "main": "lib/main.js",
   "bin": {
-    "margen": "./bin/cli.js"
+    "marge": "./bin/cli.js"
   },
   "nyc": {
     "sourceMap": false,

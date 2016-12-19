@@ -1,10 +1,11 @@
-mochawesome-report
-==================
-[![npm](https://img.shields.io/npm/v/mochawesome-report.svg?style=flat-square)](http://www.npmjs.com/package/mochawesome-report) [![Build Status](https://img.shields.io/travis/adamgruber/mochawesome-report/master.svg?style=flat-square)](https://travis-ci.org/adamgruber/mochawesome-report) [![Code Climate](https://img.shields.io/codeclimate/github/adamgruber/mochawesome-report.svg?style=flat-square)](https://codeclimate.com/github/adamgruber/mochawesome-report)
+mochawesome-report-generator (marge)
+============================
+[![npm](https://img.shields.io/npm/v/mochawesome-report-generator.svg?style=flat-square)](http://www.npmjs.com/package/mochawesome-report-generator) [![Build Status](https://img.shields.io/travis/adamgruber/mochawesome-report-generator/master.svg?style=flat-square)](https://travis-ci.org/adamgruber/mochawesome-report-generator) [![Code Climate](https://img.shields.io/codeclimate/github/adamgruber/mochawesome-report-generator.svg?style=flat-square)](https://codeclimate.com/github/adamgruber/mochawesome-report-generator)
 
-mochawesome-report is the counterpart to a [mochawesome][2], a custom reporter for use with the Javascript testing framework, [mocha][1]. This package takes the JSON output from [mochawesome][2] and generates a full fledged HTML/CSS report that helps visualize your test suites.
+**marge** (**m**och**a**wesome-**r**eport-**ge**nerator) is the counterpart to [mochawesome][2], a custom reporter for use with the Javascript testing framework, [mocha][1]. Marge takes the JSON output from [mochawesome][2] and generates a full fledged HTML/CSS report that helps visualize your test suites.
 
 ##Features
+- All-new redesigned and streamlined report
 - At-a-glance stats including pass percentage
 - Beautiful charts
 - Support for nested `describe`s
@@ -13,33 +14,35 @@ mochawesome-report is the counterpart to a [mochawesome][2], a custom reporter f
 - Quick navigation menu
 - Review test code inline
 - Stack trace for failed tests
+- Inline diffs for actual vs expected results
 - Responsive and mobile-friendly
-- Custom report [options](#options)
+- Supports displaying additional test context
+- Custom report [options](#cli-options)
 - Offline viewing
 - CLI for generating reports independent of [mochawesome][2]
 
 ##Browser Support
 Tested to work in Chrome. *Should* work in any modern web browser including IE9+.
-mochawesome-report generates a self-contained report that can be viewed offline. 
+**marge** generates a self-contained report that can be viewed offline. 
 
 ##Sample Report
 
-<img src="./docs/mochawesome-1_4.png" alt="Mochawesome Report" width="75%" />
-<img src="./docs/mochawesome-menu-1_4.png" alt="Mochawesome Report Menu" width="75%" />
+<img src="./docs/marge-report-1.0.0.png" alt="Mochawesome Report" width="75%" />
+<img src="./docs/marge-report-menu-1.0.0.png" alt="Mochawesome Report Menu" width="75%" />
 
 
 ##Usage
 
 **via CLI**
 
-Install mochawesome-report package
+Install mochawesome-report-generator package
 ```bash
-npm install -g mochawesome-report
+npm install -g mochawesome-report-generator
 ```
 
 Run the command
 ```bash
-mareport [test-output.json] <options>
+marge [test-output.json] <options>
 ```
 
 **via Mochawesome reporter**
@@ -47,7 +50,7 @@ mareport [test-output.json] <options>
 See mochawesome [docs][2].
 
 ##Output
-mochawesome-report generates the following inside your project directory:
+**marge** generates the following inside your project directory:
 ```
 mochawesome-report/
 ├── assets
@@ -66,7 +69,7 @@ mochawesome-report/
 
 ##CLI Options
 
-mochawesome-report can be configured via command line flags
+**marge** can be configured via command line flags
 
 Flag | Type | Default | Description 
 :--- | :--- | :------ | :----------

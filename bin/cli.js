@@ -9,7 +9,7 @@ const mareport = require('./cli-main');
 
 /* Report Options
  * @property {string}  reportFilename   Filename of report (default: mochawesome)
- * @property {string}  reportDir        Path to save report to (default: cwd/mochawesome-reports)
+ * @property {string}  reportDir        Path to save report to (default: cwd/mochawesome-report)
  * @property {string}  reportTitle      Title to use on the report (default: mochawesome)
  * @property {string}  reportPageTitle  Title of the report document (default: mochawesome-report)
  * @property {boolean} inlineAssets     Should assets be inlined into HTML file (default: false)
