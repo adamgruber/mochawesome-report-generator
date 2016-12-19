@@ -1,8 +1,30 @@
-languages:
-  JavaScript: true
+---
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+        javascript:
+          mass_threshold: 90
+  eslint:
+    enabled: true
+    channel: "eslint-3"
+    config:
+      extensions:
+        - ".js"
+        - ".jsx"
+  fixme:
+    enabled: true
+    exclude_fingerprints:
+      - 063e105fd06bf7d28c3ae977517b81af
+ratings:
+  paths:
+  - "src/**/*.css"
+  - "src/**/*.js"
+  - "src/**/*.jsx"
+  - "lib/**/*.js"
+  - "bin/**/*.js"
 exclude_paths:
-- "gulpfile.js"
-- "src/js/lodash.custom.js"
-- "dist/js/*.js"
-- "test/*"
-- "lib/templates.js"
+- dist/*
+- test/*
+- webpack/*

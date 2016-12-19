@@ -1,56 +1,85 @@
-@import '../../styles/_vars';
+@import '../../styles/vars';
 
-.navbar {
+.component {
+  @apply --clearfix;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
   min-height: var(--navbar-height);
   height: var(--navbar-height);
   margin-bottom: 0;
   border: none;
-  background: color(var(--gray-darker) alpha(95%));
-}
-
-.nav-menu-btn {
-  composes: trans-color from '_vars.css';
-  float: left;
-  color: #fff;
-  margin-top: 11px;
-  & i {
-    top: 1px;
-  }
-}
-
-.nav-right {
-  float: right;
+  background: var(--bluegrey800);
 }
 
 .report-info-cnt {
+  padding: 0 12px 0 48px;
+}
+
+.menu-button {
+  @apply --button-base;
+
+  position: absolute;
+  padding: 16px 12px;
+  height: 24px;
   float: left;
+  color: var(--light-icon-inactive);
+  &:hover {
+    color: var(--light-icon-active);
+  }
 }
 
 .report-title {
-  composes: font-slab-normal from '_fonts.css';
+  @apply --font-light;
   color: #fff;
-  font-size: 16px;
-  margin: 4px 0;
+  font-size: 18px;
+  line-height: calc(var(--navbar-height-short) - 4);
+  margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.report-date {
-  composes: font-cond-normal from '_fonts.css';
-  font-size: 13px;
-  text-transform: uppercase;
-  color: var(--gray-medium);
-  margin: 5px 0 0 0;
+.pct-bar {
+  @apply --clearfix;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  & .pass {
+    background-color: var(--green500);
+  }
+  & .fail {
+    background-color: var(--red500);
+  }
+  & .pend {
+    background-color: var(--ltblue500);
+  }
 }
 
-// Tablet 768 and up
+.pct-bar-segment {
+  height: 4px;
+  float: left;
+}
+
+/* Tablet 768 and up */
 @media (--screen-sm) {
-  .report-title {
-    font-size: 1.3em;
+  .component {
+    min-height: var(--navbar-height-short);
+    height: var(--navbar-height-short);
   }
-  .report-date {
-    font-size: 14px;
-    margin: 0;
+  .report-info-cnt {
+    padding: 0 530px 0 72px;
+  }
+  .stats {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .menu-button {
+    padding: 16px 24px;
   }
 }

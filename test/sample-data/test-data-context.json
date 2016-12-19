@@ -1,0 +1,657 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 4,
+    "passes": 3,
+    "pending": 0,
+    "failures": 1,
+    "start": "2016-12-08T04:03:55.604Z",
+    "end": "2016-12-08T04:03:55.675Z",
+    "duration": 71,
+    "testsRegistered": 4,
+    "passPercent": 75,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "passPercentClass": "warning",
+    "pendingPercentClass": "danger"
+  },
+  "suites": {
+    "title": "",
+    "suites": [
+      {
+        "title": "Master Test Suite",
+        "suites": [
+          {
+            "title": "Test Suite with Context",
+            "suites": [],
+            "tests": [
+              {
+                "title": "should have text context",
+                "fullTitle": "Master Test Suite Test Suite with Context should have text context",
+                "timedOut": false,
+                "duration": 10,
+                "state": "passed",
+                "speed": "fast",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "context": "\"this is the test context\"",
+                "code": "(1 + 1).should.equal(2);\nthis.test.context = 'this is the test context';\ndone();",
+                "err": {},
+                "isRoot": false,
+                "uuid": "8ebe7eba-f38a-4d90-a996-5c1e04188b4b",
+                "parentUUID": "375beb82-78e8-4a67-9956-6308e3dfea70",
+                "skipped": false
+              },
+              {
+                "title": "should have json context",
+                "fullTitle": "Master Test Suite Test Suite with Context should have json context",
+                "timedOut": false,
+                "duration": 2,
+                "state": "failed",
+                "pass": false,
+                "fail": true,
+                "pending": false,
+                "context": "{\n  \"title\": \"sample return object\",\n  \"value\": {\n    \"employees\": []\n  }\n}",
+                "code": "this.test.context = {\n  title: 'sample return object',\n  value: { employees: [] }\n};\nvar o = retObj();\no.should.eql({});\ndone();",
+                "err": {
+                  "operator": "to equal",
+                  "expected": "{}",
+                  "details": "",
+                  "showDiff": true,
+                  "actual": "{\n  \"employees\": {\n    \"employee\": [\n      {\n        \"firstName\": \"Tom\"\n        \"id\": \"1\"\n        \"lastName\": \"Cruise\"\n      }\n      {\n        \"firstName\": \"Maria\"\n        \"id\": \"2\"\n        \"lastName\": \"Sharapova\"\n      }\n      {\n        \"firstName\": \"James\"\n        \"id\": \"3\"\n        \"lastName\": \"Bond\"\n      }\n    ]\n  }\n}",
+                  "negate": false,
+                  "assertion": {
+                    "obj": {
+                      "employees": {
+                        "employee": [
+                          {
+                            "id": "1",
+                            "firstName": "Tom",
+                            "lastName": "Cruise"
+                          },
+                          {
+                            "id": "2",
+                            "firstName": "Maria",
+                            "lastName": "Sharapova"
+                          },
+                          {
+                            "id": "3",
+                            "firstName": "James",
+                            "lastName": "Bond"
+                          }
+                        ]
+                      }
+                    },
+                    "anyOne": false,
+                    "negate": false,
+                    "params": {
+                      "operator": "to equal",
+                      "expected": {},
+                      "details": "",
+                      "showDiff": true,
+                      "actual": {
+                        "employees": {
+                          "employee": [
+                            {
+                              "id": "1",
+                              "firstName": "Tom",
+                              "lastName": "Cruise"
+                            },
+                            {
+                              "id": "2",
+                              "firstName": "Maria",
+                              "lastName": "Sharapova"
+                            },
+                            {
+                              "id": "3",
+                              "firstName": "James",
+                              "lastName": "Bond"
+                            }
+                          ]
+                        }
+                      },
+                      "negate": false,
+                      "assertion": "[Circular ~.suites.suites.0.suites.0.tests.1.err.assertion]"
+                    }
+                  },
+                  "_message": "expected Object {\n  employees: Object {\n    employee: Array [\n      Object { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n      Object { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n      Object { id: '3', firstName: 'James', lastName: 'Bond' }\n    ]\n  }\n} to equal Object {}",
+                  "generatedMessage": true,
+                  "estack": "AssertionError: expected Object {\n  employees: Object {\n    employee: Array [\n      Object { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n      Object { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n      Object { id: '3', firstName: 'James', lastName: 'Bond' }\n    ]\n  }\n} to equal Object {}\n    at Assertion.fail (node_modules/should/cjs/should.js:205:17)\n    at Assertion.Object.defineProperty.value (node_modules/should/cjs/should.js:277:19)\n    at Context.<anonymous> (test-functional/test-context.js:38:16)",
+                  "diff": "- {\n-   \"employees\": {\n-     \"employee\": [\n-       {\n-         \"firstName\": \"Tom\"\n-         \"id\": \"1\"\n-         \"lastName\": \"Cruise\"\n-       }\n-       {\n-         \"firstName\": \"Maria\"\n-         \"id\": \"2\"\n-         \"lastName\": \"Sharapova\"\n-       }\n-       {\n-         \"firstName\": \"James\"\n-         \"id\": \"3\"\n-         \"lastName\": \"Bond\"\n-       }\n-     ]\n-   }\n- }\n+ {}\n"
+                },
+                "isRoot": false,
+                "uuid": "a3e7a767-ea3e-4669-849e-7f2009d99700",
+                "parentUUID": "375beb82-78e8-4a67-9956-6308e3dfea70",
+                "skipped": false
+              },
+              {
+                "title": "should have array context",
+                "fullTitle": "Master Test Suite Test Suite with Context should have array context",
+                "timedOut": false,
+                "duration": 1,
+                "state": "passed",
+                "speed": "fast",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "context": "[\n  {\n    \"title\": \"sample screenshot\",\n    \"value\": \"http://shushi168.com/data/out/193/37127382-random-image.png\"\n  },\n  {\n    \"title\": \"sample return\",\n    \"value\": {\n      \"employees\": []\n    }\n  }\n]",
+                "code": "this.test.context = [];\nthis.test.context.push({\n  title: 'sample screenshot',\n  value: 'http://shushi168.com/data/out/193/37127382-random-image.png'\n});\nthis.test.context.push({\n  title: 'sample return',\n  value: { employees: [] }\n});\n(1 + 1).should.equal(2);\ndone();",
+                "err": {},
+                "isRoot": false,
+                "uuid": "fdfd7c56-8129-4694-bc16-cbea78c5ef5c",
+                "parentUUID": "375beb82-78e8-4a67-9956-6308e3dfea70",
+                "skipped": false
+              },
+              {
+                "title": "should have text context - image",
+                "fullTitle": "Master Test Suite Test Suite with Context should have text context - image",
+                "timedOut": false,
+                "duration": 0,
+                "state": "passed",
+                "speed": "fast",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "context": "\"http://shushi168.com/data/out/193/37127382-random-image.png\"",
+                "code": "this.test.context = 'http://shushi168.com/data/out/193/37127382-random-image.png';\n(1 + 1).should.equal(2);\ndone();",
+                "err": {},
+                "isRoot": false,
+                "uuid": "5882b1f8-b155-4296-b0a9-8980b0350d93",
+                "parentUUID": "375beb82-78e8-4a67-9956-6308e3dfea70",
+                "skipped": false
+              }
+            ],
+            "pending": [],
+            "root": false,
+            "_timeout": 2000,
+            "file": "/test-functional/test-context.js",
+            "uuid": "375beb82-78e8-4a67-9956-6308e3dfea70",
+            "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test-context.js",
+            "passes": [
+              {
+                "title": "should have text context",
+                "fullTitle": "Master Test Suite Test Suite with Context should have text context",
+                "timedOut": false,
+                "duration": 10,
+                "state": "passed",
+                "speed": "fast",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "context": "\"this is the test context\"",
+                "code": "(1 + 1).should.equal(2);\nthis.test.context = 'this is the test context';\ndone();",
+                "err": {},
+                "isRoot": false,
+                "uuid": "8ebe7eba-f38a-4d90-a996-5c1e04188b4b",
+                "parentUUID": "375beb82-78e8-4a67-9956-6308e3dfea70",
+                "skipped": false
+              },
+              {
+                "title": "should have array context",
+                "fullTitle": "Master Test Suite Test Suite with Context should have array context",
+                "timedOut": false,
+                "duration": 1,
+                "state": "passed",
+                "speed": "fast",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "context": "[\n  {\n    \"title\": \"sample screenshot\",\n    \"value\": \"http://shushi168.com/data/out/193/37127382-random-image.png\"\n  },\n  {\n    \"title\": \"sample return\",\n    \"value\": {\n      \"employees\": []\n    }\n  }\n]",
+                "code": "this.test.context = [];\nthis.test.context.push({\n  title: 'sample screenshot',\n  value: 'http://shushi168.com/data/out/193/37127382-random-image.png'\n});\nthis.test.context.push({\n  title: 'sample return',\n  value: { employees: [] }\n});\n(1 + 1).should.equal(2);\ndone();",
+                "err": {},
+                "isRoot": false,
+                "uuid": "fdfd7c56-8129-4694-bc16-cbea78c5ef5c",
+                "parentUUID": "375beb82-78e8-4a67-9956-6308e3dfea70",
+                "skipped": false
+              },
+              {
+                "title": "should have text context - image",
+                "fullTitle": "Master Test Suite Test Suite with Context should have text context - image",
+                "timedOut": false,
+                "duration": 0,
+                "state": "passed",
+                "speed": "fast",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "context": "\"http://shushi168.com/data/out/193/37127382-random-image.png\"",
+                "code": "this.test.context = 'http://shushi168.com/data/out/193/37127382-random-image.png';\n(1 + 1).should.equal(2);\ndone();",
+                "err": {},
+                "isRoot": false,
+                "uuid": "5882b1f8-b155-4296-b0a9-8980b0350d93",
+                "parentUUID": "375beb82-78e8-4a67-9956-6308e3dfea70",
+                "skipped": false
+              }
+            ],
+            "failures": [
+              {
+                "title": "should have json context",
+                "fullTitle": "Master Test Suite Test Suite with Context should have json context",
+                "timedOut": false,
+                "duration": 2,
+                "state": "failed",
+                "pass": false,
+                "fail": true,
+                "pending": false,
+                "context": "{\n  \"title\": \"sample return object\",\n  \"value\": {\n    \"employees\": []\n  }\n}",
+                "code": "this.test.context = {\n  title: 'sample return object',\n  value: { employees: [] }\n};\nvar o = retObj();\no.should.eql({});\ndone();",
+                "err": {
+                  "operator": "to equal",
+                  "expected": "{}",
+                  "details": "",
+                  "showDiff": true,
+                  "actual": "{\n  \"employees\": {\n    \"employee\": [\n      {\n        \"firstName\": \"Tom\"\n        \"id\": \"1\"\n        \"lastName\": \"Cruise\"\n      }\n      {\n        \"firstName\": \"Maria\"\n        \"id\": \"2\"\n        \"lastName\": \"Sharapova\"\n      }\n      {\n        \"firstName\": \"James\"\n        \"id\": \"3\"\n        \"lastName\": \"Bond\"\n      }\n    ]\n  }\n}",
+                  "negate": false,
+                  "assertion": {
+                    "obj": {
+                      "employees": {
+                        "employee": [
+                          {
+                            "id": "1",
+                            "firstName": "Tom",
+                            "lastName": "Cruise"
+                          },
+                          {
+                            "id": "2",
+                            "firstName": "Maria",
+                            "lastName": "Sharapova"
+                          },
+                          {
+                            "id": "3",
+                            "firstName": "James",
+                            "lastName": "Bond"
+                          }
+                        ]
+                      }
+                    },
+                    "anyOne": false,
+                    "negate": false,
+                    "params": {
+                      "operator": "to equal",
+                      "expected": {},
+                      "details": "",
+                      "showDiff": true,
+                      "actual": {
+                        "employees": {
+                          "employee": [
+                            {
+                              "id": "1",
+                              "firstName": "Tom",
+                              "lastName": "Cruise"
+                            },
+                            {
+                              "id": "2",
+                              "firstName": "Maria",
+                              "lastName": "Sharapova"
+                            },
+                            {
+                              "id": "3",
+                              "firstName": "James",
+                              "lastName": "Bond"
+                            }
+                          ]
+                        }
+                      },
+                      "negate": false,
+                      "assertion": "[Circular ~.suites.suites.0.suites.0.failures.0.err.assertion]"
+                    }
+                  },
+                  "_message": "expected Object {\n  employees: Object {\n    employee: Array [\n      Object { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n      Object { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n      Object { id: '3', firstName: 'James', lastName: 'Bond' }\n    ]\n  }\n} to equal Object {}",
+                  "generatedMessage": true,
+                  "estack": "AssertionError: expected Object {\n  employees: Object {\n    employee: Array [\n      Object { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n      Object { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n      Object { id: '3', firstName: 'James', lastName: 'Bond' }\n    ]\n  }\n} to equal Object {}\n    at Assertion.fail (node_modules/should/cjs/should.js:205:17)\n    at Assertion.Object.defineProperty.value (node_modules/should/cjs/should.js:277:19)\n    at Context.<anonymous> (test-functional/test-context.js:38:16)",
+                  "diff": "- {\n-   \"employees\": {\n-     \"employee\": [\n-       {\n-         \"firstName\": \"Tom\"\n-         \"id\": \"1\"\n-         \"lastName\": \"Cruise\"\n-       }\n-       {\n-         \"firstName\": \"Maria\"\n-         \"id\": \"2\"\n-         \"lastName\": \"Sharapova\"\n-       }\n-       {\n-         \"firstName\": \"James\"\n-         \"id\": \"3\"\n-         \"lastName\": \"Bond\"\n-       }\n-     ]\n-   }\n- }\n+ {}\n"
+                },
+                "isRoot": false,
+                "uuid": "a3e7a767-ea3e-4669-849e-7f2009d99700",
+                "parentUUID": "375beb82-78e8-4a67-9956-6308e3dfea70",
+                "skipped": false
+              }
+            ],
+            "skipped": [],
+            "hasTests": true,
+            "hasSuites": false,
+            "totalTests": 4,
+            "totalPasses": 3,
+            "totalFailures": 1,
+            "totalPending": 0,
+            "totalSkipped": 0,
+            "hasPasses": true,
+            "hasFailures": true,
+            "hasPending": false,
+            "hasSkipped": false,
+            "duration": 13
+          }
+        ],
+        "tests": [],
+        "pending": [],
+        "root": false,
+        "_timeout": 2000,
+        "file": "/test-functional/test-context.js",
+        "uuid": "fc9aa824-7b84-4e3a-b879-e9900102f17e",
+        "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test-context.js",
+        "passes": [],
+        "failures": [],
+        "skipped": [],
+        "hasTests": false,
+        "hasSuites": true,
+        "totalTests": 0,
+        "totalPasses": 0,
+        "totalFailures": 0,
+        "totalPending": 0,
+        "totalSkipped": 0,
+        "hasPasses": false,
+        "hasFailures": false,
+        "hasPending": false,
+        "hasSkipped": false,
+        "duration": 0
+      }
+    ],
+    "tests": [],
+    "pending": [],
+    "root": true,
+    "_timeout": 2000,
+    "uuid": "64bf1f06-53ae-49af-87f7-dcbdd9baf0ca",
+    "fullFile": "",
+    "file": "",
+    "passes": [],
+    "failures": [],
+    "skipped": [],
+    "hasTests": false,
+    "hasSuites": true,
+    "totalTests": 0,
+    "totalPasses": 0,
+    "totalFailures": 0,
+    "totalPending": 0,
+    "totalSkipped": 0,
+    "hasPasses": false,
+    "hasFailures": false,
+    "hasPending": false,
+    "hasSkipped": false,
+    "duration": 0,
+    "rootEmpty": true
+  },
+  "allTests": [
+    {
+      "title": "should have text context",
+      "fullTitle": "Test Suite with Context should have text context",
+      "timedOut": false,
+      "duration": 10,
+      "state": "passed",
+      "speed": "fast",
+      "pass": true,
+      "fail": false,
+      "pending": false,
+      "context": "\"this is the test context\"",
+      "code": "(1 + 1).should.equal(2);\nthis.test.context = 'this is the test context';\ndone();",
+      "err": {},
+      "isRoot": false,
+      "uuid": "8ebe7eba-f38a-4d90-a996-5c1e04188b4b",
+      "parentUUID": "375beb82-78e8-4a67-9956-6308e3dfea70",
+      "skipped": false
+    },
+    {
+      "title": "should have json context",
+      "fullTitle": "Test Suite with Context should have json context",
+      "timedOut": false,
+      "duration": 2,
+      "state": "failed",
+      "pass": false,
+      "fail": true,
+      "pending": false,
+      "context": "{\n  \"title\": \"sample return object\",\n  \"value\": {\n    \"employees\": []\n  }\n}",
+      "code": "this.test.context = {\n  title: 'sample return object',\n  value: { employees: [] }\n};\nvar o = retObj();\no.should.eql({});\ndone();",
+      "err": {
+        "operator": "to equal",
+        "expected": "{}",
+        "details": "",
+        "showDiff": true,
+        "actual": "{\n  \"employees\": {\n    \"employee\": [\n      {\n        \"firstName\": \"Tom\"\n        \"id\": \"1\"\n        \"lastName\": \"Cruise\"\n      }\n      {\n        \"firstName\": \"Maria\"\n        \"id\": \"2\"\n        \"lastName\": \"Sharapova\"\n      }\n      {\n        \"firstName\": \"James\"\n        \"id\": \"3\"\n        \"lastName\": \"Bond\"\n      }\n    ]\n  }\n}",
+        "negate": false,
+        "assertion": {
+          "obj": {
+            "employees": {
+              "employee": [
+                {
+                  "id": "1",
+                  "firstName": "Tom",
+                  "lastName": "Cruise"
+                },
+                {
+                  "id": "2",
+                  "firstName": "Maria",
+                  "lastName": "Sharapova"
+                },
+                {
+                  "id": "3",
+                  "firstName": "James",
+                  "lastName": "Bond"
+                }
+              ]
+            }
+          },
+          "anyOne": false,
+          "negate": false,
+          "params": {
+            "operator": "to equal",
+            "expected": {},
+            "details": "",
+            "showDiff": true,
+            "actual": {
+              "employees": {
+                "employee": [
+                  {
+                    "id": "1",
+                    "firstName": "Tom",
+                    "lastName": "Cruise"
+                  },
+                  {
+                    "id": "2",
+                    "firstName": "Maria",
+                    "lastName": "Sharapova"
+                  },
+                  {
+                    "id": "3",
+                    "firstName": "James",
+                    "lastName": "Bond"
+                  }
+                ]
+              }
+            },
+            "negate": false,
+            "assertion": "[Circular ~.allTests.1.err.assertion]"
+          }
+        },
+        "_message": "expected Object {\n  employees: Object {\n    employee: Array [\n      Object { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n      Object { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n      Object { id: '3', firstName: 'James', lastName: 'Bond' }\n    ]\n  }\n} to equal Object {}",
+        "generatedMessage": true,
+        "estack": "AssertionError: expected Object {\n  employees: Object {\n    employee: Array [\n      Object { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n      Object { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n      Object { id: '3', firstName: 'James', lastName: 'Bond' }\n    ]\n  }\n} to equal Object {}\n    at Assertion.fail (node_modules/should/cjs/should.js:205:17)\n    at Assertion.Object.defineProperty.value (node_modules/should/cjs/should.js:277:19)\n    at Context.<anonymous> (test-functional/test-context.js:38:16)",
+        "diff": "- {\n-   \"employees\": {\n-     \"employee\": [\n-       {\n-         \"firstName\": \"Tom\"\n-         \"id\": \"1\"\n-         \"lastName\": \"Cruise\"\n-       }\n-       {\n-         \"firstName\": \"Maria\"\n-         \"id\": \"2\"\n-         \"lastName\": \"Sharapova\"\n-       }\n-       {\n-         \"firstName\": \"James\"\n-         \"id\": \"3\"\n-         \"lastName\": \"Bond\"\n-       }\n-     ]\n-   }\n- }\n+ {}\n"
+      },
+      "isRoot": false,
+      "uuid": "a3e7a767-ea3e-4669-849e-7f2009d99700",
+      "parentUUID": "375beb82-78e8-4a67-9956-6308e3dfea70",
+      "skipped": false
+    },
+    {
+      "title": "should have array context",
+      "fullTitle": "Test Suite with Context should have array context",
+      "timedOut": false,
+      "duration": 1,
+      "state": "passed",
+      "speed": "fast",
+      "pass": true,
+      "fail": false,
+      "pending": false,
+      "context": "[\n  {\n    \"title\": \"sample screenshot\",\n    \"value\": \"http://shushi168.com/data/out/193/37127382-random-image.png\"\n  },\n  {\n    \"title\": \"sample return\",\n    \"value\": {\n      \"employees\": []\n    }\n  }\n]",
+      "code": "this.test.context = [];\nthis.test.context.push({\n  title: 'sample screenshot',\n  value: 'http://shushi168.com/data/out/193/37127382-random-image.png'\n});\nthis.test.context.push({\n  title: 'sample return',\n  value: { employees: [] }\n});\n(1 + 1).should.equal(2);\ndone();",
+      "err": {},
+      "isRoot": false,
+      "uuid": "fdfd7c56-8129-4694-bc16-cbea78c5ef5c",
+      "parentUUID": "375beb82-78e8-4a67-9956-6308e3dfea70",
+      "skipped": false
+    },
+    {
+      "title": "should have text context - image",
+      "fullTitle": "Test Suite with Context should have text context - image",
+      "timedOut": false,
+      "duration": 0,
+      "state": "passed",
+      "speed": "fast",
+      "pass": true,
+      "fail": false,
+      "pending": false,
+      "context": "\"http://shushi168.com/data/out/193/37127382-random-image.png\"",
+      "code": "this.test.context = 'http://shushi168.com/data/out/193/37127382-random-image.png';\n(1 + 1).should.equal(2);\ndone();",
+      "err": {},
+      "isRoot": false,
+      "uuid": "5882b1f8-b155-4296-b0a9-8980b0350d93",
+      "parentUUID": "375beb82-78e8-4a67-9956-6308e3dfea70",
+      "skipped": false
+    }
+  ],
+  "allPending": [],
+  "allPasses": [
+    {
+      "title": "should have text context",
+      "fullTitle": "Test Suite with Context should have text context",
+      "timedOut": false,
+      "duration": 10,
+      "state": "passed",
+      "speed": "fast",
+      "pass": true,
+      "fail": false,
+      "pending": false,
+      "context": "\"this is the test context\"",
+      "code": "(1 + 1).should.equal(2);\nthis.test.context = 'this is the test context';\ndone();",
+      "err": {},
+      "isRoot": false,
+      "uuid": "8ebe7eba-f38a-4d90-a996-5c1e04188b4b",
+      "parentUUID": "375beb82-78e8-4a67-9956-6308e3dfea70",
+      "skipped": false
+    },
+    {
+      "title": "should have array context",
+      "fullTitle": "Test Suite with Context should have array context",
+      "timedOut": false,
+      "duration": 1,
+      "state": "passed",
+      "speed": "fast",
+      "pass": true,
+      "fail": false,
+      "pending": false,
+      "context": "[\n  {\n    \"title\": \"sample screenshot\",\n    \"value\": \"http://shushi168.com/data/out/193/37127382-random-image.png\"\n  },\n  {\n    \"title\": \"sample return\",\n    \"value\": {\n      \"employees\": []\n    }\n  }\n]",
+      "code": "this.test.context = [];\nthis.test.context.push({\n  title: 'sample screenshot',\n  value: 'http://shushi168.com/data/out/193/37127382-random-image.png'\n});\nthis.test.context.push({\n  title: 'sample return',\n  value: { employees: [] }\n});\n(1 + 1).should.equal(2);\ndone();",
+      "err": {},
+      "isRoot": false,
+      "uuid": "fdfd7c56-8129-4694-bc16-cbea78c5ef5c",
+      "parentUUID": "375beb82-78e8-4a67-9956-6308e3dfea70",
+      "skipped": false
+    },
+    {
+      "title": "should have text context - image",
+      "fullTitle": "Test Suite with Context should have text context - image",
+      "timedOut": false,
+      "duration": 0,
+      "state": "passed",
+      "speed": "fast",
+      "pass": true,
+      "fail": false,
+      "pending": false,
+      "context": "\"http://shushi168.com/data/out/193/37127382-random-image.png\"",
+      "code": "this.test.context = 'http://shushi168.com/data/out/193/37127382-random-image.png';\n(1 + 1).should.equal(2);\ndone();",
+      "err": {},
+      "isRoot": false,
+      "uuid": "5882b1f8-b155-4296-b0a9-8980b0350d93",
+      "parentUUID": "375beb82-78e8-4a67-9956-6308e3dfea70",
+      "skipped": false
+    }
+  ],
+  "allFailures": [
+    {
+      "title": "should have json context",
+      "fullTitle": "Test Suite with Context should have json context",
+      "timedOut": false,
+      "duration": 2,
+      "state": "failed",
+      "pass": false,
+      "fail": true,
+      "pending": false,
+      "context": "{\n  \"title\": \"sample return object\",\n  \"value\": {\n    \"employees\": []\n  }\n}",
+      "code": "this.test.context = {\n  title: 'sample return object',\n  value: { employees: [] }\n};\nvar o = retObj();\no.should.eql({});\ndone();",
+      "err": {
+        "operator": "to equal",
+        "expected": "{}",
+        "details": "",
+        "showDiff": true,
+        "actual": "{\n  \"employees\": {\n    \"employee\": [\n      {\n        \"firstName\": \"Tom\"\n        \"id\": \"1\"\n        \"lastName\": \"Cruise\"\n      }\n      {\n        \"firstName\": \"Maria\"\n        \"id\": \"2\"\n        \"lastName\": \"Sharapova\"\n      }\n      {\n        \"firstName\": \"James\"\n        \"id\": \"3\"\n        \"lastName\": \"Bond\"\n      }\n    ]\n  }\n}",
+        "negate": false,
+        "assertion": {
+          "obj": {
+            "employees": {
+              "employee": [
+                {
+                  "id": "1",
+                  "firstName": "Tom",
+                  "lastName": "Cruise"
+                },
+                {
+                  "id": "2",
+                  "firstName": "Maria",
+                  "lastName": "Sharapova"
+                },
+                {
+                  "id": "3",
+                  "firstName": "James",
+                  "lastName": "Bond"
+                }
+              ]
+            }
+          },
+          "anyOne": false,
+          "negate": false,
+          "params": {
+            "operator": "to equal",
+            "expected": {},
+            "details": "",
+            "showDiff": true,
+            "actual": {
+              "employees": {
+                "employee": [
+                  {
+                    "id": "1",
+                    "firstName": "Tom",
+                    "lastName": "Cruise"
+                  },
+                  {
+                    "id": "2",
+                    "firstName": "Maria",
+                    "lastName": "Sharapova"
+                  },
+                  {
+                    "id": "3",
+                    "firstName": "James",
+                    "lastName": "Bond"
+                  }
+                ]
+              }
+            },
+            "negate": false,
+            "assertion": "[Circular ~.allFailures.0.err.assertion]"
+          }
+        },
+        "_message": "expected Object {\n  employees: Object {\n    employee: Array [\n      Object { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n      Object { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n      Object { id: '3', firstName: 'James', lastName: 'Bond' }\n    ]\n  }\n} to equal Object {}",
+        "generatedMessage": true,
+        "estack": "AssertionError: expected Object {\n  employees: Object {\n    employee: Array [\n      Object { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n      Object { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n      Object { id: '3', firstName: 'James', lastName: 'Bond' }\n    ]\n  }\n} to equal Object {}\n    at Assertion.fail (node_modules/should/cjs/should.js:205:17)\n    at Assertion.Object.defineProperty.value (node_modules/should/cjs/should.js:277:19)\n    at Context.<anonymous> (test-functional/test-context.js:38:16)",
+        "diff": "- {\n-   \"employees\": {\n-     \"employee\": [\n-       {\n-         \"firstName\": \"Tom\"\n-         \"id\": \"1\"\n-         \"lastName\": \"Cruise\"\n-       }\n-       {\n-         \"firstName\": \"Maria\"\n-         \"id\": \"2\"\n-         \"lastName\": \"Sharapova\"\n-       }\n-       {\n-         \"firstName\": \"James\"\n-         \"id\": \"3\"\n-         \"lastName\": \"Bond\"\n-       }\n-     ]\n-   }\n- }\n+ {}\n"
+      },
+      "isRoot": false,
+      "uuid": "a3e7a767-ea3e-4669-849e-7f2009d99700",
+      "parentUUID": "375beb82-78e8-4a67-9956-6308e3dfea70",
+      "skipped": false
+    }
+  ],
+  "copyrightYear": 2016
+}

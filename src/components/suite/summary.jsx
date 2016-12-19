@@ -1,0 +1,47 @@
+import React, { PropTypes } from 'react';
+import { Duration, Icon } from 'components';
+import classNames from 'classnames/bind';
+import styles from './suite-summary.css';
+
+const cx = classNames.bind(styles);
+
+const SuiteSummary = props => {
+  const { duration, totalTests, totalPasses, totalFailures, totalPending, totalSkipped } = props;
+
+  return (
+    <ul className={ cx('component') }>
+      <li className={ cx('summary-item', 'duration') }>
+        <Icon name='timer' className={ cx('icon') } size={ 18 } />
+        <Duration timer={ duration } />
+      </li>
+      <li className={ cx('summary-item', 'tests') }>
+        <Icon name='assignment' className={ cx('icon') } size={ 18 } />{ totalTests }
+      </li>
+      { !!totalPasses && <li className={ cx('summary-item', 'passed') }>
+        <Icon name='check' className={ cx('icon') } size={ 18 } />{ totalPasses }
+      </li> }
+      { !!totalFailures && <li className={ cx('summary-item', 'failed') }>
+        <Icon name='close' className={ cx('icon') } size={ 18 } />{ totalFailures }
+      </li> }
+      { !!totalPending && <li className={ cx('summary-item', 'pending') }>
+        <Icon name='pause' className={ cx('icon') } size={ 18 } />{ totalPending }
+      </li> }
+      { !!totalSkipped && <li className={ cx('summary-item', 'skipped') }>
+        <Icon name='stop' className={ cx('icon') } size={ 18 } />{ totalSkipped }
+      </li> }
+    </ul>
+  );
+};
+
+SuiteSummary.propTypes = {
+  duration: PropTypes.number,
+  totalTests: PropTypes.number,
+  totalPasses: PropTypes.number,
+  totalFailures: PropTypes.number,
+  totalPending: PropTypes.number,
+  totalSkipped: PropTypes.number
+};
+
+SuiteSummary.displayName = 'SuiteSummary';
+
+export default SuiteSummary;

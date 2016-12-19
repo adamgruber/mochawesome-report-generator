@@ -1,0 +1,68 @@
+@import '../../styles/vars';
+
+.component {
+  @apply --clearfix;
+  position: relative;
+  background-color: #fff;
+
+  &.no-tests {
+    background: none;
+  }
+}
+
+.component > .body > div > .component {
+  @nest .has-tests& {
+    border: 1px solid var(--grey300);
+    border-right: none;
+    margin: 24px 0 24px 24px
+  }
+  @nest .no-tests& {
+    @apply --z-depth-1;
+    margin: 0 0 24px 0;
+  }
+}
+
+.header {
+  @apply --clearfix;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--grey300);
+  @nest .no-tests > & {
+    padding-top: 0;
+  }
+}
+
+.title {
+  @apply --font-light;
+  margin: 0;
+  @nest .no-tests > header > & {
+    @apply --font-regular;
+    color: var(--black54);
+    font-size: 15px;
+  }
+}
+
+.filename {
+  @apply --font-regular;
+  color: var(--black54);
+  margin: 6px 0 0 0;
+}
+
+.body {
+  @apply --clearfix;
+}
+
+.chart-wrap {
+  position: absolute;
+  display: none;
+  top: 12px;
+  right: 12px;
+  width: 50px;
+  height: 50px;
+}
+
+/* Tablet 768 and up */
+@media (--screen-sm) {
+  .chart-wrap {
+    display: block;
+  }
+}

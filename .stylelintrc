@@ -8,14 +8,14 @@
     "declaration-block-properties-order": [["composes", "content", "display", "position"], { unspecified: "bottom" }],
     "declaration-no-important": true,
     "font-family-name-quotes": "always-unless-keyword",
-    "font-weight-notation": "numeric",
+    "font-weight-notation": "named-where-possible",
     "max-empty-lines": 2,
     "max-nesting-depth": 3,
     "no-duplicate-selectors": true,
     "no-unknown-animations": true,
     "number-max-precision": 3,
     "property-no-vendor-prefix": true,
-    "root-no-standard-properties": true,
+    "selector-type-no-unknown": [ true, { ignoreTypes: ["/^--/"] } ],
     "selector-max-compound-selectors": 3,
     "selector-no-id": true,
     "selector-no-vendor-prefix": true,
@@ -27,6 +27,5 @@
     "time-no-imperceptible": true,
     "unit-whitelist": ["px", "rem", "em", "%", "deg", "s"],
     "value-no-vendor-prefix": true
-  },
-  "ignoreFiles": ["node_modules/**/*.css", "app/styles/reboot.css"]
+  }
 }

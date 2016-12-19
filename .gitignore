@@ -1,21 +1,12 @@
 .DS_Store
 lib-cov
-*.seed
 *.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
-
-pids
-logs
-results
 
 node_modules
-
+mochawesome-report
 mochawesome-reports
-
 npm-debug.log
 
-_site/
+coverage
+.nyc_output
+test-functional/*.html

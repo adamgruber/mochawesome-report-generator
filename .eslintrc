@@ -32,13 +32,15 @@
     "react/no-multi-comp": 2,
     "react/no-unknown-property": 2,
     "react/prop-types": 2,
+    "react/forbid-prop-types": 0,
     "react/react-in-jsx-scope": 2,
-    "react/require-extension": 2,
     "react/self-closing-comp": 2,
-    "react/wrap-multilines": 2,
     "react/sort-comp": 0,
     "react/jsx-no-bind": 1,
 
+    "jsx-a11y/no-static-element-interactions": 0,
+
+    "arrow-parens": [2, "as-needed"],
     "quotes": [2, "single", "avoid-escape"],
     "jsx-quotes": [2, "prefer-single"],
     "comma-dangle": [2, "never"],
@@ -58,6 +60,7 @@
     "no-confusing-arrow": 0,
     "semi": [1, "always"],
     "global-require": 0,
-    "import/no-unresolved": 0
+    "import/no-unresolved": 0,
+    "import/no-extraneous-dependencies": 0
   }
 }
