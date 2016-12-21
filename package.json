@@ -40,7 +40,8 @@
     "reporter": [
       "html",
       "text",
-      "cobertura"
+      "cobertura",
+      "lcov"
     ],
     "extension": [
       ".js",
