@@ -27,8 +27,8 @@ Tested to work in Chrome. *Should* work in any modern web browser including IE9+
 
 ##Sample Report
 
-<img src="./docs/marge-report-1.0.0.png" alt="Mochawesome Report" width="75%" />
-<img src="./docs/marge-report-menu-1.0.0.png" alt="Mochawesome Report Menu" width="75%" />
+<img src="./docs/marge-report-1.0.1.png" alt="Mochawesome Report" width="75%" />
+<img src="./docs/marge-report-menu-1.0.1.png" alt="Mochawesome Report Menu" width="75%" />
 
 
 ##Usage
