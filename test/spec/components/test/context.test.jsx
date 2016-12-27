@@ -14,7 +14,8 @@ describe('<TestContext />', () => {
       wrapper,
       ctx: wrapper.find(TestContext),
       ctxItems: wrapper.find('.context-item'),
-      img: wrapper.find('img'),
+      img: wrapper.find('.test-image-link'),
+      link: wrapper.find('.test-text-link'),
       snippet: wrapper.find(CodeSnippet)
     };
   };
@@ -39,6 +40,29 @@ describe('<TestContext />', () => {
     });
     expect(wrapper).to.have.className('test');
     expect(snippet).to.have.lengthOf(1);
+  });
+
+  it('renders context with string, url with protocol', () => {
+    const context = 'http://test.url.com/somepath';
+    const { wrapper, snippet, link } = getInstance({
+      context: JSON.stringify(context),
+      className: 'test'
+    });
+    console.log(wrapper.html());
+    expect(wrapper).to.have.className('test');
+    expect(snippet).to.have.lengthOf(0);
+    expect(link).to.have.lengthOf(1);
+  });
+
+  it('renders context with string, url without protocol', () => {
+    const context = 'test.url.com/somepath';
+    const { wrapper, snippet, link } = getInstance({
+      context: JSON.stringify(context),
+      className: 'test'
+    });
+    expect(wrapper).to.have.className('test');
+    expect(snippet).to.have.lengthOf(0);
+    expect(link).to.have.lengthOf(1);
   });
 
   it('renders context with string, image url', () => {

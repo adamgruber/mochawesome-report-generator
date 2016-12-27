@@ -6,7 +6,9 @@ import styles from './test.css';
 
 const cx = classNames.bind(styles);
 
-const imgRegEx = /https?:\/\/.*\.(?:png|jpg|gif|jpeg)/i;
+const imgRegEx = /(?:png|jpe?g|gif)$/i;
+const protocolRegEx = /^(?:(?:https?|ftp):\/\/)/i;
+const urlRegEx = /^(?:(?:https?|ftp):\/\/)?(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/ // eslint-disable-line
 
 class TestContext extends Component {
   static displayName = 'TestContext';
@@ -20,16 +22,25 @@ class TestContext extends Component {
     ])
   };
 
-  renderImage = (url, title) => (
-    <a
-      href={ url }
-      className={ cx('image-link') }
-      rel='noopener noreferrer'
-      target='_blank'
-      alt={ title } >
-      <img src={ url } className={ cx('image') } role='presentation' />
-    </a>
-  );
+  renderLink = (url, title) => {
+    const isImage = imgRegEx.test(url);
+    const hasProtocol = protocolRegEx.test(url);
+    const cxname = isImage ? 'image-link' : 'text-link';
+    const linkUrl = `${hasProtocol ? '' : 'http://'}${url}`;
+    return (
+      <a
+        href={ linkUrl }
+        className={ cx(cxname) }
+        rel='noopener noreferrer'
+        target='_blank'
+        alt={ title } >
+        { isImage
+          ? <img src={ linkUrl } className={ cx('image') } role='presentation' />
+          : url
+        }
+      </a>
+    );
+  };
 
   renderContext = (ctx, i) => {
     const containerProps = {
@@ -43,8 +54,8 @@ class TestContext extends Component {
     if (isString(ctx)) {
       return (
         <div { ...containerProps } >
-          { imgRegEx.test(ctx)
-            ? this.renderImage(ctx)
+          { urlRegEx.test(ctx)
+            ? this.renderLink(ctx)
             : <CodeSnippet className={ cx('code-snippet') } code={ ctx } highlight={ false } />
           }
         </div>
@@ -59,8 +70,8 @@ class TestContext extends Component {
       return (
         <div { ...containerProps } >
           <h4 className={ cx('context-item-title') }>{ title }:</h4>
-          { imgRegEx.test(val)
-            ? this.renderImage(val, title)
+          { urlRegEx.test(val)
+            ? this.renderLink(val, title)
             : <CodeSnippet className={ cx('code-snippet') } code={ val } />
           }
         </div>
@@ -89,4 +100,3 @@ class TestContext extends Component {
 }
 
 export default TestContext;
-

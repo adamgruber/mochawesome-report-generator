@@ -99,6 +99,7 @@ body {
 }
 
 a {
+  @apply --link-transition;
   text-decoration: none;
 
   &:hover {

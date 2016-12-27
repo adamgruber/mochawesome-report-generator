@@ -152,10 +152,17 @@
   @apply --font-regular;
   @apply --text-overflow;
   font-size: 13px;
-  line-height: 24px;
   color: var(--black54);
   margin: 0;
-  padding: 1em 1em 0 1em;
+  padding: 11px 11px 0 11px;
+}
+
+.context-item {
+  padding-top: 11px;
+
+  & .code-snippet {
+    padding-top: 0;
+  }
 }
 
 .context-item-title {
@@ -163,12 +170,25 @@
   @apply --text-overflow;
   font-size: 13px;
   margin: 0;
-  padding: 1em 1em 0 1em;
+  padding: 0 11px 11px 11px;
+}
+
+.text-link {
+  display: block;
+  padding: 0 1em 1em 1em;
+  font-size: 11px;
+  font-family: var(--font-family-mono);
+  color: var(--ltblue700);
+
+  &:hover {
+    color: var(--ltblue500);
+  }
 }
 
 .image-link {
+  font-size: 11px;
   display: block;
-  padding: 1em 1em 0 1em;
+  padding: 0 1em 1em 1em;
 }
 
 .image {
