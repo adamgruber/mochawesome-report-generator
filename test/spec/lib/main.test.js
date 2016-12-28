@@ -13,7 +13,7 @@ const outputFileStub = sinon.stub();
 const outputFileSyncStub = sinon.stub();
 const copySyncStub = sinon.stub();
 const readFileSyncStub = sinon.stub();
-const mareport = proxyquire('../../../lib/main', {
+const mareport = proxyquire('../../../lib/src/main', {
   'fs-extra': {
     outputFile: outputFileStub,
     outputFileSync: outputFileSyncStub,

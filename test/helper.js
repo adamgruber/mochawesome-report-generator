@@ -4,7 +4,6 @@ require('app-module-path').addPath(__dirname);
 require('app-module-path').addPath(path.join(__dirname, '..', 'src'));
 
 // Babel Runtime
-// require('babel-polyfill');
 require('babel-register');
 
 // CSS Modules Runtime

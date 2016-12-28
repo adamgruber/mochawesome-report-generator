@@ -1,13 +1,11 @@
-'use strict';
-
 /* eslint-disable no-console */
-var path = require('path');
-var fs = require('fs-extra');
-var report = require('../lib/main');
+const path = require('path');
+const fs = require('fs-extra');
+const report = require('../lib/main');
 
-var JsonErrRegex = /^Unexpected token .* in JSON/;
-var fileExtRegex = /\.[^.]*?$/;
-var ERRORS = {
+const JsonErrRegex = /^Unexpected token .* in JSON/;
+const fileExtRegex = /\.[^.]*?$/;
+const ERRORS = {
   NO_FILE: 'You must supply a mochawesome data file to create a report.',
   BAD_JSON: 'There was a problem parsing mochawesome data. Please ensure the JSON file is valid.',
   GENERIC: 'There was a problem loading mochawesome data.'
@@ -18,7 +16,7 @@ var ERRORS = {
  *
  */
 function validateInFile(dataInFile) {
-  var dataIn = void 0;
+  let dataIn;
   // Was a JSON file provided?
   if (!dataInFile) {
     return { err: ERRORS.NO_FILE };
@@ -29,7 +27,7 @@ function validateInFile(dataInFile) {
     dataIn = JSON.parse(fs.readFileSync(dataInFile, 'utf-8'));
   } catch (err) {
     if (err.code === 'ENOENT') {
-      return { err: 'The data file: ' + dataInFile + ' could not be found.' };
+      return { err: `The data file: ${dataInFile} could not be found.` };
     } else if (JsonErrRegex.test(err.message)) {
       return { err: ERRORS.BAD_JSON };
     }
@@ -44,24 +42,17 @@ function validateInFile(dataInFile) {
  *
  */
 function getOptions(args) {
-  var reportFilename = args.reportFilename,
-      reportDir = args.reportDir,
-      reportTitle = args.reportTitle,
-      reportPageTitle = args.reportPageTitle,
-      inlineAssets = args.inlineAssets,
-      enableCharts = args.enableCharts,
-      enableCode = args.enableCode,
-      dev = args.dev;
-
-  var filename = reportFilename.replace(fileExtRegex, '') + '.html';
+  const { reportFilename, reportDir, reportTitle, reportPageTitle,
+    inlineAssets, enableCharts, enableCode, dev } = args;
+  const filename = `${reportFilename.replace(fileExtRegex, '')}.html`;
   return {
     reportHtmlFile: path.join(reportDir, filename),
-    reportTitle: reportTitle,
-    reportPageTitle: reportPageTitle,
-    inlineAssets: inlineAssets,
-    enableCharts: enableCharts,
-    enableCode: enableCode,
-    dev: dev
+    reportTitle,
+    reportPageTitle,
+    inlineAssets,
+    enableCharts,
+    enableCode,
+    dev
   };
 }
 
@@ -70,10 +61,10 @@ function getOptions(args) {
  *
  */
 function mareport(processArgs) {
-  var args = processArgs || { _: [] };
+  const args = processArgs || { _: [] };
 
   // Try to load the test data
-  var reportData = validateInFile(args._[0]);
+  const reportData = validateInFile(args._[0]);
 
   // Check for error in data load
   /* istanbul ignore else */

@@ -1,12 +1,14 @@
 {
   "name": "mochawesome-report-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Generates gorgeous HTML reports from mochawesome reporter.",
   "scripts": {
     "lint": "eslint bin lib src/js src/components/**/*.js src/components/**/*.jsx test/**/*.js test/**/*.jsx",
     "test": "cross-env UV_THREADPOOL_SIZE=100 BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc $(npm bin)/mocha --require test/helper.js \"test/spec/**/*.test.+(js|jsx)\"",
     "test:single": "cross-env UV_THREADPOOL_SIZE=100 BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc $(npm bin)/mocha --require test/helper.js ",
-    "compile:main": "$(npm bin)/babel ./lib/main-html.jsx -o lib/main-html.js",
+    "compile:main": "$(npm bin)/babel ./lib/src -d lib/",
+    "compile:cli": "$(npm bin)/babel ./bin/src -d bin/",
+    "compile": "npm run compile:main && npm run compile:cli",
     "build": "rm -rf dist/assets && NODE_ENV=production npm run pack",
     "pack": "npm run pack:external && npm run pack:inline",
     "pack:external": "$(npm bin)/webpack --config ./webpack/external.config.js",

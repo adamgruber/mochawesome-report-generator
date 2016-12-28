@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 
-import Main from '../../../lib/main-html.jsx';
+import Main from '../../../lib/src/main-html.jsx';
 
 chai.use(chaiEnzyme());
 

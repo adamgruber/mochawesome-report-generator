@@ -8,7 +8,7 @@ import testData from 'sample-data/test-data.json';
 proxyquire.noCallThru();
 
 const createSyncSpy = sinon.spy();
-const cli = proxyquire('../../../bin/cli-main', {
+const cli = proxyquire('../../../bin/src/cli-main', {
   '../lib/main': {
     createSync: createSyncSpy
   }
