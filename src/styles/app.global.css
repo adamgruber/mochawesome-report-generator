@@ -2,7 +2,6 @@
 @import 'vars';
 @import 'type';
 @import '../../node_modules/highlight.js/styles/solarized-light';
-/*@import '../../node_modules/materialize-css/dist/css/materialize.min';*/
 
 @font-face {
   font-family: 'robotolight';
