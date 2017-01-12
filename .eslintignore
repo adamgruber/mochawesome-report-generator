@@ -2,3 +2,6 @@ webpack/
 coverage/
 dist/
 lib/main-html.js
+lib/main.js
+bin/cli-main.js
+bin/cli.js

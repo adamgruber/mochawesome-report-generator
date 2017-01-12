@@ -48,7 +48,6 @@ describe('<TestContext />', () => {
       context: JSON.stringify(context),
       className: 'test'
     });
-    console.log(wrapper.html());
     expect(wrapper).to.have.className('test');
     expect(snippet).to.have.lengthOf(0);
     expect(link).to.have.lengthOf(1);
