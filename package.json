@@ -1,6 +1,6 @@
 {
   "name": "mochawesome-report-generator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Generates gorgeous HTML reports from mochawesome reporter.",
   "scripts": {
     "lint": "eslint bin lib src/js src/components/**/*.js src/components/**/*.jsx test/**/*.js test/**/*.jsx",
@@ -75,6 +75,7 @@
     "mocha": "*",
     "moment": "^2.15.1",
     "normalize.css": "^5.0.0",
+    "opener": "^1.4.2",
     "postcss": "^5.2.5",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
@@ -91,7 +92,6 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
-    "bootstrap": "^3.3.7",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "chai-enzyme": "^0.6.0",

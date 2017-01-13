@@ -13,16 +13,18 @@ const outputFileStub = sinon.stub();
 const outputFileSyncStub = sinon.stub();
 const copySyncStub = sinon.stub();
 const readFileSyncStub = sinon.stub();
+const openerStub = sinon.stub();
 const mareport = proxyquire('../../../lib/src/main', {
   'fs-extra': {
     outputFile: outputFileStub,
     outputFileSync: outputFileSyncStub,
     copySync: copySyncStub,
     readFileSync: readFileSyncStub
-  }
+  },
+  opener: openerStub
 });
 
-const opts = {
+const baseOpts = {
   reportHtmlFile: 'mochawesome-report/test.html',
   reportTitle: 'mochawesome',
   reportPageTitle: 'mochawesome-report',
@@ -31,6 +33,12 @@ const opts = {
   enableCode: true,
   dev: true
 };
+
+let opts;
+
+beforeEach(() => {
+  opts = Object.assign({}, baseOpts);
+});
 
 afterEach(() => {
   outputFileStub.reset();
@@ -43,6 +51,14 @@ describe('lib/main', () => {
   it('runs create', () => {
     outputFileStub.yields(null);
     return expect(mareport.create(testData, opts)).to.be.fulfilled;
+  });
+
+  it('runs create with autoOpen', () => {
+    opts.autoOpen = true;
+    outputFileStub.yields(null);
+    return mareport.create(testData, opts).then(() => {
+      expect(openerStub.called).to.equal(true);
+    });
   });
 
   it('runs create and throws', () => {
@@ -63,6 +79,13 @@ describe('lib/main', () => {
   it('runs createSync with base options', () => {
     mareport.createSync(testData, { dev: true });
     expect(outputFileSyncStub.calledWith('mochawesome-report/mochawesome.html')).to.equal(true);
+  });
+
+  it('runs create with autoOpen', () => {
+    opts.autoOpen = true;
+    outputFileStub.yields(null);
+    mareport.createSync(testData, opts);
+    expect(openerStub.called).to.equal(true);
   });
 
   it('runs createSync with data as string', () => {
