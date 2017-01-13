@@ -49,13 +49,11 @@ class TestContext extends Component {
         className={ cxname }
         alt={ title }
         src={ imagePath }
-        role='presentation'>
-      </img>
+        role='presentation' />
     );
   };
 
   renderContext = (ctx, i) => {
-
     const containerProps = {
       className: cx('context-item')
     };
