@@ -25,7 +25,7 @@ class TestContext extends Component {
   renderLink = (url, title) => {
     const isImage = imgRegEx.test(url);
     const hasProtocol = protocolRegEx.test(url);
-    const cxname = isImage ? 'image-link' : 'text-link';
+    const cxname = isImage ? 'mags-image-link' : 'mags-text-link';
     const linkUrl = `${hasProtocol ? '' : 'http://'}${url}`;
     return (
       <a
@@ -83,7 +83,7 @@ class TestContext extends Component {
           <h4 className={ cx('context-item-title') }>{ title }:</h4>
           { urlRegEx.test(val)
             ? this.renderLink(val, title) : imgRegEx.test(val) ? this.renderImage(val, title)
-            : <CodeSnippet className={ cx('code-snippet') } code={ val } />
+            : <CodeSnippet className='magsstring' code={ val } />
           }
         </div>
       );

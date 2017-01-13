@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f254618-5396-42b5-bf0b-9a93838f47ec" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/assets/external/app.js" afterPath="$PROJECT_DIR$/dist/assets/external/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/assets/inline/app.js" afterPath="$PROJECT_DIR$/dist/assets/inline/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/test/context.jsx" afterPath="$PROJECT_DIR$/src/components/test/context.jsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -29,7 +27,7 @@
         <entry file="file://$PROJECT_DIR$/src/components/test/context.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="491">
-              <caret line="67" column="30" lean-forward="false" selection-start-line="67" selection-start-column="30" selection-end-line="67" selection-end-column="30" />
+              <caret line="85" column="48" lean-forward="false" selection-start-line="85" selection-start-column="48" selection-end-line="85" selection-end-column="48" />
               <folding>
                 <element signature="e#0#52#0" expanded="true" />
               </folding>
@@ -251,7 +249,7 @@
     <entry file="file://$PROJECT_DIR$/src/components/test/context.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="491">
-          <caret line="67" column="30" lean-forward="false" selection-start-line="67" selection-start-column="30" selection-end-line="67" selection-end-column="30" />
+          <caret line="85" column="48" lean-forward="false" selection-start-line="85" selection-start-column="48" selection-end-line="85" selection-end-column="48" />
           <folding>
             <element signature="e#0#52#0" expanded="true" />
           </folding>
