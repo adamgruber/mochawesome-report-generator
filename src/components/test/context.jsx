@@ -42,7 +42,20 @@ class TestContext extends Component {
     );
   };
 
+  renderImage = (imagePath, title) => {
+    const cxname = 'image';
+    return (
+      <img
+        className={ cxname }
+        alt={ title }
+        src={ imagePath }
+        role='presentation'>
+      </img>
+    );
+  };
+
   renderContext = (ctx, i) => {
+
     const containerProps = {
       className: cx('context-item')
     };
@@ -55,7 +68,7 @@ class TestContext extends Component {
       return (
         <div { ...containerProps } >
           { urlRegEx.test(ctx)
-            ? this.renderLink(ctx)
+            ? this.renderLink(ctx) : imgRegEx.test(ctx) ? this.renderImage(ctx)
             : <CodeSnippet className={ cx('code-snippet') } code={ ctx } highlight={ false } />
           }
         </div>
@@ -71,7 +84,7 @@ class TestContext extends Component {
         <div { ...containerProps } >
           <h4 className={ cx('context-item-title') }>{ title }:</h4>
           { urlRegEx.test(val)
-            ? this.renderLink(val, title)
+            ? this.renderLink(val, title) : imgRegEx.test(val) ? this.renderImage(val, title)
             : <CodeSnippet className={ cx('code-snippet') } code={ val } />
           }
         </div>
