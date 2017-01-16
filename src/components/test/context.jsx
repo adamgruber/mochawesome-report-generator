@@ -54,6 +54,10 @@ class TestContext extends Component {
   };
 
   renderContext = (ctx, i) => {
+    let rawContent;
+    let title;
+    let addContent;
+
     const containerProps = {
       className: cx('context-item')
     };
@@ -63,29 +67,28 @@ class TestContext extends Component {
 
     // Context is a simple string
     if (isString(ctx)) {
-      return (
-        <div { ...containerProps } >
-          { urlRegEx.test(ctx)
-            /* istanbul ignore next */
-            ? this.renderLink(ctx) : imgRegEx.test(ctx) ? this.renderImage(ctx)
-            : <CodeSnippet className={ cx('code-snippet') } code={ ctx } highlight={ false } />
-          }
-        </div>
-      );
+      rawContent = ctx;
+    } else {
+      rawContent = isString(ctx.value) ? ctx.value : JSON.stringify(ctx.value, null, 2);
+      title = ctx.title;
     }
 
-    // Context is an object with title and value
-    const { title, value } = ctx;
-    /* istanbul ignore else */
-    if (value) {
-      const val = isString(value) ? value : JSON.stringify(value, null, 2);
+    if (!rawContent) {
+      return false;
+    }
+
+    if (urlRegEx.test(rawContent)) {
+      addContent = this.renderLink(rawContent, title);
+    } else {
+      addContent = imgRegEx.test(rawContent) ? this.renderImage(rawContent, title) :
+      <CodeSnippet className={ cx('code-snippet') } code={ rawContent } highlight={ false } />;
+    }
+
+    if (addContent) {
       return (
         <div { ...containerProps } >
-          <h4 className={ cx('context-item-title') }>{ title }:</h4>
-          { urlRegEx.test(val)
-            ? this.renderLink(val, title) : imgRegEx.test(val) ? this.renderImage(val, title)
-            : <CodeSnippet className={ cx('code-snippet') } code={ val } />
-          }
+          { title && <h4 className={ cx('context-item-title') }>{ title }:</h4> }
+          {addContent}
         </div>
       );
     }
