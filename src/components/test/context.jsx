@@ -11,6 +11,14 @@ const protocolRegEx = /^(?:(?:https?|ftp):\/\/)/i;
 const urlRegEx = /^(?:(?:https?|ftp):\/\/)?(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/ // eslint-disable-line
 
 class TestContext extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { clicked: false };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
   static displayName = 'TestContext';
 
   static propTypes = {
@@ -26,6 +34,7 @@ class TestContext extends Component {
     const isImage = imgRegEx.test(url);
     const hasProtocol = protocolRegEx.test(url);
     const cxname = isImage ? 'image-link' : 'text-link';
+    const cximage = cx('image');
     const linkUrl = `${hasProtocol ? '' : 'http://'}${url}`;
     return (
       <a
@@ -35,14 +44,42 @@ class TestContext extends Component {
         target='_blank'
         alt={ title } >
         { isImage
-          ? <img src={ linkUrl } className={ cx('image') } role='presentation' />
+          ? <img
+            src={ linkUrl }
+            className={ cximage }
+            role='presentation'
+            onClick={ this.handleClick } />
           : url
         }
       </a>
     );
   };
 
+  renderImage = (imagePath, title) => {
+    const cxsize = this.state.clicked ? cx('lrg') : cx('sml');
+    const cximage = cx('image');
+    return (
+      <img
+        className={ [ cximage, cxsize ].join(' ') }
+        onClick={ this.handleClick }
+        alt={ title }
+        src={ imagePath }
+        role='presentation' />
+    );
+  };
+
+  handleClick = e => {
+    e.stopPropagation();
+    this.setState(prevState => ({
+      clicked: !prevState.clicked
+    }));
+  };
+
   renderContext = (ctx, i) => {
+    let rawContent;
+    let title;
+    let addContent;
+
     const containerProps = {
       className: cx('context-item')
     };
@@ -52,28 +89,28 @@ class TestContext extends Component {
 
     // Context is a simple string
     if (isString(ctx)) {
-      return (
-        <div { ...containerProps } >
-          { urlRegEx.test(ctx)
-            ? this.renderLink(ctx)
-            : <CodeSnippet className={ cx('code-snippet') } code={ ctx } highlight={ false } />
-          }
-        </div>
-      );
+      rawContent = ctx;
+    } else {
+      rawContent = isString(ctx.value) ? ctx.value : JSON.stringify(ctx.value, null, 2);
+      title = ctx.title;
     }
 
-    // Context is an object with title and value
-    const { title, value } = ctx;
-    /* istanbul ignore else */
-    if (value) {
-      const val = isString(value) ? value : JSON.stringify(value, null, 2);
+    if (!rawContent) {
+      return false;
+    }
+
+    if (urlRegEx.test(rawContent)) {
+      addContent = this.renderLink(rawContent, title);
+    } else {
+      addContent = imgRegEx.test(rawContent) ? this.renderImage(rawContent, title) :
+      <CodeSnippet className={ cx('code-snippet') } code={ rawContent } highlight={ false } />;
+    }
+
+    if (addContent) {
       return (
         <div { ...containerProps } >
-          <h4 className={ cx('context-item-title') }>{ title }:</h4>
-          { urlRegEx.test(val)
-            ? this.renderLink(val, title)
-            : <CodeSnippet className={ cx('code-snippet') } code={ val } />
-          }
+          { title && <h4 className={ cx('context-item-title') }>{ title }:</h4> }
+          {addContent}
         </div>
       );
     }

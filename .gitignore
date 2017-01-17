@@ -6,6 +6,7 @@ node_modules
 mochawesome-report
 mochawesome-reports
 npm-debug.log
+/.idea/
 
 coverage
 .nyc_output
