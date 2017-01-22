@@ -22,25 +22,55 @@ class TestContext extends Component {
     ])
   };
 
-  renderLink = (url, title) => {
-    const isImage = imgRegEx.test(url);
-    const hasProtocol = protocolRegEx.test(url);
-    const cxname = isImage ? 'image-link' : 'text-link';
-    const linkUrl = `${hasProtocol ? '' : 'http://'}${url}`;
+  renderImage = (ctx, title) => {
+    const isUrl = urlRegEx.test(ctx);
+    const hasProtocol = protocolRegEx.test(ctx);
+    const linkUrl = (isUrl && !hasProtocol) ? `http://${ctx}` : ctx;
     return (
       <a
         href={ linkUrl }
-        className={ cx(cxname) }
+        className={ cx('image-link') }
+        onClick={ e => e.stopPropagation() }
         rel='noopener noreferrer'
         target='_blank'
         alt={ title } >
-        { isImage
-          ? <img src={ linkUrl } className={ cx('image') } role='presentation' />
-          : url
-        }
+        <img src={ linkUrl } className={ cx('image') } role='presentation' />
       </a>
     );
-  };
+  }
+
+  renderLink = (url, title) => {
+    const linkUrl = `${protocolRegEx.test(url) ? '' : 'http://'}${url}`;
+    return (
+      <a
+        href={ linkUrl }
+        className={ cx('text-link') }
+        onClick={ e => e.stopPropagation() }
+        rel='noopener noreferrer'
+        target='_blank'
+        alt={ title } >
+        { url }
+      </a>
+    );
+  }
+
+  renderContextContent = (content, title, highlight = false) => {
+    // Images
+    if (imgRegEx.test(content)) {
+      return this.renderImage(content, title);
+    }
+
+    // URLs
+    if (urlRegEx.test(content)) {
+      return this.renderLink(content, title);
+    }
+
+    // Default
+    const val = isString(content) ? content : JSON.stringify(content, null, 2);
+    return (
+      <CodeSnippet className={ cx('code-snippet') } code={ val } highlight={ highlight } />
+    );
+  }
 
   renderContext = (ctx, i) => {
     const containerProps = {
@@ -54,10 +84,7 @@ class TestContext extends Component {
     if (isString(ctx)) {
       return (
         <div { ...containerProps } >
-          { urlRegEx.test(ctx)
-            ? this.renderLink(ctx)
-            : <CodeSnippet className={ cx('code-snippet') } code={ ctx } highlight={ false } />
-          }
+          { this.renderContextContent(ctx) }
         </div>
       );
     }
@@ -66,14 +93,10 @@ class TestContext extends Component {
     const { title, value } = ctx;
     /* istanbul ignore else */
     if (value) {
-      const val = isString(value) ? value : JSON.stringify(value, null, 2);
       return (
         <div { ...containerProps } >
           <h4 className={ cx('context-item-title') }>{ title }:</h4>
-          { urlRegEx.test(val)
-            ? this.renderLink(val, title)
-            : <CodeSnippet className={ cx('code-snippet') } code={ val } />
-          }
+          { this.renderContextContent(value, title, true) }
         </div>
       );
     }
@@ -86,11 +109,10 @@ class TestContext extends Component {
 
     // All context comes in stringified initially so we parse it here
     const ctx = JSON.parse(context);
-    const isContextArray = Array.isArray(ctx);
     return (
       <div className={ cx(className, 'context') }>
         <h4 className={ cx('context-title') }>Additional Test Context</h4>
-        { isContextArray
+        { Array.isArray(ctx)
           ? ctx.map(this.renderContext)
           : this.renderContext(ctx)
         }
