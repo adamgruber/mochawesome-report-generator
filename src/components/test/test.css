@@ -174,7 +174,7 @@
 }
 
 .text-link {
-  display: block;
+  display: inline-block;
   padding: 0 1em 1em 1em;
   font-size: 11px;
   font-family: var(--font-family-mono);
@@ -187,7 +187,7 @@
 
 .image-link {
   font-size: 11px;
-  display: block;
+  display: inline-block;
   padding: 0 1em 1em 1em;
 }
 
