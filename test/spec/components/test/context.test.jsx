@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
+import noop from 'lodash/noop';
 
 import { TestContext, CodeSnippet } from 'components/test';
 
@@ -51,6 +52,7 @@ describe('<TestContext />', () => {
     expect(wrapper).to.have.className('test');
     expect(snippet).to.have.lengthOf(0);
     expect(link).to.have.lengthOf(1);
+    link.simulate('click', { stopPropagation: noop });
   });
 
   it('renders context with string, url without protocol', () => {
@@ -64,8 +66,31 @@ describe('<TestContext />', () => {
     expect(link).to.have.lengthOf(1);
   });
 
-  it('renders context with string, image url', () => {
+  it('renders context with string, image url with protocol', () => {
     const context = 'http://test.url.com/testimage.png';
+    const { wrapper, snippet, img } = getInstance({
+      context: JSON.stringify(context),
+      className: 'test'
+    });
+    expect(wrapper).to.have.className('test');
+    expect(snippet).to.have.lengthOf(0);
+    expect(img).to.have.lengthOf(1);
+    img.simulate('click', { stopPropagation: noop });
+  });
+
+  it('renders context with string, image url without protocol', () => {
+    const context = 'test.url.com/testimage.png';
+    const { wrapper, snippet, img } = getInstance({
+      context: JSON.stringify(context),
+      className: 'test'
+    });
+    expect(wrapper).to.have.className('test');
+    expect(snippet).to.have.lengthOf(0);
+    expect(img).to.have.lengthOf(1);
+  });
+
+  it('renders context with string, local image', () => {
+    const context = '/testimage.png';
     const { wrapper, snippet, img } = getInstance({
       context: JSON.stringify(context),
       className: 'test'
