@@ -1,5 +1,8 @@
 #Changelog
 
+###1.0.4
+- Add support for local image paths in context
+
 ###1.0.3
 - Fix an issue preventing a working report when `inlineAssets` option is `true` [mochawesome #109](https://github.com/adamgruber/mochawesome/issues/109)
 - Restore `autoOpen` functionality
