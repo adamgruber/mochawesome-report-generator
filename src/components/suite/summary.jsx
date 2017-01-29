@@ -6,10 +6,11 @@ import styles from './suite-summary.css';
 const cx = classNames.bind(styles);
 
 const SuiteSummary = props => {
-  const { duration, totalTests, totalPasses, totalFailures, totalPending, totalSkipped } = props;
+  const { className, duration, totalTests, totalPasses,
+    totalFailures, totalPending, totalSkipped } = props;
 
   return (
-    <ul className={ cx('component') }>
+    <ul className={ cx('component', className) }>
       <li className={ cx('summary-item', 'duration') }>
         <Icon name='timer' className={ cx('icon') } size={ 18 } />
         <Duration timer={ duration } />
@@ -34,6 +35,7 @@ const SuiteSummary = props => {
 };
 
 SuiteSummary.propTypes = {
+  className: PropTypes.string,
   duration: PropTypes.number,
   totalTests: PropTypes.number,
   totalPasses: PropTypes.number,

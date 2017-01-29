@@ -4,22 +4,20 @@
   @apply --clearfix;
   position: relative;
   background-color: #fff;
-
-  &.no-tests {
-    background: none;
-  }
+  margin-bottom: 20px;
 }
 
 .component > .body > div > .component {
-  @nest .has-tests& {
-    border: 1px solid var(--grey300);
-    border-right: none;
-    margin: 24px 0 24px 24px
-  }
-  @nest .no-tests& {
-    @apply --z-depth-1;
-    margin: 0 0 24px 0;
-  }
+  border: 1px solid var(--grey300);
+  border-right: none;
+  border-bottom: none;
+  margin: 24px 0 24px 24px;
+}
+
+.root-suite,
+.list-main > .component {
+  @apply --z-depth-1;
+  margin: 0 0 24px 0;
 }
 
 .header {
@@ -27,18 +25,14 @@
   padding: 12px 24px;
   border-bottom: 1px solid var(--grey300);
   @nest .no-tests > & {
-    padding-top: 0;
+    padding-bottom: 0;
+    border-bottom: none;
   }
 }
 
 .title {
   @apply --font-light;
   margin: 0;
-  @nest .no-tests > header > & {
-    @apply --font-regular;
-    color: var(--black54);
-    font-size: 15px;
-  }
 }
 
 .filename {
@@ -64,5 +58,10 @@
 @media (--screen-sm) {
   .chart-wrap {
     display: block;
+  }
+  .chart-enabled:not(.no-tests) {
+    & .header {
+      min-height: 74px;
+    }
   }
 }
