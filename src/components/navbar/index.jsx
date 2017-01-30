@@ -10,8 +10,8 @@ const cx = classNames.bind(styles);
 const Navbar = ({ reportTitle, stats, qsNodeRef, qsWidth, mobileBreakpoint }) => {
   const onClickFn = () => (reportStore.openSideNav());
 
-  const { passPercent, pendingPercent } = stats;
-  const failPercent = 100 - passPercent - pendingPercent;
+  const { passPercent } = stats;
+  const failPercent = 100 - passPercent;
 
   const titleCntStyle = (!mobileBreakpoint && qsWidth) ? { paddingRight: qsWidth } : null;
 
@@ -32,15 +32,11 @@ const Navbar = ({ reportTitle, stats, qsNodeRef, qsWidth, mobileBreakpoint }) =>
         <span
           className={ cx('pct-bar-segment', 'pass') }
           style={ { width: `${passPercent}%` } }
-          title={ `${passPercent}% Passing` } />
+          title={ `${passPercent.toFixed(1)}% Passing` } />
         <span
           className={ cx('pct-bar-segment', 'fail') }
           style={ { width: `${failPercent}%` } }
-          title={ `${failPercent}% Failing` } />
-        <span
-          className={ cx('pct-bar-segment', 'pend') }
-          style={ { width: `${pendingPercent}%` } }
-          title={ `${pendingPercent}% Pending` } />
+          title={ `${failPercent.toFixed(1)}% Failing` } />
       </div>
     </div>
   );

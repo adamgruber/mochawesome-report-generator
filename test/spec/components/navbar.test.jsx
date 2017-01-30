@@ -48,7 +48,7 @@ describe('<Navbar />', () => {
     expect(title.text()).to.equal('test');
     expect(wrapper.find(QuickSummary)).to.have.lengthOf(1);
     expect(menuBtn).to.have.lengthOf(1);
-    expect(pctBar.find('span')).to.have.lengthOf(3);
+    expect(pctBar.find('span')).to.have.lengthOf(2);
     expect(infoCnt).to.have.style('padding-right', '500px');
   });
 
