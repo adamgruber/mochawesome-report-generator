@@ -53,8 +53,8 @@ describe('<Suite />', () => {
       suite: newSuite
     });
     const { wrapper } = getInstance(instProps);
-    expect(wrapper.find('.suite-title').text()).to.equal(' ');
-    expect(wrapper.find('.suite-filename').text()).to.equal(' ');
+    expect(wrapper.find('.suite-title')).to.have.lengthOf(0);
+    expect(wrapper.find('.suite-filename')).to.have.lengthOf(0);
   });
 
   it('renders basic suite without chart', () => {

@@ -91,12 +91,12 @@ class NavMenuItem extends Component {
     };
 
     return (
-      <li className={ cx('item') }>
+      <li className={ cx('item', { 'has-tests': hasTests }) }>
         <a href={ `#${uuid}` } className={ anchorCxName } onClick={ e => scrollToSuite(e, uuid) }>
           { suiteIcon() }
           <span>{ title === '' ? uuid : title }</span>
         </a>
-        <NavMenuList suites={ suites } { ...navItemProps } />
+        { suites && !!suites.length && <NavMenuList suites={ suites } { ...navItemProps } /> }
       </li>
     );
   }
