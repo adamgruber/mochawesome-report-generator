@@ -100,15 +100,17 @@
 }
 
 .main {
-  margin: 8px 0 16px 0;
+  margin: 8px 0;
 }
 
-.no-tests > .item > div > .sub {
-  padding-left: 0;
-}
-
-.no-tests > .item > .link {
-  padding-left: 0;
+.no-tests > .item:not(.has-tests) {
+  & > div > .sub,
+  & > .link {
+    padding-left: 0;
+  }
+  &:not(:only-child) {
+    padding-left: 22px;
+  }
 }
 
 .sub {

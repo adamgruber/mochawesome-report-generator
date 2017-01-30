@@ -6,7 +6,7 @@ import chaiEnzyme from 'chai-enzyme';
 import NavMenuItem from 'components/nav-menu/nav-menu-item';
 import NavMenuList from 'components/nav-menu/nav-menu-list';
 
-import basicSuite from 'sample-data/suite.json';
+import basicSuite from 'sample-data/suite-nested.json';
 
 chai.use(chaiEnzyme());
 
@@ -37,8 +37,8 @@ describe('<NavMenuItem />', () => {
     });
     const { links, navList } = getInstance(testProps);
     expect(navList).to.have.lengthOf(1);
-    expect(links).to.have.lengthOf(1);
-    expect(links.first().text()).to.equal('Test Suite - Basic');
+    expect(links).to.have.lengthOf(3);
+    expect(links.first().text()).to.equal('Test Suite - Nested Suites');
   });
 
   it('should render uuid as title when suite title is empty', () => {
@@ -50,7 +50,7 @@ describe('<NavMenuItem />', () => {
     });
     const { links, navList } = getInstance(testProps);
     expect(navList).to.have.lengthOf(1);
-    expect(links).to.have.lengthOf(1);
-    expect(links.first().text()).to.equal('17bc6546-127d-4fc2-84b7-4aa033a8d2d3');
+    expect(links).to.have.lengthOf(3);
+    expect(links.first().text()).to.equal('730ccc57-dac2-4361-a3f4-0edc739c5285');
   });
 });

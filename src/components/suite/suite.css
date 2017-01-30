@@ -12,12 +12,20 @@
   border-right: none;
   border-bottom: none;
   margin: 24px 0 24px 24px;
+
+  &.no-tests {
+    border-bottom: 1px solid var(--grey300);
+  }
 }
 
 .root-suite,
 .list-main > .component {
   @apply --z-depth-1;
   margin: 0 0 24px 0;
+}
+
+.list-main > .no-tests > .body > div > .component:not(.no-suites) {
+  border-bottom: 1px solid var(--grey300);
 }
 
 .header {
