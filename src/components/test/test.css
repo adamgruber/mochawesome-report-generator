@@ -1,7 +1,7 @@
 @import '../../styles/vars';
 
 .component {
-  padding: 10px 24px 10px 21px;
+  padding: 10px 16px 10px 13px;
   border-bottom: 1px solid var(--grey300);
   border-left: 3px solid transparent;
   &:not(.inactive) {
