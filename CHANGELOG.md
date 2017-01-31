@@ -1,7 +1,10 @@
 #Changelog
 
-###1.0.5
+###1.0.6
 - Layout and style fixes [mochawesome #118](https://github.com/adamgruber/mochawesome/issues/118)
+
+###1.0.5
+- Layout and style fixes [mochawesome #118](https://github.com/adamgruber/mochawesome/issues/118) (Broken)
 
 ###1.0.4
 - Add support for local image paths in context
