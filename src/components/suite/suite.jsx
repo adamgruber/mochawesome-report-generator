@@ -12,8 +12,12 @@ const Suite = ({ className, suite, enableChart, enableCode }) => {
     hasPasses, duration, totalTests, totalPasses, totalFailures,
     totalPending, totalSkipped } = suite;
 
-  const subSuites = () => hasSuites && (
-    <SuiteList suites={ suites } enableChart={ enableChart } enableCode={ enableCode } />
+  const subSuites = isMain => hasSuites && (
+    <SuiteList
+      suites={ suites }
+      enableChart={ enableChart }
+      enableCode={ enableCode }
+      main={ isMain } />
   );
 
   const testListComp = () => hasTests && (
@@ -29,23 +33,30 @@ const Suite = ({ className, suite, enableChart, enableCode }) => {
     'has-passed': hasPasses,
     'has-failed': hasFailures,
     'has-pending': hasPending,
-    'has-skipped': hasSkipped
+    'has-skipped': hasSkipped,
+    'chart-enabled': enableChart
   });
 
   const summaryProps = {
-    duration, totalTests, totalPasses, totalFailures, totalPending, totalSkipped
+    duration,
+    totalTests,
+    totalPasses,
+    totalFailures,
+    totalPending,
+    totalSkipped,
+    className: cx({ 'no-margin': title === '' && file === '' })
   };
   const chartProps = { totalPasses, totalFailures, totalPending, totalSkipped };
 
   if (rootEmpty) {
-    return subSuites();
+    return subSuites(true);
   }
 
   return (
     <section className={ cxname } id={ uuid }>
       <header className={ cx('header') }>
-        <h3 className={ cx('title') }>{ title === '' ? ' ' : title }</h3>
-        <h6 className={ cx('filename') }>{ file === '' ? ' ' : file }</h6>
+        { title !== '' && <h3 className={ cx('title') }>{ title }</h3> }
+        { file !== '' && <h6 className={ cx('filename') }>{ file }</h6> }
         { hasTests && enableChart && <SuiteChart { ...chartProps } /> }
         { hasTests && <SuiteSummary { ...summaryProps } /> }
       </header>
