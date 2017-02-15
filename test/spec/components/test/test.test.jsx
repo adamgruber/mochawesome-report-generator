@@ -156,6 +156,15 @@ describe('<Test />', () => {
     expect(setStateSpy.calledOnce).to.equal(false);
   });
 
+  it('renders passing test with context, enableCode: false', () => {
+    const { wrapper, snippets, errorMsg } = getInstance({ test: passingTestWithContext, enableCode: false });
+    expect(snippets).to.have.lengthOf(2);
+    expect(errorMsg).to.have.lengthOf(0);
+    wrapper.simulate('click');
+    expect(toggleSpy.calledOnce).to.equal(true);
+    expect(setStateSpy.calledOnce).to.equal(true);
+  });
+
   it('renders failing test', () => {
     const { wrapper, snippets, errorMsg } = getInstance({ test: failingTest });
     expect(snippets).to.have.lengthOf(3);
