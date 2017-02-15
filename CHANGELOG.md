@@ -1,5 +1,9 @@
 #Changelog
 
+###1.0.7
+- Fix an issue where test context could not be viewed if `enableCode` option was `false`. [mochawesome #132](https://github.com/adamgruber/mochawesome/issues/132)
+- Add an icon to indicate when a test has context
+
 ###1.0.6
 - Layout and style fixes [mochawesome #118](https://github.com/adamgruber/mochawesome/issues/118)
 

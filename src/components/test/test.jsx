@@ -28,7 +28,7 @@ class Test extends React.Component {
 
   toggleExpandedState() {
     const { test, enableCode } = this.props;
-    if ((enableCode && test.pass) || test.fail) {
+    if ((enableCode && test.pass) || !!test.context || test.fail) {
       this.setState({ expanded: !this.state.expanded });
     }
   }
@@ -65,7 +65,8 @@ class Test extends React.Component {
       failed: fail,
       pending,
       skipped,
-      inactive: pending || skipped || (!enableCode && pass)
+      inactive: pending || skipped || (pass && !enableCode && !context),
+      'with-context': !!context
     });
 
     return (
@@ -76,6 +77,7 @@ class Test extends React.Component {
             <h4 className={ cx('title') }>{ title }</h4>
           </div>
           <div className={ cx('info') }>
+            { !!context && <Icon name='chat_bubble_outline' className={ cx('context-icon') } size={ 18 } /> }
             <Duration className={ cx('duration') } timer={ duration } />
             <Icon name='timer' className={ cx('duration-icon', speed) } size={ 18 } />
           </div>
