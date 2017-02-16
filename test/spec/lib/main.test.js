@@ -14,12 +14,14 @@ const outputFileSyncStub = sinon.stub();
 const copySyncStub = sinon.stub();
 const readFileSyncStub = sinon.stub();
 const openerStub = sinon.stub();
+const existsSyncStub = sinon.stub();
 const mareport = proxyquire('../../../lib/src/main', {
   'fs-extra': {
     outputFile: outputFileStub,
     outputFileSync: outputFileSyncStub,
     copySync: copySyncStub,
-    readFileSync: readFileSyncStub
+    readFileSync: readFileSyncStub,
+    existsSync: existsSyncStub
   },
   opener: openerStub
 });
@@ -96,6 +98,12 @@ describe('lib/main', () => {
   it('copies assets', () => {
     mareport.createSync(testData, { inlineAssets: false });
     expect(copySyncStub.called).to.equal(true);
+  });
+
+  it('doesn\'t copy assets if assetsDir already exists', () => {
+    existsSyncStub.returns(true);
+    mareport.createSync(testData, { inlineAssets: false });
+    expect(copySyncStub.called).to.equal(false);
   });
 
   it('inlines assets', () => {
