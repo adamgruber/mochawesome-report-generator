@@ -1,5 +1,8 @@
 #Changelog
 
+###1.0.8
+- Only copy external assets if they do not already exist [mochawesome #76](https://github.com/adamgruber/mochawesome/issues/76)
+
 ###1.0.7
 - Fix an issue where test context could not be viewed if `enableCode` option was `false`. [mochawesome #132](https://github.com/adamgruber/mochawesome/issues/132)
 - Add an icon to indicate when a test has context
