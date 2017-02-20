@@ -1,5 +1,9 @@
 #Changelog
 
+###1.1.0
+- Greenkeeping
+- Move some dependencies into devDependencies where they belong [mochawesome #133](https://github.com/adamgruber/mochawesome/issues/133)
+
 ###1.0.8
 - Only copy external assets if they do not already exist [mochawesome #76](https://github.com/adamgruber/mochawesome/issues/76)
 
