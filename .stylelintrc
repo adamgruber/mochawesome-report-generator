@@ -1,11 +1,13 @@
 {
   "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-order"
+  ],
   "rules": {
     "color-named": "never",
     "comment-word-blacklist": ["/^TODO:/"],
-    "custom-property-no-outside-root": true,
     "declaration-block-no-duplicate-properties": true,
-    "declaration-block-properties-order": [["composes", "content", "display", "position"], { unspecified: "bottom" }],
+    "order/declaration-block-properties-specified-order": [["composes", "content", "display", "position"], { unspecified: "bottom" }],
     "declaration-no-important": true,
     "font-family-name-quotes": "always-unless-keyword",
     "font-weight-notation": "named-where-possible",
@@ -21,10 +23,8 @@
     "selector-no-vendor-prefix": true,
     "selector-pseudo-class-no-unknown": [ true, { ignorePseudoClasses: ["global"] } ],
     "selector-pseudo-element-colon-notation": "single",
-    "selector-root-no-composition": true,
     "string-quotes": "single",
-    "stylelint-disable-reason": "always-after",
-    "time-no-imperceptible": true,
+    "time-min-milliseconds": 100,
     "unit-whitelist": ["px", "rem", "em", "%", "deg", "s"],
     "value-no-vendor-prefix": true
   }
