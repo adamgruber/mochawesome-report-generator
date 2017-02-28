@@ -82,4 +82,14 @@ describe('bin/cli', () => {
     expect(process.exitCode).to.equal(1);
     expect(createSyncSpy.called).to.equal(false);
   });
+
+  it('should not generate a report when data schema is invalid', () => {
+    const args = Object.assign({}, inOpts, {
+      _: [ 'test/sample-data/test-data-invalid.json' ]
+    });
+
+    cli(args);
+    expect(process.exitCode).to.equal(1);
+    expect(createSyncSpy.called).to.equal(false);
+  });
 });

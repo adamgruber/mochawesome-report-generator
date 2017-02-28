@@ -3,14 +3,22 @@
 /* eslint-disable no-console */
 var path = require('path');
 var fs = require('fs-extra');
+var t = require('tcomb-validation');
 var report = require('../lib/main');
+var types = require('./types');
 
 var JsonErrRegex = /^Unexpected token .* in JSON/;
 var fileExtRegex = /\.[^.]*?$/;
 var ERRORS = {
   NO_FILE: 'You must supply a mochawesome data file to create a report.',
+  NOT_FOUND: function NOT_FOUND(filename) {
+    return 'The data file: ' + filename + ' could not be found.';
+  },
   BAD_JSON: 'There was a problem parsing mochawesome data. Please ensure the JSON file is valid.',
-  GENERIC: 'There was a problem loading mochawesome data.'
+  GENERIC: 'There was a problem loading mochawesome data.',
+  INVALID_JSON: function INVALID_JSON(errMsg) {
+    return 'There was a problem parsing mochawesome data:\n' + errMsg;
+  }
 };
 
 /**
@@ -29,11 +37,21 @@ function validateInFile(dataInFile) {
     dataIn = JSON.parse(fs.readFileSync(dataInFile, 'utf-8'));
   } catch (err) {
     if (err.code === 'ENOENT') {
-      return { err: 'The data file: ' + dataInFile + ' could not be found.' };
+      return { err: ERRORS.NOT_FOUND(dataInFile) };
     } else if (JsonErrRegex.test(err.message)) {
       return { err: ERRORS.BAD_JSON };
     }
     return { err: ERRORS.GENERIC };
+  }
+
+  // Validate test report json against schema
+  var validationResult = t.validate(dataIn, types.TestReport);
+  if (!validationResult.isValid()) {
+    return {
+      err: ERRORS.INVALID_JSON(validationResult.errors.map(function (e) {
+        return ' - ' + e.message;
+      }).join('\n'))
+    };
   }
 
   return dataIn;
