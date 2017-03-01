@@ -65,6 +65,9 @@
     "opener": "^1.4.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "tcomb": "^3.2.17",
+    "tcomb-validation": "^3.3.0",
+    "validator": "^7.0.0",
     "yargs": "^6.3.0"
   },
   "devDependencies": {
