@@ -1,12 +1,8 @@
 @import '../../styles/vars';
 
 .component {
-  padding: 10px 16px 10px 13px;
   border-bottom: 1px solid var(--grey300);
   border-left: 3px solid transparent;
-  &:not(.inactive) {
-    cursor: pointer;
-  }
   &:hover:not(.inactive) {
     border-left-color: var(--grey500);
   }
@@ -23,6 +19,15 @@
 
 .header {
   @apply --clearfix;
+  position: relative;
+  padding: 10px 0;
+  margin: 0 16px 0 13px;
+  @nest .component:not(.inactive) & {
+    cursor: pointer;
+  }
+}
+
+.title-wrap {
   position: relative;
 }
 
@@ -66,7 +71,7 @@
 
 .info {
   position: absolute;
-  top: 0;
+  top: 10px;
   right: 0;
 }
 
@@ -113,7 +118,7 @@
   border-radius: 4px;
   @nest .expanded & {
     display: block;
-    margin-top: 10px;
+    margin: 0 16px 10px 13px;
   }
 }
 
