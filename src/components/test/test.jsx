@@ -70,8 +70,8 @@ class Test extends React.Component {
     });
 
     return (
-      <section id={ uuid } className={ cxname } onClick={ this.toggleExpandedState }>
-        <header className={ cx('header') }>
+      <section id={ uuid } className={ cxname }>
+        <header className={ cx('header') } onClick={ this.toggleExpandedState }>
           <div className={ cx('title-wrap') }>
             { testIcon() }
             <h4 className={ cx('title') }>{ title }</h4>

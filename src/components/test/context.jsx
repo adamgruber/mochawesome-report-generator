@@ -30,7 +30,6 @@ class TestContext extends Component {
       <a
         href={ linkUrl }
         className={ cx('image-link') }
-        onClick={ e => e.stopPropagation() }
         rel='noopener noreferrer'
         target='_blank' >
         <img src={ linkUrl } className={ cx('image') } alt={ title } />
@@ -44,7 +43,6 @@ class TestContext extends Component {
       <a
         href={ linkUrl }
         className={ cx('text-link') }
-        onClick={ e => e.stopPropagation() }
         rel='noopener noreferrer'
         target='_blank'
         alt={ title } >
