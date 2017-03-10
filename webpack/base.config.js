@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const pkg = require('../package.json');
 
 const env = (!!process.env.BABEL_ENV && process.env.BABEL_ENV) ||
           (!!process.env.NODE_ENV && process.env.NODE_ENV) ||
@@ -12,7 +13,8 @@ const devtool = isDev ? 'source-map' : '';
 
 const plugins = [
   new ExtractTextPlugin('[name].css', { allChunks: true }),
-  new webpack.optimize.OccurrenceOrderPlugin()
+  new webpack.optimize.OccurrenceOrderPlugin(),
+  new webpack.BannerPlugin(`mochawesome-report-generator ${pkg.version} | https://github.com/adamgruber/mochawesome-report-generator`)
 ];
 
 if (env === 'production') {
