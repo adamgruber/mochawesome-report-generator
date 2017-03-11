@@ -143,10 +143,10 @@
 }
 
 .code-diff-expected span{
-  color: #dc322f;
+  color: #859900;
 }
 .code-diff-actual span {
-  color: #859900;
+  color: #dc322f;
 }
 
 .code-label {

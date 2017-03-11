@@ -47,8 +47,8 @@ class CodeSnippet extends Component {
 
     // Add - expected + actual to top of diffs
     if (lang === 'diff') {
-      const expected = `<span class='${cx('code-diff-expected')}'>- expected</span>`;
-      const actual = `<span class='${cx('code-diff-actual')}'>+ actual</span>`;
+      const expected = `<span class='${cx('code-diff-expected')}'>+ expected</span>`;
+      const actual = `<span class='${cx('code-diff-actual')}'>- actual</span>`;
       codeHtml = `${expected}&nbsp;&nbsp;${actual}\n\n${code}`;
     }
 
