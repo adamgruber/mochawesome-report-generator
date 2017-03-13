@@ -110,7 +110,7 @@ describe('<Test />', () => {
   const getInstance = instanceProps => {
     const wrapper = shallow(<Test { ...instanceProps } />);
     return {
-      wrapper,
+      header: wrapper.find('.test-header'),
       snippets: wrapper.find(CodeSnippet),
       errorMsg: wrapper.find('.test-error-message'),
       ctx: wrapper.find(TestContext)
@@ -128,66 +128,66 @@ describe('<Test />', () => {
   });
 
   it('renders passing test', () => {
-    const { wrapper, snippets, errorMsg, ctx } = getInstance({ test: passingTest });
+    const { header, snippets, errorMsg, ctx } = getInstance({ test: passingTest });
     expect(snippets).to.have.lengthOf(3);
     expect(errorMsg).to.have.lengthOf(0);
     expect(ctx).to.have.lengthOf(0);
-    wrapper.simulate('click');
+    header.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.calledOnce).to.equal(true);
   });
 
   it('renders passing test with context', () => {
-    const { wrapper, snippets, errorMsg, ctx } = getInstance({ test: passingTestWithContext });
+    const { header, snippets, errorMsg, ctx } = getInstance({ test: passingTestWithContext });
     expect(snippets).to.have.lengthOf(3);
     expect(errorMsg).to.have.lengthOf(0);
     expect(ctx).to.have.lengthOf(1);
-    wrapper.simulate('click');
+    header.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.calledOnce).to.equal(true);
   });
 
   it('renders passing test, enableCode: false', () => {
-    const { wrapper, snippets, errorMsg } = getInstance({ test: passingTest, enableCode: false });
+    const { header, snippets, errorMsg } = getInstance({ test: passingTest, enableCode: false });
     expect(snippets).to.have.lengthOf(2);
     expect(errorMsg).to.have.lengthOf(0);
-    wrapper.simulate('click');
+    header.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.calledOnce).to.equal(false);
   });
 
   it('renders passing test with context, enableCode: false', () => {
-    const { wrapper, snippets, errorMsg } = getInstance({ test: passingTestWithContext, enableCode: false });
+    const { header, snippets, errorMsg } = getInstance({ test: passingTestWithContext, enableCode: false });
     expect(snippets).to.have.lengthOf(2);
     expect(errorMsg).to.have.lengthOf(0);
-    wrapper.simulate('click');
+    header.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.calledOnce).to.equal(true);
   });
 
   it('renders failing test', () => {
-    const { wrapper, snippets, errorMsg } = getInstance({ test: failingTest });
+    const { header, snippets, errorMsg } = getInstance({ test: failingTest });
     expect(snippets).to.have.lengthOf(3);
     expect(errorMsg).to.have.lengthOf(1);
-    wrapper.simulate('click');
+    header.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.calledOnce).to.equal(true);
   });
 
   it('renders pending test', () => {
-    const { wrapper, snippets, errorMsg } = getInstance({ test: pendingTest });
+    const { header, snippets, errorMsg } = getInstance({ test: pendingTest });
     expect(snippets).to.have.lengthOf(3);
     expect(errorMsg).to.have.lengthOf(0);
-    wrapper.simulate('click');
+    header.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.called).to.equal(false);
   });
 
   it('renders skipped test', () => {
-    const { wrapper, snippets, errorMsg } = getInstance({ test: skippedTest });
+    const { header, snippets, errorMsg } = getInstance({ test: skippedTest });
     expect(snippets).to.have.lengthOf(3);
     expect(errorMsg).to.have.lengthOf(0);
-    wrapper.simulate('click');
+    header.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.called).to.equal(false);
   });

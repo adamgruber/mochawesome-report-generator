@@ -5,6 +5,7 @@ import chai, { expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 
 import testData from 'sample-data/test-data.json';
+import pkg from '../../../package.json';
 
 chai.use(chaiAsPromised);
 proxyquire.noCallThru();
@@ -23,7 +24,8 @@ const mareport = proxyquire('../../../lib/src/main', {
     readFileSync: readFileSyncStub,
     existsSync: existsSyncStub
   },
-  opener: openerStub
+  opener: openerStub,
+  '../package.json': pkg
 });
 
 const baseOpts = {
@@ -47,6 +49,7 @@ afterEach(() => {
   outputFileSyncStub.reset();
   copySyncStub.reset();
   readFileSyncStub.reset();
+  existsSyncStub.reset();
 });
 
 describe('lib/main', () => {
@@ -95,15 +98,50 @@ describe('lib/main', () => {
     expect(outputFileSyncStub.calledWith('mochawesome-report/test.html')).to.equal(true);
   });
 
-  it('copies assets', () => {
-    mareport.createSync(testData, { inlineAssets: false });
-    expect(copySyncStub.called).to.equal(true);
-  });
+  describe('copyAssets', () => {
+    beforeEach(() => {
+      existsSyncStub.returns(true);
+    });
 
-  it('doesn\'t copy assets if assetsDir already exists', () => {
-    existsSyncStub.returns(true);
-    mareport.createSync(testData, { inlineAssets: false });
-    expect(copySyncStub.called).to.equal(false);
+    describe('when assetsDir does not exist', () => {
+      it('copies assets', () => {
+        existsSyncStub.returns(false);
+        mareport.createSync(testData, { inlineAssets: false });
+        expect(copySyncStub.called).to.equal(true);
+      });
+    });
+
+    describe('when loading css fails', () => {
+      it('copies assets', () => {
+        readFileSyncStub.throws();
+        mareport.createSync(testData, { inlineAssets: false });
+        expect(copySyncStub.called).to.equal(true);
+      });
+    });
+
+    describe('when css version is not found', () => {
+      it('copies assets', () => {
+        readFileSyncStub.returns('abcdefg');
+        mareport.createSync(testData, { inlineAssets: false });
+        expect(copySyncStub.called).to.equal(true);
+      });
+    });
+
+    describe('when css version is mismatch', () => {
+      it('copies assets', () => {
+        readFileSyncStub.returns('0.0.0');
+        mareport.createSync(testData, { inlineAssets: false });
+        expect(copySyncStub.called).to.equal(true);
+      });
+    });
+
+    describe('when css version matches', () => {
+      it('does not copy assets', () => {
+        readFileSyncStub.returns(pkg.version);
+        mareport.createSync(testData, { inlineAssets: false });
+        expect(copySyncStub.called).to.equal(false);
+      });
+    });
   });
 
   it('inlines assets', () => {
