@@ -1,5 +1,11 @@
 #Changelog
 
+###1.1.1
+- Fix an inconsistency between the diff output in the console and the diff output in the report [mochawesome #142](https://github.com/adamgruber/mochawesome/issues/142)
+- Fix an issue where the report assets would not get updated after upgrading package version. [mochawesome #138](https://github.com/adamgruber/mochawesome/issues/138)
+- Fix an issue where trying to copy text from code or context blocks would collapse the test. [mochawesome #138](https://github.com/adamgruber/mochawesome/issues/138)
+- Validate JSON input against schema before creating a report (CLI only)
+
 ###1.1.0
 - Greenkeeping
 - Move some dependencies into devDependencies where they belong [mochawesome #133](https://github.com/adamgruber/mochawesome/issues/133)
