@@ -62,6 +62,7 @@
     "semi": [1, "always"],
     "global-require": 0,
     "import/no-unresolved": 0,
-    "import/no-extraneous-dependencies": 0
+    "import/no-extraneous-dependencies": 0,
+    "valid-jsdoc": ["error", { "requireReturn": false }]
   }
 }
