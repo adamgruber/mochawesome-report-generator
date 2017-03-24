@@ -24,6 +24,9 @@ var ERRORS = {
 /**
  * Validate the data file
  *
+ * @param {string} dataInFile Filename of test data
+ *
+ * @return {Object} JSON test data if valid, otherwise error object { err: message }
  */
 function validateInFile(dataInFile) {
   var dataIn = void 0;
@@ -60,6 +63,9 @@ function validateInFile(dataInFile) {
 /**
  * Get options to send to report generator
  *
+ * @param {Object} args Arguments passed in
+ *
+ * @return {Object} Options to pass to report generator
  */
 function getOptions(args) {
   var reportFilename = args.reportFilename,
@@ -69,6 +75,7 @@ function getOptions(args) {
       inlineAssets = args.inlineAssets,
       enableCharts = args.enableCharts,
       enableCode = args.enableCode,
+      autoOpen = args.autoOpen,
       dev = args.dev;
 
   var filename = reportFilename.replace(fileExtRegex, '') + '.html';
@@ -79,6 +86,7 @@ function getOptions(args) {
     inlineAssets: inlineAssets,
     enableCharts: enableCharts,
     enableCode: enableCode,
+    autoOpen: autoOpen,
     dev: dev
   };
 }
@@ -86,6 +94,7 @@ function getOptions(args) {
 /**
  * Main CLI Program
  *
+ * @param {Object} processArgs CLI arguments
  */
 function mareport(processArgs) {
   var args = processArgs || { _: [] };
