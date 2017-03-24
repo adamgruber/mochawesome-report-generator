@@ -18,6 +18,9 @@ const ERRORS = {
 /**
  * Validate the data file
  *
+ * @param {string} dataInFile Filename of test data
+ *
+ * @return {Object} JSON test data if valid, otherwise error object { err: message }
  */
 function validateInFile(dataInFile) {
   let dataIn;
@@ -52,10 +55,13 @@ function validateInFile(dataInFile) {
 /**
  * Get options to send to report generator
  *
+ * @param {Object} args Arguments passed in
+ *
+ * @return {Object} Options to pass to report generator
  */
 function getOptions(args) {
   const { reportFilename, reportDir, reportTitle, reportPageTitle,
-    inlineAssets, enableCharts, enableCode, dev } = args;
+    inlineAssets, enableCharts, enableCode, autoOpen, dev } = args;
   const filename = `${reportFilename.replace(fileExtRegex, '')}.html`;
   return {
     reportHtmlFile: path.join(reportDir, filename),
@@ -64,6 +70,7 @@ function getOptions(args) {
     inlineAssets,
     enableCharts,
     enableCode,
+    autoOpen,
     dev
   };
 }
@@ -71,6 +78,7 @@ function getOptions(args) {
 /**
  * Main CLI Program
  *
+ * @param {Object} processArgs CLI arguments
  */
 function mareport(processArgs) {
   const args = processArgs || { _: [] };
