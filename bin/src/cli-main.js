@@ -61,7 +61,7 @@ function validateInFile(dataInFile) {
  */
 function getOptions(args) {
   const { reportFilename, reportDir, reportTitle, reportPageTitle,
-    inlineAssets, enableCharts, enableCode, dev } = args;
+    inlineAssets, enableCharts, enableCode, autoOpen, dev } = args;
   const filename = `${reportFilename.replace(fileExtRegex, '')}.html`;
   return {
     reportHtmlFile: path.join(reportDir, filename),
@@ -70,6 +70,7 @@ function getOptions(args) {
     inlineAssets,
     enableCharts,
     enableCode,
+    autoOpen,
     dev
   };
 }
