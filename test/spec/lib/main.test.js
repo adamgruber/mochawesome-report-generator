@@ -44,13 +44,15 @@ beforeEach(() => {
   opts = Object.assign({}, baseOpts);
 });
 
-afterEach(() => {
+beforeEach(() => {
   outputFileStub.reset();
+  outputFileStub.resetBehavior();
   outputFileSyncStub.reset();
   copySyncStub.reset();
   readFileSyncStub.reset();
   existsSyncStub.reset();
   openerStub.reset();
+  openerStub.resetBehavior();
 });
 
 describe('lib/main', () => {
@@ -97,7 +99,6 @@ describe('lib/main', () => {
 
   it('runs createSync with autoOpen', () => {
     opts.autoOpen = true;
-    outputFileStub.yields(null);
     mareport.createSync(testData, opts);
     expect(openerStub.called).to.equal(true);
   });
