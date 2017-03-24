@@ -44,12 +44,15 @@ beforeEach(() => {
   opts = Object.assign({}, baseOpts);
 });
 
-afterEach(() => {
+beforeEach(() => {
   outputFileStub.reset();
+  outputFileStub.resetBehavior();
   outputFileSyncStub.reset();
   copySyncStub.reset();
   readFileSyncStub.reset();
   existsSyncStub.reset();
+  openerStub.reset();
+  openerStub.resetBehavior();
 });
 
 describe('lib/main', () => {
@@ -60,6 +63,7 @@ describe('lib/main', () => {
 
   it('runs create with autoOpen', () => {
     opts.autoOpen = true;
+    openerStub.yields(null);
     outputFileStub.yields(null);
     return mareport.create(testData, opts).then(() => {
       expect(openerStub.called).to.equal(true);
@@ -69,6 +73,13 @@ describe('lib/main', () => {
   it('runs create and throws', () => {
     outputFileStub.yields('save error');
     return expect(mareport.create(testData, opts)).to.be.rejectedWith('save error');
+  });
+
+  it('runs create with autoOpen and throws', () => {
+    opts.autoOpen = true;
+    openerStub.yields('open error');
+    outputFileStub.yields(null);
+    return expect(mareport.create(testData, opts)).to.be.rejectedWith('open error');
   });
 
   it('runs createSync', () => {
@@ -86,9 +97,8 @@ describe('lib/main', () => {
     expect(outputFileSyncStub.calledWith('mochawesome-report/mochawesome.html')).to.equal(true);
   });
 
-  it('runs create with autoOpen', () => {
+  it('runs createSync with autoOpen', () => {
     opts.autoOpen = true;
-    outputFileStub.yields(null);
     mareport.createSync(testData, opts);
     expect(openerStub.called).to.equal(true);
   });

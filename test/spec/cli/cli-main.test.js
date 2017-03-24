@@ -20,6 +20,7 @@ const sharedOpts = {
   inlineAssets: false,
   enableCharts: true,
   enableCode: true,
+  autoOpen: false,
   dev: true
 };
 

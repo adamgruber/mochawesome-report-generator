@@ -80,6 +80,7 @@ Flag | Type | Default | Description
 -i, --inline | boolean | false | Inline report assets (scripts, styles)
 --charts | boolean | true | Display Suite charts
 --code | boolean | true | Display test code
+--autoOpen | boolean | false | Automatically open the report
 --dev | boolean | false | Enable dev mode (requires local webpack dev server)
 -h, --help | | | Show CLI help
 
