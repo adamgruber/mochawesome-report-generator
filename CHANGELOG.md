@@ -1,5 +1,9 @@
 #Changelog
 
+###1.1.2
+- Fix an issue where autoOpen did not work on Windows [mochawesome #142](https://github.com/adamgruber/mochawesome/issues/144)
+- Add `autoOpen` option to CLI
+
 ###1.1.1
 - Fix an inconsistency between the diff output in the console and the diff output in the report [mochawesome #142](https://github.com/adamgruber/mochawesome/issues/142)
 - Fix an issue where the report assets would not get updated after upgrading package version. [mochawesome #138](https://github.com/adamgruber/mochawesome/issues/138)
