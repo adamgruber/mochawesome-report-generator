@@ -16,6 +16,9 @@ const mareport = require('./cli-main');
  * @property {boolean} charts           Should charts be enabled (default: true)
  * @property {boolean} code             Should test code output be enabled (default: true)
  * @property {boolean} autoOpen         Open the report after creation (default: false)
+ * @property {boolean} overwrite        Overwrite existing files (default: true)
+ * @property {boolean} timestamp        Append a timestamp to the filename, ensuring
+ *                                      a new file is created for each run (default: false)
  * @property {boolean} dev              Enable dev mode in the report,
  *                                      asssets loaded via webpack (default: false)
  */
@@ -74,6 +77,17 @@ yargs
     autoOpen: {
       default: false,
       describe: 'Automatically open the report HTML',
+      boolean: true
+    },
+    overwrite: {
+      default: true,
+      describe: 'Overwrite existing files when saving',
+      boolean: true
+    },
+    timestamp: {
+      alias: [ 'ts' ],
+      default: false,
+      describe: 'Append timestamp to filename',
       boolean: true
     },
     dev: {

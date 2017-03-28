@@ -1,12 +1,10 @@
 /* eslint-disable no-console */
-const path = require('path');
 const fs = require('fs-extra');
 const t = require('tcomb-validation');
 const report = require('../lib/main');
 const types = require('./types');
 
 const JsonErrRegex = /^Unexpected token .* in JSON/;
-const fileExtRegex = /\.[^.]*?$/;
 const ERRORS = {
   NO_FILE: 'You must supply a mochawesome data file to create a report.',
   NOT_FOUND: filename => `The data file: ${filename} could not be found.`,
@@ -53,32 +51,35 @@ function validateInFile(dataInFile) {
 }
 
 /**
- * Get options to send to report generator
+ * Logger
  *
- * @param {Object} args Arguments passed in
+ * @param {string} msg Message to display
+ * @param {string} level Console log level (log, error, info, warn)
  *
- * @return {Object} Options to pass to report generator
  */
-function getOptions(args) {
-  const { reportFilename, reportDir, reportTitle, reportPageTitle,
-    inlineAssets, enableCharts, enableCode, autoOpen, dev } = args;
-  const filename = `${reportFilename.replace(fileExtRegex, '')}.html`;
-  return {
-    reportHtmlFile: path.join(reportDir, filename),
-    reportTitle,
-    reportPageTitle,
-    inlineAssets,
-    enableCharts,
-    enableCode,
-    autoOpen,
-    dev
-  };
+function log(msg, level) {
+  const logMethod = console[level] || console.log;
+  logMethod(`${msg}\n`);
+}
+
+/**
+ * Handle errors
+ *
+ * @param {Object|string} err Error object or error message
+ *
+ */
+function handleError(err) {
+  const msg = err.message || err;
+  log(msg, 'error');
+  process.exitCode = 1;
 }
 
 /**
  * Main CLI Program
  *
  * @param {Object} processArgs CLI arguments
+ *
+ * @return {Promise|false} Promise if create was attempted, otherwise false
  */
 function mareport(processArgs) {
   const args = processArgs || { _: [] };
@@ -86,16 +87,11 @@ function mareport(processArgs) {
   // Try to load the test data
   const reportData = validateInFile(args._[0]);
 
-  // Check for error in data load
-  /* istanbul ignore else */
-  if (reportData && reportData.err) {
-    console.log(reportData.err);
-    process.exitCode = 1;
-    return;
-  }
-
-  // Good so far, now generate the report
-  report.createSync(reportData, getOptions(args));
+  return (reportData && reportData.err)
+    ? handleError(reportData.err)
+    : report.create(reportData, args)
+      .then(savedFile => log(`Report saved to ${savedFile}`))
+      .catch(handleError);
 }
 
 module.exports = mareport;
