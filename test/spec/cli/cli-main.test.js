@@ -7,10 +7,10 @@ import testData from 'sample-data/test-data.json';
 
 proxyquire.noCallThru();
 
-const createSyncSpy = sinon.spy();
+const createStub = sinon.stub();
 const cli = proxyquire('../../../bin/src/cli-main', {
   '../lib/main': {
-    createSync: createSyncSpy
+    create: createStub
   }
 });
 
@@ -21,7 +21,9 @@ const sharedOpts = {
   enableCharts: true,
   enableCode: true,
   autoOpen: false,
-  dev: true
+  overwrite: true,
+  timestamp: false,
+  dev: false
 };
 
 const inOpts = Object.assign({}, sharedOpts, {
@@ -29,12 +31,16 @@ const inOpts = Object.assign({}, sharedOpts, {
   reportDir: 'mochawesome-report'
 });
 
-const expectedOpts = Object.assign({}, sharedOpts, {
+const expectedOpts = Object.assign({}, inOpts, {
   reportHtmlFile: 'mochawesome-report/mochawesome.html'
 });
 
+beforeEach(() => {
+  createStub.resolves(expectedOpts.reportHtmlFile);
+});
+
 afterEach(() => {
-  createSyncSpy.reset();
+  createStub.reset();
 });
 
 describe('bin/cli', () => {
@@ -45,13 +51,13 @@ describe('bin/cli', () => {
 
     cli(args);
     expect(process.exitCode).to.equal(undefined);
-    expect(createSyncSpy.calledWithExactly(testData, expectedOpts)).to.equal(true);
+    expect(createStub.calledWithExactly(testData, args)).to.equal(true);
   });
 
   it('should not generate a report when no data is passed', () => {
     cli();
     expect(process.exitCode).to.equal(1);
-    expect(createSyncSpy.called).to.equal(false);
+    expect(createStub.called).to.equal(false);
   });
 
   it('should not generate a report when data file is not found', () => {
@@ -61,7 +67,7 @@ describe('bin/cli', () => {
 
     cli(args);
     expect(process.exitCode).to.equal(1);
-    expect(createSyncSpy.called).to.equal(false);
+    expect(createStub.called).to.equal(false);
   });
 
   it('should not generate a report when data is bad json', () => {
@@ -71,7 +77,7 @@ describe('bin/cli', () => {
 
     cli(args);
     expect(process.exitCode).to.equal(1);
-    expect(createSyncSpy.called).to.equal(false);
+    expect(createStub.called).to.equal(false);
   });
 
   it('should not generate a report when a data error occurs', () => {
@@ -81,7 +87,7 @@ describe('bin/cli', () => {
 
     cli(args);
     expect(process.exitCode).to.equal(1);
-    expect(createSyncSpy.called).to.equal(false);
+    expect(createStub.called).to.equal(false);
   });
 
   it('should not generate a report when data schema is invalid', () => {
@@ -91,6 +97,17 @@ describe('bin/cli', () => {
 
     cli(args);
     expect(process.exitCode).to.equal(1);
-    expect(createSyncSpy.called).to.equal(false);
+    expect(createStub.called).to.equal(false);
+  });
+
+  it('should handle when create fails', () => {
+    createStub.rejects();
+    const args = Object.assign({}, inOpts, {
+      _: [ 'test/sample-data/test-data.json' ]
+    });
+
+    cli(args);
+    expect(process.exitCode).to.equal(1);
+    expect(createStub.called).to.equal(true);
   });
 });
