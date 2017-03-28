@@ -61,9 +61,20 @@ beforeEach(() => {
 
 describe('lib/main', () => {
   describe('create', () => {
-    it('runs', () => {
+    it('saves report', () => {
       outputFileStub.yields(null);
-      return expect(mareport.create(testData, opts)).to.be.fulfilled;
+      const expectedHtmlFile = path.resolve(process.cwd(), 'test', 'test.html');
+      const promise = mareport.create(testData, opts);
+      return expect(promise).to.become([ expectedHtmlFile ]);
+    });
+
+    it('saves report and json', () => {
+      opts.saveJson = true;
+      outputFileStub.yields(null);
+      const expectedHtmlFile = path.resolve(process.cwd(), 'test', 'test.html');
+      const expectedJsonFile = path.resolve(process.cwd(), 'test', 'test.json');
+      const promise = mareport.create(testData, opts);
+      return expect(promise).to.become([ expectedHtmlFile, expectedJsonFile ]);
     });
 
     it('with autoOpen', () => {

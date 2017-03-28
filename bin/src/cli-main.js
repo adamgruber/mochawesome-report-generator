@@ -90,7 +90,7 @@ function mareport(processArgs) {
   return (reportData && reportData.err)
     ? handleError(reportData.err)
     : report.create(reportData, args)
-      .then(savedFile => log(`Report saved to ${savedFile}`))
+      .then(([ savedHtmlFile ]) => log(`Report saved to ${savedHtmlFile}`))
       .catch(handleError);
 }
 
