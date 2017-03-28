@@ -62,6 +62,7 @@
   },
   "dependencies": {
     "fs-extra": "^2.0.0",
+    "fsu": "^1.0.1",
     "opener": "^1.4.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
@@ -121,7 +122,7 @@
     "proxyquire": "^1.7.10",
     "react-addons-test-utils": "^15.4.0",
     "should": "^11.1.1",
-    "sinon": "^1.17.6",
+    "sinon": "^2.1.0",
     "style-loader": "^0.13.1",
     "stylelint": "^7.5.0",
     "stylelint-config-standard": "^16.0.0",

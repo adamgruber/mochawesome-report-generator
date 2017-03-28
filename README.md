@@ -81,6 +81,8 @@ Flag | Type | Default | Description
 --charts | boolean | true | Display Suite charts
 --code | boolean | true | Display test code
 --autoOpen | boolean | false | Automatically open the report
+--overwrite | boolean | true | Overwrite existing report files
+--timestamp, --ts | boolean | false | Append timestamp to report filename
 --dev | boolean | false | Enable dev mode (requires local webpack dev server)
 -h, --help | | | Show CLI help
 
