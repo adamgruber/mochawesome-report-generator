@@ -87,6 +87,11 @@ function mareport(processArgs) {
   // Try to load the test data
   const reportData = validateInFile(args._[0]);
 
+  // Set the overwrite option based on timestamp option
+  if (args.timestamp !== false) {
+    args.overwrite = false;
+  }
+
   return (reportData && reportData.err)
     ? handleError(reportData.err)
     : report.create(reportData, args)
