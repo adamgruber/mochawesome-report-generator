@@ -98,7 +98,7 @@ describe('lib/main', () => {
       let clock;
 
       function getExpectedName(dateTimeStr) {
-        return path.resolve(process.cwd(), 'test', `test_${dateTimeStr}{_###}.html`);
+        return path.resolve(process.cwd(), 'test', `test${dateTimeStr}{_###}.html`);
       }
 
       beforeEach(() => {
@@ -110,13 +110,43 @@ describe('lib/main', () => {
         clock.restore();
       });
 
-      it('with timestamp, default format', () => {
+      it('with timestamp, boolean -> default format', () => {
+        opts.timestamp = true;
+        opts.overwrite = false;
+        writeFileUniqueStub.yields(null);
+        return mareport.create(testData, opts).then(() => {
+          expect(writeFileUniqueStub.args[0][0])
+            .to.equal(getExpectedName('_2017-03-29T153059-0400'));
+        });
+      });
+
+      it('with timestamp, true string -> default format', () => {
+        opts.timestamp = 'true';
+        opts.overwrite = false;
+        writeFileUniqueStub.yields(null);
+        return mareport.create(testData, opts).then(() => {
+          expect(writeFileUniqueStub.args[0][0])
+            .to.equal(getExpectedName('_2017-03-29T153059-0400'));
+        });
+      });
+
+      it('with timestamp, false string -> no timestamp', () => {
+        opts.timestamp = 'false';
+        opts.overwrite = false;
+        writeFileUniqueStub.yields(null);
+        return mareport.create(testData, opts).then(() => {
+          expect(writeFileUniqueStub.args[0][0])
+            .to.equal(getExpectedName(''));
+        });
+      });
+
+      it('with timestamp, empty string -> default format', () => {
         opts.timestamp = '';
         opts.overwrite = false;
         writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
           expect(writeFileUniqueStub.args[0][0])
-            .to.equal(getExpectedName('2017-03-29T153059-0400'));
+            .to.equal(getExpectedName('_2017-03-29T153059-0400'));
         });
       });
 
@@ -126,7 +156,7 @@ describe('lib/main', () => {
         writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
           expect(writeFileUniqueStub.args[0][0])
-            .to.equal(getExpectedName('Wednesday_March_29_2017'));
+            .to.equal(getExpectedName('_Wednesday_March_29_2017'));
         });
       });
 
@@ -136,7 +166,7 @@ describe('lib/main', () => {
         writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
           expect(writeFileUniqueStub.args[0][0])
-            .to.equal(getExpectedName('33059_PM_EDT'));
+            .to.equal(getExpectedName('_33059_PM_EDT'));
         });
       });
     });
