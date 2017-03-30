@@ -94,14 +94,50 @@ describe('lib/main', () => {
       });
     });
 
-    it('with timestamp', () => {
-      const clock = sinon.useFakeTimers(123456);
-      opts.timestamp = true;
-      writeFileUniqueStub.yields(null);
-      const expectedFilename = path.resolve(process.cwd(), 'test', 'test_123456{_###}.html');
-      return mareport.create(testData, opts).then(() => {
-        expect(writeFileUniqueStub.calledWith(expectedFilename)).to.equal(true);
+    describe('with timestamp', () => {
+      let clock;
+
+      function getExpectedName(dateTimeStr) {
+        return path.resolve(process.cwd(), 'test', `test_${dateTimeStr}{_###}.html`);
+      }
+
+      beforeEach(() => {
+        // Set clock to 2017-03-29T19:30:59.913Z
+        clock = sinon.useFakeTimers(1490815859913);
+      });
+
+      afterEach(() => {
         clock.restore();
+      });
+
+      it('with timestamp, default format', () => {
+        opts.timestamp = '';
+        opts.overwrite = false;
+        writeFileUniqueStub.yields(null);
+        return mareport.create(testData, opts).then(() => {
+          expect(writeFileUniqueStub.args[0][0])
+            .to.equal(getExpectedName('2017-03-29T153059-0400'));
+        });
+      });
+
+      it('with timestamp, fullDate format', () => {
+        opts.timestamp = 'fullDate';
+        opts.overwrite = false;
+        writeFileUniqueStub.yields(null);
+        return mareport.create(testData, opts).then(() => {
+          expect(writeFileUniqueStub.args[0][0])
+            .to.equal(getExpectedName('Wednesday_March_29_2017'));
+        });
+      });
+
+      it('with timestamp, longTime format', () => {
+        opts.timestamp = 'longTime';
+        opts.overwrite = false;
+        writeFileUniqueStub.yields(null);
+        return mareport.create(testData, opts).then(() => {
+          expect(writeFileUniqueStub.args[0][0])
+            .to.equal(getExpectedName('33059_PM_EDT'));
+        });
       });
     });
 
@@ -143,7 +179,7 @@ describe('lib/main', () => {
 
     it('with base options', () => {
       mareport.createSync(testData, { dev: true });
-      expect(outputFileSyncStub.calledWith(expectedFilename)).to.equal(true);
+      expect(outputFileSyncStub.args[0][0]).to.equal(expectedFilename);
     });
 
     it('with options', () => {
@@ -217,6 +253,29 @@ describe('lib/main', () => {
           expect(copySyncStub.called).to.equal(false);
         });
       });
+    });
+  });
+
+  describe('defaults', () => {
+    it('should get base options', () => {
+      expect(mareport.getBaseConfig())
+        .to.eql({
+          reportFilename: 'mochawesome',
+          reportDir: 'mochawesome-report',
+          reportTitle: process.cwd().split(path.sep).pop(),
+          reportPageTitle: 'Mochawesome Report',
+          inline: false,
+          inlineAssets: false,
+          charts: true,
+          enableCharts: true,
+          code: true,
+          enableCode: true,
+          autoOpen: false,
+          overwrite: true,
+          timestamp: false,
+          ts: false,
+          dev: false
+        });
     });
   });
 });

@@ -36,7 +36,7 @@ const expectedOpts = Object.assign({}, inOpts, {
 });
 
 beforeEach(() => {
-  createStub.resolves(expectedOpts.reportHtmlFile);
+  createStub.resolves([ expectedOpts.reportHtmlFile ]);
 });
 
 afterEach(() => {
@@ -109,5 +109,17 @@ describe('bin/cli', () => {
     cli(args);
     expect(process.exitCode).to.equal(1);
     expect(createStub.called).to.equal(true);
+  });
+
+  it('should set overwrite to false when timestamp option is passed', () => {
+    const args = Object.assign({}, inOpts, {
+      _: [ 'test/sample-data/test-data.json' ],
+      timestamp: ''
+    });
+
+    cli(args);
+    expect(process.exitCode).to.equal(1);
+    expect(createStub.called).to.equal(true);
+    expect(createStub.args[0][1]).to.have.property('overwrite', false);
   });
 });
