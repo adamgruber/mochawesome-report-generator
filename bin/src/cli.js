@@ -9,6 +9,7 @@ yargs
   .options(options.getYargsOptions())
   .help('help')
   .alias('h', 'help')
+  .version()
   .epilog('Copyright 2016-2017 Adam Gruber')
   .argv;
 
