@@ -4,7 +4,7 @@ const report = require('../lib/main');
 const types = require('./types');
 const logger = require('./logger');
 
-const JsonErrRegex = /^Unexpected token .* in JSON|SyntaxError/;
+const JsonErrRegex = /Unexpected token/;
 const ERRORS = {
   NO_FILE: 'You must supply a mochawesome data file to create a report.',
   NOT_FOUND: filename => `The data file: ${filename} could not be found.`,
