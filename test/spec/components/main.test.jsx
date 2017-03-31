@@ -19,7 +19,18 @@ describe('<MainHTML />', () => {
     };
     const wrapper = shallow(<Main data={ data } { ...opts } />);
     expect(wrapper.find('link')).to.have.attr('href', 'assets/app.css');
-    expect(wrapper.find('script')).to.have.attr('src', 'assets/app.js');
+    expect(wrapper.find('script').last()).to.have.attr('src', 'assets/app.js');
+  });
+
+  it('populates data', () => {
+    const opts = {
+      options: {
+        reportPageTitle
+      }
+    };
+    const wrapper = shallow(<Main data={ data } { ...opts } />);
+    expect(wrapper.find('#init-data'))
+      .to.have.html('<script id="init-data">MOCHAWESOME={data:{"testdata":"test"},config:{"reportPageTitle":"test"}};</script>');
   });
 
   it('sets correct script/style urls for dev', () => {
@@ -31,7 +42,7 @@ describe('<MainHTML />', () => {
     };
     const wrapper = shallow(<Main data={ data } { ...opts } />);
     expect(wrapper.find('link')).to.have.attr('href', 'http://localhost:8080/app.css');
-    expect(wrapper.find('script')).to.have.attr('src', 'http://localhost:8080/app.js');
+    expect(wrapper.find('script').last()).to.have.attr('src', 'http://localhost:8080/app.js');
   });
 
   it('renders scripts/styles inline', () => {
@@ -45,7 +56,7 @@ describe('<MainHTML />', () => {
     };
     const wrapper = shallow(<Main data={ data } { ...opts } />);
     expect(wrapper.find('style')).to.have.html('<style>body{display:block;}</style>');
-    expect(wrapper.find('script')).to.have.html(
+    expect(wrapper.find('script').last()).to.have.html(
       '<script type="text/javascript">function noop(){return;}</script>'
     );
   });

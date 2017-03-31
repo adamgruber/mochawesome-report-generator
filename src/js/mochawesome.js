@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom';
 import { MochawesomeReport } from 'components';
 import reportStore from './reportStore';
 
-const bodyEl = document.querySelector('body');
-const data = JSON.parse(bodyEl.getAttribute('data-raw'));
-const config = JSON.parse(bodyEl.getAttribute('data-config'));
 
-bodyEl.removeAttribute('data-raw');
-bodyEl.removeAttribute('data-config');
+// Clean up the DOM
+const initDataScriptEl = document.getElementById('init-data');
+initDataScriptEl.parentNode.removeChild(initDataScriptEl);
 
 // Set data in the store
+const { data, config } = window.MOCHAWESOME;
 reportStore.setInitialData({ data, config });
 
+// Render the report
 ReactDOM.render(
   React.createElement(MochawesomeReport, { store: reportStore }),
   document.getElementById('report')
