@@ -1,10 +1,10 @@
-/* eslint-disable no-console */
 const fs = require('fs-extra');
 const t = require('tcomb-validation');
 const report = require('../lib/main');
 const types = require('./types');
+const logger = require('./logger');
 
-const JsonErrRegex = /^Unexpected token .* in JSON/;
+const JsonErrRegex = /^Unexpected token .* in JSON|SyntaxError/;
 const ERRORS = {
   NO_FILE: 'You must supply a mochawesome data file to create a report.',
   NOT_FOUND: filename => `The data file: ${filename} could not be found.`,
@@ -51,18 +51,6 @@ function validateInFile(dataInFile) {
 }
 
 /**
- * Logger
- *
- * @param {string} msg Message to display
- * @param {string} level Console log level (log, error, info, warn)
- *
- */
-function log(msg, level) {
-  const logMethod = console[level] || console.log;
-  logMethod(`${msg}\n`);
-}
-
-/**
  * Handle errors
  *
  * @param {Object|string} err Error object or error message
@@ -70,7 +58,7 @@ function log(msg, level) {
  */
 function handleError(err) {
   const msg = err.message || err;
-  log(msg, 'error');
+  logger.error(msg);
   process.exitCode = 1;
 }
 
@@ -95,7 +83,7 @@ function mareport(processArgs) {
   return (reportData && reportData.err)
     ? handleError(reportData.err)
     : report.create(reportData, args)
-      .then(([ savedHtmlFile ]) => log(`Report saved to ${savedHtmlFile}`))
+      .then(([ savedHtmlFile ]) => logger.info(`Report saved to ${savedHtmlFile}`))
       .catch(handleError);
 }
 

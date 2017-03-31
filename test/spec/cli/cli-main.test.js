@@ -8,10 +8,15 @@ import testData from 'sample-data/test-data.json';
 proxyquire.noCallThru();
 
 const createStub = sinon.stub();
+const logger = {
+  info: sinon.spy(),
+  error: sinon.spy()
+};
 const cli = proxyquire('../../../bin/src/cli-main', {
   '../lib/main': {
     create: createStub
-  }
+  },
+  './logger': logger
 });
 
 const sharedOpts = {
@@ -41,6 +46,8 @@ beforeEach(() => {
 
 afterEach(() => {
   createStub.reset();
+  logger.info.reset();
+  logger.error.reset();
 });
 
 describe('bin/cli', () => {
@@ -67,6 +74,8 @@ describe('bin/cli', () => {
 
     cli(args);
     expect(process.exitCode).to.equal(1);
+    expect(logger.error.args[0][0])
+      .to.equal('The data file: test/sample-data/not-found.json could not be found.');
     expect(createStub.called).to.equal(false);
   });
 
@@ -77,6 +86,8 @@ describe('bin/cli', () => {
 
     cli(args);
     expect(process.exitCode).to.equal(1);
+    expect(logger.error.args[0][0])
+      .to.equal('There was a problem parsing mochawesome data. Please ensure the JSON file is valid.');
     expect(createStub.called).to.equal(false);
   });
 
@@ -87,6 +98,8 @@ describe('bin/cli', () => {
 
     cli(args);
     expect(process.exitCode).to.equal(1);
+    expect(logger.error.args[0][0])
+      .to.equal('There was a problem loading mochawesome data.');
     expect(createStub.called).to.equal(false);
   });
 
@@ -97,6 +110,8 @@ describe('bin/cli', () => {
 
     cli(args);
     expect(process.exitCode).to.equal(1);
+    expect(logger.error.args[0][0].indexOf('There was a problem parsing mochawesome data:'))
+      .to.equal(0);
     expect(createStub.called).to.equal(false);
   });
 
