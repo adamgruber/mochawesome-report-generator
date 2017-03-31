@@ -4,6 +4,7 @@ import proxyquire from 'proxyquire';
 import sinon from 'sinon';
 import chai, { expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
+import dateFormat from 'dateformat';
 
 import testData from 'sample-data/test-data.json';
 import pkg from '../../../package.json';
@@ -97,9 +98,16 @@ describe('lib/main', () => {
     describe('with timestamp', () => {
       let clock;
 
-      function getExpectedName(dateTimeStr) {
-        return path.resolve(process.cwd(), 'test', `test${dateTimeStr}{_###}.html`);
-      }
+      const getExpectedName = dateTimeStr => (
+        path.resolve(process.cwd(), 'test', `test${dateTimeStr}{_###}.html`)
+      );
+
+      const cleanDateStr = fmt => (
+        dateFormat(new Date(), fmt)
+          .replace(/(,\s*)|,|\s+/g, '_')
+          .replace(/\\|\//g, '-')
+          .replace(/:/g, '')
+      );
 
       beforeEach(() => {
         // Set clock to 2017-03-29T19:30:59.913Z
@@ -116,7 +124,7 @@ describe('lib/main', () => {
         writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
           expect(writeFileUniqueStub.args[0][0])
-            .to.equal(getExpectedName('_2017-03-29T153059-0400'));
+            .to.equal(getExpectedName(`_${cleanDateStr('isoDateTime')}`));
         });
       });
 
@@ -126,7 +134,7 @@ describe('lib/main', () => {
         writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
           expect(writeFileUniqueStub.args[0][0])
-            .to.equal(getExpectedName('_2017-03-29T153059-0400'));
+            .to.equal(getExpectedName(`_${cleanDateStr('isoDateTime')}`));
         });
       });
 
@@ -146,7 +154,7 @@ describe('lib/main', () => {
         writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
           expect(writeFileUniqueStub.args[0][0])
-            .to.equal(getExpectedName('_2017-03-29T153059-0400'));
+            .to.equal(getExpectedName(`_${cleanDateStr('isoDateTime')}`));
         });
       });
 
@@ -156,7 +164,7 @@ describe('lib/main', () => {
         writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
           expect(writeFileUniqueStub.args[0][0])
-            .to.equal(getExpectedName('_Wednesday_March_29_2017'));
+            .to.equal(getExpectedName(`_${cleanDateStr('fullDate')}`));
         });
       });
 
@@ -166,7 +174,7 @@ describe('lib/main', () => {
         writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
           expect(writeFileUniqueStub.args[0][0])
-            .to.equal(getExpectedName('_33059_PM_EDT'));
+            .to.equal(getExpectedName(`_${cleanDateStr('longTime')}`));
         });
       });
     });
