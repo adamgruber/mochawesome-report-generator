@@ -1,12 +1,10 @@
-/* eslint-disable no-console */
-const path = require('path');
 const fs = require('fs-extra');
 const t = require('tcomb-validation');
 const report = require('../lib/main');
 const types = require('./types');
+const logger = require('./logger');
 
-const JsonErrRegex = /^Unexpected token .* in JSON/;
-const fileExtRegex = /\.[^.]*?$/;
+const JsonErrRegex = /Unexpected token/;
 const ERRORS = {
   NO_FILE: 'You must supply a mochawesome data file to create a report.',
   NOT_FOUND: filename => `The data file: ${filename} could not be found.`,
@@ -53,32 +51,23 @@ function validateInFile(dataInFile) {
 }
 
 /**
- * Get options to send to report generator
+ * Handle errors
  *
- * @param {Object} args Arguments passed in
+ * @param {Object|string} err Error object or error message
  *
- * @return {Object} Options to pass to report generator
  */
-function getOptions(args) {
-  const { reportFilename, reportDir, reportTitle, reportPageTitle,
-    inlineAssets, enableCharts, enableCode, autoOpen, dev } = args;
-  const filename = `${reportFilename.replace(fileExtRegex, '')}.html`;
-  return {
-    reportHtmlFile: path.join(reportDir, filename),
-    reportTitle,
-    reportPageTitle,
-    inlineAssets,
-    enableCharts,
-    enableCode,
-    autoOpen,
-    dev
-  };
+function handleError(err) {
+  const msg = err.message || err;
+  logger.error(msg);
+  process.exitCode = 1;
 }
 
 /**
  * Main CLI Program
  *
  * @param {Object} processArgs CLI arguments
+ *
+ * @return {Promise|false} Promise if create was attempted, otherwise false
  */
 function mareport(processArgs) {
   const args = processArgs || { _: [] };
@@ -86,16 +75,16 @@ function mareport(processArgs) {
   // Try to load the test data
   const reportData = validateInFile(args._[0]);
 
-  // Check for error in data load
-  /* istanbul ignore else */
-  if (reportData && reportData.err) {
-    console.log(reportData.err);
-    process.exitCode = 1;
-    return;
+  // Set the overwrite option based on timestamp option
+  if (args.timestamp !== false) {
+    args.overwrite = false;
   }
 
-  // Good so far, now generate the report
-  report.createSync(reportData, getOptions(args));
+  return (reportData && reportData.err)
+    ? handleError(reportData.err)
+    : report.create(reportData, args)
+      .then(([ savedHtmlFile ]) => logger.info(`Report saved to ${savedHtmlFile}`))
+      .catch(handleError);
 }
 
 module.exports = mareport;
