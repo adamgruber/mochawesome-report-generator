@@ -8,38 +8,17 @@
   @apply --clearfix;
   @apply --list-unstyled;
 
-  transition: opacity .2s ease-out;
+  transition: opacity 0.2s ease-out;
   margin: 0 0 8px 0;
 }
 
 .item {
   @apply --font-light;
 
+  color: #fff;
   font-size: 16px;
   float: left;
   width: 25%;
-}
-
-/* Icons / Colors */
-.icon {
-  position: relative;
-  top: 2px;
-  font-size: 18px;
-  margin-right: 4px;
-  float: left;
-}
-
-.circle-icon {
-  font-size: 12px;
-  border-radius: 50%;
-  padding: 3px;
-}
-
-.item {
-  color: #fff;
-
-  &.suites {
-  }
 
   &.tests {
     color: #fff;
@@ -81,6 +60,21 @@
   }
 }
 
+/* Icons / Colors */
+.icon {
+  position: relative;
+  top: 2px;
+  font-size: 18px;
+  margin-right: 4px;
+  float: left;
+}
+
+.circle-icon {
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 3px;
+}
+
 /* Tablet 768 and up */
 @media (--screen-sm) {
   .cnt {
@@ -88,20 +82,24 @@
     float: left;
     padding: 14px 12px 0 24px;
   }
+
   .list {
     display: inline-block;
     margin: 0;
   }
+
   .item {
     font-size: 18px;
     width: auto;
     margin: 0 12px;
   }
+
   .icon {
     font-size: 24px;
     width: 24px;
     top: 0;
   }
+
   .circle-icon {
     font-size: 18px;
   }

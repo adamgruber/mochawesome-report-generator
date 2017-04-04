@@ -4,6 +4,7 @@
   position: absolute;
   bottom: 0;
   width: 100%;
+
   /* Set the fixed height of the footer here */
   height: var(--footer-height);
   color: var(--black38);
@@ -16,9 +17,11 @@
 
   & a {
     @apply --link-transition;
+
     color: var(--black54);
+
     &:hover {
       color: var(--black87);
     }
-  }  
+  }
 }
