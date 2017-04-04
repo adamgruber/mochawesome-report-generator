@@ -30,9 +30,7 @@ function postcss(opts) {
     loader: 'postcss-loader',
     options: Object.assign({
       plugins: () => [
-        require('postcss-import')({
-          plugins: [ require('stylelint')() ]
-        }),
+        require('postcss-import')(),
         require('postcss-url')(),
         require('postcss-cssnext')({
           browsers: [ 'last 2 versions', 'not ie <= 8' ]

@@ -7,7 +7,7 @@
     "color-named": "never",
     "comment-word-blacklist": ["/^TODO:/"],
     "declaration-block-no-duplicate-properties": true,
-    "order/declaration-block-properties-specified-order": [["composes", "content", "display", "position"], { unspecified: "bottom" }],
+    "order/properties-order": [["composes", "content", "display", "position"], { unspecified: "bottom" }],
     "declaration-no-important": true,
     "font-family-name-quotes": "always-unless-keyword",
     "font-weight-notation": "named-where-possible",
