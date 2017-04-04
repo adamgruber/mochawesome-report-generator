@@ -90,7 +90,7 @@
     "chai-enzyme": "^0.6.0",
     "chart.js": "^2.3.0",
     "classnames": "^2.2.5",
-    "cross-env": "^4.0.0",
+    "cross-env": "^3.2.4",
     "css-loader": "^0.28.0",
     "css-modules-require-hook": "^4.0.5",
     "enzyme": "^2.5.1",
