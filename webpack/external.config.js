@@ -3,7 +3,6 @@ const path = require('path');
 const { baseConfig } = require('./base.config');
 const loaders = require('./loaders');
 
-
 // Set output path
 baseConfig.output.path = path.resolve(__dirname, '..', 'dist', 'assets', 'external');
 

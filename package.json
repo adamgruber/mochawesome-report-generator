@@ -4,6 +4,7 @@
   "description": "Generates gorgeous HTML reports from mochawesome reporter.",
   "scripts": {
     "lint": "eslint bin/src lib/src src/js src/components/**/*.js src/components/**/*.jsx test/**/*.js test/**/*.jsx",
+    "stylelint": "stylelint src/**/*.css src/components/**/*.css",
     "test": "cross-env UV_THREADPOOL_SIZE=100 BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc mocha --require test/helper.js \"test/spec/**/*.test.+(js|jsx)\"",
     "test:single": "cross-env UV_THREADPOOL_SIZE=100 BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc mocha --require test/helper.js ",
     "compile:main": "babel ./lib/src -d lib/",
@@ -71,7 +72,7 @@
     "tcomb": "^3.2.17",
     "tcomb-validation": "^3.3.0",
     "validator": "^7.0.0",
-    "yargs": "^6.3.0"
+    "yargs": "^7.0.2"
   },
   "devDependencies": {
     "app-module-path": "^2.1.0",
@@ -89,7 +90,7 @@
     "chai-enzyme": "^0.6.0",
     "chart.js": "^2.3.0",
     "classnames": "^2.2.5",
-    "cross-env": "^3.1.3",
+    "cross-env": "^3.2.4",
     "css-loader": "^0.28.0",
     "css-modules-require-hook": "^4.0.5",
     "enzyme": "^2.5.1",
@@ -106,7 +107,7 @@
     "json-loader": "^0.5.4",
     "lodash": "^4.16.4",
     "material-design-icons": "^3.0.1",
-    "mobx": "^2.6.3",
+    "mobx": "^3.1.8",
     "mobx-react": "^4.0.0",
     "mobx-react-devtools": "^4.2.9",
     "mocha": "*",
@@ -118,7 +119,7 @@
     "postcss-import": "^9.0.0",
     "postcss-loader": "^1.0.0",
     "postcss-reporter": "^3.0.0",
-    "postcss-url": "^5.1.2",
+    "postcss-url": "^6.0.1",
     "proxyquire": "^1.7.10",
     "react-addons-test-utils": "^15.4.0",
     "should": "^11.1.1",
@@ -126,7 +127,8 @@
     "style-loader": "^0.16.1",
     "stylelint": "^7.5.0",
     "stylelint-config-standard": "^16.0.0",
-    "stylelint-order": "^0.3.0",
+    "stylelint-order": "^0.4.3",
+    "stylelint-webpack-plugin": "^0.7.0",
     "url-loader": "^0.5.7",
     "webpack": "^2.3.2",
     "webpack-dev-server": "^2.4.2"

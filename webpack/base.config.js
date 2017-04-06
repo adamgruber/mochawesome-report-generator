@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 const pkg = require('../package.json');
 
 const env = (!!process.env.BABEL_ENV && process.env.BABEL_ENV) ||
@@ -12,6 +13,7 @@ const publicPath = isDev ? 'http://localhost:8080/' : '';
 const devtool = isDev ? 'source-map' : '';
 
 const plugins = [
+  new StyleLintPlugin({ context: 'src', files: '**/*.css', color: true, emitErrors: false }),
   new ExtractTextPlugin({ filename: '[name].css', allChunks: true }),
   new webpack.BannerPlugin(`mochawesome-report-generator ${pkg.version} | https://github.com/adamgruber/mochawesome-report-generator`)
 ];
