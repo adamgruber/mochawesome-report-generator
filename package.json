@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "eslint bin/src lib/src src/js src/components/**/*.js src/components/**/*.jsx test/**/*.js test/**/*.jsx",
     "stylelint": "stylelint src/**/*.css src/components/**/*.css",
-    "test": "cross-env UV_THREADPOOL_SIZE=100 BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc mocha --require test/helper.js \"test/spec/**/*.test.+(js|jsx)\"",
+    "test": "cross-env UV_THREADPOOL_SIZE=100 BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc mocha --require test/helper.js \"test/spec/**/*.test.+\\(js\\|jsx\\)\"",
     "test:single": "cross-env UV_THREADPOOL_SIZE=100 BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc mocha --require test/helper.js ",
     "compile:main": "babel ./lib/src -d lib/",
     "compile:cli": "babel ./bin/src -d bin/",
@@ -90,7 +90,7 @@
     "chai-enzyme": "^0.6.0",
     "chart.js": "^2.3.0",
     "classnames": "^2.2.5",
-    "cross-env": "^3.2.4",
+    "cross-env": "^4.0.0",
     "css-loader": "^0.28.0",
     "css-modules-require-hook": "^4.0.5",
     "enzyme": "^2.5.1",
