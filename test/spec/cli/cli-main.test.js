@@ -101,6 +101,15 @@ describe('bin/cli', () => {
   });
 
   describe('when JSON cannot be parsed', () => {
+    beforeEach(() => {
+      sinon.stub(JSON, 'parse')
+        .throws({ message: 'Unexpected token b in JSON at position 4' });
+    });
+
+    afterEach(() => {
+      JSON.parse.restore();
+    });
+
     it('should not create a report', () => {
       const args = getArgs([ 'test/sample-data/bad.json' ]);
       return expect(cli(args)).to.become([ {
@@ -124,15 +133,13 @@ describe('bin/cli', () => {
   });
 
   describe('when a generic error occurs', () => {
-    let fsStub;
-
     beforeEach(() => {
-      fsStub = sinon.stub(fs, 'readFileSync');
-      fsStub.throws(error);
+      sinon.stub(fs, 'readFileSync')
+        .throws(error);
     });
 
     afterEach(() => {
-      fsStub.restore();
+      fs.readFileSync.restore();
     });
 
     it('should not create a report', () => {
