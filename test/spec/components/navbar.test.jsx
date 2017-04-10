@@ -5,7 +5,7 @@ import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
 import proxyquire from 'proxyquire';
 import QuickSummary from 'components/quick-summary';
-import testData from 'sample-data/test-data.json';
+import testData from 'sample-data/test.json';
 
 proxyquire.noCallThru();
 

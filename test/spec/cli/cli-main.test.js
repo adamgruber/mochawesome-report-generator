@@ -3,7 +3,7 @@ import proxyquire from 'proxyquire';
 import sinon from 'sinon';
 import { expect } from 'chai';
 
-import testData from 'sample-data/test-data.json';
+import invalidTestData from 'sample-data/invalid.json';
 
 proxyquire.noCallThru();
 

@@ -10,7 +10,7 @@ import SuiteList from 'components/suite/list';
 import TestList from 'components/test/list';
 
 import basicSuite from 'sample-data/suite.json';
-import nestedSuite from 'sample-data/test-data.json';
+import nestedSuite from 'sample-data/test.json';
 
 chai.use(chaiEnzyme());
 

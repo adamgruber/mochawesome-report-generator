@@ -6,7 +6,7 @@ import chai, { expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import dateFormat from 'dateformat';
 
-import testData from 'sample-data/test-data.json';
+import testData from 'sample-data/test.json';
 import pkg from '../../../package.json';
 
 chai.use(chaiAsPromised);
