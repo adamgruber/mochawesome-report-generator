@@ -16,7 +16,8 @@
     "pack:inline": "webpack --config ./webpack/inline.config.js",
     "devserver": "webpack-dev-server --config ./webpack/dev.config.js --inline --watch --hot",
     "cli": "node ./bin/cli test/sample-data/test-data.json --dev",
-    "dev": "npm run compile && npm run cli && npm run devserver"
+    "dev": "npm run compile && npm run cli && npm run devserver",
+    "dev:cli": "nodemon --watch bin/src --watch lib/src --exec npm run compile"
   },
   "author": "Adam Gruber",
   "license": "ISC",
@@ -89,6 +90,7 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "chai-enzyme": "^0.6.0",
+    "chalk": "^1.1.3",
     "chart.js": "^2.3.0",
     "classnames": "^2.2.5",
     "cross-env": "^4.0.0",
@@ -113,6 +115,7 @@
     "mobx-react-devtools": "^4.2.9",
     "mocha": "*",
     "moment": "^2.15.1",
+    "nodemon": "^1.11.0",
     "normalize.css": "^5.0.0",
     "nyc": "^10.0.0",
     "postcss": "^5.2.5",
