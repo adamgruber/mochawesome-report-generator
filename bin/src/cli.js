@@ -5,7 +5,8 @@ const mareport = require('./cli-main');
 
 // Setup yargs
 yargs
-  .usage('Usage: $0 [data-in-file] [options]')
+  .usage('Usage: $0 [options] data_file [data_file2 ...]')
+  .demand(1)
   .options(options.getYargsOptions())
   .help('help')
   .alias('h', 'help')
