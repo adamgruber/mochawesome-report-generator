@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const yargs = require('yargs');
 const options = require('../lib/options');
-const mareport = require('./cli-main');
+const marge = require('./cli-main');
 
 // Setup yargs
 yargs
@@ -15,4 +15,4 @@ yargs
   .argv;
 
 // Call the main cli program
-mareport(yargs.argv);
+marge(yargs.argv);
