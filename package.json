@@ -125,7 +125,7 @@
     "postcss-reporter": "^3.0.0",
     "postcss-url": "^6.0.1",
     "proxyquire": "^1.7.10",
-    "react-addons-test-utils": "^15.4.0",
+    "react-test-renderer": "^15.5.4",
     "should": "^11.1.1",
     "sinon": "^2.1.0",
     "style-loader": "^0.16.1",
