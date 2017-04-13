@@ -1,4 +1,5 @@
 const fs = require('fs-extra');
+const path = require('path');
 const chalk = require('chalk');
 const t = require('tcomb-validation');
 const report = require('../lib/main');
@@ -15,7 +16,7 @@ const ERRORS = {
   INVALID_JSON: errMsgs => mapJsonErrors(errMsgs),
   IS_DIR: '  Directories are not supported (yet).'
 };
-let validFiles = 0;
+let validFiles;
 
 /**
  * Validate the data file
@@ -109,8 +110,24 @@ function handleResolved(resolvedValues) {
       .map(e => `${chalk.underline(e.filename)}\n${chalk.dim(e.err)}`)
       .join('\n\n')
     );
+    process.exitCode = 1;
   }
   return resolvedValues;
+}
+
+/**
+ * Get the reportFilename option to be passed to report.create
+ *
+ * Returns the `reportFilename` option if provided otherwise
+ * it returns the base filename stripped of path and extension
+ *
+ * @param {Object} file.filename Name of file to be processed
+ * @param {Object} args CLI process arguments
+ *
+ * @return {string} Filename
+ */
+function getReportFilename({ filename }, { reportFilename }) {
+  return reportFilename || filename.split(path.sep).pop().replace(JsonFileRegex, '');
 }
 
 /**
@@ -121,18 +138,32 @@ function handleResolved(resolvedValues) {
  * @return {Promise} Resolved promises with saved files or errors
  */
 function marge(args) {
+  // Reset valid files count
+  validFiles = 0;
+
   // Load and validate each file
   const files = args._.map(validateFile);
 
-  // Set the overwrite option based on timestamp option
+  // When there are multiple valid files OR the timestamp option is set
+  // we must force `overwrite` to `false` to ensure all reports are created
   /* istanbul ignore else */
-  if (args.timestamp !== false || validFiles > 1) {
+  if (validFiles > 1 || args.timestamp !== false) {
     args.overwrite = false;
   }
 
-  const promises = files.map(file => (
-    file.err ? Promise.resolve(file) : report.create(file.data, args)
-  ));
+  const promises = files.map(file => {
+    // Files with errors we just resolve
+    if (file.err) {
+      return Promise.resolve(file);
+    }
+
+    // Valid files get created but first we need to pass correct filename option
+    // Default value is name of file
+
+    // If a filename option was provided, all files get that name
+    const reportFilename = getReportFilename(file, args);
+    return report.create(file.data, Object.assign({}, args, { reportFilename }));
+  });
 
   return Promise.all(promises)
     .then(handleResolved)
