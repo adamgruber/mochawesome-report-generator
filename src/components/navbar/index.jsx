@@ -10,10 +10,18 @@ const cx = classNames.bind(styles);
 const Navbar = ({ reportTitle, stats, qsNodeRef, qsWidth, mobileBreakpoint }) => {
   const onClickFn = () => (reportStore.openSideNav());
 
-  const { passPercent } = stats;
+  const { passPercent, pendingPercent } = stats;
   const failPercent = 100 - passPercent;
 
   const titleCntStyle = (!mobileBreakpoint && qsWidth) ? { paddingRight: qsWidth } : null;
+  const allPending = pendingPercent === 100;
+
+  const pctBar = (prop, cname, title) => (
+    <span
+      className={ cx('pct-bar-segment', cname) }
+      style={ { width: `${prop}%` } }
+      title={ `${prop.toFixed(1)}% ${title}` } />
+  );
 
   return (
     <div className={ cx('component', 'z-depth-1') } role='navigation'>
@@ -29,14 +37,9 @@ const Navbar = ({ reportTitle, stats, qsNodeRef, qsWidth, mobileBreakpoint }) =>
         <QuickSummary stats={ stats } />
       </div>
       <div className={ cx('pct-bar') }>
-        <span
-          className={ cx('pct-bar-segment', 'pass') }
-          style={ { width: `${passPercent}%` } }
-          title={ `${passPercent.toFixed(1)}% Passing` } />
-        <span
-          className={ cx('pct-bar-segment', 'fail') }
-          style={ { width: `${failPercent}%` } }
-          title={ `${failPercent.toFixed(1)}% Failing` } />
+        { allPending && pctBar(pendingPercent, 'pend', 'Pending') }
+        { !allPending && pctBar(passPercent, 'pass', 'Passing') }
+        { !allPending && pctBar(failPercent, 'fail', 'Failing') }
       </div>
     </div>
   );
