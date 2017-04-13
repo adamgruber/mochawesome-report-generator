@@ -1,7 +1,6 @@
 /* eslint-disable react/no-danger */
 const React = require('react');
-
-const { PropTypes } = React;
+const PropTypes = require('prop-types');
 
 function MainHTML(props) {
   const { data, options, scripts, styles } = props;
