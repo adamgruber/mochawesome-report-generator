@@ -67,6 +67,7 @@
     "fsu": "^1.0.1",
     "lodash.isfunction": "^3.0.8",
     "opener": "^1.4.2",
+    "prop-types": "^15.5.8",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "tcomb": "^3.2.17",

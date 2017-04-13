@@ -1,5 +1,6 @@
 /* eslint-disable no-new */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import Chart from 'chart.js';
 import classNames from 'classnames/bind';
