@@ -22,25 +22,8 @@ const cli = proxyquire('../../../bin/src/cli-main', {
   './logger': logger
 });
 
-const sharedOpts = {
-  reportTitle: 'mochawesome',
-  reportPageTitle: 'mochawesome-report',
-  inlineAssets: false,
-  enableCharts: true,
-  enableCode: true,
-  autoOpen: false,
-  overwrite: true,
-  timestamp: false,
-  dev: false
-};
-
-const inOpts = Object.assign({}, sharedOpts, {
-  reportFilename: 'mochawesome',
-  reportDir: 'mochawesome-report'
-});
-
 const error = { code: 12345, message: 'Err' };
-const getArgs = (files, args) => Object.assign({}, inOpts, { _: files }, args);
+const getArgs = (files, args) => Object.assign({}, { _: files }, args);
 
 afterEach(() => {
   createStub.reset();
@@ -162,30 +145,59 @@ describe('bin/cli', () => {
     });
   });
 
-  describe('overwrite option', () => {
-    beforeEach(() => {
-      createStub.resolves('mochawesome-report/test.html');
-    });
+  describe('options', () => {
+    describe('overwrite', () => {
+      beforeEach(() => {
+        createStub.resolves('mochawesome-report/test.html');
+      });
 
-    it('should be false when timestamp option is passed', () => {
-      const args = getArgs(
-        [ 'test/sample-data/test.json' ],
-        { timestamp: '' }
-      );
+      it('should be false when timestamp option is passed', () => {
+        const args = getArgs(
+          [ 'test/sample-data/test.json' ],
+          { timestamp: '' }
+        );
 
-      return cli(args).then(() => {
-        expect(createStub.args[0][1]).to.have.property('overwrite', false);
+        return cli(args).then(() => {
+          expect(createStub.args[0][1]).to.have.property('overwrite', false);
+        });
+      });
+
+      it('should be false when multiple valid files exist', () => {
+        const args = getArgs([
+          'test/sample-data/test.json',
+          'test/sample-data/single.json'
+        ]);
+
+        return cli(args).then(() => {
+          expect(createStub.args[0][1]).to.have.property('overwrite', false);
+        });
       });
     });
 
-    it('should be false when multiple valid files exist', () => {
-      const args = getArgs([
-        'test/sample-data/test.json',
-        'test/sample-data/single.json'
-      ]);
+    describe('reportFilename', () => {
+      beforeEach(() => {
+        createStub.resolves('mochawesome-report/test.html');
+      });
 
-      return cli(args).then(() => {
-        expect(createStub.args[0][1]).to.have.property('overwrite', false);
+      it('should default to filename when option not provided', () => {
+        const args = getArgs(
+          [ 'test/sample-data/test.json' ],
+        );
+
+        return cli(args).then(() => {
+          expect(createStub.args[0][1]).to.have.property('reportFilename', 'test');
+        });
+      });
+
+      it('should be option when provided', () => {
+        const args = getArgs(
+          [ 'test/sample-data/test.json' ],
+          { reportFilename: 'sample' }
+        );
+
+        return cli(args).then(() => {
+          expect(createStub.args[0][1]).to.have.property('reportFilename', 'sample');
+        });
       });
     });
   });

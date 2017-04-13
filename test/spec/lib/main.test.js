@@ -215,11 +215,6 @@ describe('lib/main', () => {
       expectedFilenameWithOpts = path.resolve(process.cwd(), 'test', 'test.html');
     });
 
-    it('with base options', () => {
-      mareport.createSync(testData, { dev: true });
-      expect(outputFileSyncStub.args[0][0]).to.equal(expectedFilename);
-    });
-
     it('with options', () => {
       mareport.createSync(testData, opts);
       expect(outputFileSyncStub.calledWith(expectedFilenameWithOpts)).to.equal(true);
@@ -292,13 +287,20 @@ describe('lib/main', () => {
         });
       });
     });
+
+    describe('when dev option is true', () => {
+      it('does not copy assets', () => (
+        mareport.create(testData, { dev: true }).then(() => {
+          expect(copySyncStub.called).to.equal(false);
+        })
+      ));
+    });
   });
 
   describe('defaults', () => {
     it('should get base options', () => {
       expect(mareport.getBaseConfig())
         .to.eql({
-          reportFilename: 'mochawesome',
           reportDir: 'mochawesome-report',
           reportTitle: process.cwd().split(path.sep).pop(),
           reportPageTitle: 'Mochawesome Report',
