@@ -4,7 +4,6 @@ import { expect } from 'chai';
 import options from '../../../lib/src/options';
 
 const expectedOptions = {
-  reportFilename: 'mochawesome',
   reportDir: 'mochawesome-report',
   reportTitle: process.cwd().split(path.sep).pop(),
   reportPageTitle: 'Mochawesome Report',
@@ -24,7 +23,7 @@ const expectedOptions = {
 describe('options', () => {
   it('should get yargs options', () => {
     expect(options.getYargsOptions())
-      .to.have.deep.property('f.default', expectedOptions.reportFilename);
+      .to.have.deep.property('o.default', expectedOptions.reportDir);
   });
 
   it('should get base options', () => {

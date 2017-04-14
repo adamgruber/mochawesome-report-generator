@@ -8,7 +8,7 @@ import Report from 'components/report';
 import DevTools from 'mobx-react-devtools';
 import reportStore from 'js/reportStore';
 
-import testData from 'sample-data/test-data.json';
+import testData from 'sample-data/test.json';
 
 chai.use(chaiEnzyme());
 
