@@ -20,7 +20,7 @@
     "dev:cli": "nodemon --watch bin/src --watch lib/src --exec npm run compile"
   },
   "author": "Adam Gruber",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/adamgruber/mochawesome-report-generator"
