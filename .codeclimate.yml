@@ -25,8 +25,13 @@ ratings:
   - "lib/**/*.js"
   - "bin/**/*.js"
 exclude_paths:
-- dist/*
-- test/*
-- webpack/*
+- node_modules/
+- coverage/
+- .nyc_output/
+- mochawesome-report/
+- docs/
+- dist/
+- test/
+- webpack/
 - bin/*.js
 - lib/*.js

@@ -1,6 +1,10 @@
 webpack/
 coverage/
 dist/
+mochawesome-report/
+.nyc_output/
+node_modules/
+lib/options.js
 lib/main-html.js
 lib/main.js
 bin/cli-main.js
