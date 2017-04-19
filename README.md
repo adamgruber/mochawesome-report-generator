@@ -4,7 +4,8 @@ mochawesome-report-generator (marge)
 
 **marge** (**m**och**a**wesome-**r**eport-**ge**nerator) is the counterpart to [mochawesome][2], a custom reporter for use with the Javascript testing framework, [mocha][1]. Marge takes the JSON output from [mochawesome][2] and generates a full fledged HTML/CSS report that helps visualize your test suites.
 
-## :tada: New in 1.2.0
+## :tada: New in 2.0.0
+- Multi-file support via CLI
 - New options: [overwrite](#overwrite) and [timestamp](#timestamp)
 
 ## Features
@@ -45,7 +46,7 @@ npm install -g mochawesome-report-generator
 
 Run the command
 ```bash
-marge [test-output.json] <options>
+marge [options] data_file [data_file2 ...]
 ```
 
 **via Mochawesome reporter**
@@ -76,7 +77,7 @@ mochawesome-report/
 
 Flag | Type | Default | Description 
 :--- | :--- | :------ | :----------
--f, --reportFilename | string | mochawesome | Filename of saved report
+-f, --reportFilename | string | | Filename of saved report
 -o, --reportDir | string | [cwd]/mochawesome-report | Path to save report
 -t, --reportTitle | string | mochawesome | Report title
 -p, --reportPageTitle | string | mochawesome-report | Browser title
@@ -95,6 +96,8 @@ Flag | Type | Default | Description
 #### Overwrite
 By default, report files are overwritten by subsequent report generation. Passing `--overwrite=false` will not replace existing files. Instead, if a duplicate filename is found, the report will be saved with a counter digit added to the filename. (ie. `mochawesome_001.html`).
 
+**Note:** `overwrite` will always be `false` when passing multiple files or using the `timestamp` option.
+
 #### Timestamp
 The `timestamp` option can be used to append a timestamp to the report filename. It uses [dateformat][] to parse format strings so you can pass any valid string that [dateformat][] accepts with a few exceptions. In order to produce valid filenames, the following replacements are made:
 
@@ -105,8 +108,6 @@ slashes | hyphen | 3/29/2017 | 3-29-2017
 colons | null | 17:46:21 | 174621
 
 Further, if you pass the flag with no format string, it will default to `isoDateTime`.
-
-*Setting this flag will automatically set `overwrite` to false.*
 
 [1]: https://mochajs.org/
 [2]: https://github.com/adamgruber/mochawesome

@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies, no-console */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import DevTools from 'mobx-react-devtools';
 import { observer } from 'mobx-react';
 import { Footer, Navbar } from 'components';

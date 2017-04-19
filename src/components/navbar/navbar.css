@@ -2,6 +2,7 @@
 
 .component {
   @apply --clearfix;
+
   position: fixed;
   top: 0;
   right: 0;
@@ -26,6 +27,7 @@
   height: 24px;
   float: left;
   color: var(--light-icon-inactive);
+
   &:hover {
     color: var(--light-icon-active);
   }
@@ -33,6 +35,7 @@
 
 .report-title {
   @apply --font-light;
+
   color: #fff;
   font-size: 18px;
   line-height: calc(var(--navbar-height-short) - 4);
@@ -44,17 +47,21 @@
 
 .pct-bar {
   @apply --clearfix;
+
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
   height: 4px;
+
   & .pass {
     background-color: var(--green500);
   }
+
   & .fail {
     background-color: var(--red500);
   }
+
   & .pend {
     background-color: var(--ltblue500);
   }
@@ -71,14 +78,17 @@
     min-height: var(--navbar-height-short);
     height: var(--navbar-height-short);
   }
+
   .report-info-cnt {
     padding: 0 530px 0 72px;
   }
+
   .stats {
     position: absolute;
     top: 0;
     right: 0;
   }
+
   .menu-button {
     padding: 16px 24px;
   }

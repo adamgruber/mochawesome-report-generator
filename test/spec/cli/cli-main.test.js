@@ -1,10 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import proxyquire from 'proxyquire';
 import sinon from 'sinon';
-import { expect } from 'chai';
+import chai, { expect } from 'chai';
+import chaiAsPromised from 'chai-as-promised';
+import fs from 'fs-extra';
 
-import testData from 'sample-data/test-data.json';
+import invalidTestData from 'sample-data/invalid.json';
 
+chai.use(chaiAsPromised);
 proxyquire.noCallThru();
 
 const createStub = sinon.stub();
@@ -19,30 +22,8 @@ const cli = proxyquire('../../../bin/src/cli-main', {
   './logger': logger
 });
 
-const sharedOpts = {
-  reportTitle: 'mochawesome',
-  reportPageTitle: 'mochawesome-report',
-  inlineAssets: false,
-  enableCharts: true,
-  enableCode: true,
-  autoOpen: false,
-  overwrite: true,
-  timestamp: false,
-  dev: false
-};
-
-const inOpts = Object.assign({}, sharedOpts, {
-  reportFilename: 'mochawesome',
-  reportDir: 'mochawesome-report'
-});
-
-const expectedOpts = Object.assign({}, inOpts, {
-  reportHtmlFile: 'mochawesome-report/mochawesome.html'
-});
-
-beforeEach(() => {
-  createStub.resolves([ expectedOpts.reportHtmlFile ]);
-});
+const error = { code: 12345, message: 'Err' };
+const getArgs = (files, args) => Object.assign({}, { _: files }, args);
 
 afterEach(() => {
   createStub.reset();
@@ -51,90 +32,173 @@ afterEach(() => {
 });
 
 describe('bin/cli', () => {
-  it('should generate a report', () => {
-    const args = Object.assign({}, inOpts, {
-      _: [ 'test/sample-data/test-data.json' ]
+  describe('when data is valid', () => {
+    beforeEach(() => {
+      createStub.onCall(0).resolves('mochawesome-report/test.html');
+      createStub.onCall(1).resolves('mochawesome-report/single.html');
     });
 
-    cli(args);
-    expect(process.exitCode).to.equal(undefined);
-    expect(createStub.calledWithExactly(testData, args)).to.equal(true);
+    it('should create reports', () => {
+      const args = getArgs([
+        'test/sample-data/test.json',
+        'test/sample-data/single.json'
+      ]);
+      return expect(cli(args)).to.become([
+        'mochawesome-report/test.html',
+        'mochawesome-report/single.html'
+      ]);
+    });
   });
 
-  it('should not generate a report when no data is passed', () => {
-    cli();
-    expect(process.exitCode).to.equal(1);
-    expect(createStub.called).to.equal(false);
+  describe('when file is not found', () => {
+    it('should not create a report', () => {
+      const args = getArgs([ 'test/sample-data/not-found.json' ]);
+      return expect(cli(args)).to.become([ {
+        filename: 'test/sample-data/not-found.json',
+        data: undefined,
+        err: '  File not found.'
+      } ]);
+    });
   });
 
-  it('should not generate a report when data file is not found', () => {
-    const args = Object.assign({}, inOpts, {
-      _: [ 'test/sample-data/not-found.json' ]
+  describe('when file is a directory', () => {
+    it('should not create a report', () => {
+      const args = getArgs([ 'test/sample-data/' ]);
+      return expect(cli(args)).to.become([ {
+        filename: 'test/sample-data/',
+        data: undefined,
+        err: '  Directories are not supported (yet).'
+      } ]);
+    });
+  });
+
+  describe('when file is not JSON', () => {
+    it('should not create a report', () => {
+      const args = getArgs([ 'README.md' ]);
+      return expect(cli(args)).to.become([ {
+        filename: 'README.md',
+        data: undefined,
+        err: '  You must supply a valid JSON file.'
+      } ]);
+    });
+  });
+
+  describe('when JSON cannot be parsed', () => {
+    beforeEach(() => {
+      sinon.stub(JSON, 'parse')
+        .throws({ message: 'Unexpected token b in JSON at position 4' });
     });
 
-    cli(args);
-    expect(process.exitCode).to.equal(1);
-    expect(logger.error.args[0][0])
-      .to.equal('The data file: test/sample-data/not-found.json could not be found.');
-    expect(createStub.called).to.equal(false);
-  });
-
-  it('should not generate a report when data is bad json', () => {
-    const args = Object.assign({}, inOpts, {
-      _: [ 'test/sample-data/bad.json' ]
+    afterEach(() => {
+      JSON.parse.restore();
     });
 
-    cli(args);
-    expect(process.exitCode).to.equal(1);
-    expect(logger.error.args[0][0])
-      .to.equal('There was a problem parsing mochawesome data. Please ensure the JSON file is valid.');
-    expect(createStub.called).to.equal(false);
+    it('should not create a report', () => {
+      const args = getArgs([ 'test/sample-data/bad.json' ]);
+      return expect(cli(args)).to.become([ {
+        filename: 'test/sample-data/bad.json',
+        data: undefined,
+        err: '  Unexpected token b in JSON at position 4'
+      } ]);
+    });
   });
 
-  it('should not generate a report when a data error occurs', () => {
-    const args = Object.assign({}, inOpts, {
-      _: [ 'test/sample-data' ]
+  describe('when JSON fails validation', () => {
+    it('should not create a report', () => {
+      const args = getArgs([ 'test/sample-data/invalid.json' ]);
+      return expect(cli(args)).to.become([ {
+        filename: 'test/sample-data/invalid.json',
+        data: invalidTestData,
+        // eslint-disable-next-line max-len
+        err: '  Invalid value "dangerous" supplied to /stats/passPercentClass: PercentClass\n  Invalid value undefined supplied to /suites/title: String'
+      } ]);
     });
-
-    cli(args);
-    expect(process.exitCode).to.equal(1);
-    expect(logger.error.args[0][0])
-      .to.equal('There was a problem loading mochawesome data.');
-    expect(createStub.called).to.equal(false);
   });
 
-  it('should not generate a report when data schema is invalid', () => {
-    const args = Object.assign({}, inOpts, {
-      _: [ 'test/sample-data/test-data-invalid.json' ]
+  describe('when a generic error occurs', () => {
+    beforeEach(() => {
+      sinon.stub(fs, 'readFileSync')
+        .throws(error);
     });
 
-    cli(args);
-    expect(process.exitCode).to.equal(1);
-    expect(logger.error.args[0][0].indexOf('There was a problem parsing mochawesome data:'))
-      .to.equal(0);
-    expect(createStub.called).to.equal(false);
+    afterEach(() => {
+      fs.readFileSync.restore();
+    });
+
+    it('should not create a report', () => {
+      const args = getArgs([ 'test/sample-data/generic.json' ]);
+      return expect(cli(args)).to.become([ {
+        filename: 'test/sample-data/generic.json',
+        data: undefined,
+        err: '  There was a problem loading mochawesome data.'
+      } ]);
+    });
   });
 
-  it('should handle when create fails', () => {
-    createStub.rejects();
-    const args = Object.assign({}, inOpts, {
-      _: [ 'test/sample-data/test-data.json' ]
+  describe('when create fails', () => {
+    beforeEach(() => {
+      createStub.rejects(error);
     });
-
-    cli(args);
-    expect(process.exitCode).to.equal(1);
-    expect(createStub.called).to.equal(true);
+    it('should reject when create fails', () => {
+      const args = getArgs([ 'test/sample-data/test.json' ]);
+      return expect(cli(args)).to.be.rejectedWith(error);
+    });
   });
 
-  it('should set overwrite to false when timestamp option is passed', () => {
-    const args = Object.assign({}, inOpts, {
-      _: [ 'test/sample-data/test-data.json' ],
-      timestamp: ''
+  describe('options', () => {
+    describe('overwrite', () => {
+      beforeEach(() => {
+        createStub.resolves('mochawesome-report/test.html');
+      });
+
+      it('should be false when timestamp option is passed', () => {
+        const args = getArgs(
+          [ 'test/sample-data/test.json' ],
+          { timestamp: '' }
+        );
+
+        return cli(args).then(() => {
+          expect(createStub.args[0][1]).to.have.property('overwrite', false);
+        });
+      });
+
+      it('should be false when multiple valid files exist', () => {
+        const args = getArgs([
+          'test/sample-data/test.json',
+          'test/sample-data/single.json'
+        ]);
+
+        return cli(args).then(() => {
+          expect(createStub.args[0][1]).to.have.property('overwrite', false);
+        });
+      });
     });
 
-    cli(args);
-    expect(process.exitCode).to.equal(1);
-    expect(createStub.called).to.equal(true);
-    expect(createStub.args[0][1]).to.have.property('overwrite', false);
+    describe('reportFilename', () => {
+      beforeEach(() => {
+        createStub.resolves('mochawesome-report/test.html');
+      });
+
+      it('should default to filename when option not provided', () => {
+        const args = getArgs(
+          [ 'test/sample-data/test.json' ],
+        );
+
+        return cli(args).then(() => {
+          expect(createStub.args[0][1]).to.have.property('reportFilename', 'test');
+        });
+      });
+
+      it('should be option when provided', () => {
+        const args = getArgs(
+          [ 'test/sample-data/test.json' ],
+          { reportFilename: 'sample' }
+        );
+
+        return cli(args).then(() => {
+          expect(createStub.args[0][1]).to.have.property('reportFilename', 'sample');
+        });
+      });
+    });
   });
 });

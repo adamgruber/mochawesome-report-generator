@@ -2,9 +2,11 @@
 
 .component {
   @apply --clearfix;
+
   position: relative;
   height: 24px;
 }
+
 .switch {
   position: absolute;
   top: 50%;
@@ -13,9 +15,9 @@
   width: 32px;
   height: 12px;
   border-radius: 12px;
-  background-color: #A5D6A7;
+  background-color: #a5d6a7;
   cursor: pointer;
-  transition: background-color .2s ease-out;
+  transition: background-color 0.2s ease-out;
 }
 
 .off {
@@ -23,25 +25,28 @@
 }
 
 .toggle {
-  position: absolute;
   display: block;
+  position: absolute;
   top: -3px;
   right: -3px;
   width: 18px;
   height: 18px;
   border-radius: 100%;
-  background-color: #4CAF50;
+  background-color: #4caf50;
+
   @nest .off & {
     background-color: #fff;
     transform: translateX(-20px);
   }
-  transition: all .15s cubic-bezier(0.23, 1, 0.32, 1);
+
+  transition: all 0.15s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .label {
   @apply --font-regular;
-  font-size: 13px;
+
   display: inline-block;
+  font-size: 13px;
   vertical-align: top;
   line-height: 24px;
 }
@@ -49,4 +54,3 @@
 .label.with-icon {
   margin-left: 12px;
 }
-/*cubic-bezier(0,1.5,.96,1);*/

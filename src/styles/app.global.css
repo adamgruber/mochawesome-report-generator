@@ -5,24 +5,27 @@
 
 @font-face {
   font-family: 'robotolight';
-  src: url('../fonts/roboto-light-webfont.woff2') format('woff2'),
-       url('../fonts/roboto-light-webfont.woff') format('woff');
+  src:
+    url('../fonts/roboto-light-webfont.woff2') format('woff2'),
+    url('../fonts/roboto-light-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'robotomedium';
-  src: url('../fonts/roboto-medium-webfont.woff2') format('woff2'),
-       url('../fonts/roboto-medium-webfont.woff') format('woff');
+  src:
+    url('../fonts/roboto-medium-webfont.woff2') format('woff2'),
+    url('../fonts/roboto-medium-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'robotoregular';
-  src: url('../fonts/roboto-regular-webfont.woff2') format('woff2'),
-       url('../fonts/roboto-regular-webfont.woff') format('woff');
+  src:
+    url('../fonts/roboto-regular-webfont.woff2') format('woff2'),
+    url('../fonts/roboto-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -30,17 +33,18 @@
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
-  font-weight: 400;
-  src: url(../../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
-       url(../../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff) format('woff');
+  font-weight: normal;
+  src:
+    url(../../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+    url(../../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff) format('woff');
 }
 
 .material-icons {
+  display: inline-block;
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
   font-size: 24px;  /* Preferred icon size */
-  display: inline-block;
   line-height: 1;
   text-transform: none;
   letter-spacing: normal;
@@ -50,6 +54,7 @@
 
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
+
   /* Support for Safari and Chrome. */
   text-rendering: optimizeLegibility;
 
@@ -99,6 +104,7 @@ body {
 
 a {
   @apply --link-transition;
+
   text-decoration: none;
 
   &:hover {
@@ -112,15 +118,17 @@ pre {
   border-radius: 4px;
 }
 
-.clearfix, .cf {
+.clearfix,
+.cf {
   @apply --clearfix;
 }
 
 .container {
   @apply --clearfix;
+
   margin-right: auto;
   margin-left: auto;
-  padding-left:  calc(var(--grid-gutter-width) / 2);
+  padding-left: calc(var(--grid-gutter-width) / 2);
   padding-right: calc(var(--grid-gutter-width) / 2);
 }
 
@@ -132,26 +140,33 @@ pre {
   padding-top: calc(var(--navbar-height) + 24);
 }
 
-// Z-levels
+/* Z-levels */
 .z-depth-0 {
+  /* stylelint-disable-next-line declaration-no-important */
   box-shadow: none !important;
 }
-.z-depth-1{
+
+.z-depth-1 {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
-.z-depth-1-half{
+
+.z-depth-1-half {
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
-.z-depth-2{
+
+.z-depth-2 {
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.z-depth-3{
+
+.z-depth-3 {
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
-.z-depth-4{
+
+.z-depth-4 {
   box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21);
 }
-.z-depth-5{
+
+.z-depth-5 {
   box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
 }
 
@@ -159,15 +174,18 @@ pre {
   .container {
     width: var(--container-sm);
   }
+
   .details {
     padding-top: calc(var(--navbar-height-short) + 24);
   }
 }
+
 @media (--screen-md) {
   .container {
     width: var(--container-md);
   }
 }
+
 @media (--screen-lg) {
   .container {
     width: var(--container-lg);

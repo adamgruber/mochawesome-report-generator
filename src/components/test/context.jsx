@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { CodeSnippet } from 'components/test';
 import isString from 'lodash/isString';
 import classNames from 'classnames/bind';

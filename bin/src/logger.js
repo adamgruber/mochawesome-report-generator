@@ -1,4 +1,4 @@
-/* eslint-disable no-console, prefer-spread */
+/* eslint-disable no-console */
 
 /**
  * Logger - wraps console methods

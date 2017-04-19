@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Duration, Icon } from 'components';
 import { CodeSnippet, TestContext } from 'components/test';
 import classNames from 'classnames/bind';

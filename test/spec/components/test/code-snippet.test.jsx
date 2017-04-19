@@ -4,6 +4,7 @@ import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
 import CodeSnippet from 'components/test/code-snippet';
+import hljs from 'highlight.js/lib/highlight';
 
 chai.use(chaiEnzyme());
 
@@ -21,6 +22,7 @@ describe('<CodeSnippet />', () => {
     node = document.createElement('div');
     node.setAttribute('id', 'app');
     document.body.appendChild(node);
+    hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
   });
 
   afterEach(() => {
