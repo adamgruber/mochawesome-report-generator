@@ -1,101 +1,173 @@
-/* eslint-disable no-console */
-const path = require('path');
 const fs = require('fs-extra');
+const path = require('path');
+const chalk = require('chalk');
 const t = require('tcomb-validation');
 const report = require('../lib/main');
 const types = require('./types');
+const logger = require('./logger');
 
-const JsonErrRegex = /^Unexpected token .* in JSON/;
-const fileExtRegex = /\.[^.]*?$/;
+const JsonErrRegex = /Unexpected token/;
+const JsonFileRegex = /\.json{1}$/;
+const mapJsonErrors = errors => errors.map(e => `  ${e.message}`).join('\n');
 const ERRORS = {
-  NO_FILE: 'You must supply a mochawesome data file to create a report.',
-  NOT_FOUND: filename => `The data file: ${filename} could not be found.`,
-  BAD_JSON: 'There was a problem parsing mochawesome data. Please ensure the JSON file is valid.',
-  GENERIC: 'There was a problem loading mochawesome data.',
-  INVALID_JSON: errMsg => `There was a problem parsing mochawesome data:\n${errMsg}`
+  NOT_FOUND: '  File not found.',
+  NOT_JSON: '  You must supply a valid JSON file.',
+  GENERIC: '  There was a problem loading mochawesome data.',
+  INVALID_JSON: errMsgs => mapJsonErrors(errMsgs),
+  IS_DIR: '  Directories are not supported (yet).'
 };
+let validFiles;
 
 /**
  * Validate the data file
  *
- * @param {string} dataInFile Filename of test data
+ * @typedef {Object} File
+ * @property {string} filename Name of the file
+ * @property {object} data JSON test data
+ * @property {object} err Error object
  *
- * @return {Object} JSON test data if valid, otherwise error object { err: message }
+ * @param {string} file File to load/validate
+ *
+ * @return {File} Validated file with test data, `err` will be null if valid
  */
-function validateInFile(dataInFile) {
-  let dataIn;
-  // Was a JSON file provided?
-  if (!dataInFile) {
-    return { err: ERRORS.NO_FILE };
-  }
+function validateFile(file) {
+  let data;
+  let err = null;
 
   // Try to read and parse the file
   try {
-    dataIn = JSON.parse(fs.readFileSync(dataInFile, 'utf-8'));
-  } catch (err) {
-    if (err.code === 'ENOENT') {
-      return { err: ERRORS.NOT_FOUND(dataInFile) };
-    } else if (JsonErrRegex.test(err.message)) {
-      return { err: ERRORS.BAD_JSON };
+    data = JSON.parse(fs.readFileSync(file, 'utf-8'));
+  } catch (e) {
+    if (e.code === 'ENOENT') {
+      err = ERRORS.NOT_FOUND;
+    } else if (e.code === 'EISDIR') {
+      err = ERRORS.IS_DIR;
+    } else if (!JsonFileRegex.test(file)) {
+      err = ERRORS.NOT_JSON;
+    } else if (JsonErrRegex.test(e.message)) {
+      err = ERRORS.INVALID_JSON([ e ]);
+    } else {
+      err = ERRORS.GENERIC;
     }
-    return { err: ERRORS.GENERIC };
   }
 
-  // Validate test report json against schema
-  const validationResult = t.validate(dataIn, types.TestReport);
-  if (!validationResult.isValid()) {
-    return {
-      err: ERRORS.INVALID_JSON(validationResult.errors.map(e => ` - ${e.message}`).join('\n'))
-    };
+  // If the file was loaded successfully,
+  // validate the json against the TestReport schema
+  if (data) {
+    const validationResult = t.validate(data, types.TestReport);
+    if (!validationResult.isValid()) {
+      err = ERRORS.INVALID_JSON(validationResult.errors);
+    } else {
+      validFiles += 1;
+    }
   }
 
-  return dataIn;
+  return {
+    filename: file,
+    data,
+    err
+  };
 }
 
 /**
- * Get options to send to report generator
+ * Set exit code and throw caught errors
  *
- * @param {Object} args Arguments passed in
+ * @param {Object|string} err Error object or error message
  *
- * @return {Object} Options to pass to report generator
  */
-function getOptions(args) {
-  const { reportFilename, reportDir, reportTitle, reportPageTitle,
-    inlineAssets, enableCharts, enableCode, autoOpen, dev } = args;
-  const filename = `${reportFilename.replace(fileExtRegex, '')}.html`;
-  return {
-    reportHtmlFile: path.join(reportDir, filename),
-    reportTitle,
-    reportPageTitle,
-    inlineAssets,
-    enableCharts,
-    enableCode,
-    autoOpen,
-    dev
-  };
+function handleError(err) {
+  process.exitCode = 1;
+  throw new Error(err);
+}
+
+/**
+ * Loop through resolved promises to log the appropriate messages
+ *
+ * @param {Array} resolvedValues Result of promise.all
+ *
+ * @return {Array} Array of resolved promise values
+ */
+function handleResolved(resolvedValues) {
+  const saved = [];
+  const errors = [];
+
+  resolvedValues.forEach(value => {
+    if (value.err) {
+      errors.push(value);
+    } else {
+      saved.push(value[0]);
+    }
+  });
+
+  if (saved.length) {
+    logger.info(chalk.green('\n✓ Reports saved:'));
+    logger.info(saved.map(savedFile => `${chalk.underline(savedFile)}`).join('\n'));
+  }
+
+  if (errors.length) {
+    logger.info(chalk.red('\n✘ Some files could not be processed:'));
+    logger.info(errors
+      .map(e => `${chalk.underline(e.filename)}\n${chalk.dim(e.err)}`)
+      .join('\n\n')
+    );
+    process.exitCode = 1;
+  }
+  return resolvedValues;
+}
+
+/**
+ * Get the reportFilename option to be passed to report.create
+ *
+ * Returns the `reportFilename` option if provided otherwise
+ * it returns the base filename stripped of path and extension
+ *
+ * @param {Object} file.filename Name of file to be processed
+ * @param {Object} args CLI process arguments
+ *
+ * @return {string} Filename
+ */
+function getReportFilename({ filename }, { reportFilename }) {
+  return reportFilename || filename.split(path.sep).pop().replace(JsonFileRegex, '');
 }
 
 /**
  * Main CLI Program
  *
- * @param {Object} processArgs CLI arguments
+ * @param {Object} args CLI arguments
+ *
+ * @return {Promise} Resolved promises with saved files or errors
  */
-function mareport(processArgs) {
-  const args = processArgs || { _: [] };
+function marge(args) {
+  // Reset valid files count
+  validFiles = 0;
 
-  // Try to load the test data
-  const reportData = validateInFile(args._[0]);
+  // Load and validate each file
+  const files = args._.map(validateFile);
 
-  // Check for error in data load
+  // When there are multiple valid files OR the timestamp option is set
+  // we must force `overwrite` to `false` to ensure all reports are created
   /* istanbul ignore else */
-  if (reportData && reportData.err) {
-    console.log(reportData.err);
-    process.exitCode = 1;
-    return;
+  if (validFiles > 1 || args.timestamp !== false) {
+    args.overwrite = false;
   }
 
-  // Good so far, now generate the report
-  report.createSync(reportData, getOptions(args));
+  const promises = files.map(file => {
+    // Files with errors we just resolve
+    if (file.err) {
+      return Promise.resolve(file);
+    }
+
+    // Valid files get created but first we need to pass correct filename option
+    // Default value is name of file
+
+    // If a filename option was provided, all files get that name
+    const reportFilename = getReportFilename(file, args);
+    return report.create(file.data, Object.assign({}, args, { reportFilename }));
+  });
+
+  return Promise.all(promises)
+    .then(handleResolved)
+    .catch(handleError);
 }
 
-module.exports = mareport;
+module.exports = marge;

@@ -8,7 +8,7 @@ import proxyquire from 'proxyquire';
 import ToggleSwitch from 'components/toggle-switch';
 import NavMenuList from 'components/nav-menu/nav-menu-list';
 
-import testData from 'sample-data/test-data.json';
+import testData from 'sample-data/test.json';
 
 proxyquire.noCallThru();
 

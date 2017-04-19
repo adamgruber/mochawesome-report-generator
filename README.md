@@ -4,7 +4,11 @@ mochawesome-report-generator (marge)
 
 **marge** (**m**och**a**wesome-**r**eport-**ge**nerator) is the counterpart to [mochawesome][2], a custom reporter for use with the Javascript testing framework, [mocha][1]. Marge takes the JSON output from [mochawesome][2] and generates a full fledged HTML/CSS report that helps visualize your test suites.
 
-##Features
+## :tada: New in 2.0.0
+- Multi-file support via CLI
+- New options: [overwrite](#overwrite) and [timestamp](#timestamp)
+
+## Features
 - All-new redesigned and streamlined report
 - At-a-glance stats including pass percentage
 - Beautiful charts
@@ -21,17 +25,17 @@ mochawesome-report-generator (marge)
 - Offline viewing
 - CLI for generating reports independent of [mochawesome][2]
 
-##Browser Support
+## Browser Support
 Tested to work in Chrome. *Should* work in any modern web browser including IE9+.
 **marge** generates a self-contained report that can be viewed offline. 
 
-##Sample Report
+## Sample Report
 
 <img src="./docs/marge-report-1.0.1.png" alt="Mochawesome Report" width="75%" />
 <img src="./docs/marge-report-menu-1.0.1.png" alt="Mochawesome Report Menu" width="75%" />
 
 
-##Usage
+## Usage
 
 **via CLI**
 
@@ -42,14 +46,14 @@ npm install -g mochawesome-report-generator
 
 Run the command
 ```bash
-marge [test-output.json] <options>
+marge [options] data_file [data_file2 ...]
 ```
 
 **via Mochawesome reporter**
 
 See mochawesome [docs][2].
 
-##Output
+## Output
 **marge** generates the following inside your project directory:
 ```
 mochawesome-report/
@@ -67,13 +71,13 @@ mochawesome-report/
 └── mochawesome.html
 ```
 
-##CLI Options
+## CLI Options
 
 **marge** can be configured via command line flags
 
 Flag | Type | Default | Description 
 :--- | :--- | :------ | :----------
--f, --reportFilename | string | mochawesome | Filename of saved report
+-f, --reportFilename | string | | Filename of saved report
 -o, --reportDir | string | [cwd]/mochawesome-report | Path to save report
 -t, --reportTitle | string | mochawesome | Report title
 -p, --reportPageTitle | string | mochawesome-report | Browser title
@@ -81,11 +85,30 @@ Flag | Type | Default | Description
 --charts | boolean | true | Display Suite charts
 --code | boolean | true | Display test code
 --autoOpen | boolean | false | Automatically open the report
+--overwrite | boolean | true | Overwrite existing report files. *See [notes](#overwrite).*
+--timestamp, --ts | string | | Append timestamp in specified format to report filename. *See [notes](#timestamp).*
 --dev | boolean | false | Enable dev mode (requires local webpack dev server)
 -h, --help | | | Show CLI help
 
 
 *Boolean options can be negated by adding `--no` before the option. For example: `--no-code` would set `code` to `false`.*
 
-[1]: http://visionmedia.github.io/mocha/
+#### Overwrite
+By default, report files are overwritten by subsequent report generation. Passing `--overwrite=false` will not replace existing files. Instead, if a duplicate filename is found, the report will be saved with a counter digit added to the filename. (ie. `mochawesome_001.html`).
+
+**Note:** `overwrite` will always be `false` when passing multiple files or using the `timestamp` option.
+
+#### Timestamp
+The `timestamp` option can be used to append a timestamp to the report filename. It uses [dateformat][] to parse format strings so you can pass any valid string that [dateformat][] accepts with a few exceptions. In order to produce valid filenames, the following replacements are made:
+
+Characters | Replacement | Example | Output
+:--- | :--- | :--- | :---
+spaces, commas | underscore | Wed March 29, 2017 | Wed_March_29_2017
+slashes | hyphen | 3/29/2017 | 3-29-2017
+colons | null | 17:46:21 | 174621
+
+Further, if you pass the flag with no format string, it will default to `isoDateTime`.
+
+[1]: https://mochajs.org/
 [2]: https://github.com/adamgruber/mochawesome
+[dateformat]: https://github.com/felixge/node-dateformat

@@ -6,7 +6,7 @@ import chaiEnzyme from 'chai-enzyme';
 import SuiteList from 'components/suite/list';
 import Suite from 'components/suite/suite';
 
-import testData from 'sample-data/test-data.json';
+import testData from 'sample-data/test.json';
 
 chai.use(chaiEnzyme());
 

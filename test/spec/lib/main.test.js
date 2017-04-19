@@ -1,10 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import path from 'path';
 import proxyquire from 'proxyquire';
 import sinon from 'sinon';
 import chai, { expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
+import dateFormat from 'dateformat';
 
-import testData from 'sample-data/test-data.json';
+import testData from 'sample-data/test.json';
 import pkg from '../../../package.json';
 
 chai.use(chaiAsPromised);
@@ -16,6 +18,7 @@ const copySyncStub = sinon.stub();
 const readFileSyncStub = sinon.stub();
 const openerStub = sinon.stub();
 const existsSyncStub = sinon.stub();
+const writeFileUniqueStub = sinon.stub();
 const mareport = proxyquire('../../../lib/src/main', {
   'fs-extra': {
     outputFile: outputFileStub,
@@ -24,138 +27,295 @@ const mareport = proxyquire('../../../lib/src/main', {
     readFileSync: readFileSyncStub,
     existsSync: existsSyncStub
   },
+  fsu: {
+    writeFileUnique: writeFileUniqueStub
+  },
   opener: openerStub,
   '../package.json': pkg
 });
 
 const baseOpts = {
-  reportHtmlFile: 'mochawesome-report/test.html',
+  reportDir: 'test',
+  reportFilename: 'test',
   reportTitle: 'mochawesome',
   reportPageTitle: 'mochawesome-report',
   inlineAssets: false,
   enableCharts: true,
   enableCode: true,
-  dev: true
+  overwrite: true,
+  timestamp: false,
+  dev: false
 };
 
 let opts;
 
 beforeEach(() => {
   opts = Object.assign({}, baseOpts);
-});
-
-beforeEach(() => {
   outputFileStub.reset();
-  outputFileStub.resetBehavior();
   outputFileSyncStub.reset();
   copySyncStub.reset();
   readFileSyncStub.reset();
   existsSyncStub.reset();
   openerStub.reset();
-  openerStub.resetBehavior();
+  writeFileUniqueStub.reset();
 });
 
 describe('lib/main', () => {
-  it('runs create', () => {
-    outputFileStub.yields(null);
-    return expect(mareport.create(testData, opts)).to.be.fulfilled;
-  });
+  describe('create', () => {
+    it('saves report', () => {
+      outputFileStub.yields(null);
+      const expectedHtmlFile = path.resolve(process.cwd(), 'test', 'test.html');
+      const promise = mareport.create(testData, opts);
+      return expect(promise).to.become([ expectedHtmlFile ]);
+    });
 
-  it('runs create with autoOpen', () => {
-    opts.autoOpen = true;
-    openerStub.yields(null);
-    outputFileStub.yields(null);
-    return mareport.create(testData, opts).then(() => {
-      expect(openerStub.called).to.equal(true);
+    it('saves report and json', () => {
+      opts.saveJson = true;
+      outputFileStub.yields(null);
+      const expectedHtmlFile = path.resolve(process.cwd(), 'test', 'test.html');
+      const expectedJsonFile = path.resolve(process.cwd(), 'test', 'test.json');
+      const promise = mareport.create(testData, opts);
+      return expect(promise).to.become([ expectedHtmlFile, expectedJsonFile ]);
+    });
+
+    it('with autoOpen', () => {
+      opts.autoOpen = true;
+      openerStub.yields(null);
+      outputFileStub.yields(null);
+      return mareport.create(testData, opts).then(() => {
+        expect(openerStub.called).to.equal(true);
+      });
+    });
+
+    it('with inline assets', () => {
+      opts.inlineAssets = true;
+      outputFileStub.yields(null);
+      return mareport.create(testData, opts).then(() => {
+        expect(copySyncStub.called).to.equal(false);
+      });
+    });
+
+    describe('with timestamp', () => {
+      let clock;
+
+      const getExpectedName = dateTimeStr => (
+        path.resolve(process.cwd(), 'test', `test${dateTimeStr}{_###}.html`)
+      );
+
+      const cleanDateStr = fmt => (
+        dateFormat(new Date(), fmt)
+          .replace(/(,\s*)|,|\s+/g, '_')
+          .replace(/\\|\//g, '-')
+          .replace(/:/g, '')
+      );
+
+      beforeEach(() => {
+        // Set clock to 2017-03-29T19:30:59.913Z
+        clock = sinon.useFakeTimers(1490815859913);
+      });
+
+      afterEach(() => {
+        clock.restore();
+      });
+
+      it('with timestamp, boolean -> default format', () => {
+        opts.timestamp = true;
+        opts.overwrite = false;
+        writeFileUniqueStub.yields(null);
+        return mareport.create(testData, opts).then(() => {
+          expect(writeFileUniqueStub.args[0][0])
+            .to.equal(getExpectedName(`_${cleanDateStr('isoDateTime')}`));
+        });
+      });
+
+      it('with timestamp, true string -> default format', () => {
+        opts.timestamp = 'true';
+        opts.overwrite = false;
+        writeFileUniqueStub.yields(null);
+        return mareport.create(testData, opts).then(() => {
+          expect(writeFileUniqueStub.args[0][0])
+            .to.equal(getExpectedName(`_${cleanDateStr('isoDateTime')}`));
+        });
+      });
+
+      it('with timestamp, false string -> no timestamp', () => {
+        opts.timestamp = 'false';
+        opts.overwrite = false;
+        writeFileUniqueStub.yields(null);
+        return mareport.create(testData, opts).then(() => {
+          expect(writeFileUniqueStub.args[0][0])
+            .to.equal(getExpectedName(''));
+        });
+      });
+
+      it('with timestamp, empty string -> default format', () => {
+        opts.timestamp = '';
+        opts.overwrite = false;
+        writeFileUniqueStub.yields(null);
+        return mareport.create(testData, opts).then(() => {
+          expect(writeFileUniqueStub.args[0][0])
+            .to.equal(getExpectedName(`_${cleanDateStr('isoDateTime')}`));
+        });
+      });
+
+      it('with timestamp, fullDate format', () => {
+        opts.timestamp = 'fullDate';
+        opts.overwrite = false;
+        writeFileUniqueStub.yields(null);
+        return mareport.create(testData, opts).then(() => {
+          expect(writeFileUniqueStub.args[0][0])
+            .to.equal(getExpectedName(`_${cleanDateStr('fullDate')}`));
+        });
+      });
+
+      it('with timestamp, longTime format', () => {
+        opts.timestamp = 'longTime';
+        opts.overwrite = false;
+        writeFileUniqueStub.yields(null);
+        return mareport.create(testData, opts).then(() => {
+          expect(writeFileUniqueStub.args[0][0])
+            .to.equal(getExpectedName(`_${cleanDateStr('longTime')}`));
+        });
+      });
+    });
+
+    it('with overwrite:false', () => {
+      opts.overwrite = false;
+      writeFileUniqueStub.yields(null);
+      const expectedFilename = path.resolve(process.cwd(), 'test', 'test{_###}.html');
+      return mareport.create(testData, opts).then(() => {
+        expect(writeFileUniqueStub.calledWith(expectedFilename)).to.equal(true);
+      });
+    });
+
+    it('rejects when outputFile throws', () => {
+      outputFileStub.yields('save error');
+      return expect(mareport.create(testData, opts)).to.be.rejectedWith('save error');
+    });
+
+    it('rejects when opener throws', () => {
+      opts.autoOpen = true;
+      openerStub.yields('open error');
+      outputFileStub.yields(null);
+      return expect(mareport.create(testData, opts)).to.be.rejectedWith('open error');
+    });
+
+    it('rejects when writeFileUnique throws', () => {
+      opts.overwrite = false;
+      writeFileUniqueStub.yields('save error');
+      return expect(mareport.create(testData, opts)).to.be.rejectedWith('save error');
     });
   });
 
-  it('runs create and throws', () => {
-    outputFileStub.yields('save error');
-    return expect(mareport.create(testData, opts)).to.be.rejectedWith('save error');
-  });
+  describe('createSync', () => {
+    let expectedFilename;
+    let expectedFilenameWithOpts;
+    beforeEach(() => {
+      expectedFilename = path.resolve(process.cwd(), 'mochawesome-report', 'mochawesome.html');
+      expectedFilenameWithOpts = path.resolve(process.cwd(), 'test', 'test.html');
+    });
 
-  it('runs create with autoOpen and throws', () => {
-    opts.autoOpen = true;
-    openerStub.yields('open error');
-    outputFileStub.yields(null);
-    return expect(mareport.create(testData, opts)).to.be.rejectedWith('open error');
-  });
+    it('with options', () => {
+      mareport.createSync(testData, opts);
+      expect(outputFileSyncStub.calledWith(expectedFilenameWithOpts)).to.equal(true);
+    });
 
-  it('runs createSync', () => {
-    mareport.createSync(testData, opts);
-    expect(outputFileSyncStub.calledWith('mochawesome-report/test.html')).to.equal(true);
-  });
+    it('without options', () => {
+      mareport.createSync(testData);
+      expect(outputFileSyncStub.calledWith(expectedFilename)).to.equal(true);
+    });
 
-  it('runs createSync with no options', () => {
-    mareport.createSync(testData);
-    expect(outputFileSyncStub.calledWith('mochawesome-report/mochawesome.html')).to.equal(true);
-  });
+    it('with autoOpen', () => {
+      opts.autoOpen = true;
+      mareport.createSync(testData, opts);
+      expect(openerStub.called).to.equal(true);
+    });
 
-  it('runs createSync with base options', () => {
-    mareport.createSync(testData, { dev: true });
-    expect(outputFileSyncStub.calledWith('mochawesome-report/mochawesome.html')).to.equal(true);
-  });
-
-  it('runs createSync with autoOpen', () => {
-    opts.autoOpen = true;
-    mareport.createSync(testData, opts);
-    expect(openerStub.called).to.equal(true);
-  });
-
-  it('runs createSync with data as string', () => {
-    mareport.createSync(JSON.stringify(testData), opts);
-    expect(outputFileSyncStub.calledWith('mochawesome-report/test.html')).to.equal(true);
+    it('with data as string', () => {
+      mareport.createSync(JSON.stringify(testData), opts);
+      expect(outputFileSyncStub.calledWith(expectedFilenameWithOpts)).to.equal(true);
+    });
   });
 
   describe('copyAssets', () => {
     beforeEach(() => {
       existsSyncStub.returns(true);
+      outputFileStub.yields(null);
     });
 
     describe('when assetsDir does not exist', () => {
       it('copies assets', () => {
         existsSyncStub.returns(false);
-        mareport.createSync(testData, { inlineAssets: false });
-        expect(copySyncStub.called).to.equal(true);
+        return mareport.create(testData, { inlineAssets: false }).then(() => {
+          expect(copySyncStub.called).to.equal(true);
+        });
       });
     });
 
     describe('when loading css fails', () => {
       it('copies assets', () => {
         readFileSyncStub.throws();
-        mareport.createSync(testData, { inlineAssets: false });
-        expect(copySyncStub.called).to.equal(true);
+        return mareport.create(testData, { inlineAssets: false }).then(() => {
+          expect(copySyncStub.called).to.equal(true);
+        });
       });
     });
 
     describe('when css version is not found', () => {
       it('copies assets', () => {
         readFileSyncStub.returns('abcdefg');
-        mareport.createSync(testData, { inlineAssets: false });
-        expect(copySyncStub.called).to.equal(true);
+        return mareport.create(testData, { inlineAssets: false }).then(() => {
+          expect(copySyncStub.called).to.equal(true);
+        });
       });
     });
 
     describe('when css version is mismatch', () => {
       it('copies assets', () => {
         readFileSyncStub.returns('0.0.0');
-        mareport.createSync(testData, { inlineAssets: false });
-        expect(copySyncStub.called).to.equal(true);
+        return mareport.create(testData, { inlineAssets: false }).then(() => {
+          expect(copySyncStub.called).to.equal(true);
+        });
       });
     });
 
     describe('when css version matches', () => {
       it('does not copy assets', () => {
         readFileSyncStub.returns(pkg.version);
-        mareport.createSync(testData, { inlineAssets: false });
-        expect(copySyncStub.called).to.equal(false);
+        return mareport.create(testData, { inlineAssets: false }).then(() => {
+          expect(copySyncStub.called).to.equal(false);
+        });
       });
+    });
+
+    describe('when dev option is true', () => {
+      it('does not copy assets', () => (
+        mareport.create(testData, { dev: true }).then(() => {
+          expect(copySyncStub.called).to.equal(false);
+        })
+      ));
     });
   });
 
-  it('inlines assets', () => {
-    mareport.createSync(testData, { inlineAssets: true });
-    expect(readFileSyncStub.called).to.equal(true);
+  describe('defaults', () => {
+    it('should get base options', () => {
+      expect(mareport.getBaseConfig())
+        .to.eql({
+          reportDir: 'mochawesome-report',
+          reportTitle: process.cwd().split(path.sep).pop(),
+          reportPageTitle: 'Mochawesome Report',
+          inline: false,
+          inlineAssets: false,
+          charts: true,
+          enableCharts: true,
+          code: true,
+          enableCode: true,
+          autoOpen: false,
+          overwrite: true,
+          timestamp: false,
+          ts: false,
+          dev: false
+        });
+    });
   });
 });

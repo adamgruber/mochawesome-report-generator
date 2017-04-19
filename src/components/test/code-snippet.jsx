@@ -1,5 +1,6 @@
 /* eslint-disable import/no-dynamic-require, react/no-danger */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import hljs from 'highlight.js/lib/highlight';
 import classNames from 'classnames/bind';
@@ -34,9 +35,8 @@ class CodeSnippet extends Component {
   }
 
   highlightCode() {
-    const { code, lang, highlight } = this.props;
+    const { code, highlight } = this.props;
     if (highlight && code) {
-      hljs.registerLanguage(lang, require(`highlight.js/lib/languages/${lang}`));
       hljs.highlightBlock(this.node);
     }
   }

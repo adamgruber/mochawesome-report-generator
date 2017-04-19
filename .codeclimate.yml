@@ -28,3 +28,5 @@ exclude_paths:
 - dist/*
 - test/*
 - webpack/*
+- bin/*.js
+- lib/*.js
