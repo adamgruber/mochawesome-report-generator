@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.0.1] / 2017-04-21
+- Update package.json to include missing files
+
 ## [2.0.0] / 2017-04-19
 - Add support for multiple files via CLI
 - New options: `overwrite` and `timestamp`
@@ -59,7 +62,7 @@ You can still use the `--reportFilename` flag to set the filename of the generat
 ## [1.0.0] / 2016-12-18
 - Initial release
 
-
+[2.0.1]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.0.1
 [2.0.0]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.0.0
 [1.1.2]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/1.1.2
 [1.1.1]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/1.1.1
