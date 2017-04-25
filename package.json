@@ -76,7 +76,7 @@
     "chalk": "^1.1.3",
     "dateformat": "^2.0.0",
     "fs-extra": "^2.0.0",
-    "fsu": "^1.0.1",
+    "fsu": "^1.0.2",
     "lodash.isfunction": "^3.0.8",
     "opener": "^1.4.2",
     "prop-types": "^15.5.8",
