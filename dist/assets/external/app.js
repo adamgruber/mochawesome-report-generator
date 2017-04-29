@@ -16213,11 +16213,13 @@ var Suite = function Suite(_ref) {
       rootEmpty = suite.rootEmpty,
       suites = suite.suites,
       tests = suite.tests,
+      failedHooks = suite.failedHooks,
       uuid = suite.uuid,
       title = suite.title,
       file = suite.file,
       hasSuites = suite.hasSuites,
       hasTests = suite.hasTests,
+      hasFailedHooks = suite.hasFailedHooks,
       hasFailures = suite.hasFailures,
       hasPending = suite.hasPending,
       hasSkipped = suite.hasSkipped,
@@ -16240,6 +16242,10 @@ var Suite = function Suite(_ref) {
 
   var testListComp = function testListComp() {
     return hasTests && _react2.default.createElement(_test.TestList, { uuid: uuid, tests: tests, enableCode: enableCode });
+  };
+
+  var hookListComp = function hookListComp() {
+    return hasFailedHooks && _react2.default.createElement(_test.TestList, { uuid: uuid, tests: failedHooks, enableCode: enableCode });
   };
 
   var cxname = cx('component', className, {
@@ -16292,6 +16298,7 @@ var Suite = function Suite(_ref) {
     _react2.default.createElement(
       'div',
       { className: cx('body') },
+      hookListComp(),
       testListComp(),
       subSuites()
     )
@@ -34559,10 +34566,8 @@ var Test = (_temp = _class = function (_React$Component) {
           skipped = test.skipped,
           err = test.err,
           code = test.code,
-          context = test.context,
-          type = test.type;
+          context = test.context;
 
-      var titleHeader = '';
       var testIcon = function testIcon() {
         var iconName = void 0;
         var iconClassName = void 0;
@@ -34581,13 +34586,6 @@ var Test = (_temp = _class = function (_React$Component) {
         if (skipped) {
           iconName = 'stop';
           iconClassName = 'skipped';
-        }
-        if (type === 'hook') {
-          titleHeader = _react2.default.createElement(
-            'b',
-            null,
-            'Hook '
-          );
         }
         return _react2.default.createElement(_components.Icon, { name: iconName, className: cx('icon', iconClassName), size: 18 });
       };
@@ -34615,8 +34613,6 @@ var Test = (_temp = _class = function (_React$Component) {
             _react2.default.createElement(
               'h4',
               { className: cx('title') },
-              titleHeader,
-              ' ',
               title
             )
           ),

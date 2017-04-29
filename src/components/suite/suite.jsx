@@ -25,8 +25,8 @@ const Suite = ({ className, suite, enableChart, enableCode }) => {
     <TestList uuid={ uuid } tests={ tests } enableCode={ enableCode } />
   );
 
-  const hookListComp = () => hasFailedhooks && (
-    <TestList uuid={ uuid } tests={ FailedHooks } enableCode={ enableCode } />
+  const hookListComp = () => hasFailedHooks && (
+    <TestList uuid={ uuid } tests={ failedHooks } enableCode={ enableCode } />
   );
 
   const cxname = cx('component', className, {
