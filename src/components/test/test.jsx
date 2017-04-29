@@ -36,8 +36,8 @@ class Test extends React.Component {
 
   render() {
     const { test, enableCode } = this.props;
-    const { uuid, title, speed, duration, pass, fail, pending, skipped, err, code, context } = test;
-
+    const { uuid, title, speed, duration, pass, fail, pending, skipped, err, code, context, type } = test;
+    let titleHeader = '';
     const testIcon = () => {
       let iconName;
       let iconClassName;
@@ -57,6 +57,9 @@ class Test extends React.Component {
         iconName = 'stop';
         iconClassName = 'skipped';
       }
+      if (type === 'hook') {
+        titleHeader = <b>Hook </b>;
+      }
       return <Icon name={ iconName } className={ cx('icon', iconClassName) } size={ 18 } />;
     };
 
@@ -75,7 +78,7 @@ class Test extends React.Component {
         <header className={ cx('header') } onClick={ this.toggleExpandedState }>
           <div className={ cx('title-wrap') }>
             { testIcon() }
-            <h4 className={ cx('title') }>{ title }</h4>
+            <h4 className={ cx('title') }>{ titleHeader} { title }</h4>
           </div>
           <div className={ cx('info') }>
             { !!context && <Icon name='chat_bubble_outline' className={ cx('context-icon') } size={ 18 } /> }
