@@ -64,9 +64,9 @@ class TestContext extends Component {
     }
 
     // Default
-    const val = isString(content) ? content : JSON.stringify(content, null, 2);
+    const code = isString(content) ? content : JSON.stringify(content, null, 2);
     return (
-      <CodeSnippet className={ cx('code-snippet') } code={ val } highlight={ highlight } />
+      <CodeSnippet className={ cx('code-snippet') } code={ code } highlight={ highlight } />
     );
   }
 
@@ -89,17 +89,12 @@ class TestContext extends Component {
 
     // Context is an object with title and value
     const { title, value } = ctx;
-    /* istanbul ignore else */
-    if (value) {
-      return (
-        <div { ...containerProps } >
-          <h4 className={ cx('context-item-title') }>{ title }:</h4>
-          { this.renderContextContent(value, title, true) }
-        </div>
-      );
-    }
-
-    return false;
+    return (
+      <div { ...containerProps } >
+        <h4 className={ cx('context-item-title') }>{ title }:</h4>
+        { this.renderContextContent(value, title, true) }
+      </div>
+    );
   }
 
   render() {

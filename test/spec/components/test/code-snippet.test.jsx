@@ -68,7 +68,7 @@ describe('<CodeSnippet />', () => {
 
   it('does not render when code is not passed', () => {
     const wrapper = getInstance({});
-    expect(wrapper).to.be.blank();
+    expect(wrapper.find('code')).to.have.lengthOf(0);
   });
 
   it('calls shouldComponentUpdate', () => {
