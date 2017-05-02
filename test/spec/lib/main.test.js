@@ -63,17 +63,19 @@ beforeEach(() => {
 describe('lib/main', () => {
   describe('create', () => {
     it('saves report', () => {
-      outputFileStub.yields(null);
       const expectedHtmlFile = path.resolve(process.cwd(), 'test', 'test.html');
+      outputFileStub.resolves(expectedHtmlFile);
       const promise = mareport.create(testData, opts);
       return expect(promise).to.become([ expectedHtmlFile ]);
     });
 
     it('saves report and json', () => {
       opts.saveJson = true;
-      outputFileStub.yields(null);
       const expectedHtmlFile = path.resolve(process.cwd(), 'test', 'test.html');
       const expectedJsonFile = path.resolve(process.cwd(), 'test', 'test.json');
+      outputFileStub
+        .onCall(0).resolves(expectedHtmlFile)
+        .onCall(1).resolves(expectedJsonFile);
       const promise = mareport.create(testData, opts);
       return expect(promise).to.become([ expectedHtmlFile, expectedJsonFile ]);
     });
@@ -81,7 +83,7 @@ describe('lib/main', () => {
     it('with autoOpen', () => {
       opts.autoOpen = true;
       openerStub.yields(null);
-      outputFileStub.yields(null);
+      outputFileStub.resolves();
       return mareport.create(testData, opts).then(() => {
         expect(openerStub.called).to.equal(true);
       });
@@ -89,7 +91,7 @@ describe('lib/main', () => {
 
     it('with inline assets', () => {
       opts.inlineAssets = true;
-      outputFileStub.yields(null);
+      outputFileStub.resolves();
       return mareport.create(testData, opts).then(() => {
         expect(copySyncStub.called).to.equal(false);
       });
@@ -189,14 +191,14 @@ describe('lib/main', () => {
     });
 
     it('rejects when outputFile throws', () => {
-      outputFileStub.yields('save error');
+      outputFileStub.rejects(new Error('save error'));
       return expect(mareport.create(testData, opts)).to.be.rejectedWith('save error');
     });
 
     it('rejects when opener throws', () => {
       opts.autoOpen = true;
       openerStub.yields('open error');
-      outputFileStub.yields(null);
+      outputFileStub.resolves(null);
       return expect(mareport.create(testData, opts)).to.be.rejectedWith('open error');
     });
 
@@ -240,7 +242,7 @@ describe('lib/main', () => {
   describe('copyAssets', () => {
     beforeEach(() => {
       existsSyncStub.returns(true);
-      outputFileStub.yields(null);
+      outputFileStub.resolves(null);
     });
 
     describe('when assetsDir does not exist', () => {
