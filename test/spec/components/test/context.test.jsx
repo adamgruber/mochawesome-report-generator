@@ -14,23 +14,24 @@ describe('<TestContext />', () => {
     return {
       wrapper,
       ctx: wrapper.find(TestContext),
-      ctxItems: wrapper.find('.context-item'),
+      ctxItems: wrapper.find('.test-context-item'),
       img: wrapper.find('.test-image-link'),
       link: wrapper.find('.test-text-link'),
       snippet: wrapper.find(CodeSnippet)
     };
   };
 
-  it('renders no context', () => {
+  it('renders context when value is undefined', () => {
     const context = {
-      title: 'sample context'
+      title: 'sample context',
+      value: 'undefined'
     };
     const { wrapper, ctxItems } = getInstance({
       context: JSON.stringify(context),
       className: 'test'
     });
-    expect(wrapper).to.be.blank;
-    expect(ctxItems).to.have.lengthOf(0);
+    expect(wrapper).to.have.className('test');
+    expect(ctxItems).to.have.lengthOf(1);
   });
 
   it('renders context with string', () => {

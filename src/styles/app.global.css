@@ -1,4 +1,5 @@
 @import 'normalize.css';
+@import 'opinionate.css';
 @import 'vars';
 @import 'type';
 @import '../../node_modules/highlight.js/styles/solarized-light';

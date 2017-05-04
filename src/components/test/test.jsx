@@ -37,6 +37,7 @@ class Test extends React.Component {
   render() {
     const { test, enableCode } = this.props;
     const { uuid, title, speed, duration, pass, fail, pending, skipped, err, code, context } = test;
+    
     const testIcon = () => {
       let iconName;
       let iconClassName;
