@@ -36,8 +36,8 @@ class Test extends React.Component {
 
   render() {
     const { test, enableCode } = this.props;
-    const { uuid, title, speed, duration, pass, fail, pending, skipped, err, code, context } = test;
-    
+    const { uuid, title, speed, duration, pass, fail, pending, skipped, err, code, context, isHook } = test;
+
     const testIcon = () => {
       let iconName;
       let iconClassName;
@@ -70,12 +70,16 @@ class Test extends React.Component {
       'with-context': !!context
     });
 
+    const titleCxname = cx('title', {
+      hook: isHook
+    });
+
     return (
       <section id={ uuid } className={ cxname }>
         <header className={ cx('header') } onClick={ this.toggleExpandedState }>
           <div className={ cx('title-wrap') }>
             { testIcon() }
-            <h4 className={ cx('title') }>{ title }</h4>
+            <h4 className={ titleCxname }>{ title }</h4>
           </div>
           <div className={ cx('info') }>
             { !!context && <Icon name='chat_bubble_outline' className={ cx('context-icon') } size={ 18 } /> }

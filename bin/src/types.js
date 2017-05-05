@@ -23,7 +23,8 @@ const Test = t.struct({
   uuid: Uuid,
   parentUUID: t.maybe(Uuid),
   skipped: t.Boolean,
-  context: t.maybe(t.String)
+  context: t.maybe(t.String),
+  isHook: t.maybe(t.Boolean)
 });
 
 const Suite = t.declare('Suite');
@@ -31,6 +32,8 @@ Suite.define(t.struct({
   title: t.String,
   suites: t.list(Suite),
   tests: t.list(Test),
+  afterFailedHooks: t.list(Test),
+  beforeFailedHooks: t.list(Test),
   pending: t.list(Test),
   root: t.Boolean,
   _timeout: t.Integer,
@@ -52,7 +55,9 @@ Suite.define(t.struct({
   hasPending: t.Boolean,
   hasSkipped: t.Boolean,
   duration: t.Integer,
-  rootEmpty: t.maybe(t.Boolean)
+  rootEmpty: t.maybe(t.Boolean),
+  hasBeforeFailedHooks:t.Boolean,
+  hasAfterFailedHooks: t.Boolean
 }));
 
 const TestReport = t.struct({

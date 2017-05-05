@@ -41,6 +41,10 @@
   @apply --font-regular;
   @apply --text-overflow;
 
+  &.hook {
+    color: var(--red300);
+  }
+
   font-size: 13px;
   line-height: 24px;
   margin: 0;
