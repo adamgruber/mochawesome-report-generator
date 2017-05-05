@@ -128,6 +128,8 @@
                 "skipped": false
               }
             ],
+            "beforeFailedHooks": [],
+            "afterFailedHooks": [],
             "pending": [],
             "root": false,
             "_timeout": 2000,
@@ -239,6 +241,8 @@
             ],
             "skipped": [],
             "hasTests": true,
+            "hasBeforeFailedHooks": false,
+            "hasAfterFailedHooks": false,
             "hasSuites": false,
             "totalTests": 2,
             "totalPasses": 1,
@@ -277,6 +281,8 @@
                     "skipped": false
                   }
                 ],
+                "beforeFailedHooks": [],
+                "afterFailedHooks": [],
                 "pending": [],
                 "root": false,
                 "_timeout": 2000,
@@ -305,6 +311,8 @@
                 "failures": [],
                 "skipped": [],
                 "hasTests": true,
+                "hasBeforeFailedHooks": false,
+                "hasAfterFailedHooks": false,
                 "hasSuites": false,
                 "totalTests": 1,
                 "totalPasses": 1,
@@ -340,6 +348,8 @@
                     "skipped": false
                   }
                 ],
+                "beforeFailedHooks": [],
+                "afterFailedHooks": [],
                 "pending": [],
                 "root": false,
                 "_timeout": 2000,
@@ -368,6 +378,8 @@
                 "failures": [],
                 "skipped": [],
                 "hasTests": true,
+                "hasBeforeFailedHooks": false,
+                "hasAfterFailedHooks": false,
                 "hasSuites": false,
                 "totalTests": 1,
                 "totalPasses": 1,
@@ -443,6 +455,8 @@
                 "skipped": false
               }
             ],
+            "beforeFailedHooks": [],
+            "afterFailedHooks": [],
             "pending": [],
             "root": false,
             "_timeout": 2000,
@@ -514,6 +528,8 @@
             ],
             "skipped": [],
             "hasTests": true,
+            "hasBeforeFailedHooks": false,
+            "hasAfterFailedHooks": false,
             "hasSuites": true,
             "totalTests": 2,
             "totalPasses": 1,
@@ -550,6 +566,8 @@
                     "skipped": true
                   }
                 ],
+                "beforeFailedHooks": [],
+                "afterFailedHooks": [],
                 "pending": [],
                 "root": false,
                 "_timeout": 2000,
@@ -576,6 +594,8 @@
                   }
                 ],
                 "hasTests": true,
+                "hasBeforeFailedHooks": false,
+                "hasAfterFailedHooks": false,
                 "hasSuites": false,
                 "totalTests": 1,
                 "totalPasses": 0,
@@ -607,6 +627,8 @@
                 "skipped": true
               }
             ],
+            "beforeFailedHooks": [],
+            "afterFailedHooks": [],
             "pending": [],
             "root": false,
             "_timeout": 2000,
@@ -633,6 +655,8 @@
               }
             ],
             "hasTests": true,
+            "hasBeforeFailedHooks": false,
+            "hasAfterFailedHooks": false,
             "hasSuites": true,
             "totalTests": 1,
             "totalPasses": 0,
@@ -755,6 +779,28 @@
                 "skipped": false
               }
             ],
+            "beforeFailedHooks": [],
+            "afterFailedHooks": [
+              {
+                "title": "\"after all\" hook",
+                "fullTitle": "Test suit all hook types failure after-each \"after all\" hook",
+                "timedOut": false,
+                "duration": 0,
+                "state": "failed",
+                "pass": false,
+                "fail": true,
+                "pending": false,
+                "code": "throw new Error();",
+                "err": {
+                  "estack": "Error\n    at Context.after (test/sample.test.js:5:19)"
+                },
+                "isRoot": false,
+                "uuid": "756af185-859b-417e-bf9a-7dae549ee56b",
+                "parentUUID": "07b778ec-8a65-4724-b807-7df6d53ec72d",
+                "skipped": false,
+                "isHook": true
+              }
+            ],
             "pending": [
               {
                 "title": "pending test",
@@ -872,6 +918,8 @@
             ],
             "skipped": [],
             "hasTests": true,
+            "hasBeforeFailedHooks": false,
+            "hasAfterFailedHooks": true,
             "hasSuites": false,
             "totalTests": 5,
             "totalPasses": 2,
@@ -907,6 +955,8 @@
                 "skipped": false
               }
             ],
+            "afterFailedHooks": [],
+            "beforeFailedHooks": [],
             "pending": [],
             "root": false,
             "_timeout": 2000,
@@ -935,6 +985,8 @@
             "failures": [],
             "skipped": [],
             "hasTests": true,
+            "hasAfterFailedHooks": false,
+            "hasBeforeFailedHooks": false,
             "hasSuites": false,
             "totalTests": 1,
             "totalPasses": 1,
@@ -993,6 +1045,8 @@
                 "skipped": false
               }
             ],
+            "afterFailedHooks": [],
+            "beforeFailedHooks": [],
             "pending": [],
             "root": false,
             "_timeout": 2000,
@@ -1044,6 +1098,8 @@
             ],
             "skipped": [],
             "hasTests": true,
+            "hasBeforeFailedHooks": false,
+            "hasAfterFailedHooks": false,    
             "hasSuites": false,
             "totalTests": 1,
             "totalPasses": 0,
@@ -1077,6 +1133,8 @@
                 "skipped": false
               }
             ],
+            "afterFailedHooks": [],
+            "beforeFailedHooks": [],
             "pending": [
               {
                 "title": "pending test",
@@ -1103,6 +1161,8 @@
             "failures": [],
             "skipped": [],
             "hasTests": true,
+            "hasBeforeFailedHooks": false,
+            "hasAfterFailedHooks": false,
             "hasSuites": false,
             "totalTests": 1,
             "totalPasses": 0,
@@ -1151,6 +1211,28 @@
                 "skipped": true
               }
             ],
+            "beforeFailedHooks": [
+              {
+                "title": "\"before all\" hook",
+                "fullTitle": "Test suit all hook types failure after-each \"before all\" hook",
+                "timedOut": false,
+                "duration": 0,
+                "state": "failed",
+                "pass": false,
+                "fail": true,
+                "pending": false,
+                "code": "throw new Error();",
+                "err": {
+                  "estack": "Error\n    at Context.after (test/sample.test.js:5:19)"
+                },
+                "isRoot": false,
+                "uuid": "756af185-859b-417e-bf9a-7dae549ee56b",
+                "parentUUID": "07b778ec-8a65-4724-b807-7df6d53ec72d",
+                "skipped": false,
+                "isHook": true
+              }
+            ],
+            "afterFailedHooks": [],
             "pending": [],
             "root": false,
             "_timeout": 2000,
@@ -1192,6 +1274,8 @@
               }
             ],
             "hasTests": true,
+            "hasAfterFailedHooks": false,
+            "hasBeforeFailedHooks": true,
             "hasSuites": false,
             "totalTests": 2,
             "totalPasses": 0,
@@ -1240,6 +1324,8 @@
                 "skipped": true
               }
             ],
+            "beforeFailedHooks": [],
+            "afterFailedHooks": [],
             "pending": [],
             "root": false,
             "_timeout": 2000,
@@ -1281,6 +1367,8 @@
               }
             ],
             "hasTests": true,
+            "hasAfterFailedHooks": false,
+            "hasBeforeFailedHooks": false,
             "hasSuites": false,
             "totalTests": 2,
             "totalPasses": 0,
@@ -1329,6 +1417,8 @@
                 "skipped": true
               }
             ],
+            "beforeFailedHooks":[],
+            "afterFailedHooks": [],
             "pending": [],
             "root": false,
             "_timeout": 2000,
@@ -1370,6 +1460,8 @@
               }
             ],
             "hasTests": true,
+            "hasBeforeFailedHooks": false,
+            "hasAfterFailedHooks": false,
             "hasSuites": false,
             "totalTests": 2,
             "totalPasses": 0,
@@ -1492,6 +1584,8 @@
                 "skipped": false
               }
             ],
+            "beforeFailedHooks":[],
+            "afterFailedHooks": [],
             "pending": [
               {
                 "title": "pending test",
@@ -1609,6 +1703,8 @@
             ],
             "skipped": [],
             "hasTests": true,
+            "hasBeforeFailedHooks": false,
+            "hasAfterFailedHooks": false,
             "hasSuites": false,
             "totalTests": 5,
             "totalPasses": 2,
@@ -1624,6 +1720,8 @@
           }
         ],
         "tests": [],
+        "beforeFailedHooks":[],
+        "afterFailedHooks": [],
         "pending": [],
         "root": false,
         "_timeout": 2000,
@@ -1634,6 +1732,8 @@
         "failures": [],
         "skipped": [],
         "hasTests": false,
+        "hasBeforeFailedHooks": false,
+        "hasAfterFailedHooks": false,
         "hasSuites": true,
         "totalTests": 0,
         "totalPasses": 0,
@@ -1649,6 +1749,8 @@
       }
     ],
     "tests": [],
+    "beforeFailedHooks":[],
+    "afterFailedHooks": [],
     "pending": [],
     "root": true,
     "_timeout": 2000,
@@ -1659,6 +1761,8 @@
     "failures": [],
     "skipped": [],
     "hasTests": false,
+    "hasBeforeFailedHooks": false,
+    "hasAfterFailedHooks": false,
     "hasSuites": true,
     "totalTests": 0,
     "totalPasses": 0,

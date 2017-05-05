@@ -55,6 +55,8 @@
                 "skipped": false
               }
             ],
+            "beforeFailedHooks": [],
+            "afterFailedHooks": [],
             "pending": [],
             "root": false,
             "_timeout": 2000,
@@ -92,6 +94,8 @@
             ],
             "skipped": [],
             "hasTests": true,
+            "hasBeforeFailedHooks": false,
+            "hasAfterFailedHooks": false,
             "hasSuites": false,
             "totalTests": 1,
             "totalPasses": 0,
@@ -106,6 +110,8 @@
           }
         ],
         "tests": [],
+        "beforeFailedHooks":[],
+        "afterFailedHooks": [],
         "pending": [],
         "root": false,
         "_timeout": 2000,
@@ -116,6 +122,8 @@
         "failures": [],
         "skipped": [],
         "hasTests": false,
+        "hasBeforeFailedHooks": false,
+        "hasAfterFailedHooks": false,
         "hasSuites": true,
         "totalTests": 0,
         "totalPasses": 0,
@@ -130,6 +138,8 @@
       }
     ],
     "tests": [],
+    "beforeFailedHooks":[],
+    "afterFailedHooks": [],
     "pending": [],
     "root": true,
     "_timeout": 2000,
@@ -140,6 +150,8 @@
     "failures": [],
     "skipped": [],
     "hasTests": false,
+    "hasBeforeFailedHooks": false,
+    "hasAfterFailedHooks": false,
     "hasSuites": true,
     "totalTests": 0,
     "totalPasses": 0,

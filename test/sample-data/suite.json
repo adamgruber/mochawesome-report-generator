@@ -43,6 +43,8 @@
     "parentUUID": "17bc6546-127d-4fc2-84b7-4aa033a8d2d3",
     "skipped": false
   }],
+  "beforeFailedHooks": [],
+  "afterFailedHooks": [],
   "pending": [],
   "root": false,
   "_timeout": 2000,
@@ -94,6 +96,8 @@
   }],
   "skipped": [],
   "hasTests": true,
+  "hasBeforeFailedHooks": false,
+  "hasAfterFailedHooks": false,
   "hasSuites": false,
   "totalTests": 2,
   "totalPasses": 1,

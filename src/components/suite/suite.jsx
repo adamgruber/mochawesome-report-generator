@@ -8,9 +8,9 @@ import styles from './suite.css';
 const cx = classNames.bind(styles);
 
 const Suite = ({ className, suite, enableChart, enableCode }) => {
-  const { root, rootEmpty, suites, tests, uuid, title, file,
-    hasSuites, hasTests, hasFailures, hasPending, hasSkipped,
-    hasPasses, duration, totalTests, totalPasses, totalFailures,
+  const { root, rootEmpty, suites, tests, beforeFailedHooks, afterFailedHooks, uuid, title, file,
+    hasSuites, hasTests, hasBeforeFailedHooks, hasAfterFailedHooks, hasFailures, hasPending,
+    hasSkipped, hasPasses, duration, totalTests, totalPasses, totalFailures,
     totalPending, totalSkipped } = suite;
 
   const subSuites = isMain => hasSuites && (
@@ -21,8 +21,16 @@ const Suite = ({ className, suite, enableChart, enableCode }) => {
       main={ isMain } />
   );
 
+  const beforeHookListComp = () => hasBeforeFailedHooks && (
+    <TestList uuid={ uuid } tests={ beforeFailedHooks } enableCode={ enableCode } />
+  );
+
   const testListComp = () => hasTests && (
     <TestList uuid={ uuid } tests={ tests } enableCode={ enableCode } />
+  );
+
+  const afterHookListComp = () => hasAfterFailedHooks && (
+    <TestList uuid={ uuid } tests={ afterFailedHooks } enableCode={ enableCode } />
   );
 
   const cxname = cx('component', className, {
@@ -62,7 +70,9 @@ const Suite = ({ className, suite, enableChart, enableCode }) => {
         { hasTests && <SuiteSummary { ...summaryProps } /> }
       </header>
       <div className={ cx('body') }>
+        { beforeHookListComp() }
         { testListComp() }
+        { afterHookListComp() }
         { subSuites() }
       </div>
     </section>

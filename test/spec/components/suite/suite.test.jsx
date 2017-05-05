@@ -78,4 +78,14 @@ describe('<Suite />', () => {
     expect(testList).to.have.lengthOf(0);
     expect(suiteList).to.have.lengthOf(1);
   });
+
+  it('renders suite with failed hooks', () => {
+     const instProps = Object.assign({}, props, {
+       // Addressing suite 'Test Suite - Failed After' test.json ln 783
+      suite: nestedSuite.suites.suites[0].suites[3]
+    });
+    const { testList } = getInstance(instProps);
+    // testList should have 2 tests - one for the hook
+    expect(testList).to.have.lengthOf(2);
+  })
 });
