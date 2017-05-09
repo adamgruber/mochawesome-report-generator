@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.0.3] / 2017-05-09
+- Add support for rendering context with `undefined` or `null` value 
+
 ## [2.0.2] / 2017-04-25
 - Update package.json to spec `fsu` to `^1.0.2` which fixes compatibility with node 4
 
