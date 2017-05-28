@@ -49,6 +49,10 @@
   @nest .with-context & {
     padding-right: 106px;
   }
+
+  @nest .hook & {
+    color: var(--black54);
+  }
 }
 
 .icon {
@@ -78,6 +82,11 @@
   &.skipped {
     color: var(--grey100);
     background-color: var(--grey500);
+  }
+
+  &.hook {
+    color: var(--black38);
+    padding: 0;
   }
 }
 

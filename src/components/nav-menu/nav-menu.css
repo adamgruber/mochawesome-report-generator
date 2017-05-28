@@ -63,8 +63,31 @@
   color: var(--black54);
 }
 
-.toggle {
+.section-head {
+  text-transform: uppercase;
+  color: var(--black54);
+}
+
+.control {
+  position: relative;
   margin: 8px 0;
+}
+
+.control-label {
+  @apply --font-regular;
+
+  display: inline-block;
+  font-size: 13px;
+  vertical-align: top;
+  line-height: 24px;
+
+  &.with-icon {
+    margin-left: 12px;
+  }
+}
+
+.control-group {
+  margin-bottom: 10px;
 }
 
 .toggle-icon-passed {

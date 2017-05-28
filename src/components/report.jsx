@@ -35,7 +35,7 @@ class MochawesomeReport extends Component {
 
   render() {
     const { reportTitle, suites, allSuites, stats, enableChart, enableCode,
-      showPassed, showFailed, showPending, showSkipped, sideNavOpen,
+      showPassed, showFailed, showPending, showSkipped, showHooks, sideNavOpen,
       mobileBreakpoint, quickSummaryWidth, devMode } = this.props.store;
 
     const navMenuProps = {
@@ -45,6 +45,7 @@ class MochawesomeReport extends Component {
       showFailed,
       showPending,
       showSkipped,
+      showHooks,
       sideNavOpen
     };
 

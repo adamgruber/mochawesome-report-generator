@@ -7,13 +7,14 @@ import styles from './toggle-switch.css';
 const cx = classNames.bind(styles);
 
 function ToggleSwitch(props) {
-  const { active, className, labelClassName, label, icon, iconClassName, toggleFn } = props;
+  const { active, className, disabled, labelClassName, label, icon, iconClassName, toggleFn } = props;
   const labelCxName = cx('label', { 'with-icon': !!icon }, labelClassName);
+  const onClickFn = e => (!disabled && toggleFn(e));
   return (
-    <div className={ cx('component', className) }>
-      { !!icon && <Icon name={ icon } className={ iconClassName } /> }
+    <div className={ cx('component', className, { disabled }) }>
+      { !!icon && <Icon name={ icon } className={ cx('icon', iconClassName) } /> }
       { !!label && <span className={ labelCxName }>{ label }</span> }
-      <div className={ cx('switch', { off: !active }) } onClick={ toggleFn }>
+      <div className={ cx('switch', { off: !active }) } onClick={ onClickFn }>
         <span className={ cx('toggle', 'z-depth-1') } />
       </div>
     </div>
@@ -23,6 +24,7 @@ function ToggleSwitch(props) {
 ToggleSwitch.propTypes = {
   active: PropTypes.bool.isRequired,
   className: PropTypes.any,
+  disabled: PropTypes.bool.isRequired,
   labelClassName: PropTypes.string,
   label: PropTypes.string,
   icon: PropTypes.string,

@@ -11,6 +11,7 @@ class ReportStore {
   @observable showSkipped = false;
   @observable quickSummaryWidth = null;
   @observable windowWidth = null;
+  @observable showHooks = 'failed'; // [failed|always|never]
 
   constructor(data = {}) {
     this.data = data;
@@ -35,6 +36,13 @@ class ReportStore {
 
   @action toggleFilter(prop) {
     this[prop] = !this[prop];
+  }
+
+  @action setShowHooks(prop) {
+    const validProps = [ 'failed', 'always', 'never' ];
+    if (validProps.indexOf(prop) >= 0) {
+      this.showHooks = prop;
+    }
   }
 
   @action setQuickSummaryWidth(width) {
@@ -70,6 +78,7 @@ class ReportStore {
 }
 
 const reportStore = new ReportStore();
+window.reportStore = reportStore;
 export default reportStore;
 
 export { ReportStore };

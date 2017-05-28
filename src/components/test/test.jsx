@@ -29,14 +29,15 @@ class Test extends React.Component {
 
   toggleExpandedState() {
     const { test, enableCode } = this.props;
-    if ((enableCode && test.pass) || !!test.context || test.fail) {
+    if ((enableCode && test.pass) || !!test.context || test.fail || test.isHook) {
       this.setState({ expanded: !this.state.expanded });
     }
   }
 
   render() {
     const { test, enableCode } = this.props;
-    const { uuid, title, speed, duration, pass, fail, pending, skipped, err, code, context } = test;
+    const { uuid, title, speed, duration, pass, fail, pending,
+      skipped, isHook, err, code, context } = test;
 
     const testIcon = () => {
       let iconName;
@@ -57,7 +58,11 @@ class Test extends React.Component {
         iconName = 'stop';
         iconClassName = 'skipped';
       }
-      return <Icon name={ iconName } className={ cx('icon', iconClassName) } size={ 18 } />;
+      if (isHook) {
+        iconName = title.match(/^"before/) ? 'rotate_left' : 'rotate_right';
+        iconClassName = 'hook';
+      }
+      return <Icon name={ iconName } className={ cx('icon', iconClassName) } size={ isHook ? 24 : 18 } />;
     };
 
     const cxname = cx('component', {
@@ -66,6 +71,7 @@ class Test extends React.Component {
       failed: fail,
       pending,
       skipped,
+      hook: isHook,
       inactive: pending || skipped || (pass && !enableCode && !context),
       'with-context': !!context
     });
@@ -79,8 +85,8 @@ class Test extends React.Component {
           </div>
           <div className={ cx('info') }>
             { !!context && <Icon name='chat_bubble_outline' className={ cx('context-icon') } size={ 18 } /> }
-            <Duration className={ cx('duration') } timer={ duration } />
-            <Icon name='timer' className={ cx('duration-icon', speed) } size={ 18 } />
+            { !isHook && <Duration className={ cx('duration') } timer={ duration } /> }
+            { !isHook && <Icon name='timer' className={ cx('duration-icon', speed) } size={ 18 } /> }
           </div>
         </header>
         { !!err.name && !!err.message && (

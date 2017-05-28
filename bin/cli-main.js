@@ -62,7 +62,7 @@ function validateFile(file) {
   // If the file was loaded successfully,
   // validate the json against the TestReport schema
   if (data) {
-    var validationResult = t.validate(data, types.TestReport);
+    var validationResult = t.validate(data, types.TestReport, { strict: true });
     if (!validationResult.isValid()) {
       err = ERRORS.INVALID_JSON(validationResult.errors);
     } else {

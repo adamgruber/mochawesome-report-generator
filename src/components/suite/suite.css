@@ -59,6 +59,10 @@
 
 .body {
   @apply --clearfix;
+
+  @nest .has-suites > & {
+    border-bottom: 1px solid var(--grey300);
+  }
 }
 
 .chart-wrap {

@@ -3,7 +3,6 @@
 .component {
   @apply --clearfix;
 
-  position: relative;
   height: 24px;
 }
 
@@ -15,7 +14,7 @@
   width: 32px;
   height: 12px;
   border-radius: 12px;
-  background-color: #a5d6a7;
+  background-color: var(--green200);
   cursor: pointer;
   transition: background-color 0.2s ease-out;
 }
@@ -32,7 +31,7 @@
   width: 18px;
   height: 18px;
   border-radius: 100%;
-  background-color: #4caf50;
+  background-color: var(--green500);
 
   @nest .off & {
     background-color: #fff;
@@ -42,15 +41,19 @@
   transition: all 0.15s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.label {
-  @apply --font-regular;
+.disabled {
+  opacity: 0.5;
 
-  display: inline-block;
-  font-size: 13px;
-  vertical-align: top;
-  line-height: 24px;
-}
+  & .switch {
+    cursor: default;
+    background-color: var(--grey300)
+  }
 
-.label.with-icon {
-  margin-left: 12px;
+  & .icon {
+    color: var(--black38);
+  }
+
+  & .toggle {
+    background-color: var(--grey100);
+  }
 }
