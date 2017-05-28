@@ -2,13 +2,6 @@
   "parser": "babel-eslint",
   "extends": "eslint-config-airbnb",
   "plugins": ["react", "jsx-a11y"],
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "moduleDirectory": [ "node_modules", "src" ]
-      }
-    }
-  },
   "env": {
     "browser": true,
     "node": true,
@@ -63,6 +56,7 @@
     "global-require": 0,
     "import/no-unresolved": 0,
     "import/no-extraneous-dependencies": 0,
+    "import/extensions": 0,
     "valid-jsdoc": ["error", { "requireReturn": false }]
   }
 }
