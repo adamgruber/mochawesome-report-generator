@@ -20,6 +20,7 @@ class DropdownMenu extends Component {
     const isSelected = isEqual(listItem, selected);
     const clickFn = e => {
       e.preventDefault();
+      /* istanbul ignore else */
       if (isFunction(itemClickFn)) {
         itemClickFn(listItem);
       }
