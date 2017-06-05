@@ -53,6 +53,11 @@ class ReportStore {
     this.windowWidth = width;
   }
 
+  _filterHook = hook => (
+      (this.showHooks === 'always')
+      || (this.showHooks === 'failed' && hook.fail)
+  )
+
   _mapSuites = suite => {
     const suites = compact(map(suite.suites, this._mapSuites));
     const tests = filter(suite.tests, test => (
@@ -62,8 +67,11 @@ class ReportStore {
       || (this.showSkipped && test.skipped)
     ));
 
-    return (tests.length > 0 || suites.length > 0)
-      ? Object.assign({}, suite, { suites, tests })
+    const beforeHooks = filter(suite.beforeHooks, this._filterHook);
+    const afterHooks = filter(suite.afterHooks, this._filterHook);
+
+    return (beforeHooks.length || afterHooks.length || tests.length || suites.length)
+      ? Object.assign({}, suite, { suites, beforeHooks, afterHooks, tests })
       : null;
   }
 
