@@ -1,13 +1,13 @@
 {
   "stats": {
-    "suites": 2,
+    "suites": 1,
     "tests": 1,
     "passes": 0,
     "pending": 0,
     "failures": 1,
-    "start": "2016-10-06T17:36:48.977Z",
-    "end": "2016-10-06T17:36:49.884Z",
-    "duration": 907,
+    "start": "2017-06-05T12:27:21.360Z",
+    "end": "2017-06-05T12:27:21.376Z",
+    "duration": 16,
     "testsRegistered": 1,
     "passPercent": 0,
     "pendingPercent": 0,
@@ -22,123 +22,163 @@
     "title": "",
     "suites": [
       {
-        "title": "Master Test Suite",
-        "suites": [
+        "title": "Main Suite",
+        "suites": [],
+        "tests": [
           {
-            "title": "Test Suite - Basic",
-            "suites": [],
-            "tests": [
-              {
-                "title": "should fail when returned object does not match expected object",
-                "fullTitle": "Master Test Suite Test Suite - Basic should fail when returned object does not match expected object",
-                "timedOut": false,
-                "duration": 14,
-                "state": "failed",
-                "pass": false,
-                "fail": true,
-                "pending": false,
-                "code": "var o = retObj();\no.should.eql({});\ndone();",
-                "err": {
-                  "name": "AssertionError",
-                  "actual": "{\n  \"employees\": {\n    \"employee\": [\n      {\n        \"firstName\": \"Tom\"\n        \"id\": \"1\"\n        \"lastName\": \"Cruise\"\n      }\n      {\n        \"firstName\": \"Maria\"\n        \"id\": \"2\"\n        \"lastName\": \"Sharapova\"\n      }\n      {\n        \"firstName\": \"James\"\n        \"id\": \"3\"\n        \"lastName\": \"Bond\"\n      }\n    ]\n  }\n}",
-                  "expected": "{}",
-                  "operator": "to equal",
-                  "message": "expected { employees: \n   { employee: \n      [ { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n        { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n        { id: '3', firstName: 'James', lastName: 'Bond' } ] } } to equal {}",
-                  "generatedMessage": true,
-                  "showDiff": true,
-                  "estack": "AssertionError: expected { employees: \n   { employee: \n      [ { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n        { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n        { id: '3', firstName: 'James', lastName: 'Bond' } ] } } to equal {}\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test-single.js:33:16)",
-                  "diff": "- {\n-   \"employees\": {\n-     \"employee\": [\n-       {\n-         \"firstName\": \"Tom\"\n-         \"id\": \"1\"\n-         \"lastName\": \"Cruise\"\n-       }\n-       {\n-         \"firstName\": \"Maria\"\n-         \"id\": \"2\"\n-         \"lastName\": \"Sharapova\"\n-       }\n-       {\n-         \"firstName\": \"James\"\n-         \"id\": \"3\"\n-         \"lastName\": \"Bond\"\n-       }\n-     ]\n-   }\n- }\n+ {}\n"
+            "title": "should be false",
+            "fullTitle": "Main Suite should be false",
+            "timedOut": false,
+            "duration": 4,
+            "state": "failed",
+            "pass": false,
+            "fail": true,
+            "pending": false,
+            "code": "// true.should.eql(bool);\nexp.should.eql({\n  foo: true,\n  bar: true,\n  baz: 1\n});\nshouldAddContext && addContext(this, 'context');",
+            "err": {
+              "operator": "to equal",
+              "expected": "{\n  \"bar\": true\n  \"baz\": 1\n  \"foo\": true\n}",
+              "details": "at bar, A has false and B has true",
+              "showDiff": true,
+              "actual": "{\n  \"bar\": false\n  \"baz\": 1\n  \"foo\": true\n}",
+              "negate": false,
+              "assertion": {
+                "obj": {
+                  "foo": true,
+                  "bar": false,
+                  "baz": 1
                 },
-                "isRoot": false,
-                "uuid": "6c5cb7bd-f5a4-4f62-a530-456307f64201",
-                "parentUUID": "8f25b07b-7710-4ee9-8e70-ccbf1e898c25",
-                "skipped": false
-              }
-            ],
-            "pending": [],
-            "root": false,
-            "_timeout": 2000,
-            "file": "/test-functional/test-single.js",
-            "uuid": "8f25b07b-7710-4ee9-8e70-ccbf1e898c25",
-            "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test-single.js",
-            "passes": [],
-            "failures": [
-              {
-                "title": "should fail when returned object does not match expected object",
-                "fullTitle": "Master Test Suite Test Suite - Basic should fail when returned object does not match expected object",
-                "timedOut": false,
-                "duration": 14,
-                "state": "failed",
-                "pass": false,
-                "fail": true,
-                "pending": false,
-                "code": "var o = retObj();\no.should.eql({});\ndone();",
-                "err": {
-                  "name": "AssertionError",
-                  "actual": "{\n  \"employees\": {\n    \"employee\": [\n      {\n        \"firstName\": \"Tom\"\n        \"id\": \"1\"\n        \"lastName\": \"Cruise\"\n      }\n      {\n        \"firstName\": \"Maria\"\n        \"id\": \"2\"\n        \"lastName\": \"Sharapova\"\n      }\n      {\n        \"firstName\": \"James\"\n        \"id\": \"3\"\n        \"lastName\": \"Bond\"\n      }\n    ]\n  }\n}",
-                  "expected": "{}",
+                "anyOne": false,
+                "negate": false,
+                "params": {
                   "operator": "to equal",
-                  "message": "expected { employees: \n   { employee: \n      [ { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n        { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n        { id: '3', firstName: 'James', lastName: 'Bond' } ] } } to equal {}",
-                  "generatedMessage": true,
+                  "expected": {
+                    "foo": true,
+                    "bar": true,
+                    "baz": 1
+                  },
+                  "details": "at bar, A has false and B has true",
                   "showDiff": true,
-                  "estack": "AssertionError: expected { employees: \n   { employee: \n      [ { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n        { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n        { id: '3', firstName: 'James', lastName: 'Bond' } ] } } to equal {}\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test-single.js:33:16)",
-                  "diff": "- {\n-   \"employees\": {\n-     \"employee\": [\n-       {\n-         \"firstName\": \"Tom\"\n-         \"id\": \"1\"\n-         \"lastName\": \"Cruise\"\n-       }\n-       {\n-         \"firstName\": \"Maria\"\n-         \"id\": \"2\"\n-         \"lastName\": \"Sharapova\"\n-       }\n-       {\n-         \"firstName\": \"James\"\n-         \"id\": \"3\"\n-         \"lastName\": \"Bond\"\n-       }\n-     ]\n-   }\n- }\n+ {}\n"
+                  "actual": {
+                    "foo": true,
+                    "bar": false,
+                    "baz": 1
+                  },
+                  "negate": false,
+                  "assertion": "[Circular ~.suites.suites.0.tests.0.err.assertion]"
                 },
-                "isRoot": false,
-                "uuid": "6c5cb7bd-f5a4-4f62-a530-456307f64201",
-                "parentUUID": "8f25b07b-7710-4ee9-8e70-ccbf1e898c25",
-                "skipped": false
-              }
-            ],
-            "skipped": [],
-            "hasTests": true,
-            "hasSuites": false,
-            "totalTests": 1,
-            "totalPasses": 0,
-            "totalFailures": 1,
-            "totalPending": 0,
-            "totalSkipped": 0,
-            "hasPasses": false,
-            "hasFailures": true,
-            "hasPending": false,
-            "hasSkipped": false,
-            "duration": 14
+                "light": false
+              },
+              "_message": "expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)",
+              "generatedMessage": true,
+              "estack": "AssertionError: expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)\n    at Assertion.fail (node_modules/should/cjs/should.js:258:17)\n    at Assertion.value (node_modules/should/cjs/should.js:335:19)\n    at Context.<anonymous> (helpers.js:26:20)",
+              "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
+            },
+            "isRoot": false,
+            "uuid": "65ef9d51-2e7b-4155-9d46-af6ad7d0e2d4",
+            "parentUUID": "37685726-1c47-4e1f-a7d4-6c88ebf842f9",
+            "isHook": false,
+            "skipped": false
           }
         ],
-        "tests": [],
         "pending": [],
         "root": false,
         "_timeout": 2000,
-        "file": "/test-functional/test-single.js",
-        "uuid": "7fc95705-84b9-4216-92df-76229af846f9",
-        "fullFile": "/Users/adamgruber/Sites/mochawesome/test-functional/test-single.js",
+        "file": "/cases/test.js",
+        "uuid": "37685726-1c47-4e1f-a7d4-6c88ebf842f9",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "fullFile": "/Users/adamgruber/Sites/ma-test/cases/test.js",
         "passes": [],
-        "failures": [],
+        "failures": [
+          {
+            "title": "should be false",
+            "fullTitle": "Main Suite should be false",
+            "timedOut": false,
+            "duration": 4,
+            "state": "failed",
+            "pass": false,
+            "fail": true,
+            "pending": false,
+            "code": "// true.should.eql(bool);\nexp.should.eql({\n  foo: true,\n  bar: true,\n  baz: 1\n});\nshouldAddContext && addContext(this, 'context');",
+            "err": {
+              "operator": "to equal",
+              "expected": "{\n  \"bar\": true\n  \"baz\": 1\n  \"foo\": true\n}",
+              "details": "at bar, A has false and B has true",
+              "showDiff": true,
+              "actual": "{\n  \"bar\": false\n  \"baz\": 1\n  \"foo\": true\n}",
+              "negate": false,
+              "assertion": {
+                "obj": {
+                  "foo": true,
+                  "bar": false,
+                  "baz": 1
+                },
+                "anyOne": false,
+                "negate": false,
+                "params": {
+                  "operator": "to equal",
+                  "expected": {
+                    "foo": true,
+                    "bar": true,
+                    "baz": 1
+                  },
+                  "details": "at bar, A has false and B has true",
+                  "showDiff": true,
+                  "actual": {
+                    "foo": true,
+                    "bar": false,
+                    "baz": 1
+                  },
+                  "negate": false,
+                  "assertion": "[Circular ~.suites.suites.0.failures.0.err.assertion]"
+                },
+                "light": false
+              },
+              "_message": "expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)",
+              "generatedMessage": true,
+              "estack": "AssertionError: expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)\n    at Assertion.fail (node_modules/should/cjs/should.js:258:17)\n    at Assertion.value (node_modules/should/cjs/should.js:335:19)\n    at Context.<anonymous> (helpers.js:26:20)",
+              "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
+            },
+            "isRoot": false,
+            "uuid": "65ef9d51-2e7b-4155-9d46-af6ad7d0e2d4",
+            "parentUUID": "37685726-1c47-4e1f-a7d4-6c88ebf842f9",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
         "skipped": [],
-        "hasTests": false,
-        "hasSuites": true,
-        "totalTests": 0,
+        "hasBeforeHooks": false,
+        "hasAfterHooks": false,
+        "hasTests": true,
+        "hasSuites": false,
+        "totalTests": 1,
         "totalPasses": 0,
-        "totalFailures": 0,
+        "totalFailures": 1,
         "totalPending": 0,
         "totalSkipped": 0,
         "hasPasses": false,
-        "hasFailures": false,
+        "hasFailures": true,
         "hasPending": false,
         "hasSkipped": false,
-        "duration": 0
+        "duration": 4,
+        "rootEmpty": false
       }
     ],
     "tests": [],
     "pending": [],
     "root": true,
     "_timeout": 2000,
-    "uuid": "47b1fc24-d807-4ddd-96eb-49e3d5d2affd",
+    "uuid": "005cc237-6ddd-4da6-8b5c-e82c1ee5cfdc",
+    "beforeHooks": [],
+    "afterHooks": [],
     "fullFile": "",
     "file": "",
     "passes": [],
     "failures": [],
     "skipped": [],
+    "hasBeforeHooks": false,
+    "hasAfterHooks": false,
     "hasTests": false,
     "hasSuites": true,
     "totalTests": 0,
@@ -155,29 +195,58 @@
   },
   "allTests": [
     {
-      "title": "should fail when returned object does not match expected object",
-      "fullTitle": "Test Suite - Basic should fail when returned object does not match expected object",
+      "title": "should be false",
+      "fullTitle": "Main Suite should be false",
       "timedOut": false,
-      "duration": 14,
+      "duration": 4,
       "state": "failed",
       "pass": false,
       "fail": true,
       "pending": false,
-      "code": "var o = retObj();\no.should.eql({});\ndone();",
+      "code": "// true.should.eql(bool);\nexp.should.eql({\n  foo: true,\n  bar: true,\n  baz: 1\n});\nshouldAddContext && addContext(this, 'context');",
       "err": {
-        "name": "AssertionError",
-        "actual": "{\n  \"employees\": {\n    \"employee\": [\n      {\n        \"firstName\": \"Tom\"\n        \"id\": \"1\"\n        \"lastName\": \"Cruise\"\n      }\n      {\n        \"firstName\": \"Maria\"\n        \"id\": \"2\"\n        \"lastName\": \"Sharapova\"\n      }\n      {\n        \"firstName\": \"James\"\n        \"id\": \"3\"\n        \"lastName\": \"Bond\"\n      }\n    ]\n  }\n}",
-        "expected": "{}",
         "operator": "to equal",
-        "message": "expected { employees: \n   { employee: \n      [ { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n        { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n        { id: '3', firstName: 'James', lastName: 'Bond' } ] } } to equal {}",
-        "generatedMessage": true,
+        "expected": "{\n  \"bar\": true\n  \"baz\": 1\n  \"foo\": true\n}",
+        "details": "at bar, A has false and B has true",
         "showDiff": true,
-        "estack": "AssertionError: expected { employees: \n   { employee: \n      [ { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n        { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n        { id: '3', firstName: 'James', lastName: 'Bond' } ] } } to equal {}\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test-single.js:33:16)",
-        "diff": "- {\n-   \"employees\": {\n-     \"employee\": [\n-       {\n-         \"firstName\": \"Tom\"\n-         \"id\": \"1\"\n-         \"lastName\": \"Cruise\"\n-       }\n-       {\n-         \"firstName\": \"Maria\"\n-         \"id\": \"2\"\n-         \"lastName\": \"Sharapova\"\n-       }\n-       {\n-         \"firstName\": \"James\"\n-         \"id\": \"3\"\n-         \"lastName\": \"Bond\"\n-       }\n-     ]\n-   }\n- }\n+ {}\n"
+        "actual": "{\n  \"bar\": false\n  \"baz\": 1\n  \"foo\": true\n}",
+        "negate": false,
+        "assertion": {
+          "obj": {
+            "foo": true,
+            "bar": false,
+            "baz": 1
+          },
+          "anyOne": false,
+          "negate": false,
+          "params": {
+            "operator": "to equal",
+            "expected": {
+              "foo": true,
+              "bar": true,
+              "baz": 1
+            },
+            "details": "at bar, A has false and B has true",
+            "showDiff": true,
+            "actual": {
+              "foo": true,
+              "bar": false,
+              "baz": 1
+            },
+            "negate": false,
+            "assertion": "[Circular ~.allTests.0.err.assertion]"
+          },
+          "light": false
+        },
+        "_message": "expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)",
+        "generatedMessage": true,
+        "estack": "AssertionError: expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)\n    at Assertion.fail (node_modules/should/cjs/should.js:258:17)\n    at Assertion.value (node_modules/should/cjs/should.js:335:19)\n    at Context.<anonymous> (helpers.js:26:20)",
+        "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
       },
       "isRoot": false,
-      "uuid": "6c5cb7bd-f5a4-4f62-a530-456307f64201",
-      "parentUUID": "8f25b07b-7710-4ee9-8e70-ccbf1e898c25",
+      "uuid": "65ef9d51-2e7b-4155-9d46-af6ad7d0e2d4",
+      "parentUUID": "37685726-1c47-4e1f-a7d4-6c88ebf842f9",
+      "isHook": false,
       "skipped": false
     }
   ],
@@ -185,31 +254,60 @@
   "allPasses": [],
   "allFailures": [
     {
-      "title": "should fail when returned object does not match expected object",
-      "fullTitle": "Test Suite - Basic should fail when returned object does not match expected object",
+      "title": "should be false",
+      "fullTitle": "Main Suite should be false",
       "timedOut": false,
-      "duration": 14,
+      "duration": 4,
       "state": "failed",
       "pass": false,
       "fail": true,
       "pending": false,
-      "code": "var o = retObj();\no.should.eql({});\ndone();",
+      "code": "// true.should.eql(bool);\nexp.should.eql({\n  foo: true,\n  bar: true,\n  baz: 1\n});\nshouldAddContext && addContext(this, 'context');",
       "err": {
-        "name": "AssertionError",
-        "actual": "{\n  \"employees\": {\n    \"employee\": [\n      {\n        \"firstName\": \"Tom\"\n        \"id\": \"1\"\n        \"lastName\": \"Cruise\"\n      }\n      {\n        \"firstName\": \"Maria\"\n        \"id\": \"2\"\n        \"lastName\": \"Sharapova\"\n      }\n      {\n        \"firstName\": \"James\"\n        \"id\": \"3\"\n        \"lastName\": \"Bond\"\n      }\n    ]\n  }\n}",
-        "expected": "{}",
         "operator": "to equal",
-        "message": "expected { employees: \n   { employee: \n      [ { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n        { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n        { id: '3', firstName: 'James', lastName: 'Bond' } ] } } to equal {}",
-        "generatedMessage": true,
+        "expected": "{\n  \"bar\": true\n  \"baz\": 1\n  \"foo\": true\n}",
+        "details": "at bar, A has false and B has true",
         "showDiff": true,
-        "estack": "AssertionError: expected { employees: \n   { employee: \n      [ { id: '1', firstName: 'Tom', lastName: 'Cruise' },\n        { id: '2', firstName: 'Maria', lastName: 'Sharapova' },\n        { id: '3', firstName: 'James', lastName: 'Bond' } ] } } to equal {}\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test-single.js:33:16)",
-        "diff": "- {\n-   \"employees\": {\n-     \"employee\": [\n-       {\n-         \"firstName\": \"Tom\"\n-         \"id\": \"1\"\n-         \"lastName\": \"Cruise\"\n-       }\n-       {\n-         \"firstName\": \"Maria\"\n-         \"id\": \"2\"\n-         \"lastName\": \"Sharapova\"\n-       }\n-       {\n-         \"firstName\": \"James\"\n-         \"id\": \"3\"\n-         \"lastName\": \"Bond\"\n-       }\n-     ]\n-   }\n- }\n+ {}\n"
+        "actual": "{\n  \"bar\": false\n  \"baz\": 1\n  \"foo\": true\n}",
+        "negate": false,
+        "assertion": {
+          "obj": {
+            "foo": true,
+            "bar": false,
+            "baz": 1
+          },
+          "anyOne": false,
+          "negate": false,
+          "params": {
+            "operator": "to equal",
+            "expected": {
+              "foo": true,
+              "bar": true,
+              "baz": 1
+            },
+            "details": "at bar, A has false and B has true",
+            "showDiff": true,
+            "actual": {
+              "foo": true,
+              "bar": false,
+              "baz": 1
+            },
+            "negate": false,
+            "assertion": "[Circular ~.allFailures.0.err.assertion]"
+          },
+          "light": false
+        },
+        "_message": "expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)",
+        "generatedMessage": true,
+        "estack": "AssertionError: expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)\n    at Assertion.fail (node_modules/should/cjs/should.js:258:17)\n    at Assertion.value (node_modules/should/cjs/should.js:335:19)\n    at Context.<anonymous> (helpers.js:26:20)",
+        "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
       },
       "isRoot": false,
-      "uuid": "6c5cb7bd-f5a4-4f62-a530-456307f64201",
-      "parentUUID": "8f25b07b-7710-4ee9-8e70-ccbf1e898c25",
+      "uuid": "65ef9d51-2e7b-4155-9d46-af6ad7d0e2d4",
+      "parentUUID": "37685726-1c47-4e1f-a7d4-6c88ebf842f9",
+      "isHook": false,
       "skipped": false
     }
   ],
-  "copyrightYear": 2016
+  "copyrightYear": 2017
 }
