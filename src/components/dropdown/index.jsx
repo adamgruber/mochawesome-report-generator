@@ -92,7 +92,7 @@ class Dropdown extends Component {
       <div ref={ node => (this.node = node) } className={ compClass } >
         <button className={ toggleClass } onClick={ toggleFn } >
           { !iconOnly && this._getItemText(displayItem) }
-          { !!toggleIcon && toggleIcon() }
+          { !!toggleIcon && toggleIcon }
         </button>
         <DropdownMenu
           className={ menuClassName }

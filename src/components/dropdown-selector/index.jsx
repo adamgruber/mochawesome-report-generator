@@ -6,9 +6,7 @@ import styles from './dropdown-selector.css';
 
 const cx = classNames.bind(styles);
 
-const toggleIcon = () => (
-  <Icon name='arrow_drop_down' size={ 18 } className={ cx('toggle-icon') } />
-);
+const toggleIcon = () => <Icon name='arrow_drop_down' size={ 18 } className={ cx('toggle-icon') } />;
 
 function DropdownSelector(props) {
   const { className, labelClassName, label, icon, iconClassName, onSelect, selections, selected,
@@ -29,7 +27,7 @@ function DropdownSelector(props) {
         list={ selections }
         selected={ selected }
         onItemSelected={ onSelect }
-        toggleIcon={ toggleIcon } />
+        toggleIcon={ toggleIcon() } />
     </div>
   );
 }
