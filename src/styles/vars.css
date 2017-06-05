@@ -11,6 +11,8 @@
   --summary-height-stacked: 82px;
   --statusbar-height-stacked: 54px;
   --footer-height: 60px;
+  --default-transition-duration: 0.2s;
+  --default-transition-easing: ease;
 
   /* Gray Colors */
   --gray-base: #000;

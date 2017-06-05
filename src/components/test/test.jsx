@@ -59,7 +59,11 @@ class Test extends React.Component {
         iconClassName = 'skipped';
       }
       if (isHook) {
-        iconName = title.match(/^"before/) ? 'rotate_left' : 'rotate_right';
+        if (fail) {
+          iconName = 'error_outline';
+        } else {
+          iconName = title.match(/^"before/) ? 'rotate_left' : 'rotate_right';
+        }
         iconClassName = 'hook';
       }
       return <Icon name={ iconName } className={ cx('icon', iconClassName) } size={ isHook ? 24 : 18 } />;
