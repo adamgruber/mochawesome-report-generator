@@ -27,8 +27,7 @@ var Test = t.struct({
   isRoot: t.Boolean,
   uuid: Uuid,
   parentUUID: t.maybe(Uuid),
-  skipped: t.Boolean,
-  context: t.maybe(t.String)
+  skipped: t.Boolean
 });
 
 var Suite = t.declare('Suite');
@@ -51,7 +50,6 @@ Suite.define(t.struct({
   totalPending: t.Integer,
   totalSkipped: t.Integer,
   hasTests: t.Boolean,
-  hasSuites: t.Boolean,
   hasPasses: t.Boolean,
   hasFailures: t.Boolean,
   hasPending: t.Boolean,
