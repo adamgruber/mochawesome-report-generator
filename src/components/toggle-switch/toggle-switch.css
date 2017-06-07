@@ -46,7 +46,7 @@
 
   & .switch {
     cursor: default;
-    background-color: var(--grey300)
+    background-color: var(--grey300);
   }
 
   & .icon {

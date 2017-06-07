@@ -7,7 +7,9 @@ import styles from './toggle-switch.css';
 const cx = classNames.bind(styles);
 
 function ToggleSwitch(props) {
-  const { active, className, disabled, labelClassName, label, icon, iconClassName, toggleFn } = props;
+  const {
+    active, className, disabled, labelClassName, label, icon, iconClassName, toggleFn
+  } = props;
   const labelCxName = cx('label', { 'with-icon': !!icon }, labelClassName);
   const onClickFn = e => (!disabled && toggleFn(e));
   return (

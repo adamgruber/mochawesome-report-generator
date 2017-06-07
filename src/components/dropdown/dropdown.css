@@ -9,7 +9,7 @@
 }
 
 .toggle-icon:not(.icon-only) {
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 
 .list {
@@ -54,7 +54,10 @@
 }
 
 @keyframes out {
-  0% { opacity: 1; visibility: visible; }
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
   100% { opacity: 0; }
 }
 

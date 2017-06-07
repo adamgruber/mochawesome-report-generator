@@ -87,6 +87,7 @@
   &.hook {
     color: var(--black38);
     padding: 0;
+
     @nest .failed & {
       color: var(--red500);
     }
