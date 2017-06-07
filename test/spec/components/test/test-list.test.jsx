@@ -119,13 +119,15 @@ describe('<TestList />', () => {
     const wrapper = shallow(<TestList { ...instanceProps } />);
     return {
       wrapper,
-      tests: wrapper.find(Test)
+      tests: wrapper.find(Test).filterWhere(n => !n.prop('test').isHook),
+      hooks: wrapper.find(Test).filterWhere(n => n.prop('test').isHook)
     };
   };
 
   it('renders test list', () => {
-    const { wrapper, tests } = getInstance({ tests: sampleTests, beforeHooks, afterHooks, className: 'test' });
+    const { wrapper, tests, hooks } = getInstance({ tests: sampleTests, beforeHooks, afterHooks, className: 'test' });
     expect(wrapper).to.have.className('test');
     expect(tests).to.have.lengthOf(4);
+    expect(hooks).to.have.lengthOf(2);
   });
 });

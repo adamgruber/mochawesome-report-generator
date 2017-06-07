@@ -1,20 +1,20 @@
 {
   "stats": {
-    "suites": 5,
+    "suites": 6,
     "tests": 7,
     "passes": 3,
     "pending": 1,
     "failures": 3,
-    "start": "2017-06-05T17:24:44.748Z",
-    "end": "2017-06-05T17:24:44.767Z",
-    "duration": 19,
-    "testsRegistered": 7,
-    "passPercent": 50,
-    "pendingPercent": 14.3,
-    "other": 0,
-    "hasOther": false,
-    "skipped": 0,
-    "hasSkipped": false,
+    "start": "2017-06-06T02:47:10.465Z",
+    "end": "2017-06-06T02:47:10.486Z",
+    "duration": 21,
+    "testsRegistered": 9,
+    "passPercent": 37.5,
+    "pendingPercent": 11.1,
+    "other": 1,
+    "hasOther": true,
+    "skipped": 2,
+    "hasSkipped": true,
     "passPercentClass": "danger",
     "pendingPercentClass": "danger"
   },
@@ -41,11 +41,12 @@
                     "pass": true,
                     "fail": false,
                     "pending": false,
+                    "context": "\"context\"",
                     "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
                     "err": {},
                     "isRoot": false,
-                    "uuid": "3a41734b-da84-4f1e-ab10-4a8a1c4440bb",
-                    "parentUUID": "f480b3ea-dd49-4f39-86c6-afc81c538dc2",
+                    "uuid": "b2aeb6b7-54a4-4464-8b42-fbc90d310147",
+                    "parentUUID": "127c6acd-1fdc-44f8-8e2c-d2a26e92395e",
                     "isHook": false,
                     "skipped": false
                   },
@@ -53,7 +54,7 @@
                     "title": "should be false",
                     "fullTitle": "Child Nested Suite Grandchild Nested Suite should be false",
                     "timedOut": false,
-                    "duration": 1,
+                    "duration": 2,
                     "state": "failed",
                     "pass": false,
                     "fail": true,
@@ -99,8 +100,8 @@
                       "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
                     },
                     "isRoot": false,
-                    "uuid": "63b71b67-c497-4a91-833b-0c562a3b3ac6",
-                    "parentUUID": "f480b3ea-dd49-4f39-86c6-afc81c538dc2",
+                    "uuid": "29aa4dfc-7ec9-40ad-aea6-3c65d5c94f52",
+                    "parentUUID": "127c6acd-1fdc-44f8-8e2c-d2a26e92395e",
                     "isHook": false,
                     "skipped": false
                   }
@@ -109,7 +110,7 @@
                 "root": false,
                 "_timeout": 2000,
                 "file": "/cases/nesting.js",
-                "uuid": "f480b3ea-dd49-4f39-86c6-afc81c538dc2",
+                "uuid": "127c6acd-1fdc-44f8-8e2c-d2a26e92395e",
                 "beforeHooks": [],
                 "afterHooks": [],
                 "fullFile": "/Users/adamgruber/Sites/ma-test/cases/nesting.js",
@@ -124,11 +125,12 @@
                     "pass": true,
                     "fail": false,
                     "pending": false,
+                    "context": "\"context\"",
                     "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
                     "err": {},
                     "isRoot": false,
-                    "uuid": "3a41734b-da84-4f1e-ab10-4a8a1c4440bb",
-                    "parentUUID": "f480b3ea-dd49-4f39-86c6-afc81c538dc2",
+                    "uuid": "b2aeb6b7-54a4-4464-8b42-fbc90d310147",
+                    "parentUUID": "127c6acd-1fdc-44f8-8e2c-d2a26e92395e",
                     "isHook": false,
                     "skipped": false
                   }
@@ -138,7 +140,7 @@
                     "title": "should be false",
                     "fullTitle": "Child Nested Suite Grandchild Nested Suite should be false",
                     "timedOut": false,
-                    "duration": 1,
+                    "duration": 2,
                     "state": "failed",
                     "pass": false,
                     "fail": true,
@@ -184,8 +186,8 @@
                       "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
                     },
                     "isRoot": false,
-                    "uuid": "63b71b67-c497-4a91-833b-0c562a3b3ac6",
-                    "parentUUID": "f480b3ea-dd49-4f39-86c6-afc81c538dc2",
+                    "uuid": "29aa4dfc-7ec9-40ad-aea6-3c65d5c94f52",
+                    "parentUUID": "127c6acd-1fdc-44f8-8e2c-d2a26e92395e",
                     "isHook": false,
                     "skipped": false
                   }
@@ -204,7 +206,7 @@
                 "hasFailures": true,
                 "hasPending": false,
                 "hasSkipped": false,
-                "duration": 2,
+                "duration": 3,
                 "rootEmpty": false
               }
             ],
@@ -213,7 +215,7 @@
             "root": false,
             "_timeout": 2000,
             "file": "/cases/nesting.js",
-            "uuid": "566d39fd-0360-482d-bb49-b5f16c340b16",
+            "uuid": "110bf74e-5935-47f3-85af-550998e40e27",
             "beforeHooks": [],
             "afterHooks": [],
             "fullFile": "/Users/adamgruber/Sites/ma-test/cases/nesting.js",
@@ -247,7 +249,7 @@
                     "title": "should be false",
                     "fullTitle": "Child Nested Suite Grandchild Nested Suite should be false",
                     "timedOut": false,
-                    "duration": 0,
+                    "duration": 1,
                     "state": "failed",
                     "pass": false,
                     "fail": true,
@@ -293,8 +295,8 @@
                       "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
                     },
                     "isRoot": false,
-                    "uuid": "48c27762-0f0e-40ae-8709-a94c8c74179d",
-                    "parentUUID": "c67d82cf-6bd3-4f8b-a2d3-5d2d90c75c01",
+                    "uuid": "513a1606-965e-418e-a23b-aeb0e21e920f",
+                    "parentUUID": "a44034bd-9968-404f-9136-0023575d142e",
                     "isHook": false,
                     "skipped": false
                   },
@@ -348,8 +350,8 @@
                       "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
                     },
                     "isRoot": false,
-                    "uuid": "ba7b55de-1aeb-4045-a188-ec8b9a686cc5",
-                    "parentUUID": "c67d82cf-6bd3-4f8b-a2d3-5d2d90c75c01",
+                    "uuid": "3426ab30-4c8f-48f0-ab0b-b48498b30834",
+                    "parentUUID": "a44034bd-9968-404f-9136-0023575d142e",
                     "isHook": false,
                     "skipped": false
                   }
@@ -358,7 +360,7 @@
                 "root": false,
                 "_timeout": 2000,
                 "file": "/cases/nesting.js",
-                "uuid": "c67d82cf-6bd3-4f8b-a2d3-5d2d90c75c01",
+                "uuid": "a44034bd-9968-404f-9136-0023575d142e",
                 "beforeHooks": [],
                 "afterHooks": [],
                 "fullFile": "/Users/adamgruber/Sites/ma-test/cases/nesting.js",
@@ -368,7 +370,7 @@
                     "title": "should be false",
                     "fullTitle": "Child Nested Suite Grandchild Nested Suite should be false",
                     "timedOut": false,
-                    "duration": 0,
+                    "duration": 1,
                     "state": "failed",
                     "pass": false,
                     "fail": true,
@@ -414,8 +416,8 @@
                       "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
                     },
                     "isRoot": false,
-                    "uuid": "48c27762-0f0e-40ae-8709-a94c8c74179d",
-                    "parentUUID": "c67d82cf-6bd3-4f8b-a2d3-5d2d90c75c01",
+                    "uuid": "513a1606-965e-418e-a23b-aeb0e21e920f",
+                    "parentUUID": "a44034bd-9968-404f-9136-0023575d142e",
                     "isHook": false,
                     "skipped": false
                   },
@@ -469,8 +471,8 @@
                       "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
                     },
                     "isRoot": false,
-                    "uuid": "ba7b55de-1aeb-4045-a188-ec8b9a686cc5",
-                    "parentUUID": "c67d82cf-6bd3-4f8b-a2d3-5d2d90c75c01",
+                    "uuid": "3426ab30-4c8f-48f0-ab0b-b48498b30834",
+                    "parentUUID": "a44034bd-9968-404f-9136-0023575d142e",
                     "isHook": false,
                     "skipped": false
                   }
@@ -489,7 +491,7 @@
                 "hasFailures": true,
                 "hasPending": false,
                 "hasSkipped": false,
-                "duration": 1,
+                "duration": 2,
                 "rootEmpty": false
               }
             ],
@@ -504,12 +506,11 @@
                 "pass": true,
                 "fail": false,
                 "pending": false,
-                "context": "\"context\"",
                 "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
                 "err": {},
                 "isRoot": false,
-                "uuid": "82a2873d-7b1d-4732-a3e6-a0471659f73d",
-                "parentUUID": "7759adc1-350c-4481-bdbe-5bbf47351c2e",
+                "uuid": "e92d7f04-13a1-4064-a503-4f64c9de894e",
+                "parentUUID": "4e116cd1-6a77-4c20-b1fd-307f79bbd029",
                 "isHook": false,
                 "skipped": false
               },
@@ -524,8 +525,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "bf03056b-efa2-4c46-98db-6e9e1910d857",
-                "parentUUID": "7759adc1-350c-4481-bdbe-5bbf47351c2e",
+                "uuid": "e0a79fe3-1c89-4ff4-ab68-f218fbeac074",
+                "parentUUID": "4e116cd1-6a77-4c20-b1fd-307f79bbd029",
                 "isHook": false,
                 "skipped": false
               }
@@ -542,8 +543,8 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "bf03056b-efa2-4c46-98db-6e9e1910d857",
-                "parentUUID": "7759adc1-350c-4481-bdbe-5bbf47351c2e",
+                "uuid": "e0a79fe3-1c89-4ff4-ab68-f218fbeac074",
+                "parentUUID": "4e116cd1-6a77-4c20-b1fd-307f79bbd029",
                 "isHook": false,
                 "skipped": false
               }
@@ -551,7 +552,7 @@
             "root": false,
             "_timeout": 2000,
             "file": "/cases/nesting.js",
-            "uuid": "7759adc1-350c-4481-bdbe-5bbf47351c2e",
+            "uuid": "4e116cd1-6a77-4c20-b1fd-307f79bbd029",
             "beforeHooks": [],
             "afterHooks": [],
             "fullFile": "/Users/adamgruber/Sites/ma-test/cases/nesting.js",
@@ -566,12 +567,11 @@
                 "pass": true,
                 "fail": false,
                 "pending": false,
-                "context": "\"context\"",
                 "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
                 "err": {},
                 "isRoot": false,
-                "uuid": "82a2873d-7b1d-4732-a3e6-a0471659f73d",
-                "parentUUID": "7759adc1-350c-4481-bdbe-5bbf47351c2e",
+                "uuid": "e92d7f04-13a1-4064-a503-4f64c9de894e",
+                "parentUUID": "4e116cd1-6a77-4c20-b1fd-307f79bbd029",
                 "isHook": false,
                 "skipped": false
               }
@@ -593,6 +593,123 @@
             "hasSkipped": false,
             "duration": 0,
             "rootEmpty": false
+          },
+          {
+            "title": "Child Nested Suite",
+            "suites": [],
+            "tests": [
+              {
+                "title": "should be false",
+                "fullTitle": "Nesting Suites Child Nested Suite should be false",
+                "timedOut": false,
+                "duration": 0,
+                "pass": false,
+                "fail": false,
+                "pending": false,
+                "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
+                "err": {},
+                "isRoot": false,
+                "uuid": "4db9d988-6c05-46b0-be9e-4d6ac89b35d7",
+                "parentUUID": "c50b051c-e8d5-43b7-a0bc-e374e41c4890",
+                "isHook": false,
+                "skipped": true
+              },
+              {
+                "title": "should be false",
+                "fullTitle": "Nesting Suites Child Nested Suite should be false",
+                "timedOut": false,
+                "duration": 0,
+                "pass": false,
+                "fail": false,
+                "pending": false,
+                "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
+                "err": {},
+                "isRoot": false,
+                "uuid": "81809172-7935-4bb0-82bb-9c6cec2068c5",
+                "parentUUID": "c50b051c-e8d5-43b7-a0bc-e374e41c4890",
+                "isHook": false,
+                "skipped": true
+              }
+            ],
+            "pending": [],
+            "root": false,
+            "_timeout": 2000,
+            "file": "/cases/nesting.js",
+            "uuid": "c50b051c-e8d5-43b7-a0bc-e374e41c4890",
+            "beforeHooks": [
+              {
+                "title": "\"before all\" hook",
+                "fullTitle": "Nesting Suites Child Nested Suite \"before all\" hook",
+                "timedOut": false,
+                "duration": 0,
+                "state": "failed",
+                "pass": false,
+                "fail": true,
+                "pending": false,
+                "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the before hook.');",
+                "err": {
+                  "estack": "ReferenceError: a is not defined\n    at Context.before (helpers.js:42:21)"
+                },
+                "isRoot": false,
+                "uuid": "3508ce3c-5511-450c-8585-04f501d3014e",
+                "parentUUID": "c50b051c-e8d5-43b7-a0bc-e374e41c4890",
+                "isHook": true,
+                "skipped": false
+              }
+            ],
+            "afterHooks": [],
+            "fullFile": "/Users/adamgruber/Sites/ma-test/cases/nesting.js",
+            "passes": [],
+            "failures": [],
+            "skipped": [
+              {
+                "title": "should be false",
+                "fullTitle": "Nesting Suites Child Nested Suite should be false",
+                "timedOut": false,
+                "duration": 0,
+                "pass": false,
+                "fail": false,
+                "pending": false,
+                "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
+                "err": {},
+                "isRoot": false,
+                "uuid": "4db9d988-6c05-46b0-be9e-4d6ac89b35d7",
+                "parentUUID": "c50b051c-e8d5-43b7-a0bc-e374e41c4890",
+                "isHook": false,
+                "skipped": true
+              },
+              {
+                "title": "should be false",
+                "fullTitle": "Nesting Suites Child Nested Suite should be false",
+                "timedOut": false,
+                "duration": 0,
+                "pass": false,
+                "fail": false,
+                "pending": false,
+                "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
+                "err": {},
+                "isRoot": false,
+                "uuid": "81809172-7935-4bb0-82bb-9c6cec2068c5",
+                "parentUUID": "c50b051c-e8d5-43b7-a0bc-e374e41c4890",
+                "isHook": false,
+                "skipped": true
+              }
+            ],
+            "hasBeforeHooks": true,
+            "hasAfterHooks": false,
+            "hasTests": true,
+            "hasSuites": false,
+            "totalTests": 2,
+            "totalPasses": 0,
+            "totalFailures": 0,
+            "totalPending": 0,
+            "totalSkipped": 2,
+            "hasPasses": false,
+            "hasFailures": false,
+            "hasPending": false,
+            "hasSkipped": true,
+            "duration": 0,
+            "rootEmpty": false
           }
         ],
         "tests": [
@@ -610,8 +727,8 @@
             "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
             "err": {},
             "isRoot": false,
-            "uuid": "21b0f40b-2847-4f3f-86f9-10e2f5f74d67",
-            "parentUUID": "e8772d2f-290c-4141-bdf8-79dbb7cd11c8",
+            "uuid": "09e8a37e-8a7f-42da-a263-bd408b51a159",
+            "parentUUID": "1c7a4f0b-e73f-4cec-849f-b3343e047d36",
             "isHook": false,
             "skipped": false
           }
@@ -620,7 +737,7 @@
         "root": false,
         "_timeout": 2000,
         "file": "/cases/nesting.js",
-        "uuid": "e8772d2f-290c-4141-bdf8-79dbb7cd11c8",
+        "uuid": "1c7a4f0b-e73f-4cec-849f-b3343e047d36",
         "beforeHooks": [],
         "afterHooks": [],
         "fullFile": "/Users/adamgruber/Sites/ma-test/cases/nesting.js",
@@ -639,8 +756,8 @@
             "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
             "err": {},
             "isRoot": false,
-            "uuid": "21b0f40b-2847-4f3f-86f9-10e2f5f74d67",
-            "parentUUID": "e8772d2f-290c-4141-bdf8-79dbb7cd11c8",
+            "uuid": "09e8a37e-8a7f-42da-a263-bd408b51a159",
+            "parentUUID": "1c7a4f0b-e73f-4cec-849f-b3343e047d36",
             "isHook": false,
             "skipped": false
           }
@@ -668,7 +785,7 @@
     "pending": [],
     "root": true,
     "_timeout": 2000,
-    "uuid": "72523088-3e1c-4ae5-95a1-1e972cfcd9d0",
+    "uuid": "4e8fff17-8854-45b5-a7ec-5a07cc7119f2",
     "beforeHooks": [],
     "afterHooks": [],
     "fullFile": "",
@@ -707,8 +824,8 @@
       "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
       "err": {},
       "isRoot": false,
-      "uuid": "21b0f40b-2847-4f3f-86f9-10e2f5f74d67",
-      "parentUUID": "e8772d2f-290c-4141-bdf8-79dbb7cd11c8",
+      "uuid": "09e8a37e-8a7f-42da-a263-bd408b51a159",
+      "parentUUID": "1c7a4f0b-e73f-4cec-849f-b3343e047d36",
       "isHook": false,
       "skipped": false
     },
@@ -722,11 +839,12 @@
       "pass": true,
       "fail": false,
       "pending": false,
+      "context": "\"context\"",
       "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
       "err": {},
       "isRoot": false,
-      "uuid": "3a41734b-da84-4f1e-ab10-4a8a1c4440bb",
-      "parentUUID": "f480b3ea-dd49-4f39-86c6-afc81c538dc2",
+      "uuid": "b2aeb6b7-54a4-4464-8b42-fbc90d310147",
+      "parentUUID": "127c6acd-1fdc-44f8-8e2c-d2a26e92395e",
       "isHook": false,
       "skipped": false
     },
@@ -734,7 +852,7 @@
       "title": "should be false",
       "fullTitle": "Grandchild Nested Suite should be false",
       "timedOut": false,
-      "duration": 1,
+      "duration": 2,
       "state": "failed",
       "pass": false,
       "fail": true,
@@ -780,8 +898,8 @@
         "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
       },
       "isRoot": false,
-      "uuid": "63b71b67-c497-4a91-833b-0c562a3b3ac6",
-      "parentUUID": "f480b3ea-dd49-4f39-86c6-afc81c538dc2",
+      "uuid": "29aa4dfc-7ec9-40ad-aea6-3c65d5c94f52",
+      "parentUUID": "127c6acd-1fdc-44f8-8e2c-d2a26e92395e",
       "isHook": false,
       "skipped": false
     },
@@ -795,12 +913,11 @@
       "pass": true,
       "fail": false,
       "pending": false,
-      "context": "\"context\"",
       "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
       "err": {},
       "isRoot": false,
-      "uuid": "82a2873d-7b1d-4732-a3e6-a0471659f73d",
-      "parentUUID": "7759adc1-350c-4481-bdbe-5bbf47351c2e",
+      "uuid": "e92d7f04-13a1-4064-a503-4f64c9de894e",
+      "parentUUID": "4e116cd1-6a77-4c20-b1fd-307f79bbd029",
       "isHook": false,
       "skipped": false
     },
@@ -815,8 +932,8 @@
       "code": "",
       "err": {},
       "isRoot": false,
-      "uuid": "bf03056b-efa2-4c46-98db-6e9e1910d857",
-      "parentUUID": "7759adc1-350c-4481-bdbe-5bbf47351c2e",
+      "uuid": "e0a79fe3-1c89-4ff4-ab68-f218fbeac074",
+      "parentUUID": "4e116cd1-6a77-4c20-b1fd-307f79bbd029",
       "isHook": false,
       "skipped": false
     },
@@ -824,7 +941,7 @@
       "title": "should be false",
       "fullTitle": "Grandchild Nested Suite should be false",
       "timedOut": false,
-      "duration": 0,
+      "duration": 1,
       "state": "failed",
       "pass": false,
       "fail": true,
@@ -870,8 +987,8 @@
         "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
       },
       "isRoot": false,
-      "uuid": "48c27762-0f0e-40ae-8709-a94c8c74179d",
-      "parentUUID": "c67d82cf-6bd3-4f8b-a2d3-5d2d90c75c01",
+      "uuid": "513a1606-965e-418e-a23b-aeb0e21e920f",
+      "parentUUID": "a44034bd-9968-404f-9136-0023575d142e",
       "isHook": false,
       "skipped": false
     },
@@ -925,8 +1042,8 @@
         "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
       },
       "isRoot": false,
-      "uuid": "ba7b55de-1aeb-4045-a188-ec8b9a686cc5",
-      "parentUUID": "c67d82cf-6bd3-4f8b-a2d3-5d2d90c75c01",
+      "uuid": "3426ab30-4c8f-48f0-ab0b-b48498b30834",
+      "parentUUID": "a44034bd-9968-404f-9136-0023575d142e",
       "isHook": false,
       "skipped": false
     }
@@ -943,8 +1060,8 @@
       "code": "",
       "err": {},
       "isRoot": false,
-      "uuid": "bf03056b-efa2-4c46-98db-6e9e1910d857",
-      "parentUUID": "7759adc1-350c-4481-bdbe-5bbf47351c2e",
+      "uuid": "e0a79fe3-1c89-4ff4-ab68-f218fbeac074",
+      "parentUUID": "4e116cd1-6a77-4c20-b1fd-307f79bbd029",
       "isHook": false,
       "skipped": false
     }
@@ -964,8 +1081,8 @@
       "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
       "err": {},
       "isRoot": false,
-      "uuid": "21b0f40b-2847-4f3f-86f9-10e2f5f74d67",
-      "parentUUID": "e8772d2f-290c-4141-bdf8-79dbb7cd11c8",
+      "uuid": "09e8a37e-8a7f-42da-a263-bd408b51a159",
+      "parentUUID": "1c7a4f0b-e73f-4cec-849f-b3343e047d36",
       "isHook": false,
       "skipped": false
     },
@@ -979,11 +1096,12 @@
       "pass": true,
       "fail": false,
       "pending": false,
+      "context": "\"context\"",
       "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
       "err": {},
       "isRoot": false,
-      "uuid": "3a41734b-da84-4f1e-ab10-4a8a1c4440bb",
-      "parentUUID": "f480b3ea-dd49-4f39-86c6-afc81c538dc2",
+      "uuid": "b2aeb6b7-54a4-4464-8b42-fbc90d310147",
+      "parentUUID": "127c6acd-1fdc-44f8-8e2c-d2a26e92395e",
       "isHook": false,
       "skipped": false
     },
@@ -997,12 +1115,11 @@
       "pass": true,
       "fail": false,
       "pending": false,
-      "context": "\"context\"",
       "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
       "err": {},
       "isRoot": false,
-      "uuid": "82a2873d-7b1d-4732-a3e6-a0471659f73d",
-      "parentUUID": "7759adc1-350c-4481-bdbe-5bbf47351c2e",
+      "uuid": "e92d7f04-13a1-4064-a503-4f64c9de894e",
+      "parentUUID": "4e116cd1-6a77-4c20-b1fd-307f79bbd029",
       "isHook": false,
       "skipped": false
     }
@@ -1012,7 +1129,7 @@
       "title": "should be false",
       "fullTitle": "Grandchild Nested Suite should be false",
       "timedOut": false,
-      "duration": 1,
+      "duration": 2,
       "state": "failed",
       "pass": false,
       "fail": true,
@@ -1058,8 +1175,8 @@
         "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
       },
       "isRoot": false,
-      "uuid": "63b71b67-c497-4a91-833b-0c562a3b3ac6",
-      "parentUUID": "f480b3ea-dd49-4f39-86c6-afc81c538dc2",
+      "uuid": "29aa4dfc-7ec9-40ad-aea6-3c65d5c94f52",
+      "parentUUID": "127c6acd-1fdc-44f8-8e2c-d2a26e92395e",
       "isHook": false,
       "skipped": false
     },
@@ -1067,7 +1184,7 @@
       "title": "should be false",
       "fullTitle": "Grandchild Nested Suite should be false",
       "timedOut": false,
-      "duration": 0,
+      "duration": 1,
       "state": "failed",
       "pass": false,
       "fail": true,
@@ -1113,8 +1230,8 @@
         "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
       },
       "isRoot": false,
-      "uuid": "48c27762-0f0e-40ae-8709-a94c8c74179d",
-      "parentUUID": "c67d82cf-6bd3-4f8b-a2d3-5d2d90c75c01",
+      "uuid": "513a1606-965e-418e-a23b-aeb0e21e920f",
+      "parentUUID": "a44034bd-9968-404f-9136-0023575d142e",
       "isHook": false,
       "skipped": false
     },
@@ -1168,9 +1285,28 @@
         "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
       },
       "isRoot": false,
-      "uuid": "ba7b55de-1aeb-4045-a188-ec8b9a686cc5",
-      "parentUUID": "c67d82cf-6bd3-4f8b-a2d3-5d2d90c75c01",
+      "uuid": "3426ab30-4c8f-48f0-ab0b-b48498b30834",
+      "parentUUID": "a44034bd-9968-404f-9136-0023575d142e",
       "isHook": false,
+      "skipped": false
+    },
+    {
+      "title": "\"before all\" hook",
+      "fullTitle": "Child Nested Suite \"before all\" hook",
+      "timedOut": false,
+      "duration": 0,
+      "state": "failed",
+      "pass": false,
+      "fail": true,
+      "pending": false,
+      "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the before hook.');",
+      "err": {
+        "estack": "ReferenceError: a is not defined\n    at Context.before (helpers.js:42:21)"
+      },
+      "isRoot": false,
+      "uuid": "3508ce3c-5511-450c-8585-04f501d3014e",
+      "parentUUID": "c50b051c-e8d5-43b7-a0bc-e374e41c4890",
+      "isHook": true,
       "skipped": false
     }
   ],

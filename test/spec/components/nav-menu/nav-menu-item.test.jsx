@@ -40,7 +40,7 @@ describe('<NavMenuItem />', () => {
     });
     const { links, navList, disabledLinks } = getInstance(testProps);
     expect(navList).to.have.lengthOf(3);
-    expect(links).to.have.lengthOf(5);
+    expect(links).to.have.lengthOf(6);
     expect(disabledLinks).to.have.lengthOf(0);
     expect(links.first().text()).to.equal('Nesting Suites');
   });
@@ -56,8 +56,8 @@ describe('<NavMenuItem />', () => {
     });
     const { links, navList, disabledLinks } = getInstance(testProps);
     expect(navList).to.have.lengthOf(3);
-    expect(links).to.have.lengthOf(5);
-    expect(disabledLinks).to.have.lengthOf(5);
+    expect(links).to.have.lengthOf(6);
+    expect(disabledLinks).to.have.lengthOf(6);
     expect(links.first().text()).to.equal('Nesting Suites');
   });
 
@@ -70,7 +70,7 @@ describe('<NavMenuItem />', () => {
     });
     const { links, navList } = getInstance(testProps);
     expect(navList).to.have.lengthOf(3);
-    expect(links).to.have.lengthOf(5);
-    expect(links.first().text()).to.equal('e8772d2f-290c-4141-bdf8-79dbb7cd11c8');
+    expect(links).to.have.lengthOf(6);
+    expect(links.first().text()).to.equal('1c7a4f0b-e73f-4cec-849f-b3343e047d36');
   });
 });
