@@ -5,7 +5,6 @@ import isEqual from 'lodash/isEqual';
 import isFunction from 'lodash/isFunction';
 import classNames from 'classnames/bind';
 import styles from './dropdown.css';
-// import debug from 'debug';
 
 const cx = classNames.bind(styles);
 
