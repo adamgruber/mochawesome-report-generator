@@ -4,9 +4,11 @@ mochawesome-report-generator (marge)
 
 **marge** (**m**och**a**wesome-**r**eport-**ge**nerator) is the counterpart to [mochawesome][2], a custom reporter for use with the Javascript testing framework, [mocha][1]. Marge takes the JSON output from [mochawesome][2] and generates a full fledged HTML/CSS report that helps visualize your test suites.
 
-## :tada: New in 2.0.0
-- Multi-file support via CLI
-- New options: [overwrite](#overwrite) and [timestamp](#timestamp)
+## :tada: Latest Changes
+- Show before and after hooks alongside your tests
+- New menu option for fine-tuning how hooks display
+
+See the [CHANGELOG][] for up-to-date changes.
 
 ## Features
 - All-new redesigned and streamlined report

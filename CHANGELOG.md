@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.1.0] / 2017-06-08
+- Add support for displaying before and after hooks
+
 ## [2.0.3] / 2017-05-09
 - Add support for rendering context with `undefined` or `null` value 
 

@@ -27,7 +27,9 @@ var Test = t.struct({
   isRoot: t.Boolean,
   uuid: Uuid,
   parentUUID: t.maybe(Uuid),
-  skipped: t.Boolean
+  skipped: t.Boolean,
+  context: t.maybe(t.String),
+  isHook: t.Boolean
 });
 
 var Suite = t.declare('Suite');
@@ -41,6 +43,8 @@ Suite.define(t.struct({
   file: t.String,
   uuid: Uuid,
   fullFile: t.String,
+  beforeHooks: t.list(Test),
+  afterHooks: t.list(Test),
   passes: t.list(Test),
   failures: t.list(Test),
   skipped: t.list(Test),
@@ -49,7 +53,10 @@ Suite.define(t.struct({
   totalFailures: t.Integer,
   totalPending: t.Integer,
   totalSkipped: t.Integer,
+  hasBeforeHooks: t.Boolean,
+  hasAfterHooks: t.Boolean,
   hasTests: t.Boolean,
+  hasSuites: t.Boolean,
   hasPasses: t.Boolean,
   hasFailures: t.Boolean,
   hasPending: t.Boolean,
