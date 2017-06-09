@@ -1,0 +1,43 @@
+@import '../../styles/vars';
+
+.component {
+  @apply --clearfix;
+
+  position: relative;
+  height: 24px;
+}
+
+.outer {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -9px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--green500);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s ease-out;
+}
+
+.off {
+  border-color: var(--gray-medium);
+}
+
+.inner {
+  display: block;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background-color: var(--green500);
+
+  @nest .off & {
+    background-color: #fff;
+    transform: scale(0);
+  }
+
+  transition: all 0.15s cubic-bezier(0.23, 1, 0.32, 1);
+}

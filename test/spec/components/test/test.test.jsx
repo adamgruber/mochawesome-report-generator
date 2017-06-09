@@ -104,6 +104,80 @@ const skippedTest = {
   skipped: true
 };
 
+const beforeHook = {
+  title: '\"before all\" hook for \"should be false\"',
+  fullTitle: 'Hooks Nested Failed Before \"before all\" hook for \"should be false\"',
+  timedOut: false,
+  duration: 0,
+  pass: false,
+  fail: false,
+  pending: false,
+  code: 'shouldFail\n  ? console.log(a)\n  : console.log(\'This is the before hook.\');',
+  err: {},
+  isRoot: false,
+  uuid: '1e445313-1f42-413a-9518-0d970b8179f0',
+  parentUUID: '6d2c79d2-1873-4414-a704-65e3fbaf86ba',
+  isHook: true,
+  skipped: false
+};
+
+const beforeHookFailed = {
+  title: '\"before all\" hook for \"should be false\"',
+  fullTitle: 'Hooks Nested Failed Before \"before all\" hook for \"should be false\"',
+  timedOut: false,
+  duration: 0,
+  state: 'failed',
+  pass: false,
+  fail: true,
+  pending: false,
+  code: 'shouldFail\n  ? console.log(a)\n  : console.log(\'This is the before hook.\');',
+  err: {
+    estack: 'ReferenceError: a is not defined\n    at Context.before (helpers.js:42:21)'
+  },
+  isRoot: false,
+  uuid: '1e445313-1f42-413a-9518-0d970b8179f0',
+  parentUUID: '6d2c79d2-1873-4414-a704-65e3fbaf86ba',
+  isHook: true,
+  skipped: false
+};
+
+const afterHook = {
+  title: '\"after all\" hook',
+  fullTitle: 'Hooks Nested Failed Before \"after all\" hook',
+  timedOut: false,
+  duration: 0,
+  pass: false,
+  fail: false,
+  pending: false,
+  code: 'shouldFail\n  ? console.log(a)\n  : console.log(\'This is the after hook.\');',
+  err: {},
+  isRoot: false,
+  uuid: 'c28b9c5c-68e8-407d-978f-a7ce6f267910',
+  parentUUID: '6d2c79d2-1873-4414-a704-65e3fbaf86ba',
+  isHook: true,
+  skipped: false
+};
+
+const afterHookFailed = {
+  title: '\"after all\" hook for \"should be false\"',
+  fullTitle: 'Hooks Nested Failed After \"after all\" hook for \"should be false\"',
+  timedOut: false,
+  duration: 0,
+  state: 'failed',
+  pass: false,
+  fail: true,
+  pending: false,
+  code: 'shouldFail\n  ? console.log(a)\n  : console.log(\'This is the after hook.\');',
+  err: {
+    estack: 'ReferenceError: a is not defined\n    at Context.before (helpers.js:42:21)'
+  },
+  isRoot: false,
+  uuid: '1e445313-1f42-413a-9518-0d970b8179f0',
+  parentUUID: '6d2c79d2-1873-4414-a704-65e3fbaf86ba',
+  isHook: true,
+  skipped: false
+};
+
 describe('<Test />', () => {
   let toggleSpy;
   let setStateSpy;
@@ -190,5 +264,41 @@ describe('<Test />', () => {
     header.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.called).to.equal(false);
+  });
+
+  it('renders a before hook', () => {
+    const { header, snippets, errorMsg } = getInstance({ test: beforeHook });
+    expect(snippets).to.have.lengthOf(3);
+    expect(errorMsg).to.have.lengthOf(0);
+    header.simulate('click');
+    expect(toggleSpy.calledOnce).to.equal(true);
+    expect(setStateSpy.calledOnce).to.equal(true);
+  });
+
+  it('renders a failed before hook', () => {
+    const { header, snippets, errorMsg } = getInstance({ test: beforeHookFailed });
+    expect(snippets).to.have.lengthOf(3);
+    expect(errorMsg).to.have.lengthOf(0);
+    header.simulate('click');
+    expect(toggleSpy.calledOnce).to.equal(true);
+    expect(setStateSpy.calledOnce).to.equal(true);
+  });
+
+  it('renders an after hook', () => {
+    const { header, snippets, errorMsg } = getInstance({ test: afterHook });
+    expect(snippets).to.have.lengthOf(3);
+    expect(errorMsg).to.have.lengthOf(0);
+    header.simulate('click');
+    expect(toggleSpy.calledOnce).to.equal(true);
+    expect(setStateSpy.calledOnce).to.equal(true);
+  });
+
+  it('renders a failed after hook', () => {
+    const { header, snippets, errorMsg } = getInstance({ test: afterHookFailed });
+    expect(snippets).to.have.lengthOf(3);
+    expect(errorMsg).to.have.lengthOf(0);
+    header.simulate('click');
+    expect(toggleSpy.calledOnce).to.equal(true);
+    expect(setStateSpy.calledOnce).to.equal(true);
   });
 });

@@ -64,7 +64,8 @@
     "exclude": [
       "test/**/*",
       "src/components/summary",
-      "src/components/status-bar"
+      "src/components/status-bar",
+      "src/components/radio-button"
     ],
     "check-coverage": true,
     "statements": 95,

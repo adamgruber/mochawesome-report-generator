@@ -1,0 +1,54 @@
+@import '../../styles/vars';
+
+.dropdown {
+  position: absolute;
+  right: -8px;
+  top: 0;
+}
+
+.menu {
+  @apply --font-light;
+  @apply --z-depth-1;
+
+  min-width: 70px;
+  width: 70px;
+  background: #fff;
+  top: 0;
+}
+
+.toggle {
+  @apply --font-regular;
+
+  display: inline-block;
+  font-size: 14px;
+  color: var(--black54);
+  vertical-align: top;
+  line-height: 24px;
+  padding: 0 22px 0 0;
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+  width: 70px;
+}
+
+.toggle-icon {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  color: var(--black38);
+}
+
+.item-link {
+  color: var(--black38);
+  padding: 4px 10px;
+
+  &:hover {
+    background-color: var(--grey100);
+    text-decoration: none;
+  }
+
+  @nest .item-selected & {
+    color: var(--green500);
+  }
+}

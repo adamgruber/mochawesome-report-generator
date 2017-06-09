@@ -11,6 +11,7 @@ class ReportStore {
   @observable showSkipped = false;
   @observable quickSummaryWidth = null;
   @observable windowWidth = null;
+  @observable showHooks = 'failed'; // [failed|always|never]
 
   constructor(data = {}) {
     this.data = data;
@@ -37,6 +38,13 @@ class ReportStore {
     this[prop] = !this[prop];
   }
 
+  @action setShowHooks(prop) {
+    const validProps = [ 'failed', 'always', 'never' ];
+    if (validProps.indexOf(prop) >= 0) {
+      this.showHooks = prop;
+    }
+  }
+
   @action setQuickSummaryWidth(width) {
     this.quickSummaryWidth = width;
   }
@@ -44,6 +52,11 @@ class ReportStore {
   @action setWindowWidth(width) {
     this.windowWidth = width;
   }
+
+  _filterHook = hook => (
+      (this.showHooks === 'always')
+      || (this.showHooks === 'failed' && hook.fail)
+  )
 
   _mapSuites = suite => {
     const suites = compact(map(suite.suites, this._mapSuites));
@@ -54,8 +67,11 @@ class ReportStore {
       || (this.showSkipped && test.skipped)
     ));
 
-    return (tests.length > 0 || suites.length > 0)
-      ? Object.assign({}, suite, { suites, tests })
+    const beforeHooks = filter(suite.beforeHooks, this._filterHook);
+    const afterHooks = filter(suite.afterHooks, this._filterHook);
+
+    return (beforeHooks.length || afterHooks.length || tests.length || suites.length)
+      ? Object.assign({}, suite, { suites, beforeHooks, afterHooks, tests })
       : null;
   }
 
@@ -70,6 +86,7 @@ class ReportStore {
 }
 
 const reportStore = new ReportStore();
+window.reportStore = reportStore;
 export default reportStore;
 
 export { ReportStore };

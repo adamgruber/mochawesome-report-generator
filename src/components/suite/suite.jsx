@@ -8,7 +8,7 @@ import styles from './suite.css';
 const cx = classNames.bind(styles);
 
 const Suite = ({ className, suite, enableChart, enableCode }) => {
-  const { root, rootEmpty, suites, tests, uuid, title, file,
+  const { root, rootEmpty, suites, tests, beforeHooks, afterHooks, uuid, title, file,
     hasSuites, hasTests, hasFailures, hasPending, hasSkipped,
     hasPasses, duration, totalTests, totalPasses, totalFailures,
     totalPending, totalSkipped } = suite;
@@ -22,7 +22,12 @@ const Suite = ({ className, suite, enableChart, enableCode }) => {
   );
 
   const testListComp = () => hasTests && (
-    <TestList uuid={ uuid } tests={ tests } enableCode={ enableCode } />
+    <TestList
+      uuid={ uuid }
+      tests={ tests }
+      beforeHooks={ beforeHooks }
+      afterHooks={ afterHooks }
+      enableCode={ enableCode } />
   );
 
   const cxname = cx('component', className, {

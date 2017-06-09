@@ -18,14 +18,14 @@ describe('<ToggleSwitch />', () => {
     return {
       wrapper,
       icon: wrapper.find(Icon),
-      label: wrapper.find('.toggle-switch-label'),
+      label: wrapper.find('.label'),
       toggle: wrapper.find('.toggle-switch-switch')
     };
   };
 
   beforeEach(() => {
     toggleFn = sinon.spy();
-    props = { toggleFn };
+    props = { toggleFn, disabled: false };
   });
 
   it('renders basic switch (off, no label)', () => {

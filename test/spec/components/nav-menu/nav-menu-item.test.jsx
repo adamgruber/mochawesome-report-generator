@@ -6,7 +6,9 @@ import chaiEnzyme from 'chai-enzyme';
 import NavMenuItem from 'components/nav-menu/nav-menu-item';
 import NavMenuList from 'components/nav-menu/nav-menu-list';
 
-import basicSuite from 'sample-data/suite-nested.json';
+import testData from 'sample-data/nested.json';
+
+const testSuite = testData.suites.suites[0];
 
 chai.use(chaiEnzyme());
 
@@ -18,7 +20,8 @@ describe('<NavMenuItem />', () => {
     return {
       wrapper,
       links: wrapper.find('.nav-menu-link span'),
-      navList: wrapper.find(NavMenuList)
+      navList: wrapper.find(NavMenuList),
+      disabledLinks: wrapper.find('.nav-menu-disabled')
     };
   };
 
@@ -33,24 +36,41 @@ describe('<NavMenuItem />', () => {
 
   it('should render', () => {
     const testProps = Object.assign({}, props, {
-      suite: basicSuite
+      suite: testSuite
     });
-    const { links, navList } = getInstance(testProps);
-    expect(navList).to.have.lengthOf(1);
-    expect(links).to.have.lengthOf(3);
-    expect(links.first().text()).to.equal('Test Suite - Nested Suites');
+    const { links, navList, disabledLinks } = getInstance(testProps);
+    expect(navList).to.have.lengthOf(3);
+    expect(links).to.have.lengthOf(6);
+    expect(disabledLinks).to.have.lengthOf(0);
+    expect(links.first().text()).to.equal('Nesting Suites');
+  });
+
+  it('should render disabled when toggles are off', () => {
+    const testProps = Object.assign({}, {
+      showPassed: false,
+      showFailed: false,
+      showPending: false,
+      showSkipped: false
+    }, {
+      suite: testSuite
+    });
+    const { links, navList, disabledLinks } = getInstance(testProps);
+    expect(navList).to.have.lengthOf(3);
+    expect(links).to.have.lengthOf(6);
+    expect(disabledLinks).to.have.lengthOf(6);
+    expect(links.first().text()).to.equal('Nesting Suites');
   });
 
   it('should render uuid as title when suite title is empty', () => {
-    const newSuite = Object.assign({}, basicSuite, {
+    const newSuite = Object.assign({}, testSuite, {
       title: ''
     });
     const testProps = Object.assign({}, props, {
       suite: newSuite
     });
     const { links, navList } = getInstance(testProps);
-    expect(navList).to.have.lengthOf(1);
-    expect(links).to.have.lengthOf(3);
-    expect(links.first().text()).to.equal('730ccc57-dac2-4361-a3f4-0edc739c5285');
+    expect(navList).to.have.lengthOf(3);
+    expect(links).to.have.lengthOf(6);
+    expect(links.first().text()).to.equal('1c7a4f0b-e73f-4cec-849f-b3343e047d36');
   });
 });

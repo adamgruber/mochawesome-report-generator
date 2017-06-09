@@ -80,18 +80,54 @@ const sampleTests = [ {
   skipped: true
 } ];
 
+const beforeHooks = [ {
+  title: '\"before all\" hook for \"should be false\"',
+  fullTitle: 'Hooks Nested Failed Before \"before all\" hook for \"should be false\"',
+  timedOut: false,
+  duration: 0,
+  pass: false,
+  fail: false,
+  pending: false,
+  code: 'shouldFail\n  ? console.log(a)\n  : console.log(\'This is the before hook.\');',
+  err: {},
+  isRoot: false,
+  uuid: '1e445313-1f42-413a-9518-0d970b8179f0',
+  parentUUID: '6d2c79d2-1873-4414-a704-65e3fbaf86ba',
+  isHook: true,
+  skipped: false
+} ];
+
+const afterHooks = [ {
+  title: '\"after all\" hook',
+  fullTitle: 'Hooks Nested Failed Before \"after all\" hook',
+  timedOut: false,
+  duration: 0,
+  pass: false,
+  fail: false,
+  pending: false,
+  code: 'shouldFail\n  ? console.log(a)\n  : console.log(\'This is the after hook.\');',
+  err: {},
+  isRoot: false,
+  uuid: 'c28b9c5c-68e8-407d-978f-a7ce6f267910',
+  parentUUID: '6d2c79d2-1873-4414-a704-65e3fbaf86ba',
+  isHook: true,
+  skipped: false
+} ];
+
 describe('<TestList />', () => {
   const getInstance = instanceProps => {
     const wrapper = shallow(<TestList { ...instanceProps } />);
     return {
       wrapper,
-      tests: wrapper.find(Test)
+      tests: wrapper.find(Test).filterWhere(n => !n.prop('test').isHook),
+      hooks: wrapper.find(Test).filterWhere(n => n.prop('test').isHook)
     };
   };
 
   it('renders test list', () => {
-    const { wrapper, tests } = getInstance({ tests: sampleTests, className: 'test' });
+    const { wrapper, tests, hooks } = getInstance({ tests: sampleTests, beforeHooks, afterHooks, className: 'test' });
     expect(wrapper).to.have.className('test');
     expect(tests).to.have.lengthOf(4);
+    expect(hooks).to.have.lengthOf(2);
   });
 });
