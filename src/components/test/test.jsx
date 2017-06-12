@@ -92,10 +92,10 @@ class Test extends React.Component {
             { !isHook && <Duration className={ cx('duration') } timer={ duration } /> }
             { !isHook && <Icon name='timer' className={ cx('duration-icon', speed) } size={ 18 } /> }
           </div>
+          { !!err.name && !!err.message && (
+            <p className={ cx('error-message') }>{ `${err.name}: ${err.message}` }</p>
+          ) }
         </header>
-        { !!err.name && !!err.message && (
-          <p className={ cx('error-message') }>{ `${err.name}: ${err.message}` }</p>
-        ) }
         <div className={ cx('body') }>
           { <CodeSnippet className={ cx('code-snippet') } code={ err.estack } highlight={ false } label='Stack Trace' /> }
           { <CodeSnippet className={ cx('code-snippet') } code={ err.diff } lang='diff' label='Diff' /> }
