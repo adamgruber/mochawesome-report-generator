@@ -43,20 +43,22 @@ class CodeSnippet extends Component {
 
   render() {
     const { className, code, lang, highlight, label, showLabel } = this.props;
-    let codeHtml = code;
-
-    // Add - expected + actual to top of diffs
-    if (lang === 'diff') {
-      const expected = `<span class='${cx('code-diff-expected')}'>+ expected</span>`;
-      const actual = `<span class='${cx('code-diff-actual')}'>- actual</span>`;
-      codeHtml = `${expected}&nbsp;&nbsp;${actual}\n\n${code}`;
-    }
-
     const cxName = cx(className, lang, { hljs: !highlight });
 
     return !!code && (
       <pre className={ cxName } ref={ node => (this.node = node) }>
-        <code dangerouslySetInnerHTML={ { __html: codeHtml } } />
+        <code>
+          { lang === 'diff' &&
+            <div>
+              <span className={ cx('code-diff-expected') }>+ expected</span>
+              &nbsp;&nbsp;
+              <span className={ cx('code-diff-actual') }>- actual</span>
+              <br />
+              <br />
+            </div>
+          }
+          { code }
+        </code>
         { !!label && showLabel && <span className={ cx('code-label') }>{ label }</span> }
       </pre>
     );
