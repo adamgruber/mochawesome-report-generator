@@ -82,4 +82,12 @@ describe('<CodeSnippet />', () => {
     });
     expect(CodeSnippet.prototype.shouldComponentUpdate.calledOnce).to.equal(true);
   });
+
+  it('does not render HTML tags', () => {
+    const props = {
+      code: '<strong class="tag--should-not-render">sample text</strong>'
+    };
+    getInstance(props);
+    expect(document.querySelectorAll('.tag--should-not-render').length).to.equal(0);
+  });
 });
