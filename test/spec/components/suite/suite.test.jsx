@@ -11,6 +11,7 @@ import TestList from 'components/test/list';
 
 import basicSuite from 'sample-data/suite.json';
 import nestedSuite from 'sample-data/test.json';
+import hooksSuite from 'sample-data/hooks-only.json';
 
 chai.use(chaiEnzyme());
 
@@ -65,6 +66,16 @@ describe('<Suite />', () => {
     const { chart, summary, testList } = getInstance(instProps);
     expect(chart).to.have.lengthOf(0);
     expect(summary).to.have.lengthOf(1);
+    expect(testList).to.have.lengthOf(1);
+  });
+
+  it('renders a suite with only hooks', () => {
+    const instProps = Object.assign({}, props, {
+      suite: hooksSuite.suites
+    });
+    const { chart, summary, testList } = getInstance(instProps);
+    expect(chart).to.have.lengthOf(0);
+    expect(summary).to.have.lengthOf(0);
     expect(testList).to.have.lengthOf(1);
   });
 

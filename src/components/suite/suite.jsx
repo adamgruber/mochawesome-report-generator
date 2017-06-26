@@ -13,6 +13,9 @@ const Suite = ({ className, suite, enableChart, enableCode }) => {
     hasPasses, duration, totalTests, totalPasses, totalFailures,
     totalPending, totalSkipped } = suite;
 
+  const hasBeforeHooks = beforeHooks && beforeHooks.length > 0;
+  const hasAfterHooks = afterHooks && afterHooks.length > 0;
+
   const subSuites = isMain => hasSuites && (
     <SuiteList
       suites={ suites }
@@ -21,7 +24,7 @@ const Suite = ({ className, suite, enableChart, enableCode }) => {
       main={ isMain } />
   );
 
-  const testListComp = () => hasTests && (
+  const testListComp = () => (hasTests || hasBeforeHooks || hasAfterHooks) && (
     <TestList
       uuid={ uuid }
       tests={ tests }
@@ -35,7 +38,7 @@ const Suite = ({ className, suite, enableChart, enableCode }) => {
     'has-suites': hasSuites,
     'no-suites': !hasSuites,
     'has-tests': hasTests,
-    'no-tests': !hasTests,
+    'no-tests': !hasTests && !hasBeforeHooks && !hasAfterHooks,
     'has-passed': hasPasses,
     'has-failed': hasFailures,
     'has-pending': hasPending,
@@ -54,18 +57,18 @@ const Suite = ({ className, suite, enableChart, enableCode }) => {
   };
   const chartProps = { totalPasses, totalFailures, totalPending, totalSkipped };
 
-  if (rootEmpty) {
+  if (rootEmpty && !hasBeforeHooks && !hasAfterHooks) {
     return subSuites(true);
   }
 
   return (
     <section className={ cxname } id={ uuid }>
-      <header className={ cx('header') }>
+      {!root && <header className={ cx('header') }>
         { title !== '' && <h3 className={ cx('title') }>{ title }</h3> }
         { file !== '' && <h6 className={ cx('filename') }>{ file }</h6> }
         { hasTests && enableChart && <SuiteChart { ...chartProps } /> }
         { hasTests && <SuiteSummary { ...summaryProps } /> }
-      </header>
+      </header> }
       <div className={ cx('body') }>
         { testListComp() }
         { subSuites() }

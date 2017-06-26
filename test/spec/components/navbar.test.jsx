@@ -5,6 +5,7 @@ import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
 import proxyquire from 'proxyquire';
 import QuickSummary from 'components/quick-summary';
+
 import testData from 'sample-data/test.json';
 
 proxyquire.noCallThru();
@@ -79,6 +80,23 @@ describe('<Navbar />', () => {
       const { pctBar } = getInstance(props);
       expect(pctBar).to.have.lengthOf(1);
       expect(pctBar.find('.navbar-pend')).to.have.lengthOf(1);
+    });
+  });
+
+  describe('when passPercent and pendingPercent are null', () => {
+    beforeEach(() => {
+      props = {
+        qsNodeRef: () => {},
+        reportTitle: 'test',
+        stats: { passPercent: null, pendingPercent: null },
+        qsWidth: 500,
+        mobileBreakpoint: false
+      };
+    });
+
+    it('does not render percent bar', () => {
+      const { pctBar } = getInstance(props);
+      expect(pctBar).to.have.lengthOf(0);
     });
   });
 });

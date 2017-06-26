@@ -17,6 +17,8 @@ const Navbar = ({ reportTitle, stats, qsNodeRef, qsWidth, mobileBreakpoint }) =>
   const titleCntStyle = (!mobileBreakpoint && qsWidth) ? { paddingRight: qsWidth } : null;
   const allPending = pendingPercent === 100;
 
+  const showPctBar = passPercent !== null && pendingPercent !== null;
+
   const pctBar = (prop, cname, title) => (
     <span
       className={ cx('pct-bar-segment', cname) }
@@ -37,11 +39,11 @@ const Navbar = ({ reportTitle, stats, qsNodeRef, qsWidth, mobileBreakpoint }) =>
       <div className={ cx('stats') } ref={ qsNodeRef }>
         <QuickSummary stats={ stats } />
       </div>
-      <div className={ cx('pct-bar') }>
+      { showPctBar && <div className={ cx('pct-bar') }>
         { allPending && pctBar(pendingPercent, 'pend', 'Pending') }
         { !allPending && pctBar(passPercent, 'pass', 'Passing') }
         { !allPending && pctBar(failPercent, 'fail', 'Failing') }
-      </div>
+      </div> }
     </div>
   );
 };
