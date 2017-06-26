@@ -49,12 +49,9 @@ class CodeSnippet extends Component {
       <pre className={ cxName } ref={ node => (this.node = node) }>
         <code>
           { lang === 'diff' &&
-            <div>
+            <div className={ cx('code-diff-legend') }>
               <span className={ cx('code-diff-expected') }>+ expected</span>
-              &nbsp;&nbsp;
               <span className={ cx('code-diff-actual') }>- actual</span>
-              <br />
-              <br />
             </div>
           }
           { code }
