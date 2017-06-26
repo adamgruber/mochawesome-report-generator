@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.1.1] / 2017-06-26
+- Remove `dangerouslySetInnerHTML` from CodeSnippet component. [#34](https://github.com/adamgruber/mochawesome-report-generator/issues/34)
+
 ## [2.1.0] / 2017-06-08
 - Add support for displaying before and after hooks
 
@@ -68,6 +71,8 @@ You can still use the `--reportFilename` flag to set the filename of the generat
 ## [1.0.0] / 2016-12-18
 - Initial release
 
+[2.1.1]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.1.1
+[2.1.0]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.1.0
 [2.0.2]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.0.2
 [2.0.1]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.0.1
 [2.0.0]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.0.0
