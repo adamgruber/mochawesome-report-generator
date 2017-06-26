@@ -71,6 +71,14 @@ describe('<CodeSnippet />', () => {
     expect(wrapper.find('code')).to.have.lengthOf(0);
   });
 
+  it('does not render HTML tags as markup', () => {
+    const props = {
+      code: '<strong class="tag--should-not-render">sample text</strong>'
+    };
+    getInstance(props);
+    expect(document.querySelectorAll('.tag--should-not-render').length).to.equal(0);
+  });
+
   it('calls shouldComponentUpdate', () => {
     const props = {
       code: 'function(){console.log(\'sample code\');}'
@@ -81,13 +89,5 @@ describe('<CodeSnippet />', () => {
       highlight: false
     });
     expect(CodeSnippet.prototype.shouldComponentUpdate.calledOnce).to.equal(true);
-  });
-
-  it('does not render HTML tags', () => {
-    const props = {
-      code: '<strong class="tag--should-not-render">sample text</strong>'
-    };
-    getInstance(props);
-    expect(document.querySelectorAll('.tag--should-not-render').length).to.equal(0);
   });
 });
