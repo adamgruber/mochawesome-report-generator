@@ -178,14 +178,6 @@
   }
 }
 
-.code-diff-legend {
-  margin-bottom: 13px;
-}
-
-.code-diff-expected {
-  margin-right: 13px;
-}
-
 .code-diff-expected span {
   color: #859900;
 }

@@ -44,16 +44,13 @@ class CodeSnippet extends Component {
   render() {
     const { className, code, lang, highlight, label, showLabel } = this.props;
     const cxName = cx(className, lang, { hljs: !highlight });
+    const isDiff = lang === 'diff';
 
     return !!code && (
       <pre className={ cxName } ref={ node => (this.node = node) }>
         <code>
-          { lang === 'diff' &&
-            <div className={ cx('code-diff-legend') }>
-              <span className={ cx('code-diff-expected') }>+ expected</span>
-              <span className={ cx('code-diff-actual') }>- actual</span>
-            </div>
-          }
+          { isDiff && <span className={ cx('code-diff-expected') }>+ expected&nbsp;&nbsp;</span> }
+          { isDiff && <span className={ cx('code-diff-actual') }>{'- actual\n\n'}</span> }
           { code }
         </code>
         { !!label && showLabel && <span className={ cx('code-label') }>{ label }</span> }
