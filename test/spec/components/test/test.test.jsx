@@ -57,13 +57,7 @@ const failingTest = {
   pending: false,
   code: 'var o = retObj();\no.should.eql({});\ndone();',
   err: {
-    name: 'AssertionError',
-    actual: '{\n  \"employees\": {\n    \"employee\": [\n      {\n        \"firstName\": \"Tom\"\n        \"id\": \"1\"\n        \"lastName\": \"Cruise\"\n      }\n      {\n        \"firstName\": \"Maria\"\n        \"id\": \"2\"\n        \"lastName\": \"Sharapova\"\n      }\n      {\n        \"firstName\": \"James\"\n        \"id\": \"3\"\n        \"lastName\": \"Bond\"\n      }\n    ]\n  }\n}',
-    expected: '{}',
-    operator: 'to equal',
-    message: 'expected { employees: \n   { employee: \n      [ { id: \'1\', firstName: \'Tom\', lastName: \'Cruise\' },\n        { id: \'2\', firstName: \'Maria\', lastName: \'Sharapova\' },\n        { id: \'3\', firstName: \'James\', lastName: \'Bond\' } ] } } to equal {}',
-    generatedMessage: true,
-    showDiff: true,
+    message: 'AssertionError: expected { employees: \n   { employee: \n      [ { id: \'1\', firstName: \'Tom\', lastName: \'Cruise\' },\n        { id: \'2\', firstName: \'Maria\', lastName: \'Sharapova\' },\n        { id: \'3\', firstName: \'James\', lastName: \'Bond\' } ] } } to equal {}',
     estack: 'AssertionError: expected { employees: \n   { employee: \n      [ { id: \'1\', firstName: \'Tom\', lastName: \'Cruise\' },\n        { id: \'2\', firstName: \'Maria\', lastName: \'Sharapova\' },\n        { id: \'3\', firstName: \'James\', lastName: \'Bond\' } ] } } to equal {}\n    at Assertion.prop.(anonymous function) (node_modules/should/lib/should.js:61:14)\n    at Context.<anonymous> (test-functional/test.js:38:16)',
     diff: '- {\n-   \"employees\": {\n-     \"employee\": [\n-       {\n-         \"firstName\": \"Tom\"\n-         \"id\": \"1\"\n-         \"lastName\": \"Cruise\"\n-       }\n-       {\n-         \"firstName\": \"Maria\"\n-         \"id\": \"2\"\n-         \"lastName\": \"Sharapova\"\n-       }\n-       {\n-         \"firstName\": \"James\"\n-         \"id\": \"3\"\n-         \"lastName\": \"Bond\"\n-       }\n-     ]\n-   }\n- }\n+ {}\n'
   },
@@ -132,7 +126,9 @@ const beforeHookFailed = {
   pending: false,
   code: 'shouldFail\n  ? console.log(a)\n  : console.log(\'This is the before hook.\');',
   err: {
-    estack: 'ReferenceError: a is not defined\n    at Context.before (helpers.js:42:21)'
+    message: 'ReferenceError: a is not defined',
+    estack: 'ReferenceError: a is not defined\n    at Context.before (helpers.js:42:21)',
+    diff: undefined
   },
   isRoot: false,
   uuid: '1e445313-1f42-413a-9518-0d970b8179f0',
@@ -169,7 +165,9 @@ const afterHookFailed = {
   pending: false,
   code: 'shouldFail\n  ? console.log(a)\n  : console.log(\'This is the after hook.\');',
   err: {
-    estack: 'ReferenceError: a is not defined\n    at Context.before (helpers.js:42:21)'
+    message: 'ReferenceError: a is not defined',
+    estack: 'ReferenceError: a is not defined\n    at Context.before (helpers.js:42:21)',
+    diff: undefined
   },
   isRoot: false,
   uuid: '1e445313-1f42-413a-9518-0d970b8179f0',
@@ -278,7 +276,7 @@ describe('<Test />', () => {
   it('renders a failed before hook', () => {
     const { header, snippets, errorMsg } = getInstance({ test: beforeHookFailed });
     expect(snippets).to.have.lengthOf(3);
-    expect(errorMsg).to.have.lengthOf(0);
+    expect(errorMsg).to.have.lengthOf(1);
     header.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.calledOnce).to.equal(true);
@@ -296,7 +294,7 @@ describe('<Test />', () => {
   it('renders a failed after hook', () => {
     const { header, snippets, errorMsg } = getInstance({ test: afterHookFailed });
     expect(snippets).to.have.lengthOf(3);
-    expect(errorMsg).to.have.lengthOf(0);
+    expect(errorMsg).to.have.lengthOf(1);
     header.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.calledOnce).to.equal(true);
