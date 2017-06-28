@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DevTools from 'mobx-react-devtools';
-import { observer } from 'mobx-react';
+import { Provider, observer } from 'mobx-react';
 import { Footer, Navbar } from 'components';
 import { NavMenu } from 'components/nav-menu';
 import { Suite } from 'components/suite';
@@ -50,26 +50,28 @@ class MochawesomeReport extends Component {
     };
 
     return (
-      <div>
-        <Navbar
-          reportTitle={ reportTitle }
-          stats={ stats }
-          qsWidth={ quickSummaryWidth }
-          mobileBreakpoint={ mobileBreakpoint }
-          qsNodeRef={ node => (this.qsNode = node) } />
-        <div id='details' className={ cx('details', 'container') }>
-          { suites.map(suite => (
-            <Suite
-              key={ suite.uuid }
-              suite={ suite }
-              enableChart={ enableChart }
-              enableCode={ enableCode } />)
-          ) }
+      <Provider reportStore={ this.props.store }>
+        <div>
+          <Navbar
+            reportTitle={ reportTitle }
+            stats={ stats }
+            qsWidth={ quickSummaryWidth }
+            mobileBreakpoint={ mobileBreakpoint }
+            qsNodeRef={ node => (this.qsNode = node) } />
+          <div id='details' className={ cx('details', 'container') }>
+            { suites.map(suite => (
+              <Suite
+                key={ suite.uuid }
+                suite={ suite }
+                enableChart={ enableChart }
+                enableCode={ enableCode } />)
+            ) }
+          </div>
+          <Footer />
+          <NavMenu suites={ allSuites } { ...navMenuProps } />
+          { devMode && <DevTools position={ { bottom: 0, right: 20 } } /> }
         </div>
-        <Footer />
-        <NavMenu suites={ allSuites } { ...navMenuProps } />
-        { devMode && <DevTools position={ { bottom: 0, right: 20 } } /> }
-      </div>
+      </Provider>
     );
   }
 }
