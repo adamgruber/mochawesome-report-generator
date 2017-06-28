@@ -178,12 +178,30 @@
   }
 }
 
-.code-diff-expected span {
-  color: #859900;
+.code-diff code > span:first-child {
+  margin-right: 11px;
 }
 
-.code-diff-actual span {
-  color: #dc322f;
+.code-diff-expected {
+  & span {
+    color: #859900;
+  }
+
+  @nest .inline-diff & {
+    background-color: #859900;
+    color: #fff;
+  }
+}
+
+.code-diff-actual {
+  & span {
+    color: #dc322f;
+  }
+
+  @nest .inline-diff & {
+    background-color: #dc322f;
+    color: #fff;
+  }
 }
 
 .code-label {
