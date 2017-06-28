@@ -54,8 +54,10 @@ class CodeSnippet extends Component {
   render() {
     const { className, code, lang, label, showLabel, useInlineDiffs } = this.props;
     const isDiff = lang === 'diff';
-    const cxName = cx(className, lang, {
-      hljs: !this.shouldHighlight(),
+    const shouldHighlight = this.shouldHighlight();
+    const cxName = cx(className, {
+      [lang]: shouldHighlight,
+      hljs: !shouldHighlight,
       'code-diff': isDiff,
       'inline-diff': isDiff && useInlineDiffs
     });
