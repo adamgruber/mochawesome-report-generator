@@ -3,6 +3,7 @@ import { mount } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
+import { Provider } from 'mobx-react';
 import CodeSnippet from 'components/test/code-snippet';
 import hljs from 'highlight.js/lib/highlight';
 
@@ -11,10 +12,14 @@ chai.use(chaiEnzyme());
 describe('<CodeSnippet />', () => {
   let node;
 
-  const getInstance = instanceProps => {
-    const wrapper = mount(<CodeSnippet { ...instanceProps } />, {
-      attachTo: node
-    });
+  const getInstance = (instanceProps, store = {}) => {
+    const wrapper = mount(
+      <Provider reportStore={ store }>
+        <CodeSnippet { ...instanceProps } />
+      </Provider>, {
+        attachTo: node
+      }
+    );
     return wrapper;
   };
 
@@ -23,6 +28,7 @@ describe('<CodeSnippet />', () => {
     node.setAttribute('id', 'app');
     document.body.appendChild(node);
     hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
+    hljs.registerLanguage('diff', require('highlight.js/lib/languages/diff'));
   });
 
   afterEach(() => {
@@ -39,12 +45,31 @@ describe('<CodeSnippet />', () => {
 
   it('renders and highlights diff snippet', () => {
     const props = {
-      code: 'function(){console.log(\'sample code\');}',
+      code: ' {\n-   "a": 2\n+   "a": 1\n }\n',
       lang: 'diff'
     };
-    getInstance(props);
+    const wrapper = getInstance(props);
+    expect(wrapper.hasClass('inline-diff')).to.equal(false);
     expect(document.querySelectorAll('.test-code-diff-expected').length).to.equal(1);
     expect(document.querySelectorAll('.test-code-diff-actual').length).to.equal(1);
+    expect(document.querySelectorAll('.hljs-addition').length).to.equal(3);
+    expect(document.querySelectorAll('.hljs-deletion').length).to.equal(1);
+  });
+
+  it('renders and does not highlight inline diff snippet', () => {
+    const props = {
+      code: [
+        { count: 6, value: '{\n  "a": ' },
+        { count: 1, added: undefined, removed: true, value: '2' },
+        { count: 1, added: true, removed: undefined, value: '1' },
+        { count: 2, value: '\n}' }
+      ],
+      lang: 'diff'
+    };
+    const wrapper = getInstance(props, { useInlineDiffs: true });
+    expect(wrapper.hasClass('inline-diff')).to.equal(true);
+    expect(document.querySelectorAll('.test-code-diff-expected').length).to.equal(2);
+    expect(document.querySelectorAll('.test-code-diff-actual').length).to.equal(2);
   });
 
   it('does not highlight when prop is false', () => {
@@ -83,7 +108,7 @@ describe('<CodeSnippet />', () => {
     const props = {
       code: 'function(){console.log(\'sample code\');}'
     };
-    const wrapper = getInstance(props);
+    const wrapper = mount(<CodeSnippet { ...props } />);
     sinon.spy(CodeSnippet.prototype, 'shouldComponentUpdate');
     wrapper.setProps({
       highlight: false
