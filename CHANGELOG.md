@@ -1,15 +1,26 @@
 # Changelog
 
-## [2.1.1] / 2017-06-26
+## [2.2.0] / 2017-06-29
+
+#### Updated / New
+- Render inline diffs when using mocha's `--inline-diffs` option [#39](https://github.com/adamgruber/mochawesome-report-generator/pull/39)
+- Set the default option for how hooks should display via the `showHooks` option [#41](https://github.com/adamgruber/mochawesome-report-generator/pull/41)
+- Add a new `context` display option for hooks which will only show hooks if they contain context [#41](https://github.com/adamgruber/mochawesome-report-generator/pull/41)
+
+#### Bug Fixes
+- Don't apply syntax highlighting when `context` is an object and `context.value` is a string [#40](https://github.com/adamgruber/mochawesome-report-generator/pull/40)
+- Various display issues [#36](https://github.com/adamgruber/mochawesome-report-generator/pull/36) [#38](https://github.com/adamgruber/mochawesome-report-generator/pull/38)
+
+### [2.1.1] / 2017-06-26
 - Remove `dangerouslySetInnerHTML` from CodeSnippet component. [#34](https://github.com/adamgruber/mochawesome-report-generator/issues/34)
 
 ## [2.1.0] / 2017-06-08
 - Add support for displaying before and after hooks
 
-## [2.0.3] / 2017-05-09
+### [2.0.3] / 2017-05-09
 - Add support for rendering context with `undefined` or `null` value 
 
-## [2.0.2] / 2017-04-25
+### [2.0.2] / 2017-04-25
 - Update package.json to spec `fsu` to `^1.0.2` which fixes compatibility with node 4
 
 ## [2.0.0] / 2017-04-19
@@ -38,7 +49,7 @@ You can still use the `--reportFilename` flag to set the filename of the generat
 - Fix an issue where trying to copy text from code or context blocks would collapse the test. [mochawesome #138](https://github.com/adamgruber/mochawesome/issues/138)
 - Validate JSON input against schema before creating a report (CLI only)
 
-### [1.1.0]
+## [1.1.0]
 - Greenkeeping
 - Move some dependencies into devDependencies where they belong [mochawesome #133](https://github.com/adamgruber/mochawesome/issues/133)
 
@@ -71,8 +82,10 @@ You can still use the `--reportFilename` flag to set the filename of the generat
 ## [1.0.0] / 2016-12-18
 - Initial release
 
+[2.2.0]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.2.0
 [2.1.1]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.1.1
 [2.1.0]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.1.0
+[2.0.3]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.0.3
 [2.0.2]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.0.2
 [2.0.1]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.0.1
 [2.0.0]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.0.0

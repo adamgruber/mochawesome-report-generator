@@ -5,6 +5,7 @@ mochawesome-report-generator (marge)
 **marge** (**m**och**a**wesome-**r**eport-**ge**nerator) is the counterpart to [mochawesome][2], a custom reporter for use with the Javascript testing framework, [mocha][1]. Marge takes the JSON output from [mochawesome][2] and generates a full fledged HTML/CSS report that helps visualize your test suites.
 
 ## :tada: Latest Changes
+- Support for mocha's `--inline-diffs` option
 - Show before and after hooks alongside your tests
 - New menu option for fine-tuning how hooks display
 
@@ -89,6 +90,7 @@ Flag | Type | Default | Description
 --autoOpen | boolean | false | Automatically open the report
 --overwrite | boolean | true | Overwrite existing report files. *See [notes](#overwrite).*
 --timestamp, --ts | string | | Append timestamp in specified format to report filename. *See [notes](#timestamp).*
+--showHooks | string | failed | Set the default display mode for hooks
 --dev | boolean | false | Enable dev mode (requires local webpack dev server)
 -h, --help | | | Show CLI help
 
@@ -114,3 +116,4 @@ Further, if you pass the flag with no format string, it will default to `isoDate
 [1]: https://mochajs.org/
 [2]: https://github.com/adamgruber/mochawesome
 [dateformat]: https://github.com/felixge/node-dateformat
+[CHANGELOG]: CHANGELOG.md
