@@ -21,7 +21,8 @@ const NavMenu = proxyquire('components/nav-menu/nav-menu', {
   '../../js/reportStore': {
     closeSideNav: closeSideNavSpy,
     toggleFilter: toggleFilterSpy,
-    setShowHooks: setShowHooksSpy
+    setShowHooks: setShowHooksSpy,
+    showHooksOptions: [ 'always', 'never' ]
   }
 }).default;
 

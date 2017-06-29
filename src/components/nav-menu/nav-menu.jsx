@@ -17,12 +17,11 @@ const NavMenu = props => {
   const navItemProps = { showPassed, showFailed, showPending, showSkipped };
   const closeSideNav = () => (reportStore.closeSideNav());
   const reportDate = moment(end).format('dddd, MMMM D YYYY, hh:mma');
-  const showHooksOptions = [
-    { title: 'Always', value: 'always' },
-    { title: 'Never', value: 'never' },
-    { title: 'Failed', value: 'failed' }
-  ];
-  const showHooksSelected = find(showHooksOptions, { value: showHooks });
+  const showHooksOpts = reportStore.showHooksOptions.map(opt => ({
+    title: `${opt.charAt(0).toUpperCase()}${opt.slice(1)}`,
+    value: opt
+  }));
+  const showHooksSelected = find(showHooksOpts, { value: showHooks });
   return (
     <div className={ cx('wrap', { open: sideNavOpen }) }>
       <div onClick={ closeSideNav } className={ cx('overlay') } />
@@ -76,7 +75,7 @@ const NavMenu = props => {
             label='Show Hooks'
             labelClassName={ cx('control-label') }
             selected={ showHooksSelected }
-            selections={ showHooksOptions }
+            selections={ showHooksOpts }
             onSelect={ item => reportStore.setShowHooks(item.value) } />
         </div>
         <div className={ cx('section') }>
