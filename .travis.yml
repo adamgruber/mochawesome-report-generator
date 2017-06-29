@@ -6,7 +6,7 @@ before_install:
   - npm install react-test-renderer
 addons:
   code_climate:
-    repo_token: d72f1e1053fa2af89bef224409c23b0a2910e71bf7fd4cf4f1c73e96c84b427a
+    repo_token: 5a6fbf144bbc7fe5bf3dccf6ddc6ac4eae6a95636073a604c2aa27e535e789a9
 after_script:
   - npm install -g codeclimate-test-reporter
   - codeclimate-test-reporter < ./coverage/lcov.info
