@@ -44,7 +44,8 @@ const baseOpts = {
   enableCode: true,
   overwrite: true,
   timestamp: false,
-  dev: false
+  dev: false,
+  showHooks: 'failed'
 };
 
 let opts;
@@ -316,7 +317,8 @@ describe('lib/main', () => {
           overwrite: true,
           timestamp: false,
           ts: false,
-          dev: false
+          dev: false,
+          showHooks: 'failed'
         });
     });
   });
