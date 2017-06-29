@@ -17,7 +17,8 @@ const expectedOptions = {
   overwrite: true,
   timestamp: false,
   ts: false,
-  dev: false
+  dev: false,
+  showHooks: 'failed'
 };
 
 describe('options', () => {

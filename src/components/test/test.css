@@ -158,7 +158,7 @@
 
 .error-message {
   font-size: 12px;
-  margin: 0 0 10px 13px;
+  margin: 0 16px 10px 13px;
   color: var(--red500);
 }
 

@@ -22,21 +22,51 @@ describe('ReportStore', () => {
     });
   });
 
-  it('sets initial data', () => {
-    store.setInitialData({
-      data: testData,
-      config: {
-        enableCharts: true,
-        dev: true
-      }
+  describe('setInitialData', () => {
+    it('without config options', () => {
+      store.setInitialData({
+        data: testData,
+        config: {}
+      });
+      expect(store).to.have.property('data', testData);
+      expect(store).to.have.property('reportTitle', undefined);
+      expect(store).to.have.property('stats', testData.stats);
+      expect(store).to.have.deep.property('allSuites[0]', testData.suites);
+      expect(store).to.have.deep.property('stats', testData.stats);
+      expect(store).to.have.property('enableChart', false);
+      expect(store).to.have.property('devMode', false);
+      expect(store).to.have.property('showHooks', 'failed');
     });
-    expect(store).to.have.property('data', testData);
-    expect(store).to.have.property('reportTitle', undefined);
-    expect(store).to.have.property('stats', testData.stats);
-    expect(store).to.have.deep.property('allSuites[0]', testData.suites);
-    expect(store).to.have.deep.property('stats', testData.stats);
-    expect(store).to.have.property('enableChart', true);
-    expect(store).to.have.property('devMode', true);
+
+    it('with config options', () => {
+      store.setInitialData({
+        data: testData,
+        config: {
+          enableCharts: true,
+          dev: true,
+          showHooks: 'context'
+        }
+      });
+      expect(store).to.have.property('data', testData);
+      expect(store).to.have.property('reportTitle', undefined);
+      expect(store).to.have.property('stats', testData.stats);
+      expect(store).to.have.deep.property('allSuites[0]', testData.suites);
+      expect(store).to.have.deep.property('stats', testData.stats);
+      expect(store).to.have.property('enableChart', true);
+      expect(store).to.have.property('devMode', true);
+      expect(store).to.have.property('showHooks', 'context');
+    });
+
+
+    it('with invalid config options', () => {
+      store.setInitialData({
+        data: testData,
+        config: {
+          showHooks: 'sometimes'
+        }
+      });
+      expect(store).to.have.property('showHooks', 'failed');
+    });
   });
 
   describe('Computed Properties', () => {
