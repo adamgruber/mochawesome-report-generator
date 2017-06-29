@@ -63,8 +63,13 @@ class TestContext extends Component {
       return this.renderLink(content, title);
     }
 
-    // Default
-    const code = isString(content) ? content : JSON.stringify(content, null, 2);
+    // Simple string
+    if (isString(content)) {
+      return <CodeSnippet className={ cx('code-snippet') } code={ content } highlight={ false } />;
+    }
+
+    // All other types (primitives, objects, arrays...)
+    const code = JSON.stringify(content, null, 2);
     return (
       <CodeSnippet className={ cx('code-snippet') } code={ code } highlight={ highlight } />
     );

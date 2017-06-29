@@ -39,7 +39,8 @@ describe('<CodeSnippet />', () => {
     const props = {
       code: 'function(){console.log(\'sample code\');}'
     };
-    getInstance(props);
+    const wrapper = getInstance(props);
+    expect(wrapper.hasClass('javascript')).to.equal(true);
     expect(document.querySelectorAll('.hljs-keyword').length).to.equal(1);
   });
 
@@ -49,6 +50,7 @@ describe('<CodeSnippet />', () => {
       lang: 'diff'
     };
     const wrapper = getInstance(props);
+    expect(wrapper.hasClass('diff')).to.equal(true);
     expect(wrapper.hasClass('inline-diff')).to.equal(false);
     expect(document.querySelectorAll('.test-code-diff-expected').length).to.equal(1);
     expect(document.querySelectorAll('.test-code-diff-actual').length).to.equal(1);
@@ -67,6 +69,7 @@ describe('<CodeSnippet />', () => {
       lang: 'diff'
     };
     const wrapper = getInstance(props, { useInlineDiffs: true });
+    expect(wrapper.hasClass('diff')).to.equal(false);
     expect(wrapper.hasClass('inline-diff')).to.equal(true);
     expect(document.querySelectorAll('.test-code-diff-expected').length).to.equal(2);
     expect(document.querySelectorAll('.test-code-diff-actual').length).to.equal(2);
@@ -75,9 +78,11 @@ describe('<CodeSnippet />', () => {
   it('does not highlight when prop is false', () => {
     const props = {
       code: 'function(){console.log(\'sample code\');}',
-      highlight: false
+      highlight: false,
+      lang: 'piglatin'
     };
-    getInstance(props);
+    const wrapper = getInstance(props);
+    expect(wrapper.hasClass('piglatin')).to.equal(false);
     expect(document.querySelectorAll('.hljs-keyword').length).to.equal(0);
   });
 
