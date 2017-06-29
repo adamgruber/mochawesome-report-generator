@@ -11,10 +11,11 @@ class ReportStore {
   @observable showSkipped = false;
   @observable quickSummaryWidth = null;
   @observable windowWidth = null;
-  @observable showHooks = 'failed'; // [failed|always|never]
+  @observable showHooks = 'failed';
 
   constructor(data = {}) {
     this.data = data;
+    this.showHooksOptions = [ 'failed', 'always', 'never', 'context' ];
   }
 
   @computed get suites() {
@@ -39,8 +40,7 @@ class ReportStore {
   }
 
   @action setShowHooks(prop) {
-    const validProps = [ 'failed', 'always', 'never' ];
-    if (validProps.indexOf(prop) >= 0) {
+    if (this._isValidShowHookOption(prop)) {
       this.showHooks = prop;
     }
   }
@@ -56,6 +56,7 @@ class ReportStore {
   _filterHook = hook => (
       (this.showHooks === 'always')
       || (this.showHooks === 'failed' && hook.fail)
+      || (this.showHooks === 'context' && hook.context)
   )
 
   _mapSuites = suite => {
@@ -75,13 +76,34 @@ class ReportStore {
       : null;
   }
 
+  _isValidOption = (property, options, selection) => {
+    const isValid = options.indexOf(selection) >= 0;
+    if (!isValid) {
+      console.error(`Warning: '${selection}' is not a valid option for property: '${property}'. Valid options are: ${options.join(', ')}`); // eslint-disable-line
+    }
+    return isValid;
+  };
+
+  _isValidShowHookOption = option => (
+    this._isValidOption('showHooks', this.showHooksOptions, option)
+  );
+
+  _getShowHooks = ({ showHooks }) => {
+    if (!showHooks) {
+      return this.showHooks;
+    }
+    return this._isValidShowHookOption(showHooks) ? showHooks : this.showHooks;
+  };
+
   setInitialData({ data, config }) {
     const reportTitle = config.reportTitle || data.reportTitle;
-    Object.assign(this, { data, ...config, reportTitle });
+    const showHooks = this._getShowHooks(config);
+
+    Object.assign(this, { data, ...config, reportTitle, showHooks });
     this.allSuites = [ data.suites ];
     this.stats = data.stats;
-    this.enableChart = config.enableCharts;
-    this.devMode = config.dev;
+    this.enableChart = !!config.enableCharts;
+    this.devMode = !!config.dev;
   }
 }
 
