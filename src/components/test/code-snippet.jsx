@@ -1,15 +1,14 @@
 /* eslint-disable import/no-dynamic-require, react/no-danger */
 import React, { Component } from 'react';
-import { inject } from 'mobx-react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
+import isArray from 'lodash/isArray';
 import hljs from 'highlight.js/lib/highlight';
 import classNames from 'classnames/bind';
 import styles from './test.css';
 
 const cx = classNames.bind(styles);
 
-@inject(stores => ({ useInlineDiffs: stores.reportStore && stores.reportStore.useInlineDiffs }))
 class CodeSnippet extends Component {
   static displayName = 'CodeSnippet';
 
@@ -19,8 +18,7 @@ class CodeSnippet extends Component {
     lang: PropTypes.string,
     highlight: PropTypes.bool,
     label: PropTypes.string,
-    showLabel: PropTypes.bool,
-    useInlineDiffs: PropTypes.bool
+    showLabel: PropTypes.bool
   };
 
   static defaultProps = {
@@ -38,8 +36,8 @@ class CodeSnippet extends Component {
   }
 
   shouldHighlight() {
-    const { code, highlight, lang, useInlineDiffs } = this.props;
-    if (lang === 'diff' && useInlineDiffs) {
+    const { code, highlight, lang } = this.props;
+    if (lang === 'diff' && isArray(code)) {
       return false;
     }
     return code && highlight;
@@ -52,24 +50,23 @@ class CodeSnippet extends Component {
   }
 
   render() {
-    const { className, code, lang, label, showLabel, useInlineDiffs } = this.props;
+    const { className, code, lang, label, showLabel } = this.props;
     const isDiff = lang === 'diff';
+    const isInlineDiff = isDiff && isArray(code);
     const shouldHighlight = this.shouldHighlight();
     const cxName = cx(className, {
       [lang]: shouldHighlight,
       hljs: !shouldHighlight,
       'code-diff': isDiff,
-      'inline-diff': isDiff && useInlineDiffs
+      'inline-diff': isInlineDiff
     });
 
-    const renderLegendLeft = () => isDiff && (
-      useInlineDiffs
+    const renderLegendLeft = () => (isInlineDiff
         ? <span className={ cx('code-diff-actual') }>actual</span>
         : <span className={ cx('code-diff-expected') }>+ expected</span>
     );
 
-    const renderLegendRight = () => isDiff && (
-      useInlineDiffs
+    const renderLegendRight = () => (isInlineDiff
         ? <span className={ cx('code-diff-expected') }>{'expected\n\n'}</span>
         : <span className={ cx('code-diff-actual') }>{'- actual\n\n'}</span>
     );
@@ -91,7 +88,7 @@ class CodeSnippet extends Component {
         <code>
           { renderLegendLeft() }
           { renderLegendRight() }
-          { (isDiff && useInlineDiffs) ? code.map(mapInlineDiffCode) : code }
+          { isInlineDiff ? code.map(mapInlineDiffCode) : code }
         </code>
         { !!label && showLabel && <span className={ cx('code-label') }>{ label }</span> }
       </pre>
