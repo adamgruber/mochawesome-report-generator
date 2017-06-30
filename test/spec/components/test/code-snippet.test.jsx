@@ -3,7 +3,6 @@ import { mount } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
-import { Provider } from 'mobx-react';
 import CodeSnippet from 'components/test/code-snippet';
 import hljs from 'highlight.js/lib/highlight';
 
@@ -12,16 +11,12 @@ chai.use(chaiEnzyme());
 describe('<CodeSnippet />', () => {
   let node;
 
-  const getInstance = (instanceProps, store = {}) => {
-    const wrapper = mount(
-      <Provider reportStore={ store }>
-        <CodeSnippet { ...instanceProps } />
-      </Provider>, {
-        attachTo: node
-      }
-    );
-    return wrapper;
-  };
+  const getInstance = instanceProps => (
+    mount(
+      <CodeSnippet { ...instanceProps } />,
+      { attachTo: node }
+    )
+  );
 
   beforeEach(() => {
     node = document.createElement('div');
@@ -113,7 +108,7 @@ describe('<CodeSnippet />', () => {
     const props = {
       code: 'function(){console.log(\'sample code\');}'
     };
-    const wrapper = mount(<CodeSnippet { ...props } />);
+    const wrapper = getInstance(props);
     sinon.spy(CodeSnippet.prototype, 'shouldComponentUpdate');
     wrapper.setProps({
       highlight: false
