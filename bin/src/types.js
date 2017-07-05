@@ -32,7 +32,6 @@ Suite.define(t.struct({
   title: t.String,
   suites: t.list(Suite),
   tests: t.list(Test),
-  pending: t.list(Test),
   root: t.Boolean,
   _timeout: t.Integer,
   file: t.String,
@@ -40,22 +39,10 @@ Suite.define(t.struct({
   fullFile: t.String,
   beforeHooks: t.list(Test),
   afterHooks: t.list(Test),
-  passes: t.list(Test),
-  failures: t.list(Test),
-  skipped: t.list(Test),
-  totalTests: t.Integer,
-  totalPasses: t.Integer,
-  totalFailures: t.Integer,
-  totalPending: t.Integer,
-  totalSkipped: t.Integer,
-  hasBeforeHooks: t.Boolean,
-  hasAfterHooks: t.Boolean,
-  hasTests: t.Boolean,
-  hasSuites: t.Boolean,
-  hasPasses: t.Boolean,
-  hasFailures: t.Boolean,
-  hasPending: t.Boolean,
-  hasSkipped: t.Boolean,
+  passes: t.list(Uuid),
+  failures: t.list(Uuid),
+  pending: t.list(Uuid),
+  skipped: t.list(Uuid),
   duration: t.Integer,
   rootEmpty: t.maybe(t.Boolean)
 }));
@@ -82,10 +69,6 @@ const TestReport = t.struct({
     context: t.maybe(t.String)
   }),
   suites: Suite,
-  allTests: t.list(Test),
-  allPending: t.list(Test),
-  allPasses: t.list(Test),
-  allFailures: t.list(Test),
   copyrightYear: t.Integer
 });
 
