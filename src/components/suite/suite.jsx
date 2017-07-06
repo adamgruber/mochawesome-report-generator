@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import isEmpty from 'lodash/isEmpty';
 import { TestList } from 'components/test';
 import { SuiteChart, SuiteList, SuiteSummary } from 'components/suite';
 import classNames from 'classnames/bind';
@@ -8,13 +9,22 @@ import styles from './suite.css';
 const cx = classNames.bind(styles);
 
 const Suite = ({ className, suite, enableChart, enableCode }) => {
-  const { root, rootEmpty, suites, tests, beforeHooks, afterHooks, uuid, title, file,
-    hasSuites, hasTests, hasFailures, hasPending, hasSkipped,
-    hasPasses, duration, totalTests, totalPasses, totalFailures,
-    totalPending, totalSkipped } = suite;
+  const { root, rootEmpty, suites, tests, beforeHooks, afterHooks,
+    uuid, title, file, duration } = suite;
 
-  const hasBeforeHooks = beforeHooks && beforeHooks.length > 0;
-  const hasAfterHooks = afterHooks && afterHooks.length > 0;
+  const hasSuites = !isEmpty(suites);
+  const hasTests = !isEmpty(tests);
+  const hasPasses = !isEmpty(suite.passes);
+  const hasFailures = !isEmpty(suite.failures);
+  const hasPending = !isEmpty(suite.pending);
+  const hasSkipped = !isEmpty(suite.skipped);
+  const hasBeforeHooks = !isEmpty(beforeHooks);
+  const hasAfterHooks = !isEmpty(afterHooks);
+  const totalTests = hasTests ? tests.length : 0;
+  const totalPasses = hasPasses ? suite.passes.length : 0;
+  const totalFailures = hasFailures ? suite.failures.length : 0;
+  const totalPending = hasPending ? suite.pending.length : 0;
+  const totalSkipped = hasSkipped ? suite.skipped.length : 0;
 
   const subSuites = isMain => hasSuites && (
     <SuiteList
