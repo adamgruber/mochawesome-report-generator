@@ -1,5 +1,9 @@
 # Changelog
 
+### [2.2.2] / 2017-07-07
+- Fix an issue where `actual/expected` was being rendered in the CodeSnippet for non-diff code
+- Fix an issue where the suite header was not being rendered for root suites with tests
+
 ### [2.2.1] / 2017-06-30
 - Enable inline diff rendering when using CLI. [#42](https://github.com/adamgruber/mochawesome-report-generator/pull/42)
 
@@ -85,6 +89,7 @@ You can still use the `--reportFilename` flag to set the filename of the generat
 ## [1.0.0] / 2016-12-18
 - Initial release
 
+[2.2.2]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.2.2
 [2.2.1]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.2.1
 [2.2.0]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.2.0
 [2.1.1]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.1.1
