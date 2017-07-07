@@ -24,7 +24,8 @@ describe('<Suite />', () => {
       chart: wrapper.find(SuiteChart),
       summary: wrapper.find(SuiteSummary),
       testList: wrapper.find(TestList),
-      suiteList: wrapper.find(SuiteList)
+      suiteList: wrapper.find(SuiteList),
+      header: wrapper.find('.suite-header')
     };
   };
 
@@ -39,10 +40,11 @@ describe('<Suite />', () => {
     const instProps = Object.assign({}, props, {
       suite: basicSuite
     });
-    const { chart, summary, testList } = getInstance(instProps);
+    const { chart, summary, testList, header } = getInstance(instProps);
     expect(chart).to.have.lengthOf(1);
     expect(summary).to.have.lengthOf(1);
     expect(testList).to.have.lengthOf(1);
+    expect(header).to.have.lengthOf(1);
   });
 
   it('renders basic suite without title or filename', () => {
@@ -63,30 +65,68 @@ describe('<Suite />', () => {
       suite: basicSuite,
       enableChart: false
     });
-    const { chart, summary, testList } = getInstance(instProps);
+    const { chart, summary, testList, header } = getInstance(instProps);
     expect(chart).to.have.lengthOf(0);
     expect(summary).to.have.lengthOf(1);
     expect(testList).to.have.lengthOf(1);
+    expect(header).to.have.lengthOf(1);
   });
 
   it('renders a suite with only hooks', () => {
     const instProps = Object.assign({}, props, {
       suite: hooksSuite.suites
     });
-    const { chart, summary, testList } = getInstance(instProps);
+    const { chart, summary, testList, header } = getInstance(instProps);
     expect(chart).to.have.lengthOf(0);
     expect(summary).to.have.lengthOf(0);
     expect(testList).to.have.lengthOf(1);
+    expect(header).to.have.lengthOf(0);
   });
 
-  it('renders root suite', () => {
+  it('renders a suite with only before hooks', () => {
+    const suite = Object.assign({}, hooksSuite.suites);
+    suite.afterHooks = [];
+    const instProps = Object.assign({}, props, { suite });
+    const { chart, summary, testList, header } = getInstance(instProps);
+    expect(chart).to.have.lengthOf(0);
+    expect(summary).to.have.lengthOf(0);
+    expect(testList).to.have.lengthOf(1);
+    expect(header).to.have.lengthOf(0);
+  });
+
+  it('renders a suite with only after hooks', () => {
+    const suite = Object.assign({}, hooksSuite.suites);
+    suite.beforeHooks = [];
+    const instProps = Object.assign({}, props, { suite });
+    const { chart, summary, testList, header } = getInstance(instProps);
+    expect(chart).to.have.lengthOf(0);
+    expect(summary).to.have.lengthOf(0);
+    expect(testList).to.have.lengthOf(1);
+    expect(header).to.have.lengthOf(0);
+  });
+
+  it('renders root suite with tests', () => {
+    const suite = Object.assign({}, nestedSuite.suites);
+    suite.rootEmpty = false;
+    suite.hasTests = true;
+    const instProps = Object.assign({}, props, { suite });
+    const { chart, summary, testList, suiteList, header } = getInstance(instProps);
+    expect(chart).to.have.lengthOf(1);
+    expect(summary).to.have.lengthOf(1);
+    expect(testList).to.have.lengthOf(1);
+    expect(suiteList).to.have.lengthOf(1);
+    expect(header).to.have.lengthOf(1);
+  });
+
+  it('renders root suite without tests', () => {
     const instProps = Object.assign({}, props, {
       suite: nestedSuite.suites
     });
-    const { chart, summary, testList, suiteList } = getInstance(instProps);
+    const { chart, summary, testList, suiteList, header } = getInstance(instProps);
     expect(chart).to.have.lengthOf(0);
     expect(summary).to.have.lengthOf(0);
     expect(testList).to.have.lengthOf(0);
     expect(suiteList).to.have.lengthOf(1);
+    expect(header).to.have.lengthOf(0);
   });
 });

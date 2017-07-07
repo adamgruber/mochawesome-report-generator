@@ -86,8 +86,8 @@ class CodeSnippet extends Component {
     return !!code && (
       <pre className={ cxName } ref={ node => (this.node = node) }>
         <code>
-          { renderLegendLeft() }
-          { renderLegendRight() }
+          { isDiff && renderLegendLeft() }
+          { isDiff && renderLegendRight() }
           { isInlineDiff ? code.map(mapInlineDiffCode) : code }
         </code>
         { !!label && showLabel && <span className={ cx('code-label') }>{ label }</span> }
