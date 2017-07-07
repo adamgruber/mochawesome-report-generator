@@ -37,6 +37,8 @@ describe('<CodeSnippet />', () => {
     const wrapper = getInstance(props);
     expect(wrapper.hasClass('javascript')).to.equal(true);
     expect(document.querySelectorAll('.hljs-keyword').length).to.equal(1);
+    expect(document.querySelectorAll('.test-code-diff-expected').length).to.equal(0);
+    expect(document.querySelectorAll('.test-code-diff-actual').length).to.equal(0);
   });
 
   it('renders and highlights diff snippet', () => {

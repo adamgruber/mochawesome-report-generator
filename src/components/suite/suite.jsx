@@ -71,9 +71,11 @@ const Suite = ({ className, suite, enableChart, enableCode }) => {
     return subSuites(true);
   }
 
+  const hideHeader = root && !hasTests && (hasBeforeHooks || hasAfterHooks);
+
   return (
     <section className={ cxname } id={ uuid }>
-      {!root && <header className={ cx('header') }>
+      { !hideHeader && <header className={ cx('header') }>
         { title !== '' && <h3 className={ cx('title') }>{ title }</h3> }
         { file !== '' && <h6 className={ cx('filename') }>{ file }</h6> }
         { hasTests && enableChart && <SuiteChart { ...chartProps } /> }
