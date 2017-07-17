@@ -28,7 +28,6 @@ describe('<Navbar />', () => {
     return {
       wrapper,
       title: wrapper.find('.navbar-report-title'),
-      infoCnt: wrapper.find('.navbar-report-info-cnt'),
       menuBtn: wrapper.find('.navbar-menu-button'),
       pctBar: wrapper.find('.navbar-pct-bar')
     };
@@ -36,27 +35,17 @@ describe('<Navbar />', () => {
 
   beforeEach(() => {
     props = {
-      qsNodeRef: () => {},
       reportTitle: 'test',
-      stats: testData.stats,
-      qsWidth: 500,
-      mobileBreakpoint: false
+      stats: testData.stats
     };
   });
 
   it('renders', () => {
-    const { wrapper, title, menuBtn, pctBar, infoCnt } = getInstance(props);
+    const { wrapper, title, menuBtn, pctBar } = getInstance(props);
     expect(title.text()).to.equal('test');
     expect(wrapper.find(QuickSummary)).to.have.lengthOf(1);
     expect(menuBtn).to.have.lengthOf(1);
     expect(pctBar.find('span')).to.have.lengthOf(2);
-    expect(infoCnt).to.have.style('padding-right', '500px');
-  });
-
-  it('renders on mobile', () => {
-    props.mobileBreakpoint = true;
-    const { infoCnt } = getInstance(props);
-    expect(infoCnt).to.not.have.attr('style');
   });
 
   it('opens side nav', () => {
@@ -68,11 +57,8 @@ describe('<Navbar />', () => {
   describe('when pendingPercent is 100', () => {
     beforeEach(() => {
       props = {
-        qsNodeRef: () => {},
         reportTitle: 'test',
-        stats: { passPercent: 0, pendingPercent: 100 },
-        qsWidth: 500,
-        mobileBreakpoint: false
+        stats: { passPercent: 0, pendingPercent: 100 }
       };
     });
 
@@ -86,11 +72,8 @@ describe('<Navbar />', () => {
   describe('when passPercent and pendingPercent are null', () => {
     beforeEach(() => {
       props = {
-        qsNodeRef: () => {},
         reportTitle: 'test',
-        stats: { passPercent: null, pendingPercent: null },
-        qsWidth: 500,
-        mobileBreakpoint: false
+        stats: { passPercent: null, pendingPercent: null }
       };
     });
 

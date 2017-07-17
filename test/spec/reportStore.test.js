@@ -16,8 +16,6 @@ describe('ReportStore', () => {
       showFailed: true,
       showPending: true,
       showSkipped: false,
-      quickSummaryWidth: null,
-      windowWidth: null,
       showHooks: 'failed'
     });
   });
@@ -72,18 +70,6 @@ describe('ReportStore', () => {
   describe('Computed Properties', () => {
     beforeEach(() => {
       store.setInitialData({ data: testData, config: {} });
-    });
-
-    describe('mobileBreakpoint', () => {
-      it('returns false when windowWidth >= 768', () => {
-        store.setWindowWidth(1024);
-        expect(store.mobileBreakpoint).to.equal(false);
-      });
-
-      it('returns true when windowWidth < 768', () => {
-        store.setWindowWidth(600);
-        expect(store.mobileBreakpoint).to.equal(true);
-      });
     });
 
     describe('suites', () => {
@@ -155,18 +141,6 @@ describe('ReportStore', () => {
       expect(store).to.have.property('showHooks', 'failed');
       store.setShowHooks('sometimes');
       expect(store).to.have.property('showHooks', 'failed');
-    });
-
-    it('setQuickSummaryWidth', () => {
-      expect(store).to.have.property('quickSummaryWidth', null);
-      store.setQuickSummaryWidth(400);
-      expect(store).to.have.property('quickSummaryWidth', 400);
-    });
-
-    it('setWindowWidth', () => {
-      expect(store).to.have.property('windowWidth', null);
-      store.setWindowWidth(400);
-      expect(store).to.have.property('windowWidth', 400);
     });
   });
 });
