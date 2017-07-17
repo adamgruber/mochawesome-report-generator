@@ -83,10 +83,8 @@ class Test extends React.Component {
     return (
       <section id={ uuid } className={ cxname }>
         <header className={ cx('header') } onClick={ this.toggleExpandedState }>
-          <div className={ cx('title-wrap') }>
-            { testIcon() }
-            <h4 className={ cx('title') }>{ title }</h4>
-          </div>
+          { testIcon() }
+          <h4 className={ cx('title') }>{ title }</h4>
           <div className={ cx('info') }>
             { !!context && <Icon name='chat_bubble_outline' className={ cx('context-icon') } size={ 18 } /> }
             { !isHook && <Duration className={ cx('duration') } timer={ duration } /> }
