@@ -108,7 +108,7 @@ describe('<Suite />', () => {
   it('renders root suite with tests', () => {
     const suite = Object.assign({}, nestedSuite.suites);
     suite.rootEmpty = false;
-    suite.hasTests = true;
+    suite.tests = nestedSuite.suites.suites[0].tests;
     const instProps = Object.assign({}, props, { suite });
     const { chart, summary, testList, suiteList, header } = getInstance(instProps);
     expect(chart).to.have.lengthOf(1);

@@ -1,6 +1,8 @@
 @import '../../styles/vars';
 
 .cnt {
+  display: flex;
+  flex-direction: column;
   padding: 0 12px;
 }
 
@@ -8,6 +10,7 @@
   @apply --clearfix;
   @apply --list-unstyled;
 
+  display: flex;
   transition: opacity 0.2s ease-out;
   margin: 0 0 8px 0;
 }
@@ -15,10 +18,11 @@
 .item {
   @apply --font-light;
 
+  display: flex;
+  align-items: flex-start;
   color: #fff;
   font-size: 16px;
-  float: left;
-  width: 25%;
+  flex-basis: 25%;
 
   &.tests {
     color: #fff;
@@ -66,7 +70,6 @@
   top: 2px;
   font-size: 18px;
   margin-right: 4px;
-  float: left;
 }
 
 .circle-icon {
@@ -78,19 +81,17 @@
 /* Tablet 768 and up */
 @media (--screen-sm) {
   .cnt {
-    display: block;
-    float: left;
-    padding: 14px 12px 0 24px;
+    flex-direction: initial;
+    padding: 14px 12px 0 0;
   }
 
   .list {
-    display: inline-block;
     margin: 0;
   }
 
   .item {
     font-size: 18px;
-    width: auto;
+    flex-basis: initial;
     margin: 0 12px;
   }
 

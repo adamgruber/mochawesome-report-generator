@@ -2,7 +2,6 @@ import React from 'react';
 import { mount } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
-import sinon from 'sinon';
 
 import Report from 'components/report';
 import DevTools from 'mobx-react-devtools';
@@ -29,20 +28,11 @@ describe('<MochawesomeReport />', () => {
     props = { store: reportStore };
   });
 
-  it('should render', done => {
+  it('should render', () => {
     reportStore.setInitialData({ data: testData, config: {} });
-    sinon.spy(Report.prototype, 'componentDidMount');
-    sinon.spy(Report.prototype, 'componentWillUnmount');
 
     const { wrapper } = getInstance(props);
     expect(wrapper.find(DevTools)).to.have.lengthOf(0);
-    expect(Report.prototype.componentDidMount.calledOnce).to.equal(true);
-
-    setTimeout(() => {
-      wrapper.unmount();
-      expect(Report.prototype.componentWillUnmount.calledOnce).to.equal(true);
-      done();
-    }, 0);
   });
 
   it('should render in dev mode', () => {

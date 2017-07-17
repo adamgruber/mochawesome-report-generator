@@ -24,6 +24,7 @@
 .header {
   @apply --clearfix;
 
+  display: flex;
   position: relative;
   padding: 10px 0;
   margin: 0 16px 0 13px;
@@ -33,22 +34,15 @@
   }
 }
 
-.title-wrap {
-  position: relative;
-}
-
 .title {
   @apply --font-regular;
   @apply --text-overflow;
 
+  flex-grow: 1;
   font-size: 13px;
   line-height: 24px;
   margin: 0;
-  padding: 0 80px 0 40px;
-
-  @nest .with-context & {
-    padding-right: 106px;
-  }
+  padding-right: 12px;
 
   @nest .hook & {
     color: var(--black54);
@@ -62,9 +56,6 @@
 }
 
 .icon {
-  position: absolute;
-  top: 0;
-  left: 0;
   padding: 3px;
   border-radius: 50%;
   color: #fff;
@@ -101,9 +92,7 @@
 }
 
 .info {
-  position: absolute;
-  top: 10px;
-  right: 0;
+  display: flex;
 }
 
 .duration {
@@ -111,7 +100,6 @@
 
   line-height: 24px;
   color: var(--black54);
-  float: left;
 
   @nest .component:hover:not(.pending) & {
     color: var(--black87);
@@ -125,7 +113,6 @@
 }
 
 .duration-icon {
-  float: right;
   margin-left: 4px;
   /* stylelint-disable-next-line declaration-no-important */
   line-height: 24px !important;
@@ -142,7 +129,6 @@
 
 .context-icon {
   position: relative;
-  float: left;
   /* stylelint-disable-next-line declaration-no-important */
   line-height: 24px !important;
   color: var(--black38);

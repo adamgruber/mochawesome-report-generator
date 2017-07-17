@@ -5,6 +5,7 @@
   @apply --font-regular;
   @apply --list-unstyled;
 
+  display: flex;
   font-size: 15px;
   margin: 16px 0 0 0;
 
@@ -14,7 +15,7 @@
 }
 
 .summary-item {
-  float: left;
+  display: flex;
   line-height: 18px;
   margin: 0 8px;
   color: var(--black54);
@@ -46,6 +47,5 @@
 }
 
 .icon {
-  float: left;
   margin-right: 2px;
 }
