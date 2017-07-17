@@ -69,14 +69,17 @@
 }
 
 .control {
+  display: flex;
   position: relative;
   margin: 8px 0;
+  align-items: center;
 }
 
 .control-label {
   @apply --font-regular;
 
   display: inline-block;
+  flex-grow: 1;
   font-size: 13px;
   vertical-align: top;
   line-height: 24px;
@@ -133,8 +136,7 @@
 
 .no-tests > .item:not(.has-tests) {
   /* stylelint-disable-next-line selector-max-compound-selectors */
-  & > div > .sub,
-  & > .link {
+  & > div > .sub {
     padding-left: 0;
   }
 
@@ -149,12 +151,10 @@
 }
 
 .link {
-  @apply --link-transition;
-  @apply --text-overflow;
-
-  display: block;
+  display: flex;
   position: relative;
-  padding: 3px 16px 3px 22px;
+  align-items: center;
+  padding: 3px 0;
   color: var(--gray);
 
   &:hover {
@@ -167,12 +167,15 @@
     outline: none;
     text-decoration: none;
   }
+
+  & span {
+    @apply --link-transition;
+    @apply --text-overflow;
+  }
 }
 
 .link-icon {
-  position: absolute;
-  top: 4px;
-  left: 0;
+  margin-right: 2px;
 
   &.pass {
     color: var(--green500);
