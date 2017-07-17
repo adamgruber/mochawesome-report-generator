@@ -1,5 +1,5 @@
-/* eslint-disable import/no-extraneous-dependencies, no-console */
-import React, { Component } from 'react';
+/* eslint-disable import/no-extraneous-dependencies */
+import React from 'react';
 import PropTypes from 'prop-types';
 import DevTools from 'mobx-react-devtools';
 import { Provider, observer } from 'mobx-react';
@@ -9,71 +9,61 @@ import { Suite } from 'components/suite';
 import cx from 'classnames';
 import 'styles/app.global.css';
 
-@observer
-class MochawesomeReport extends Component {
-  static displayName = 'MochawesomeReport';
-  static propTypes = {
-    store: PropTypes.object
+const MochawesomeReport = observer(props => {
+  const {
+    reportTitle,
+    suites,
+    allSuites,
+    stats,
+    enableChart,
+    enableCode,
+    showPassed,
+    showFailed,
+    showPending,
+    showSkipped,
+    showHooks,
+    sideNavOpen,
+    devMode
+  } = props.store;
+
+  const navMenuProps = {
+    reportTitle,
+    stats,
+    showPassed,
+    showFailed,
+    showPending,
+    showSkipped,
+    showHooks,
+    sideNavOpen
   };
 
-  componentDidMount() {
-    window.addEventListener('resize', this.resizeHandler);
-    this.resizeHandler();
-    setTimeout(() => {
-      const w = this.qsNode.getBoundingClientRect().width;
-      this.props.store.setQuickSummaryWidth(w);
-    }, 0);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.resizeHandler);
-  }
-
-  resizeHandler = () => {
-    this.props.store.setWindowWidth(window.innerWidth);
-  }
-
-  render() {
-    const { reportTitle, suites, allSuites, stats, enableChart, enableCode,
-      showPassed, showFailed, showPending, showSkipped, showHooks, sideNavOpen,
-      mobileBreakpoint, quickSummaryWidth, devMode } = this.props.store;
-
-    const navMenuProps = {
-      reportTitle,
-      stats,
-      showPassed,
-      showFailed,
-      showPending,
-      showSkipped,
-      showHooks,
-      sideNavOpen
-    };
-
-    return (
-      <Provider reportStore={ this.props.store }>
-        <div>
-          <Navbar
-            reportTitle={ reportTitle }
-            stats={ stats }
-            qsWidth={ quickSummaryWidth }
-            mobileBreakpoint={ mobileBreakpoint }
-            qsNodeRef={ node => (this.qsNode = node) } />
-          <div id='details' className={ cx('details', 'container') }>
-            { suites.map(suite => (
-              <Suite
-                key={ suite.uuid }
-                suite={ suite }
-                enableChart={ enableChart }
-                enableCode={ enableCode } />)
-            ) }
-          </div>
-          <Footer />
-          <NavMenu suites={ allSuites } { ...navMenuProps } />
-          { devMode && <DevTools position={ { bottom: 0, right: 20 } } /> }
+  return (
+    <Provider reportStore={ props.store }>
+      <div>
+        <Navbar
+          reportTitle={ reportTitle }
+          stats={ stats } />
+        <div id='details' className={ cx('details', 'container') }>
+          { suites.map(suite => (
+            <Suite
+              key={ suite.uuid }
+              suite={ suite }
+              enableChart={ enableChart }
+              enableCode={ enableCode } />)
+          ) }
         </div>
-      </Provider>
-    );
-  }
-}
+        <Footer />
+        <NavMenu suites={ allSuites } { ...navMenuProps } />
+        { devMode && <DevTools position={ { bottom: 0, right: 20 } } /> }
+      </div>
+    </Provider>
+  );
+});
+
+MochawesomeReport.propTypes = {
+  store: PropTypes.object
+};
+
+MochawesomeReport.displayName = 'MochawesomeReport';
 
 export default MochawesomeReport;

@@ -9,8 +9,6 @@ class ReportStore {
   @observable showFailed = true;
   @observable showPending = true;
   @observable showSkipped = false;
-  @observable quickSummaryWidth = null;
-  @observable windowWidth = null;
   @observable showHooks = 'failed';
 
   constructor(data = {}) {
@@ -21,10 +19,6 @@ class ReportStore {
   @computed get suites() {
     const derived = compact(map(this.allSuites, this._mapSuites));
     return derived;
-  }
-
-  @computed get mobileBreakpoint() {
-    return this.windowWidth < 768;
   }
 
   @action openSideNav() {
@@ -43,14 +37,6 @@ class ReportStore {
     if (this._isValidShowHookOption(prop)) {
       this.showHooks = prop;
     }
-  }
-
-  @action setQuickSummaryWidth(width) {
-    this.quickSummaryWidth = width;
-  }
-
-  @action setWindowWidth(width) {
-    this.windowWidth = width;
   }
 
   _filterHook = hook => (
