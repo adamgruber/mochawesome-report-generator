@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Duration, Icon } from 'components';
 import { CodeSnippet, TestContext } from 'components/test';
@@ -8,7 +8,7 @@ import styles from './test.css';
 
 const cx = classNames.bind(styles);
 
-class Test extends React.Component {
+class Test extends PureComponent {
   constructor() {
     super();
     this.toggleExpandedState = this.toggleExpandedState.bind(this);
@@ -92,12 +92,12 @@ class Test extends React.Component {
           </div>
         </header>
         { !!err.message && <p className={ cx('error-message') }>{ err.message }</p> }
-        <div className={ cx('body') }>
+        { this.state.expanded && <div className={ cx('body') }>
           { <CodeSnippet className={ cx('code-snippet') } code={ err.estack } highlight={ false } label='Stack Trace' /> }
           { <CodeSnippet className={ cx('code-snippet') } code={ err.diff } lang='diff' label='Diff' /> }
           { enableCode && <CodeSnippet className={ cx('code-snippet') } code={ code } label='Test Code' /> }
           { !!context && <TestContext context={ context } /> }
-        </div>
+        </div> }
       </section>
     );
   }
