@@ -31,6 +31,7 @@
     "react/sort-comp": 0,
     "react/jsx-no-bind": 1,
     "react/require-default-props": 0,
+    "react/prefer-stateless-function": [2, { "ignorePureComponents": true }],
 
     "jsx-a11y/no-static-element-interactions": 0,
 
