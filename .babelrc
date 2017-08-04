@@ -7,9 +7,10 @@
   "plugins": ["transform-decorators-legacy"],
   "env": {
     "test": {
-      "plugins": [
-        "istanbul"
-      ]
+      "plugins": ["istanbul"]
+    },
+    "production": {
+      "plugins": ["transform-react-constant-elements"]
     }
   }
 }
