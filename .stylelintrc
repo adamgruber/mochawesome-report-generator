@@ -18,7 +18,7 @@
     "order/properties-order": [["composes", "content", "display", "position"], { unspecified: "bottom" }],
     "property-no-vendor-prefix": true,
     "selector-max-compound-selectors": 3,
-    "selector-no-id": true,
+    "selector-max-id": 0,
     "selector-no-vendor-prefix": true,
     "selector-pseudo-class-no-unknown": [ true, { ignorePseudoClasses: ["global"] } ],
     "selector-pseudo-element-colon-notation": "single",
