@@ -1,7 +1,9 @@
 import { observable, computed, action } from 'mobx';
-import filter from 'lodash/filter';
-import map from 'lodash/map';
-import compact from 'lodash/compact';
+
+const transduce = (items, mapper, reducer, initial) =>
+  items.reduce((acc, item, index) =>
+    reducer(acc, mapper(item, index), index)
+  , initial);
 
 class ReportStore {
   @observable sideNavOpen = false;
@@ -17,8 +19,7 @@ class ReportStore {
   }
 
   @computed get suites() {
-    const derived = compact(map(this.allSuites, this._mapSuites));
-    return derived;
+    return this._getFilteredTests(this.allSuites);
   }
 
   @action openSideNav() {
@@ -39,28 +40,44 @@ class ReportStore {
     }
   }
 
-  _filterHook = hook => (
-      (this.showHooks === 'always')
+  _mapHook = hook => (
+      ((this.showHooks === 'always')
       || (this.showHooks === 'failed' && hook.fail)
-      || (this.showHooks === 'context' && hook.context)
+      || (this.showHooks === 'context' && hook.context))
+      && hook
   )
 
-  _mapSuites = suite => {
-    const suites = compact(map(suite.suites, this._mapSuites));
-    const tests = filter(suite.tests, test => (
-      (this.showPassed && test.pass)
+  _mapTest = test => (
+      ((this.showPassed && test.pass)
       || (this.showFailed && test.fail)
       || (this.showPending && test.pending)
-      || (this.showSkipped && test.skipped)
-    ));
+      || (this.showSkipped && test.skipped))
+      && test
+  )
 
-    const beforeHooks = filter(suite.beforeHooks, this._filterHook);
-    const afterHooks = filter(suite.afterHooks, this._filterHook);
+  _mapSuite = suite => {
+    const suites = suite.suites.length
+      ? this._getFilteredTests(suite.suites)
+      : [];
+    const tests = transduce(suite.tests, this._mapTest, this._reduceItem, []);
+    const beforeHooks = transduce(suite.beforeHooks, this._mapHook, this._reduceItem, []);
+    const afterHooks = transduce(suite.afterHooks, this._mapHook, this._reduceItem, []);
 
     return (beforeHooks.length || afterHooks.length || tests.length || suites.length)
       ? Object.assign({}, suite, { suites, beforeHooks, afterHooks, tests })
       : null;
   }
+
+  _reduceItem = (acc, item) => {
+    if (item) {
+      acc.push(item);
+    }
+    return acc;
+  }
+
+  _getFilteredTests = suite => (
+    transduce(suite, this._mapSuite, this._reduceItem, [])
+  )
 
   _isValidOption = (property, options, selection) => {
     const isValid = options.indexOf(selection) >= 0;

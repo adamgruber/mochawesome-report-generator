@@ -1,19 +1,22 @@
 /* eslint-disable react/no-danger, max-len */
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import iconmap from './icon-map.json';
 
-const Icon = ({ className, name, size, foreground }) => {
-  const iconCode = iconmap[name];
-  const cxName = classNames(
-    'material-icons',
-    !!size && `md-${size}`,
-    !!foreground && `md-${foreground}`,
-    className
-  );
-  return !!iconCode && <i className={ cxName } dangerouslySetInnerHTML={ { __html: `&#x${iconCode};` } } />;
-};
+class Icon extends PureComponent {
+  render() {
+    const { className, name, size, foreground } = this.props;
+    const iconCode = iconmap[name];
+    const cxName = classNames(
+      'material-icons',
+      !!size && `md-${size}`,
+      !!foreground && `md-${foreground}`,
+      className
+    );
+    return !!iconCode && <i className={ cxName } dangerouslySetInnerHTML={ { __html: `&#x${iconCode};` } } />;
+  }
+}
 
 Icon.propTypes = {
   className: PropTypes.string,
