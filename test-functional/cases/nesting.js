@@ -1,4 +1,4 @@
-import { createTest, createBefore } from '../helpers';
+const { createTest, createBefore } = require('../helpers');
 
 describe('Nesting Suites', () => {
   createTest(1, { forcePass: true, forceRun: true, forceContext: true });

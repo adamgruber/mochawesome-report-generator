@@ -1,4 +1,4 @@
-import { addContext } from '../helpers';
+const { addContext } = require('../helpers');
 
 function retObj() {
   return {

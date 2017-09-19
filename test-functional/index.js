@@ -3,14 +3,12 @@ const fs = require('fs');
 const path = require('path');
 const Mocha = require('mocha');
 
-// Babel runtime
-require('babel-register');
-
 // Instantiate a Mocha instance with mochawesome reporter
 const mocha = new Mocha({
   reporter: '../mochawesome', // path relative to cwd
   reporterOptions: {
-    dev: true
+    dev: true,
+    overwrite: true
   }
 });
 
@@ -19,7 +17,7 @@ const args = Array.prototype.slice.call(process.argv, 2);
 
 const isJSFile = file => file.substr(-3) === '.js';
 
-const testPaths = args.length ? args : [testCasesDir];
+const testPaths = args.length ? args : [ testCasesDir ];
 
 const addDirectoryToMocha = dir => {
   fs.readdirSync(dir)

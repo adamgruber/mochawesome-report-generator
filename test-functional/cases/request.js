@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { addContext } from '../helpers';
+const axios = require('axios');
+const { addContext } = require('../helpers');
 
 describe('Request', () => {
   it('has request as context', function () {

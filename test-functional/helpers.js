@@ -1,7 +1,7 @@
 /* eslint-disable no-console, no-undef */
-import chai from 'chai';
-import faker from 'faker';
-import addContext from '../../mochawesome/addContext';
+const chai = require('chai');
+const faker = require('faker');
+const addContext = require('../../mochawesome/addContext');
 
 chai.should();
 

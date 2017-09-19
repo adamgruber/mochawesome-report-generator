@@ -1,4 +1,4 @@
-import { createSuite } from '../helpers';
+const { createSuite } = require('../helpers');
 
 describe('Main Suite', () => {
   createSuite(1);
