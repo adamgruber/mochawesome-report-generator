@@ -113,6 +113,29 @@ colons | null | 17:46:21 | 174621
 
 Further, if you pass the flag with no format string, it will default to `isoDateTime`.
 
+## Development
+
+To develop locally, clone the repo and install dependencies. In order to test end-to-end you must also clone [mochawesome][2] into a directory at the same level as this repo.
+
+You can start the dev server with `npm run devserver`. If you are working on the CLI, use `npm run dev:cli` to watch for changes and rebuild.
+
+### Running Tests
+
+#### Unit Tests
+To run unit tests, simply use `npm run test`. You can also run a single unit test with `npm run test:single path/to/test.js`.
+
+#### Functional Tests
+Functional tests allow you to run real-world test cases in order to debug the output report. First, start up the dev server in one terminal window with `npm run devserver`. Then, in another window, run the tests with `npm run test:functional`. This will generate a report that you can open in the browser and debug.
+
+If you want to run a specific folder of functional tests:
+`npm run test:functional path/to/tests`
+
+Or if you want to run a single test:
+`npm run test:functional path/to/test.js`
+
+Or mix and match:
+`npm run test:functional path/to/some/tests path/to/another/test.js`
+
 [1]: https://mochajs.org/
 [2]: https://github.com/adamgruber/mochawesome
 [dateformat]: https://github.com/felixge/node-dateformat
