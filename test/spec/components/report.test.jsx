@@ -42,7 +42,8 @@ describe('<MochawesomeReport />', () => {
   });
 
   it('should scroll to a suite', () => {
-    reportStore.setInitialData({ data: testData, config: {} });
+    reportStore.setInitialData({ data: testData, config: { enableCharts: true } });
+    reportStore.toggleIsLoading(false);
     const node = document.createElement('div');
     node.setAttribute('id', 'app');
     document.body.appendChild(node);
