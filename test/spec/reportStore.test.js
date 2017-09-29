@@ -11,6 +11,7 @@ describe('ReportStore', () => {
 
   it('has the correct default state', () => {
     expect(store).to.include({
+      isLoading: true,
       sideNavOpen: false,
       showPassed: true,
       showFailed: true,
@@ -34,6 +35,7 @@ describe('ReportStore', () => {
       expect(store).to.have.property('enableChart', false);
       expect(store).to.have.property('devMode', false);
       expect(store).to.have.property('showHooks', 'failed');
+      expect(store).to.have.property('initialLoadTimeout', 1000);
     });
 
     it('with config options', () => {
@@ -141,6 +143,18 @@ describe('ReportStore', () => {
       expect(store).to.have.property('showHooks', 'failed');
       store.setShowHooks('sometimes');
       expect(store).to.have.property('showHooks', 'failed');
+    });
+
+    it('toggleIsLoading', () => {
+      expect(store).to.have.property('isLoading', true);
+      store.toggleIsLoading();
+      expect(store).to.have.property('isLoading', false);
+    });
+
+    it('toggleIsLoading with value', () => {
+      expect(store).to.have.property('isLoading', true);
+      store.toggleIsLoading(true);
+      expect(store).to.have.property('isLoading', true);
     });
   });
 });
