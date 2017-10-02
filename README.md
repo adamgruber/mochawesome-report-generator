@@ -93,6 +93,7 @@ Flag | Type | Default | Description
 --showHooks | string | failed | Set the default display mode for hooks
 --dev | boolean | false | Enable dev mode (requires local webpack dev server)
 -h, --help | | | Show CLI help
+--filter | string | all | Set the filters to be applied by default after generating the report.
 
 
 *Boolean options can be negated by adding `--no` before the option. For example: `--no-code` would set `code` to `false`.*
