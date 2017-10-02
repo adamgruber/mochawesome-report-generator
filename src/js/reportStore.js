@@ -2,6 +2,7 @@ import { observable, computed, action } from 'mobx';
 import filter from 'lodash/filter';
 import map from 'lodash/map';
 import compact from 'lodash/compact';
+import { includes } from 'lodash/collection';
 
 class ReportStore {
   @observable sideNavOpen = false;
@@ -109,11 +110,11 @@ class ReportStore {
     const validFilters = this._getValidFilters(splittedFilters);
 
     // It will leave the current filter state if there comes 'all' in the filter parameter.
-    if (!validFilters.includes('all') && validFilters.length > 0) {
-      this.showPassed = validFilters.includes('passed');
-      this.showFailed = validFilters.includes('failed');
-      this.showPending = validFilters.includes('pending');
-      this.showSkipped = validFilters.includes('skipped');
+    if (!includes(validFilters, 'all') && validFilters.length > 0) {
+      this.showPassed = includes(validFilters, 'passed');
+      this.showFailed = includes(validFilters, 'failed');
+      this.showPending = includes(validFilters, 'pending');
+      this.showSkipped = includes(validFilters, 'skipped');
     }
   };
 
