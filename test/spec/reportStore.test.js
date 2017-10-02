@@ -103,6 +103,104 @@ describe('ReportStore', () => {
     });
   });
 
+  describe('Filters', () => {
+    it('without filters', () => {
+      store.setInitialData({
+        data: testData,
+        config: {}
+      });
+
+      expect(store).to.have.property('showPassed', true);
+      expect(store).to.have.property('showFailed', true);
+      expect(store).to.have.property('showPending', true);
+      expect(store).to.have.property('showSkipped', false);
+    });
+
+    it('with invalid filter', () => {
+      store.setInitialData({
+        data: testData,
+        config: {
+          filter: 'abcdef'
+        }
+      });
+
+      expect(store).to.have.property('showPassed', true);
+      expect(store).to.have.property('showFailed', true);
+      expect(store).to.have.property('showPending', true);
+      expect(store).to.have.property('showSkipped', false);
+    });
+
+    it('only passed', () => {
+      store.setInitialData({
+        data: testData,
+        config: {
+          filter: 'passed'
+        }
+      });
+
+      expect(store).to.have.property('showPassed', true);
+      expect(store).to.have.property('showFailed', false);
+      expect(store).to.have.property('showPending', false);
+      expect(store).to.have.property('showSkipped', false);
+    });
+
+    it('only failed', () => {
+      store.setInitialData({
+        data: testData,
+        config: {
+          filter: 'failed'
+        }
+      });
+
+      expect(store).to.have.property('showPassed', false);
+      expect(store).to.have.property('showFailed', true);
+      expect(store).to.have.property('showPending', false);
+      expect(store).to.have.property('showSkipped', false);
+    });
+
+    it('only pending', () => {
+      store.setInitialData({
+        data: testData,
+        config: {
+          filter: 'pending'
+        }
+      });
+
+      expect(store).to.have.property('showPassed', false);
+      expect(store).to.have.property('showFailed', false);
+      expect(store).to.have.property('showPending', true);
+      expect(store).to.have.property('showSkipped', false);
+    });
+
+    it('only skipped', () => {
+      store.setInitialData({
+        data: testData,
+        config: {
+          filter: 'skipped'
+        }
+      });
+
+      expect(store).to.have.property('showPassed', false);
+      expect(store).to.have.property('showFailed', false);
+      expect(store).to.have.property('showPending', false);
+      expect(store).to.have.property('showSkipped', true);
+    });
+
+    it('show passed, failed, pending and skipped', () => {
+      store.setInitialData({
+        data: testData,
+        config: {
+          filter: 'passed,failed,pending,skipped'
+        }
+      });
+
+      expect(store).to.have.property('showPassed', true);
+      expect(store).to.have.property('showFailed', true);
+      expect(store).to.have.property('showPending', true);
+      expect(store).to.have.property('showSkipped', true);
+    });
+  });
+
   describe('Actions', () => {
     beforeEach(() => {
       store.setInitialData({ data: testData, config: {} });

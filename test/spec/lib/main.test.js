@@ -45,7 +45,8 @@ const baseOpts = {
   overwrite: true,
   timestamp: false,
   dev: false,
-  showHooks: 'failed'
+  showHooks: 'failed',
+  filter: 'all'
 };
 
 let opts;
@@ -318,7 +319,8 @@ describe('lib/main', () => {
           timestamp: false,
           ts: false,
           dev: false,
-          showHooks: 'failed'
+          showHooks: 'failed',
+          filter: 'all'
         });
     });
   });
