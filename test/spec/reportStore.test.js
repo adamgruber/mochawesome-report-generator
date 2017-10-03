@@ -35,7 +35,7 @@ describe('ReportStore', () => {
       expect(store).to.have.property('enableChart', false);
       expect(store).to.have.property('devMode', false);
       expect(store).to.have.property('showHooks', 'failed');
-      expect(store).to.have.property('initialLoadTimeout', 1000);
+      expect(store).to.have.property('initialLoadTimeout', 500);
     });
 
     it('with config options', () => {
