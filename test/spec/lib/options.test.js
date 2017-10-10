@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import path from 'path';
 import { expect } from 'chai';
-import options from '../../../lib/src/options';
+import { getMergedOptions } from '../../../lib/src/options';
 
 const expectedOptions = {
   reportDir: 'mochawesome-report',
@@ -16,19 +16,45 @@ const expectedOptions = {
   autoOpen: false,
   overwrite: true,
   timestamp: false,
+  saveJson: false,
   ts: false,
   dev: false,
   showHooks: 'failed'
 };
 
 describe('options', () => {
-  it('should get yargs options', () => {
-    expect(options.getYargsOptions())
-      .to.have.deep.property('o.default', expectedOptions.reportDir);
+  it('should get base options when no user options exist', () => {
+    expect(getMergedOptions())
+      .to.eql(expectedOptions);
   });
 
-  it('should get base options', () => {
-    expect(options.getBaseConfig())
-      .to.eql(expectedOptions);
+  describe('with user-supplied options', () => {
+    let userOptions;
+
+    beforeEach(() => {
+      userOptions = {
+        reportDir: 'userDir',
+        inline: true,
+        enableCode: false,
+        dev: 'true'
+      };
+      process.env.MOCHAWESOME_REPORTTITLE = 'userTitle';
+      process.env.MOCHAWESOME_AUTOOPEN = 'false';
+    });
+
+    afterEach(() => {
+      delete process.env.MOCHAWESOME_REPORTTITLE;
+      delete process.env.MOCHAWESOME_AUTOOPEN;
+    });
+
+    it('should get merged options', () => {
+      expect(getMergedOptions(userOptions))
+        .to.eql(Object.assign({}, expectedOptions, userOptions, {
+          inlineAssets: true,
+          code: false,
+          dev: true,
+          reportTitle: 'userTitle'
+        }));
+    });
   });
 });
