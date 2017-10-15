@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 const yargs = require('yargs');
-const options = require('../lib/options');
+const { yargsOptions } = require('../lib/options');
 const marge = require('./cli-main');
 
 // Setup yargs
 yargs
   .usage('Usage: $0 [options] data_file [data_file2 ...]')
   .demand(1)
-  .options(options.getYargsOptions())
+  .options(yargsOptions)
   .help('help')
   .alias('h', 'help')
   .version()
