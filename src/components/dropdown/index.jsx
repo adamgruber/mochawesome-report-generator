@@ -89,7 +89,7 @@ class Dropdown extends Component {
     const toggleFn = () => this.toggleListDisplay();
 
     return (
-      <div ref={ node => (this.node = node) } className={ compClass } >
+      <div ref={ node => { this.node = node; } } className={ compClass } >
         <button className={ toggleClass } onClick={ toggleFn } >
           { !iconOnly && this._getItemText(displayItem) }
           { !!toggleIcon && toggleIcon }

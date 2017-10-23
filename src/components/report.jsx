@@ -57,7 +57,7 @@ class MochawesomeReport extends Component {
             stats={ stats }
             qsWidth={ quickSummaryWidth }
             mobileBreakpoint={ mobileBreakpoint }
-            qsNodeRef={ node => (this.qsNode = node) } />
+            qsNodeRef={ node => { this.qsNode = node; } } />
           <div id='details' className={ cx('details', 'container') }>
             { suites.map(suite => (
               <Suite

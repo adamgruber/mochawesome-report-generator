@@ -84,7 +84,7 @@ class CodeSnippet extends Component {
     };
 
     return !!code && (
-      <pre className={ cxName } ref={ node => (this.node = node) }>
+      <pre className={ cxName } ref={ node => { this.node = node; } }>
         <code>
           { isDiff && renderLegendLeft() }
           { isDiff && renderLegendRight() }

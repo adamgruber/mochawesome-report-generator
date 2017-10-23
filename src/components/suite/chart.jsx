@@ -79,7 +79,7 @@ class SuiteChart extends Component {
     return (
       <div className={ cx('chart-wrap') }>
         <canvas
-          ref={ node => (this.node = node) }
+          ref={ node => { this.node = node; } }
           width='50'
           height='50' />
       </div>
