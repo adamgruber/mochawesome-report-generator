@@ -2,6 +2,7 @@ import { observable, computed, action } from 'mobx';
 import filter from 'lodash/filter';
 import map from 'lodash/map';
 import compact from 'lodash/compact';
+import { includes } from 'lodash/collection';
 
 class ReportStore {
   @observable sideNavOpen = false;
@@ -16,6 +17,7 @@ class ReportStore {
   constructor(data = {}) {
     this.data = data;
     this.showHooksOptions = [ 'failed', 'always', 'never', 'context' ];
+    this.filterOptions = [ 'all', 'passed', 'failed', 'pending', 'skipped' ];
   }
 
   @computed get suites() {
@@ -88,6 +90,10 @@ class ReportStore {
     this._isValidOption('showHooks', this.showHooksOptions, option)
   );
 
+  _isValidFilterOption = option => (
+    this._isValidOption('filter', this.filterOptions, option)
+  );
+
   _getShowHooks = ({ showHooks }) => {
     if (!showHooks) {
       return this.showHooks;
@@ -95,9 +101,30 @@ class ReportStore {
     return this._isValidShowHookOption(showHooks) ? showHooks : this.showHooks;
   };
 
+  _setFilterState = filters => {
+    if (!filters) {
+      return;
+    }
+
+    const splittedFilters = filters.split(',');
+    const validFilters = this._getValidFilters(splittedFilters);
+
+    // It will leave the current filter state if there comes 'all' in the filter parameter.
+    if (!includes(validFilters, 'all') && validFilters.length > 0) {
+      this.showPassed = includes(validFilters, 'passed');
+      this.showFailed = includes(validFilters, 'failed');
+      this.showPending = includes(validFilters, 'pending');
+      this.showSkipped = includes(validFilters, 'skipped');
+    }
+  };
+
+  _getValidFilters = filters =>
+    filters.filter(reportFilter => this._isValidFilterOption(reportFilter));
+
   setInitialData({ data, config }) {
     const reportTitle = config.reportTitle || data.reportTitle;
     const showHooks = this._getShowHooks(config);
+    this._setFilterState(config.filter);
 
     Object.assign(this, { data, ...config, reportTitle, showHooks });
     this.allSuites = [ data.suites ];
