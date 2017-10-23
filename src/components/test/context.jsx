@@ -10,6 +10,7 @@ const cx = classNames.bind(styles);
 const imgRegEx = /(?:png|jpe?g|gif)$/i;
 const protocolRegEx = /^(?:(?:https?|ftp):\/\/)/i;
 const urlRegEx = /^(?:(?:https?|ftp):\/\/)?(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/ // eslint-disable-line
+const base64ImgRegEx = /^data:image\/([a-zA-Z0-9-_.])+;base64,([^"]*)$/i;
 
 class TestContext extends Component {
   static displayName = 'TestContext';
@@ -38,6 +39,8 @@ class TestContext extends Component {
     );
   }
 
+  renderBase64Image = (ctx, title) => <img src={ ctx } className={ cx('image') } alt={ title } />;
+
   renderLink = (url, title) => {
     const linkUrl = `${protocolRegEx.test(url) ? '' : 'http://'}${url}`;
     return (
@@ -56,6 +59,11 @@ class TestContext extends Component {
     // Images
     if (imgRegEx.test(content)) {
       return this.renderImage(content, title);
+    }
+
+    // Base64 Images
+    if (base64ImgRegEx.test(content)) {
+      return this.renderBase64Image(content, title);
     }
 
     // URLs
