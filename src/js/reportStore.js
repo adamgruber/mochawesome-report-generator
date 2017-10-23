@@ -106,6 +106,8 @@ class ReportStore {
   _getValidFilters = filters =>
     filters.filter(reportFilter => this._isValidFilterOption(reportFilter));
 
+  _includeFilter = (filters, filter) => (filters.indexOf(filter) > -1);
+
   _setFilterState = filters => {
     if (!filters) {
       return;
@@ -115,11 +117,11 @@ class ReportStore {
     const validFilters = this._getValidFilters(splittedFilters);
 
     // It will leave the current filter state if there comes 'all' in the filter parameter.
-    if (validFilters.length > 0 && (validFilters.indexOf('all') === -1)) {
-      this.showPassed = (validFilters.indexOf('passed') > -1);
-      this.showFailed = (validFilters.indexOf('failed') > -1);
-      this.showPending = (validFilters.indexOf('pending') > -1);
-      this.showSkipped = (validFilters.indexOf('skipped') > -1);
+    if (validFilters.length > 0 && !this._includeFilter(validFilters, 'all')) {
+      this.showPassed = this._includeFilter(validFilters, 'passed');
+      this.showFailed = this._includeFilter(validFilters, 'failed');
+      this.showPending = this._includeFilter(validFilters, 'pending');
+      this.showSkipped = this._includeFilter(validFilters, 'skipped');
     }
   };
 
