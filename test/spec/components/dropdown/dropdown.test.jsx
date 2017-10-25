@@ -84,11 +84,12 @@ describe('<Dropdown />', () => {
   });
 
   it('handles toggling the menu', () => {
-    const { menu, toggle } = getInstance(props);
+    const { wrapper, toggle } = getInstance(props);
     toggle.simulate('click');
-    expect(menu.hasClass('dropdown-open')).to.equal(true);
+    expect(wrapper.find('ul').hasClass('dropdown-open')).to.equal(true);
     document.body.click();
-    expect(menu.hasClass('dropdown-open')).to.equal(false);
+    wrapper.update();
+    expect(wrapper.find('ul').hasClass('dropdown-open')).to.equal(false);
   });
 
   it('handles selecting an item', () => {

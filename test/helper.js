@@ -1,3 +1,9 @@
+// Setup Enzyme Adapter
+const enzyme = require('enzyme');
+const Adapter = require('enzyme-adapter-react-16');
+
+enzyme.configure({ adapter: new Adapter() });
+
 // Setup path lookups
 const path = require('path');
 require('app-module-path').addPath(__dirname);
