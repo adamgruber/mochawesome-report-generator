@@ -6,6 +6,7 @@ const transduce = (items, mapper, reducer, initial) =>
   , initial);
 
 class ReportStore {
+  @observable isLoading = true;
   @observable sideNavOpen = false;
   @observable showPassed = true;
   @observable showFailed = true;
@@ -38,6 +39,12 @@ class ReportStore {
     if (this._isValidShowHookOption(prop)) {
       this.showHooks = prop;
     }
+  }
+
+  @action toggleIsLoading(isLoading) {
+    this.isLoading = (isLoading !== undefined)
+      ? isLoading
+      : !this.isLoading;
   }
 
   _mapHook = hook => (
@@ -106,6 +113,7 @@ class ReportStore {
     this.allSuites = [ data.suites ];
     this.stats = data.stats;
     this.enableChart = !!config.enableCharts;
+    this.initialLoadTimeout = 500;
     this.devMode = !!config.dev;
   }
 }
