@@ -1,0 +1,3 @@
+--watch-extensions jsx
+--require babel-register
+--require test/helper.js
