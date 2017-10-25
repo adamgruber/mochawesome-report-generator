@@ -35,7 +35,7 @@ describe('<CodeSnippet />', () => {
       code: 'function(){console.log(\'sample code\');}'
     };
     const wrapper = getInstance(props);
-    expect(wrapper.hasClass('javascript')).to.equal(true);
+    expect(wrapper.find('pre').hasClass('javascript')).to.equal(true);
     expect(document.querySelectorAll('.hljs-keyword').length).to.equal(1);
     expect(document.querySelectorAll('.test-code-diff-expected').length).to.equal(0);
     expect(document.querySelectorAll('.test-code-diff-actual').length).to.equal(0);
@@ -47,8 +47,8 @@ describe('<CodeSnippet />', () => {
       lang: 'diff'
     };
     const wrapper = getInstance(props);
-    expect(wrapper.hasClass('diff')).to.equal(true);
-    expect(wrapper.hasClass('inline-diff')).to.equal(false);
+    expect(wrapper.find('pre').hasClass('diff')).to.equal(true);
+    expect(wrapper.find('pre').hasClass('inline-diff')).to.equal(false);
     expect(document.querySelectorAll('.test-code-diff-expected').length).to.equal(1);
     expect(document.querySelectorAll('.test-code-diff-actual').length).to.equal(1);
     expect(document.querySelectorAll('.hljs-addition').length).to.equal(3);
@@ -66,8 +66,8 @@ describe('<CodeSnippet />', () => {
       lang: 'diff'
     };
     const wrapper = getInstance(props, { useInlineDiffs: true });
-    expect(wrapper.hasClass('diff')).to.equal(false);
-    expect(wrapper.hasClass('inline-diff')).to.equal(true);
+    expect(wrapper.find('pre').hasClass('diff')).to.equal(false);
+    expect(wrapper.find('pre').hasClass('inline-diff')).to.equal(true);
     expect(document.querySelectorAll('.test-code-diff-expected').length).to.equal(2);
     expect(document.querySelectorAll('.test-code-diff-actual').length).to.equal(2);
   });
