@@ -52,14 +52,25 @@ beforeEach(() => {
 
 describe('lib/main', () => {
   describe('create', () => {
-    it('saves report', () => {
+    it('saves only html', () => {
       const expectedHtmlFile = path.resolve(process.cwd(), 'test', 'test.html');
       outputFileStub.resolves(expectedHtmlFile);
       const promise = mareport.create(testData, opts);
-      return expect(promise).to.become([ expectedHtmlFile ]);
+      return expect(promise).to.become([ expectedHtmlFile, null ]);
     });
 
-    it('saves report and json', () => {
+    it('saves only json', () => {
+      opts.saveHtml = false;
+      opts.saveJson = true;
+      const expectedJsonFile = path.resolve(process.cwd(), 'test', 'test.json');
+      outputFileStub
+        .onCall(0).resolves('')
+        .onCall(1).resolves(expectedJsonFile);
+      const promise = mareport.create(testData, opts);
+      return expect(promise).to.become([ null, expectedJsonFile ]);
+    });
+
+    it('saves html and json', () => {
       opts.saveJson = true;
       const expectedHtmlFile = path.resolve(process.cwd(), 'test', 'test.html');
       const expectedJsonFile = path.resolve(process.cwd(), 'test', 'test.json');
@@ -68,6 +79,13 @@ describe('lib/main', () => {
         .onCall(1).resolves(expectedJsonFile);
       const promise = mareport.create(testData, opts);
       return expect(promise).to.become([ expectedHtmlFile, expectedJsonFile ]);
+    });
+
+    it('does NOT save report', () => {
+      opts.saveHtml = false;
+      outputFileStub.resolves('');
+      const promise = mareport.create(testData, opts);
+      return expect(promise).to.become([ null, null ]);
     });
 
     it('with autoOpen', () => {

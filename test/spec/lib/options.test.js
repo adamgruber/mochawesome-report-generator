@@ -17,6 +17,7 @@ const expectedOptions = {
   overwrite: true,
   timestamp: false,
   saveJson: false,
+  saveHtml: true,
   ts: false,
   dev: false,
   showHooks: 'failed'
