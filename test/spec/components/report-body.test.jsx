@@ -3,13 +3,26 @@ import { shallow } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
+import proxyquire from 'proxyquire';
 
-import ReportBody from 'components/report-body';
-import Loader from 'components/loader';
 import Suite from 'components/suite/suite';
 import basicSuite from 'sample-data/suite.json';
 
+proxyquire.noCallThru();
+
 chai.use(chaiEnzyme());
+
+const disposerSpy = sinon.spy();
+const reactionSpy = sinon.stub().callsFake((fn1, fn2) => {
+  fn2();
+  return disposerSpy;
+});
+
+const ReportBody = proxyquire('components/report-body', {
+  mobx: {
+    reaction: reactionSpy
+  }
+}).default;
 
 describe('<ReportBody />', () => {
   let props;
@@ -20,7 +33,6 @@ describe('<ReportBody />', () => {
     });
     return {
       wrapper: wrapper.dive(),
-      loader: wrapper.dive().find(Loader),
       suites: wrapper.dive().find(Suite)
     };
   };
@@ -30,30 +42,21 @@ describe('<ReportBody />', () => {
       reportStore: {
         enableCode: true,
         initialLoadTimeout: 0,
-        isLoading: true,
-        suites: [ basicSuite ],
+        filteredSuites: [ basicSuite ],
+        updateFilteredSuites: () => [ basicSuite ],
         toggleIsLoading: sinon.spy()
       }
     };
   });
 
-  it('renders Loader', () => {
-    const { loader } = getInstance(props);
-    expect(loader).to.have.lengthOf(1);
-  });
-
   it('renders Suites', () => {
-    props.reportStore.isLoading = false;
-    const { loader, suites } = getInstance(props);
-    expect(loader).to.have.lengthOf(0);
+    const { suites } = getInstance(props);
     expect(suites).to.have.lengthOf(1);
   });
 
-  it('calls toggleIsLoading', done => {
-    getInstance(props);
-    setTimeout(() => {
-      expect(props.reportStore.toggleIsLoading.called).to.equal(true);
-      done();
-    }, props.reportStore.initialLoadTimeout);
+  it('calls disposer on unmount', () => {
+    const { wrapper } = getInstance(props);
+    wrapper.unmount();
+    expect(disposerSpy.called).to.equal(true);
   });
 });
