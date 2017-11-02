@@ -5,7 +5,7 @@ import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
 
 import ReportBody from 'components/report-body';
-import Loader from 'components/report-body/loader';
+import Loader from 'components/loader';
 import Suite from 'components/suite/suite';
 import basicSuite from 'sample-data/suite.json';
 

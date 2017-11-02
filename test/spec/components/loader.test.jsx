@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 
-import Loader from 'components/report-body/loader';
+import Loader from 'components/loader';
 
 chai.use(chaiEnzyme());
 

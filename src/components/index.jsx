@@ -3,6 +3,7 @@ export { default as DropdownSelector } from './dropdown-selector';
 export { default as Duration } from './duration';
 export { default as Footer } from './footer';
 export { default as Icon } from './material-icon';
+export { default as Loader } from './loader';
 export { default as MochawesomeReport } from './report';
 export { default as Navbar } from './navbar';
 export { default as NavMenu } from './nav-menu';
