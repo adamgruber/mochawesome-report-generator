@@ -1,6 +1,15 @@
 @import '../../styles/vars';
 
 .component {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: color(var(--body-bg) alpha(60%));
+  padding-top: var(--navbar-height);
+}
+
+.wrap {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,5 +39,12 @@
 
   100% {
     transform: rotate(360deg);
+  }
+}
+
+/* Tablet 768 and up */
+@media (--screen-sm) {
+  .component {
+    padding-top: var(--navbar-height-short);
   }
 }

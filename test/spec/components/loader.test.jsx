@@ -8,15 +8,29 @@ import Loader from 'components/loader';
 chai.use(chaiEnzyme());
 
 describe('<Loader />', () => {
-  const getInstance = () => {
-    const wrapper = shallow(<Loader />);
-    return {
-      wrapper
-    };
+  let props;
+
+  const getInstance = instanceProps => {
+    const wrapper = shallow(<Loader { ...instanceProps } />);
+    return { wrapper: wrapper.dive() };
   };
 
-  it('renders', () => {
-    const { wrapper } = getInstance();
+  beforeEach(() => {
+    props = {
+      reportStore: {
+        isLoading: true
+      }
+    };
+  });
+
+  it('renders when isLoading is true', () => {
+    const { wrapper } = getInstance(props);
     expect(wrapper.find('.loader-text')).to.have.lengthOf(1);
+  });
+
+  it('does NOT render when isLoading is true', () => {
+    props.reportStore.isLoading = false;
+    const { wrapper } = getInstance(props);
+    expect(wrapper.isEmptyRender()).to.equal(true);
   });
 });
