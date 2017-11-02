@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DevTools from 'mobx-react-devtools';
 import { Provider, observer } from 'mobx-react';
-import { Footer, Navbar, ReportBody } from 'components';
+import { Footer, Loader, Navbar, ReportBody } from 'components';
 import { NavMenu } from 'components/nav-menu';
 import 'styles/app.global.css';
 
@@ -39,6 +39,7 @@ const MochawesomeReport = observer(props => {
           reportTitle={ reportTitle }
           stats={ stats } />
         <ReportBody />
+        <Loader />
         <Footer />
         <NavMenu suites={ allSuites } { ...navMenuProps } />
         { devMode && <DevTools position={ { bottom: 0, right: 20 } } /> }

@@ -2,6 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
+import sinon from 'sinon';
 
 import Report from 'components/report';
 import DevTools from 'mobx-react-devtools';
@@ -14,6 +15,7 @@ chai.use(chaiEnzyme());
 describe('<MochawesomeReport />', () => {
   let reportStore;
   let props;
+  let clock;
 
   const getInstance = (instanceProps, opts) => {
     const wrapper = mount(<Report { ...instanceProps } />, opts);
@@ -26,6 +28,11 @@ describe('<MochawesomeReport />', () => {
   beforeEach(() => {
     reportStore = new ReportStore();
     props = { store: reportStore };
+    clock = sinon.useFakeTimers();
+  });
+
+  afterEach(() => {
+    clock.restore();
   });
 
   it('should render', () => {
@@ -42,17 +49,19 @@ describe('<MochawesomeReport />', () => {
   });
 
   it('should scroll to a suite', () => {
-    reportStore.setInitialData({ data: testData, config: { enableCharts: true } });
-    reportStore.toggleIsLoading(false);
+    reportStore.setInitialData({
+      data: testData,
+      config: { enableCharts: true }
+    });
+
     const node = document.createElement('div');
     node.setAttribute('id', 'app');
     document.body.appendChild(node);
-
     const { wrapper } = getInstance(props, { attachTo: node });
+    clock.next();
 
     expect(window.scrollTop).to.equal(0);
     wrapper.find('.nav-menu-link').at(3).simulate('click');
-
     document.getElementById('app').remove();
   });
 });
