@@ -1,4 +1,4 @@
-import { observable, computed, action } from 'mobx';
+import { observable, action } from 'mobx';
 
 const transduce = (items, mapper, reducer, initial) =>
   items.reduce((acc, item, index) =>
@@ -13,14 +13,11 @@ class ReportStore {
   @observable showPending = true;
   @observable showSkipped = false;
   @observable showHooks = 'failed';
+  @observable.shallow filteredSuites = [];
 
   constructor(data = {}) {
     this.data = data;
     this.showHooksOptions = [ 'failed', 'always', 'never', 'context' ];
-  }
-
-  @computed get suites() {
-    return this._getFilteredTests(this.allSuites);
   }
 
   @action openSideNav() {
@@ -32,11 +29,13 @@ class ReportStore {
   }
 
   @action toggleFilter(prop) {
+    this.toggleIsLoading(true);
     this[prop] = !this[prop];
   }
 
   @action setShowHooks(prop) {
     if (this._isValidShowHookOption(prop)) {
+      this.toggleIsLoading(true);
       this.showHooks = prop;
     }
   }
@@ -113,8 +112,15 @@ class ReportStore {
     this.allSuites = [ data.suites ];
     this.stats = data.stats;
     this.enableChart = !!config.enableCharts;
-    this.initialLoadTimeout = 500;
+    this.initialLoadTimeout = 300;
     this.devMode = !!config.dev;
+  }
+
+  updateFilteredSuites(timeout = this.initialLoadTimeout) {
+    setTimeout(() => {
+      this.toggleIsLoading(false);
+      this.filteredSuites = this._getFilteredTests(this.allSuites);
+    }, timeout);
   }
 }
 
