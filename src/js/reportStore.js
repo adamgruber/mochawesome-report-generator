@@ -17,6 +17,7 @@ class ReportStore {
   constructor(data = {}) {
     this.data = data;
     this.showHooksOptions = [ 'failed', 'always', 'never', 'context' ];
+    this.filterOptions = [ 'all', 'passed', 'failed', 'pending', 'skipped' ];
   }
 
   @computed get suites() {
@@ -98,6 +99,10 @@ class ReportStore {
     this._isValidOption('showHooks', this.showHooksOptions, option)
   );
 
+  _isValidFilterOption = option => (
+    this._isValidOption('filter', this.filterOptions, option)
+  );
+
   _getShowHooks = ({ showHooks }) => {
     if (!showHooks) {
       return this.showHooks;
@@ -105,9 +110,32 @@ class ReportStore {
     return this._isValidShowHookOption(showHooks) ? showHooks : this.showHooks;
   };
 
+  _getValidFilters = filters =>
+    filters.filter(reportFilter => this._isValidFilterOption(reportFilter));
+
+  _includeFilter = (filters, filter) => (filters.indexOf(filter) > -1);
+
+  _setFilterState = filters => {
+    if (!filters) {
+      return;
+    }
+
+    const splittedFilters = filters.split('+');
+    const validFilters = this._getValidFilters(splittedFilters);
+
+    // It will leave the current filter state if there comes 'all' in the filter parameter.
+    if (validFilters.length > 0 && !this._includeFilter(validFilters, 'all')) {
+      this.showPassed = this._includeFilter(validFilters, 'passed');
+      this.showFailed = this._includeFilter(validFilters, 'failed');
+      this.showPending = this._includeFilter(validFilters, 'pending');
+      this.showSkipped = this._includeFilter(validFilters, 'skipped');
+    }
+  };
+
   setInitialData({ data, config }) {
     const reportTitle = config.reportTitle || data.reportTitle;
     const showHooks = this._getShowHooks(config);
+    this._setFilterState(config.filter);
 
     Object.assign(this, { data, ...config, reportTitle, showHooks });
     this.allSuites = [ data.suites ];

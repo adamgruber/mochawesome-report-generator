@@ -20,7 +20,8 @@ const expectedOptions = {
   saveHtml: true,
   ts: false,
   dev: false,
-  showHooks: 'failed'
+  showHooks: 'failed',
+  filter: 'all'
 };
 
 describe('options', () => {
