@@ -8,10 +8,10 @@ import Loader from 'components/report-body/loader';
 chai.use(chaiEnzyme());
 
 describe('<Loader />', () => {
-  const getInstance = instanceProps => {
+  const getInstance = () => {
     const wrapper = shallow(<Loader />);
     return {
-      wrapper,
+      wrapper
     };
   };
 

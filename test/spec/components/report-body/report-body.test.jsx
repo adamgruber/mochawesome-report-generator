@@ -21,7 +21,7 @@ describe('<ReportBody />', () => {
     return {
       wrapper: wrapper.dive(),
       loader: wrapper.dive().find(Loader),
-      suites: wrapper.dive().find(Suite),
+      suites: wrapper.dive().find(Suite)
     };
   };
 
@@ -33,27 +33,27 @@ describe('<ReportBody />', () => {
         isLoading: true,
         suites: [ basicSuite ],
         toggleIsLoading: sinon.spy()
-      },
+      }
     };
   });
 
   it('renders Loader', () => {
-    const { wrapper, loader } = getInstance(props);
+    const { loader } = getInstance(props);
     expect(loader).to.have.lengthOf(1);
   });
 
   it('renders Suites', () => {
     props.reportStore.isLoading = false;
-    const { wrapper, loader, suites } = getInstance(props);
+    const { loader, suites } = getInstance(props);
     expect(loader).to.have.lengthOf(0);
     expect(suites).to.have.lengthOf(1);
   });
 
-  it('calls toggleIsLoading', (done) => {
+  it('calls toggleIsLoading', done => {
     getInstance(props);
     setTimeout(() => {
       expect(props.reportStore.toggleIsLoading.called).to.equal(true);
       done();
-    }, props.reportStore.initialLoadTimeout)
+    }, props.reportStore.initialLoadTimeout);
   });
 });
