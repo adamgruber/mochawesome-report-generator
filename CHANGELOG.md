@@ -1,5 +1,8 @@
 # Changelog
 
+### [2.3.2] / 2017-11-13
+- Fix an issue where long test titles are truncated with no way to see the full title [#65](https://github.com/adamgruber/mochawesome-report-generator/issues/65)
+
 ### [2.3.1] / 2017-10-23
 - Fix botched release
 
