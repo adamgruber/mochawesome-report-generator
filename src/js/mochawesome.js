@@ -4,20 +4,19 @@ import { MochawesomeReport } from 'components';
 import hljs from 'highlight.js/lib/highlight';
 import reportStore from './reportStore';
 
-const bodyEl = document.querySelector('body');
-const data = JSON.parse(bodyEl.getAttribute('data-raw'));
-const config = JSON.parse(bodyEl.getAttribute('data-config'));
+// Clean up the DOM
+const initDataScriptEl = document.getElementById('init-data');
+initDataScriptEl.parentNode.removeChild(initDataScriptEl);
 
 // Register hljs languages
 hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
 hljs.registerLanguage('diff', require('highlight.js/lib/languages/diff'));
 
-bodyEl.removeAttribute('data-raw');
-bodyEl.removeAttribute('data-config');
-
 // Set data in the store
+const { data, config } = window.MOCHAWESOME;
 reportStore.setInitialData({ data, config });
 
+// Render the report
 ReactDOM.render(
   React.createElement(MochawesomeReport, { store: reportStore }),
   document.getElementById('report')

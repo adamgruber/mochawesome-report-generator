@@ -17,8 +17,13 @@ function MainHTML(props) {
           ? <style dangerouslySetInnerHTML={ { __html: styles } } />
           : <link rel='stylesheet' href={ clientStyle } /> }
       </head>
-      <body data-raw={ data } data-config={ JSON.stringify(options) }>
+      <body>
         <div id='report' />
+        <script
+          id='init-data'
+          dangerouslySetInnerHTML={ {
+            __html: `MOCHAWESOME={data:${data},config:${JSON.stringify(options)}};`
+          } } />
         { options.inlineAssets
           ? <script type='text/javascript' dangerouslySetInnerHTML={ { __html: scripts } } />
           : <script src={ clientScript } /> }
