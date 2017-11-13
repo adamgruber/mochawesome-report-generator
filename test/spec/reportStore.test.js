@@ -1,12 +1,19 @@
 import { expect } from 'chai';
+import sinon from 'sinon';
 import { ReportStore } from 'js/reportStore';
 import testData from 'sample-data/nested.json';
 
 describe('ReportStore', () => {
   let store;
+  let clock;
 
   beforeEach(() => {
     store = new ReportStore();
+    clock = sinon.useFakeTimers();
+  });
+
+  afterEach(() => {
+    clock.restore();
   });
 
   it('has the correct default state', () => {
@@ -35,7 +42,7 @@ describe('ReportStore', () => {
       expect(store).to.have.property('enableChart', false);
       expect(store).to.have.property('devMode', false);
       expect(store).to.have.property('showHooks', 'failed');
-      expect(store).to.have.property('initialLoadTimeout', 500);
+      expect(store).to.have.property('initialLoadTimeout', 300);
     });
 
     it('with config options', () => {
@@ -66,28 +73,6 @@ describe('ReportStore', () => {
         }
       });
       expect(store).to.have.property('showHooks', 'failed');
-    });
-  });
-
-  describe('Computed Properties', () => {
-    beforeEach(() => {
-      store.setInitialData({ data: testData, config: {} });
-    });
-
-    describe('suites', () => {
-      it('is not empty when filters are on', () => {
-        store.toggleFilter('showSkipped');
-        expect(store.suites).to.have.lengthOf(1);
-        store.toggleFilter('showSkipped');
-      });
-
-      it('is empty when fiilters are off', () => {
-        store.toggleFilter('showPassed');
-        store.toggleFilter('showFailed');
-        store.toggleFilter('showPending');
-        store.setShowHooks('never');
-        expect(store.suites).to.have.lengthOf(0);
-      });
     });
   });
 
@@ -155,6 +140,38 @@ describe('ReportStore', () => {
       expect(store).to.have.property('isLoading', true);
       store.toggleIsLoading(true);
       expect(store).to.have.property('isLoading', true);
+    });
+  });
+
+  describe('updateFilteredSuites', () => {
+    beforeEach(() => {
+      store.setInitialData({ data: testData, config: {} });
+      store.toggleIsLoading(true);
+    });
+
+    describe('when filters are on', () => {
+      it('should set isLoading: false and filteredSuites should not be an empty array', () => {
+        store.updateFilteredSuites();
+        clock.next();
+        expect(store.isLoading).to.equal(false);
+        expect(store.filteredSuites).to.have.lengthOf(1);
+      });
+    });
+
+    describe('when filters are off', () => {
+      beforeEach(() => {
+        store.toggleFilter('showPassed');
+        store.toggleFilter('showFailed');
+        store.toggleFilter('showPending');
+        store.setShowHooks('never');
+      });
+
+      it('should set isLoading: false and filteredSuites should be an empty array', () => {
+        store.updateFilteredSuites();
+        clock.next();
+        expect(store.isLoading).to.equal(false);
+        expect(store.filteredSuites).to.have.lengthOf(0);
+      });
     });
   });
 });

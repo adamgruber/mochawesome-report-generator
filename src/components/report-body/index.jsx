@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { observer, inject } from 'mobx-react';
+import { reaction } from 'mobx';
+import { inject, observer } from 'mobx-react';
 import { Suite } from 'components/suite';
 import cx from 'classnames';
-import Loader from './loader';
 
 @inject('reportStore') @observer
 class ReportBody extends React.Component {
@@ -11,29 +11,54 @@ class ReportBody extends React.Component {
     reportStore: PropTypes.object
   };
 
+  updateSuites(timeout) {
+    this.props.reportStore.updateFilteredSuites(timeout);
+  }
+
   componentDidMount() {
-    setTimeout(() => {
-      this.props.reportStore.toggleIsLoading();
-    }, this.props.reportStore.initialLoadTimeout);
+    this.updateSuites();
+    this.disposer = reaction(
+      () => {
+        const {
+          showPassed,
+          showFailed,
+          showPending,
+          showSkipped,
+          showHooks
+        } = this.props.reportStore;
+        return {
+          showPassed,
+          showFailed,
+          showPending,
+          showSkipped,
+          showHooks
+        };
+      },
+      () => this.updateSuites(0),
+      { delay: 300 }
+    );
+  }
+
+  componentWillUnmount() {
+    this.disposer();
   }
 
   render() {
     const {
       enableCode,
-      isLoading,
-      suites
+      enableChart,
+      filteredSuites: suites
     } = this.props.reportStore;
 
     return (
       <div id='details' className={ cx('details', 'container') }>
-        { isLoading
-          ? <Loader />
-          : suites.map(suite => (
-            <Suite
-              key={ suite.uuid }
-              suite={ suite }
-              enableCode={ enableCode } />)
-            )
+        { suites.map(suite => (
+          <Suite
+            key={ suite.uuid }
+            suite={ suite }
+            enableChart={ enableChart }
+            enableCode={ enableCode } />)
+          )
         }
       </div>
     );
