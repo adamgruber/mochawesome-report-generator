@@ -12,7 +12,7 @@ const toggleIcon = () => (
 
 function DropdownSelector(props) {
   const { className, labelClassName, label, icon, iconClassName, onSelect, selections, selected,
-  ddClassName, ddMenuClassName, ddSelectedClassName } = props;
+    ddClassName, ddMenuClassName, ddSelectedClassName } = props;
   const labelCxName = cx('label', { 'with-icon': !!icon }, labelClassName);
   return (
     <div className={ cx('component', className) }>

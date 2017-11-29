@@ -62,13 +62,13 @@ class CodeSnippet extends Component {
     });
 
     const renderLegendLeft = () => (isInlineDiff
-        ? <span className={ cx('code-diff-actual') }>actual</span>
-        : <span className={ cx('code-diff-expected') }>+ expected</span>
+      ? <span className={ cx('code-diff-actual') }>actual</span>
+      : <span className={ cx('code-diff-expected') }>+ expected</span>
     );
 
     const renderLegendRight = () => (isInlineDiff
-        ? <span className={ cx('code-diff-expected') }>{'expected\n\n'}</span>
-        : <span className={ cx('code-diff-actual') }>{'- actual\n\n'}</span>
+      ? <span className={ cx('code-diff-expected') }>{'expected\n\n'}</span>
+      : <span className={ cx('code-diff-actual') }>{'- actual\n\n'}</span>
     );
 
     const mapInlineDiffCode = ({ added, removed, value }, i) => {

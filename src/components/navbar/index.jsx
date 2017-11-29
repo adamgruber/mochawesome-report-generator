@@ -36,11 +36,13 @@ const Navbar = ({ reportTitle, stats }) => {
       <div className={ cx('stats') }>
         <QuickSummary stats={ stats } />
       </div>
-      { showPctBar && <div className={ cx('pct-bar') }>
-        { allPending && pctBar(pendingPercent, 'pend', 'Pending') }
-        { !allPending && pctBar(passPercent, 'pass', 'Passing') }
-        { !allPending && pctBar(failPercent, 'fail', 'Failing') }
-      </div> }
+      { showPctBar &&
+        <div className={ cx('pct-bar') }>
+          { allPending && pctBar(pendingPercent, 'pend', 'Pending') }
+          { !allPending && pctBar(passPercent, 'pass', 'Passing') }
+          { !allPending && pctBar(failPercent, 'fail', 'Failing') }
+        </div>
+      }
     </div>
   );
 };

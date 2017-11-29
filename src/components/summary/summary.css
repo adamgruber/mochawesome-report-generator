@@ -166,7 +166,7 @@
 @media (--screen-sm) {
   .cnt {
     position: static;
-    padding-top: calc(var(--navbar-height) + 4);
+    padding-top: calc(var(--navbar-height) + 4px);
   }
   .col {
     &:nth-child(-n+3) {

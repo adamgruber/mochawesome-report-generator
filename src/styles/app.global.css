@@ -1,5 +1,4 @@
 @import 'normalize.css';
-@import 'opinionate.css';
 @import 'vars';
 @import 'type';
 @import '../../node_modules/highlight.js/styles/solarized-light';
@@ -138,7 +137,7 @@ pre {
 }
 
 .details {
-  padding-top: calc(var(--navbar-height) + 24);
+  padding-top: calc(var(--navbar-height) + 24px);
 }
 
 /* Z-levels */
@@ -177,7 +176,7 @@ pre {
   }
 
   .details {
-    padding-top: calc(var(--navbar-height-short) + 24);
+    padding-top: calc(var(--navbar-height-short) + 24px);
   }
 }
 

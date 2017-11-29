@@ -92,12 +92,14 @@ class Test extends PureComponent {
           </div>
         </header>
         { !!err.message && <p className={ cx('error-message') }>{ err.message }</p> }
-        { this.state.expanded && <div className={ cx('body') }>
-          { <CodeSnippet className={ cx('code-snippet') } code={ err.estack } highlight={ false } label='Stack Trace' /> }
-          { <CodeSnippet className={ cx('code-snippet') } code={ err.diff } lang='diff' label='Diff' /> }
-          { enableCode && <CodeSnippet className={ cx('code-snippet') } code={ code } label='Test Code' /> }
-          { !!context && <TestContext context={ context } /> }
-        </div> }
+        { this.state.expanded &&
+          <div className={ cx('body') }>
+            { <CodeSnippet className={ cx('code-snippet') } code={ err.estack } highlight={ false } label='Stack Trace' /> }
+            { <CodeSnippet className={ cx('code-snippet') } code={ err.diff } lang='diff' label='Diff' /> }
+            { enableCode && <CodeSnippet className={ cx('code-snippet') } code={ code } label='Test Code' /> }
+            { !!context && <TestContext context={ context } /> }
+          </div>
+        }
       </section>
     );
   }

@@ -29,8 +29,8 @@ class NavMenuList extends Component {
         { suites.map(subSuite => (
           <ul key={ subSuite.uuid } className={ cx('list', 'sub') }>
             <NavMenuItem suite={ subSuite } { ...navItemProps } />
-          </ul>)
-        ) }
+          </ul>))
+        }
       </div>
     );
   }
