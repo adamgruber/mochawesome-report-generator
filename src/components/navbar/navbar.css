@@ -41,7 +41,7 @@
   flex-grow: 1;
   color: #fff;
   font-size: 18px;
-  line-height: calc(var(--navbar-height-short) - 4);
+  line-height: calc(var(--navbar-height-short) - 4px);
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;

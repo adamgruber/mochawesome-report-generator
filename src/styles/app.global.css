@@ -138,7 +138,7 @@ pre {
 }
 
 .details {
-  padding-top: calc(var(--navbar-height) + 24);
+  padding-top: calc(var(--navbar-height) + 24px);
 }
 
 /* Z-levels */
@@ -177,7 +177,7 @@ pre {
   }
 
   .details {
-    padding-top: calc(var(--navbar-height-short) + 24);
+    padding-top: calc(var(--navbar-height-short) + 24px);
   }
 }
 
