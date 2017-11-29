@@ -1,9 +1,10 @@
 import { observable, action } from 'mobx';
 
 const transduce = (items, mapper, reducer, initial) =>
-  items.reduce((acc, item, index) =>
-    reducer(acc, mapper(item, index), index)
-  , initial);
+  items.reduce(
+    (acc, item, index) => reducer(acc, mapper(item, index), index),
+    initial
+  );
 
 class ReportStore {
   @observable isLoading = true;
@@ -48,18 +49,18 @@ class ReportStore {
   }
 
   _mapHook = hook => (
-      ((this.showHooks === 'always')
-      || (this.showHooks === 'failed' && hook.fail)
-      || (this.showHooks === 'context' && hook.context))
-      && hook
+    ((this.showHooks === 'always')
+    || (this.showHooks === 'failed' && hook.fail)
+    || (this.showHooks === 'context' && hook.context))
+    && hook
   )
 
   _mapTest = test => (
-      ((this.showPassed && test.pass)
-      || (this.showFailed && test.fail)
-      || (this.showPending && test.pending)
-      || (this.showSkipped && test.skipped))
-      && test
+    ((this.showPassed && test.pass)
+    || (this.showFailed && test.fail)
+    || (this.showPending && test.pending)
+    || (this.showSkipped && test.skipped))
+    && test
   )
 
   _mapSuite = suite => {

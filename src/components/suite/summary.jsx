@@ -19,18 +19,22 @@ const SuiteSummary = props => {
       <li className={ cx('summary-item', 'tests') }>
         <Icon name='assignment' className={ cx('icon') } size={ 18 } />{ totalTests }
       </li>
-      { !!totalPasses && <li className={ cx('summary-item', 'passed') }>
-        <Icon name='check' className={ cx('icon') } size={ 18 } />{ totalPasses }
-      </li> }
-      { !!totalFailures && <li className={ cx('summary-item', 'failed') }>
-        <Icon name='close' className={ cx('icon') } size={ 18 } />{ totalFailures }
-      </li> }
-      { !!totalPending && <li className={ cx('summary-item', 'pending') }>
-        <Icon name='pause' className={ cx('icon') } size={ 18 } />{ totalPending }
-      </li> }
-      { !!totalSkipped && <li className={ cx('summary-item', 'skipped') }>
-        <Icon name='stop' className={ cx('icon') } size={ 18 } />{ totalSkipped }
-      </li> }
+      { !!totalPasses &&
+        <li className={ cx('summary-item', 'passed') }>
+          <Icon name='check' className={ cx('icon') } size={ 18 } />{ totalPasses }
+        </li> }
+      { !!totalFailures &&
+        <li className={ cx('summary-item', 'failed') }>
+          <Icon name='close' className={ cx('icon') } size={ 18 } />{ totalFailures }
+        </li> }
+      { !!totalPending &&
+        <li className={ cx('summary-item', 'pending') }>
+          <Icon name='pause' className={ cx('icon') } size={ 18 } />{ totalPending }
+        </li> }
+      { !!totalSkipped &&
+        <li className={ cx('summary-item', 'skipped') }>
+          <Icon name='stop' className={ cx('icon') } size={ 18 } />{ totalSkipped }
+        </li> }
     </ul>
   );
 };

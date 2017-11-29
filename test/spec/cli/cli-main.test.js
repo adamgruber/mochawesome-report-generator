@@ -180,9 +180,7 @@ describe('bin/cli', () => {
       });
 
       it('should default to filename when option not provided', () => {
-        const args = getArgs(
-          [ 'test/sample-data/test.json' ],
-        );
+        const args = getArgs([ 'test/sample-data/test.json' ]);
 
         return cli(args).then(() => {
           expect(createStub.args[0][1]).to.have.property('reportFilename', 'test');

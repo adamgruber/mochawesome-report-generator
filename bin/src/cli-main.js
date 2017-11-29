@@ -108,8 +108,7 @@ function handleResolved(resolvedValues) {
     logger.info(chalk.red('\n✘ Some files could not be processed:'));
     logger.info(errors
       .map(e => `${chalk.underline(e.filename)}\n${chalk.dim(e.err)}`)
-      .join('\n\n')
-    );
+      .join('\n\n'));
     process.exitCode = 1;
   }
   return resolvedValues;

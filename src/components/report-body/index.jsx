@@ -57,8 +57,7 @@ class ReportBody extends React.Component {
             key={ suite.uuid }
             suite={ suite }
             enableChart={ enableChart }
-            enableCode={ enableCode } />)
-          )
+            enableCode={ enableCode } />))
         }
       </div>
     );

@@ -86,7 +86,7 @@ class NavMenuItem extends Component {
       // Find element to scroll to
       const suiteEl = document.getElementById(suiteId);
       // Get its top value
-      const top = suiteEl.getBoundingClientRect().top;
+      const { top } = suiteEl.getBoundingClientRect();
       // Get the details container and get its top padding
       const detailsCnt = document.getElementById('details');
       let topPad = window.getComputedStyle(detailsCnt).getPropertyValue('padding-top');
