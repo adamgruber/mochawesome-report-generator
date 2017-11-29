@@ -95,30 +95,29 @@ You can still use the `--reportFilename` flag to set the filename of the generat
 ### [1.0.1] / 2016-12-26
 - Better url handling in context
 
-## [1.0.0] / 2016-12-18
+## 1.0.0 / 2016-12-18
 - Initial release
 
-[2.3.2]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.3.2
-[2.3.1]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.3.1
-[2.3.0]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.3.0
-[2.2.2]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.2.2
-[2.2.1]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.2.1
-[2.2.0]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.2.0
-[2.1.1]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.1.1
-[2.1.0]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.1.0
-[2.0.3]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.0.3
-[2.0.2]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.0.2
-[2.0.1]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.0.1
-[2.0.0]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/2.0.0
-[1.1.2]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/1.1.2
-[1.1.1]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/1.1.1
-[1.1.0]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/1.1.0
-[1.0.8]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/1.0.8
-[1.0.7]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/1.0.7
-[1.0.6]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/1.0.6
-[1.0.5]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/1.0.5
-[1.0.4]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/1.0.4
-[1.0.3]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/1.0.3
-[1.0.2]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/1.0.2
-[1.0.1]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/1.0.1
-[1.0.0]: https://github.com/adamgruber/mochawesome-report-generator/releases/tag/1.0.0
+[2.3.2]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.3.1...2.3.2
+[2.3.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.3.0...2.3.1
+[2.3.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.2.2...2.3.0
+[2.2.2]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.2.1...2.2.2
+[2.2.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.2.0...2.2.1
+[2.2.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.1.1...2.2.0
+[2.1.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.1.0...2.1.1
+[2.1.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.0.3...2.1.0
+[2.0.3]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.0.2...2.0.3
+[2.0.2]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.0.1...2.0.2
+[2.0.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.0.0...2.0.1
+[2.0.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/1.1.2...2.0.0
+[1.1.2]: https://github.com/adamgruber/mochawesome-report-generator/compare/1.1.1...1.1.2
+[1.1.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/1.1.0...1.1.1
+[1.1.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/1.0.8...1.1.0
+[1.0.8]: https://github.com/adamgruber/mochawesome-report-generator/compare/1.0.7...1.0.8
+[1.0.7]: https://github.com/adamgruber/mochawesome-report-generator/compare/1.0.6...1.0.7
+[1.0.6]: https://github.com/adamgruber/mochawesome-report-generator/compare/1.0.5...1.0.6
+[1.0.5]: https://github.com/adamgruber/mochawesome-report-generator/compare/1.0.5...1.0.5
+[1.0.4]: https://github.com/adamgruber/mochawesome-report-generator/compare/1.0.3...1.0.4
+[1.0.3]: https://github.com/adamgruber/mochawesome-report-generator/compare/1.0.2...1.0.3
+[1.0.2]: https://github.com/adamgruber/mochawesome-report-generator/compare/1.0.1...1.0.2
+[1.0.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/1.0.0...1.0.1
