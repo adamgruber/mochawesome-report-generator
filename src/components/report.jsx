@@ -18,7 +18,8 @@ const MochawesomeReport = observer(props => {
     showSkipped,
     showHooks,
     sideNavOpen,
-    devMode
+    devMode,
+    VERSION
   } = props.store;
 
   const navMenuProps = {
@@ -40,7 +41,7 @@ const MochawesomeReport = observer(props => {
           stats={ stats } />
         <ReportBody />
         <Loader />
-        <Footer />
+        <Footer version={ VERSION } />
         <NavMenu suites={ allSuites } { ...navMenuProps } />
         { devMode && <DevTools position={ { bottom: 0, right: 20 } } /> }
       </main>
