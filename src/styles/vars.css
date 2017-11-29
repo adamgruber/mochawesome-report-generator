@@ -25,7 +25,6 @@
   --gray-lighter: color(var(--gray-base) tint(93.5%)); /* #eee */
   --gray-lighter-faded: color(var(--gray-lighter) alpha(95%));
   --gray-border: color(var(--gray-base) tint(80%)); /* #ccc */
-
   --grey50: #eceff1;
   --grey100: #f5f5f5;
   --grey300: #e0e0e0;
