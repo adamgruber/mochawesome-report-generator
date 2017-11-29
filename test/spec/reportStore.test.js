@@ -38,7 +38,7 @@ describe('ReportStore', () => {
       expect(store).to.have.property('data', testData);
       expect(store).to.have.property('reportTitle', undefined);
       expect(store).to.have.property('stats', testData.stats);
-      expect(store).to.have.deep.property('allSuites[0]', testData.suites);
+      expect(store).to.have.nested.deep.property('allSuites[0]', testData.suites);
       expect(store).to.have.deep.property('stats', testData.stats);
       expect(store).to.have.property('enableChart', false);
       expect(store).to.have.property('devMode', false);
@@ -58,7 +58,7 @@ describe('ReportStore', () => {
       expect(store).to.have.property('data', testData);
       expect(store).to.have.property('reportTitle', undefined);
       expect(store).to.have.property('stats', testData.stats);
-      expect(store).to.have.deep.property('allSuites[0]', testData.suites);
+      expect(store).to.have.nested.deep.property('allSuites[0]', testData.suites);
       expect(store).to.have.deep.property('stats', testData.stats);
       expect(store).to.have.property('enableChart', true);
       expect(store).to.have.property('devMode', true);
