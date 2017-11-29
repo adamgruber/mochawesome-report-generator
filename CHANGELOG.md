@@ -1,4 +1,24 @@
-# Changelog
+# mochawesome-report-generator changelog
+
+## [3.0.0] / 2017-11-30
+### Added
+- The report now displays a loading animation when loading and when toggling filters.
+- The report version is now shown in the footer.
+- Functional tests to make development a little easier
+
+### Changed
+- **BREAKING:** mochawesome v3.0.0 introduces changes to its JSON output that are not backwards-compatible. As such, the report generator will not work with data created in older versions of mochawesome.
+
+- Options handling and file saving that was previously done in the reporter is now handled here where it makes more sense. In addition, support was added for the `saveJson` and `saveHtml` options.
+
+- Improved perceived rendering. The report no longer shows just a blank screen when loading a large number of tests. Instead, the navbar stats and footer will be rendered along with a nice loading animation. In addition, the filter toggles are now more responsive when filtering over a large number of suites/tests.
+
+- Nearly all components have been updated to use flexbox layout.
+
+- Unnecessary component renders have been significantly reduced.
+
+- Most dependencies have been updated to their latest versions.
+
 
 ### [2.3.2] / 2017-11-13
 - Fix an issue where long test titles are truncated with no way to see the full title [#65](https://github.com/adamgruber/mochawesome-report-generator/issues/65)
@@ -98,6 +118,7 @@ You can still use the `--reportFilename` flag to set the filename of the generat
 ## 1.0.0 / 2016-12-18
 - Initial release
 
+[3.0.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.3.2...3.0.0
 [2.3.2]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.3.1...2.3.2
 [2.3.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.3.0...2.3.1
 [2.3.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.2.2...2.3.0
