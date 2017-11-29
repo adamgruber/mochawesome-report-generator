@@ -10,11 +10,20 @@ function eslint(attrs) {
   }, attrs);
 }
 
-function babel(attrs) {
+function babel(attrs, version) {
   return Object.assign({
     test: JS_REGEX,
     exclude: /node_modules/,
-    use: [ 'babel-loader' ]
+    use: [
+      { loader: 'babel-loader' },
+      {
+        loader: 'string-replace-loader',
+        options: {
+          search: '__VERSION__',
+          replace: version
+        }
+      }
+    ]
   }, attrs);
 }
 

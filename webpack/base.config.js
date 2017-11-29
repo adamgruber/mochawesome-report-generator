@@ -32,6 +32,7 @@ if (env === 'production') {
 
 module.exports = {
   env,
+  version: pkg.version,
   baseConfig: {
     devtool,
     entry: {

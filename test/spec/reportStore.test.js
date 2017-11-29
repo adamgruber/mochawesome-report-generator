@@ -24,7 +24,8 @@ describe('ReportStore', () => {
       showFailed: true,
       showPending: true,
       showSkipped: false,
-      showHooks: 'failed'
+      showHooks: 'failed',
+      VERSION: '__VERSION__'
     });
   });
 

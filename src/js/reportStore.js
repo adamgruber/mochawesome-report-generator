@@ -16,6 +16,7 @@ class ReportStore {
   @observable.shallow filteredSuites = [];
 
   constructor(data = {}) {
+    this.VERSION = '__VERSION__';
     this.data = data;
     this.showHooksOptions = [ 'failed', 'always', 'never', 'context' ];
   }
