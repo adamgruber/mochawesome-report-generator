@@ -127,7 +127,6 @@ class ReportStore {
 }
 
 const reportStore = new ReportStore();
-window.reportStore = reportStore;
 export default reportStore;
 
 export { ReportStore };
