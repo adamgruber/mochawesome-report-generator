@@ -4,43 +4,42 @@ mochawesome-report-generator (marge)
 
 **marge** (**m**och**a**wesome-**r**eport-**ge**nerator) is the counterpart to [mochawesome][2], a custom reporter for use with the Javascript testing framework, [mocha][1]. Marge takes the JSON output from [mochawesome][2] and generates a full fledged HTML/CSS report that helps visualize your test suites.
 
-## :tada: Latest Changes
-- Support for mocha's `--inline-diffs` option
-- Show before and after hooks alongside your tests
-- New menu option for fine-tuning how hooks display
-
-See the [CHANGELOG][] for up-to-date changes.
-
 ## Features
-- All-new redesigned and streamlined report
-- At-a-glance stats including pass percentage
-- Beautiful charts
-- Support for nested `describe`s
-- Supports pending tests
-- Filter view by test type
-- Quick navigation menu
+
+<img align="right" src="./docs/marge-report-1.0.1.png" alt="Mochawesome Report" width="55%" />
+
+- Simple, clean, and modern design
+- Beautiful charts (via ChartJS)
+- Support for test and suite nesting
+- Displays before and after hooks
 - Review test code inline
 - Stack trace for failed tests
-- Inline diffs for actual vs expected results
+- Support for adding context information to tests
+- Filters to display only the tests you want
 - Responsive and mobile-friendly
-- Supports displaying additional test context
-- Custom report [options](#cli-options)
 - Offline viewing
+- Support for IE9+
 - CLI for generating reports independent of [mochawesome][2]
 
-## Browser Support
-Tested to work in Chrome. *Should* work in any modern web browser including IE9+.
-**marge** generates a self-contained report that can be viewed offline. 
+## Usage with mochawesome
 
-## Sample Report
+1. Add Mochawesome to your project:
 
-<img src="./docs/marge-report-1.0.1.png" alt="Mochawesome Report" width="75%" />
-<img src="./docs/marge-report-menu-1.0.1.png" alt="Mochawesome Report Menu" width="75%" />
+  `npm install --save-dev mochawesome`
 
+2. Tell mocha to use the Mochawesome reporter:
 
-## Usage
+  `mocha testfile.js --reporter mochawesome`
 
-**via CLI**
+3. If using mocha programatically:
+
+  ```js
+  var mocha = new Mocha({
+    reporter: 'mochawesome'
+  });
+  ```
+
+## CLI Usage
 
 Install mochawesome-report-generator package
 ```bash
@@ -51,10 +50,6 @@ Run the command
 ```bash
 marge [options] data_file [data_file2 ...]
 ```
-
-**via Mochawesome reporter**
-
-See mochawesome [docs][2].
 
 ## Output
 **marge** generates the following inside your project directory:
@@ -91,6 +86,8 @@ Flag | Type | Default | Description
 --overwrite | boolean | true | Overwrite existing report files. *See [notes](#overwrite).*
 --timestamp, --ts | string | | Append timestamp in specified format to report filename. *See [notes](#timestamp).*
 --showHooks | string | failed | Set the default display mode for hooks
+--saveJson | boolean | false |Should report data be saved to JSON file
+--saveHtml | boolean | true | Should report be saved to HTML file
 --dev | boolean | false | Enable dev mode (requires local webpack dev server)
 -h, --help | | | Show CLI help
 
