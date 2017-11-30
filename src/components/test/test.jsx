@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Duration, Icon } from 'components';
 import { CodeSnippet, TestContext } from 'components/test';
@@ -8,7 +8,7 @@ import styles from './test.css';
 
 const cx = classNames.bind(styles);
 
-class Test extends React.Component {
+class Test extends PureComponent {
   constructor() {
     super();
     this.toggleExpandedState = this.toggleExpandedState.bind(this);
@@ -83,10 +83,8 @@ class Test extends React.Component {
     return (
       <section id={ uuid } className={ cxname }>
         <header className={ cx('header') } onClick={ this.toggleExpandedState }>
-          <div className={ cx('title-wrap') }>
-            { testIcon() }
-            <h4 className={ cx('title') } title={ title }>{ title }</h4>
-          </div>
+          { testIcon() }
+          <h4 className={ cx('title') } title={ title }>{ title }</h4>
           <div className={ cx('info') }>
             { !!context && <Icon name='chat_bubble_outline' className={ cx('context-icon') } size={ 18 } /> }
             { !isHook && <Duration className={ cx('duration') } timer={ duration } /> }
@@ -94,12 +92,14 @@ class Test extends React.Component {
           </div>
         </header>
         { !!err.message && <p className={ cx('error-message') }>{ err.message }</p> }
-        <div className={ cx('body') }>
-          { <CodeSnippet className={ cx('code-snippet') } code={ err.estack } highlight={ false } label='Stack Trace' /> }
-          { <CodeSnippet className={ cx('code-snippet') } code={ err.diff } lang='diff' label='Diff' /> }
-          { enableCode && <CodeSnippet className={ cx('code-snippet') } code={ code } label='Test Code' /> }
-          { !!context && <TestContext context={ context } /> }
-        </div>
+        { this.state.expanded &&
+          <div className={ cx('body') }>
+            { <CodeSnippet className={ cx('code-snippet') } code={ err.estack } highlight={ false } label='Stack Trace' /> }
+            { <CodeSnippet className={ cx('code-snippet') } code={ err.diff } lang='diff' label='Diff' /> }
+            { enableCode && <CodeSnippet className={ cx('code-snippet') } code={ code } label='Test Code' /> }
+            { !!context && <TestContext context={ context } /> }
+          </div>
+        }
       </section>
     );
   }

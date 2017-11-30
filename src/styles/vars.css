@@ -3,9 +3,9 @@
   --screen-md-min: 992px;
   --screen-lg-min: 1200px;
   --grid-gutter-width: 30px;
-  --container-sm: calc(720 + var(--grid-gutter-width));
-  --container-md: calc(940 + var(--grid-gutter-width));
-  --container-lg: calc(1140 + var(--grid-gutter-width));
+  --container-sm: calc(720px + var(--grid-gutter-width));
+  --container-md: calc(940px + var(--grid-gutter-width));
+  --container-lg: calc(1140px + var(--grid-gutter-width));
   --navbar-height: 122px;
   --navbar-height-short: 56px;
   --summary-height-stacked: 82px;
@@ -25,7 +25,6 @@
   --gray-lighter: color(var(--gray-base) tint(93.5%)); /* #eee */
   --gray-lighter-faded: color(var(--gray-lighter) alpha(95%));
   --gray-border: color(var(--gray-base) tint(80%)); /* #ccc */
-
   --grey50: #eceff1;
   --grey100: #f5f5f5;
   --grey300: #e0e0e0;

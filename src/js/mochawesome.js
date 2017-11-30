@@ -8,6 +8,9 @@ const bodyEl = document.querySelector('body');
 const data = JSON.parse(bodyEl.getAttribute('data-raw'));
 const config = JSON.parse(bodyEl.getAttribute('data-config'));
 
+// Add global reference to the store
+window.marge = reportStore;
+
 // Register hljs languages
 hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
 hljs.registerLanguage('diff', require('highlight.js/lib/languages/diff'));

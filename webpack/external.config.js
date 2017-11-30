@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 const path = require('path');
-const { baseConfig } = require('./base.config');
+const { baseConfig, version } = require('./base.config');
 const loaders = require('./loaders');
 
 // Set output path
@@ -12,7 +12,7 @@ module.exports = Object.assign({}, baseConfig, {
   module: {
     rules: [
       eslint({ enforce: 'pre' }),
-      babel(),
+      babel({}, version),
       globalCss({
         minimize: true,
         importLoaders: 1

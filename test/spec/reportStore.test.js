@@ -1,24 +1,31 @@
 import { expect } from 'chai';
+import sinon from 'sinon';
 import { ReportStore } from 'js/reportStore';
 import testData from 'sample-data/nested.json';
 
 describe('ReportStore', () => {
   let store;
+  let clock;
 
   beforeEach(() => {
     store = new ReportStore();
+    clock = sinon.useFakeTimers();
+  });
+
+  afterEach(() => {
+    clock.restore();
   });
 
   it('has the correct default state', () => {
     expect(store).to.include({
+      isLoading: true,
       sideNavOpen: false,
       showPassed: true,
       showFailed: true,
       showPending: true,
       showSkipped: false,
-      quickSummaryWidth: null,
-      windowWidth: null,
-      showHooks: 'failed'
+      showHooks: 'failed',
+      VERSION: '__VERSION__'
     });
   });
 
@@ -31,11 +38,12 @@ describe('ReportStore', () => {
       expect(store).to.have.property('data', testData);
       expect(store).to.have.property('reportTitle', undefined);
       expect(store).to.have.property('stats', testData.stats);
-      expect(store).to.have.deep.property('allSuites[0]', testData.suites);
+      expect(store).to.have.nested.deep.property('allSuites[0]', testData.suites);
       expect(store).to.have.deep.property('stats', testData.stats);
       expect(store).to.have.property('enableChart', false);
       expect(store).to.have.property('devMode', false);
       expect(store).to.have.property('showHooks', 'failed');
+      expect(store).to.have.property('initialLoadTimeout', 300);
     });
 
     it('with config options', () => {
@@ -50,7 +58,7 @@ describe('ReportStore', () => {
       expect(store).to.have.property('data', testData);
       expect(store).to.have.property('reportTitle', undefined);
       expect(store).to.have.property('stats', testData.stats);
-      expect(store).to.have.deep.property('allSuites[0]', testData.suites);
+      expect(store).to.have.nested.deep.property('allSuites[0]', testData.suites);
       expect(store).to.have.deep.property('stats', testData.stats);
       expect(store).to.have.property('enableChart', true);
       expect(store).to.have.property('devMode', true);
@@ -66,40 +74,6 @@ describe('ReportStore', () => {
         }
       });
       expect(store).to.have.property('showHooks', 'failed');
-    });
-  });
-
-  describe('Computed Properties', () => {
-    beforeEach(() => {
-      store.setInitialData({ data: testData, config: {} });
-    });
-
-    describe('mobileBreakpoint', () => {
-      it('returns false when windowWidth >= 768', () => {
-        store.setWindowWidth(1024);
-        expect(store.mobileBreakpoint).to.equal(false);
-      });
-
-      it('returns true when windowWidth < 768', () => {
-        store.setWindowWidth(600);
-        expect(store.mobileBreakpoint).to.equal(true);
-      });
-    });
-
-    describe('suites', () => {
-      it('is not empty when filters are on', () => {
-        store.toggleFilter('showSkipped');
-        expect(store.suites).to.have.lengthOf(1);
-        store.toggleFilter('showSkipped');
-      });
-
-      it('is empty when fiilters are off', () => {
-        store.toggleFilter('showPassed');
-        store.toggleFilter('showFailed');
-        store.toggleFilter('showPending');
-        store.setShowHooks('never');
-        expect(store.suites).to.have.lengthOf(0);
-      });
     });
   });
 
@@ -157,16 +131,48 @@ describe('ReportStore', () => {
       expect(store).to.have.property('showHooks', 'failed');
     });
 
-    it('setQuickSummaryWidth', () => {
-      expect(store).to.have.property('quickSummaryWidth', null);
-      store.setQuickSummaryWidth(400);
-      expect(store).to.have.property('quickSummaryWidth', 400);
+    it('toggleIsLoading', () => {
+      expect(store).to.have.property('isLoading', true);
+      store.toggleIsLoading();
+      expect(store).to.have.property('isLoading', false);
     });
 
-    it('setWindowWidth', () => {
-      expect(store).to.have.property('windowWidth', null);
-      store.setWindowWidth(400);
-      expect(store).to.have.property('windowWidth', 400);
+    it('toggleIsLoading with value', () => {
+      expect(store).to.have.property('isLoading', true);
+      store.toggleIsLoading(true);
+      expect(store).to.have.property('isLoading', true);
+    });
+  });
+
+  describe('updateFilteredSuites', () => {
+    beforeEach(() => {
+      store.setInitialData({ data: testData, config: {} });
+      store.toggleIsLoading(true);
+    });
+
+    describe('when filters are on', () => {
+      it('should set isLoading: false and filteredSuites should not be an empty array', () => {
+        store.updateFilteredSuites();
+        clock.next();
+        expect(store.isLoading).to.equal(false);
+        expect(store.filteredSuites).to.have.lengthOf(1);
+      });
+    });
+
+    describe('when filters are off', () => {
+      beforeEach(() => {
+        store.toggleFilter('showPassed');
+        store.toggleFilter('showFailed');
+        store.toggleFilter('showPending');
+        store.setShowHooks('never');
+      });
+
+      it('should set isLoading: false and filteredSuites should be an empty array', () => {
+        store.updateFilteredSuites();
+        clock.next();
+        expect(store.isLoading).to.equal(false);
+        expect(store.filteredSuites).to.have.lengthOf(0);
+      });
     });
   });
 });

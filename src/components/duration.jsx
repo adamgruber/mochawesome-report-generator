@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import moment from 'moment';
 
-class Duration extends React.Component {
+class Duration extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     unitsClassName: PropTypes.string,

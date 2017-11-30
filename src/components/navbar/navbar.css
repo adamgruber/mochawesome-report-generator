@@ -3,7 +3,9 @@
 .component {
   @apply --clearfix;
 
+  display: flex;
   position: fixed;
+  flex-direction: column;
   top: 0;
   right: 0;
   left: 0;
@@ -16,16 +18,16 @@
 }
 
 .report-info-cnt {
-  padding: 0 12px 0 48px;
+  display: flex;
+  overflow: hidden;
+  padding-right: 12px;
 }
 
 .menu-button {
   @apply --button-base;
 
-  position: absolute;
   padding: 16px 12px;
   height: 24px;
-  float: left;
   color: var(--light-icon-inactive);
 
   &:hover {
@@ -36,9 +38,10 @@
 .report-title {
   @apply --font-light;
 
+  flex-grow: 1;
   color: #fff;
   font-size: 18px;
-  line-height: calc(var(--navbar-height-short) - 4);
+  line-height: calc(var(--navbar-height-short) - 4px);
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -48,6 +51,7 @@
 .pct-bar {
   @apply --clearfix;
 
+  display: flex;
   position: absolute;
   left: 0;
   right: 0;
@@ -69,7 +73,6 @@
 
 .pct-bar-segment {
   height: 4px;
-  float: left;
 }
 
 /* Tablet 768 and up */
@@ -77,16 +80,11 @@
   .component {
     min-height: var(--navbar-height-short);
     height: var(--navbar-height-short);
+    flex-direction: initial;
   }
 
   .report-info-cnt {
-    padding: 0 530px 0 72px;
-  }
-
-  .stats {
-    position: absolute;
-    top: 0;
-    right: 0;
+    flex-grow: 1;
   }
 
   .menu-button {

@@ -15,6 +15,7 @@ chai.use(chaiEnzyme());
 describe('<MochawesomeReport />', () => {
   let reportStore;
   let props;
+  let clock;
 
   const getInstance = (instanceProps, opts) => {
     const wrapper = mount(<Report { ...instanceProps } />, opts);
@@ -27,22 +28,18 @@ describe('<MochawesomeReport />', () => {
   beforeEach(() => {
     reportStore = new ReportStore();
     props = { store: reportStore };
+    clock = sinon.useFakeTimers();
   });
 
-  it('should render', done => {
+  afterEach(() => {
+    clock.restore();
+  });
+
+  it('should render', () => {
     reportStore.setInitialData({ data: testData, config: {} });
-    sinon.spy(Report.prototype, 'componentDidMount');
-    sinon.spy(Report.prototype, 'componentWillUnmount');
 
     const { wrapper } = getInstance(props);
     expect(wrapper.find(DevTools)).to.have.lengthOf(0);
-    expect(Report.prototype.componentDidMount.calledOnce).to.equal(true);
-
-    setTimeout(() => {
-      wrapper.unmount();
-      expect(Report.prototype.componentWillUnmount.calledOnce).to.equal(true);
-      done();
-    }, 0);
   });
 
   it('should render in dev mode', () => {
@@ -52,16 +49,19 @@ describe('<MochawesomeReport />', () => {
   });
 
   it('should scroll to a suite', () => {
-    reportStore.setInitialData({ data: testData, config: {} });
+    reportStore.setInitialData({
+      data: testData,
+      config: { enableCharts: true }
+    });
+
     const node = document.createElement('div');
     node.setAttribute('id', 'app');
     document.body.appendChild(node);
-
     const { wrapper } = getInstance(props, { attachTo: node });
+    clock.next();
 
     expect(window.scrollTop).to.equal(0);
     wrapper.find('.nav-menu-link').at(3).simulate('click');
-
     document.getElementById('app').remove();
   });
 });

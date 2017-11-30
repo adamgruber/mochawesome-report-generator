@@ -8,6 +8,7 @@
   margin-bottom: 20px;
 }
 
+/* stylelint-disable-next-line selector-max-compound-selectors */
 .component > .body > div > .component {
   border: 1px solid var(--grey300);
   border-right: none;

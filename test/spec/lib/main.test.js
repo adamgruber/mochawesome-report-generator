@@ -34,24 +34,13 @@ const mareport = proxyquire('../../../lib/src/main', {
   '../package.json': pkg
 });
 
-const baseOpts = {
-  reportDir: 'test',
-  reportFilename: 'test',
-  reportTitle: 'mochawesome',
-  reportPageTitle: 'mochawesome-report',
-  inlineAssets: false,
-  enableCharts: true,
-  enableCode: true,
-  overwrite: true,
-  timestamp: false,
-  dev: false,
-  showHooks: 'failed'
-};
-
 let opts;
 
 beforeEach(() => {
-  opts = Object.assign({}, baseOpts);
+  opts = {
+    reportDir: 'test',
+    reportFilename: 'test'
+  };
   outputFileStub.reset();
   outputFileSyncStub.reset();
   copySyncStub.reset();
@@ -63,14 +52,25 @@ beforeEach(() => {
 
 describe('lib/main', () => {
   describe('create', () => {
-    it('saves report', () => {
+    it('saves only html', () => {
       const expectedHtmlFile = path.resolve(process.cwd(), 'test', 'test.html');
       outputFileStub.resolves(expectedHtmlFile);
       const promise = mareport.create(testData, opts);
-      return expect(promise).to.become([ expectedHtmlFile ]);
+      return expect(promise).to.become([ expectedHtmlFile, null ]);
     });
 
-    it('saves report and json', () => {
+    it('saves only json', () => {
+      opts.saveHtml = false;
+      opts.saveJson = true;
+      const expectedJsonFile = path.resolve(process.cwd(), 'test', 'test.json');
+      outputFileStub
+        .onCall(0).resolves('')
+        .onCall(1).resolves(expectedJsonFile);
+      const promise = mareport.create(testData, opts);
+      return expect(promise).to.become([ null, expectedJsonFile ]);
+    });
+
+    it('saves html and json', () => {
       opts.saveJson = true;
       const expectedHtmlFile = path.resolve(process.cwd(), 'test', 'test.html');
       const expectedJsonFile = path.resolve(process.cwd(), 'test', 'test.json');
@@ -79,6 +79,13 @@ describe('lib/main', () => {
         .onCall(1).resolves(expectedJsonFile);
       const promise = mareport.create(testData, opts);
       return expect(promise).to.become([ expectedHtmlFile, expectedJsonFile ]);
+    });
+
+    it('does NOT save report', () => {
+      opts.saveHtml = false;
+      outputFileStub.resolves('');
+      const promise = mareport.create(testData, opts);
+      return expect(promise).to.become([ null, null ]);
     });
 
     it('with autoOpen', () => {
@@ -183,7 +190,11 @@ describe('lib/main', () => {
     });
 
     it('with overwrite:false', () => {
-      opts.overwrite = false;
+      opts = {
+        overwrite: false,
+        reportDir: 'test',
+        reportFilename: 'test'
+      };
       writeFileUniqueStub.yields(null);
       const expectedFilename = path.resolve(process.cwd(), 'test', 'test{_###}.html');
       return mareport.create(testData, opts).then(() => {
@@ -297,29 +308,6 @@ describe('lib/main', () => {
           expect(copySyncStub.called).to.equal(false);
         })
       ));
-    });
-  });
-
-  describe('defaults', () => {
-    it('should get base options', () => {
-      expect(mareport.getBaseConfig())
-        .to.eql({
-          reportDir: 'mochawesome-report',
-          reportTitle: process.cwd().split(path.sep).pop(),
-          reportPageTitle: 'Mochawesome Report',
-          inline: false,
-          inlineAssets: false,
-          charts: true,
-          enableCharts: true,
-          code: true,
-          enableCode: true,
-          autoOpen: false,
-          overwrite: true,
-          timestamp: false,
-          ts: false,
-          dev: false,
-          showHooks: 'failed'
-        });
     });
   });
 });

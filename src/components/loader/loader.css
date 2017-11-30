@@ -1,0 +1,50 @@
+@import '../../styles/vars';
+
+.component {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: color(var(--body-bg) alpha(60%));
+  padding-top: var(--navbar-height);
+}
+
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 200px;
+}
+
+.text {
+  color: var(--gray-light);
+  text-align: center;
+  margin: 1rem 0 0 0;
+}
+
+.spinner {
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  border: 0.25rem solid var(--gray-medium);
+  border-top-color: var(--gray);
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Tablet 768 and up */
+@media (--screen-sm) {
+  .component {
+    padding-top: var(--navbar-height-short);
+  }
+}

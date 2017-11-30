@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
+import isEmpty from 'lodash/isEmpty';
 import { Icon } from 'components';
 import { NavMenuList } from 'components/nav-menu';
 import classNames from 'classnames/bind';
@@ -23,9 +24,14 @@ class NavMenuItem extends Component {
 
   render() {
     const { suite, showPassed, showFailed, showPending, showSkipped } = this.props;
-    const { suites, uuid, title, hasTests,
-      hasFailures, hasPending, hasSkipped, hasPasses } = suite;
+    const { suites, uuid, title } = suite;
     const navItemProps = { showPassed, showFailed, showPending, showSkipped };
+
+    const hasTests = !isEmpty(suite.tests);
+    const hasPasses = !isEmpty(suite.passes);
+    const hasFailures = !isEmpty(suite.failures);
+    const hasPending = !isEmpty(suite.pending);
+    const hasSkipped = !isEmpty(suite.skipped);
 
     const fail = hasTests && hasFailures;
     const pend = hasTests && hasPending && !hasFailures;
@@ -80,7 +86,7 @@ class NavMenuItem extends Component {
       // Find element to scroll to
       const suiteEl = document.getElementById(suiteId);
       // Get its top value
-      const top = suiteEl.getBoundingClientRect().top;
+      const { top } = suiteEl.getBoundingClientRect();
       // Get the details container and get its top padding
       const detailsCnt = document.getElementById('details');
       let topPad = window.getComputedStyle(detailsCnt).getPropertyValue('padding-top');

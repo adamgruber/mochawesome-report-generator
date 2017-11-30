@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
+import sinon from 'sinon';
 
 import Suite from 'components/suite/suite';
 import SuiteSummary from 'components/suite/summary';
@@ -108,7 +109,7 @@ describe('<Suite />', () => {
   it('renders root suite with tests', () => {
     const suite = Object.assign({}, nestedSuite.suites);
     suite.rootEmpty = false;
-    suite.hasTests = true;
+    suite.tests = nestedSuite.suites.suites[0].tests;
     const instProps = Object.assign({}, props, { suite });
     const { chart, summary, testList, suiteList, header } = getInstance(instProps);
     expect(chart).to.have.lengthOf(1);
@@ -128,5 +129,36 @@ describe('<Suite />', () => {
     expect(testList).to.have.lengthOf(0);
     expect(suiteList).to.have.lengthOf(1);
     expect(header).to.have.lengthOf(0);
+  });
+
+  describe('shouldComponentUpdate', () => {
+    let scuSpy;
+    beforeEach(() => {
+      scuSpy = sinon.spy(Suite.prototype, 'shouldComponentUpdate');
+    });
+
+    afterEach(() => {
+      scuSpy.restore();
+    });
+
+    it('returns true when next props do not equal current props', () => {
+      const instProps = Object.assign({}, props, {
+        suite: basicSuite
+      });
+      const { wrapper } = getInstance(instProps);
+      wrapper.setProps({ suite: nestedSuite.suites });
+      expect(scuSpy.calledOnce).to.equal(true);
+      expect(scuSpy.returned(true)).to.equal(true);
+    });
+
+    it('returns false when next props equal current props', () => {
+      const instProps = Object.assign({}, props, {
+        suite: basicSuite
+      });
+      const { wrapper } = getInstance(instProps);
+      wrapper.setProps({ suite: basicSuite });
+      expect(scuSpy.calledOnce).to.equal(true);
+      expect(scuSpy.returned(false)).to.equal(true);
+    });
   });
 });

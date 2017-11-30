@@ -14,9 +14,12 @@ describe('<MaterialIcon />', () => {
   });
 
   it('renders icon with options', () => {
-    const wrapper = shallow(
-      <MaterialIcon name='add' size={ 18 } foreground='dark' className='icontest' />
-    );
+    const opts = {
+      size: 18,
+      foreground: 'dark',
+      className: 'icontest'
+    };
+    const wrapper = shallow(<MaterialIcon name='add' { ...opts } />);
     expect(wrapper).to.have.html('<i class="material-icons md-18 md-dark icontest">&#xe145;</i>');
   });
 

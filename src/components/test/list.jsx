@@ -9,14 +9,14 @@ const cx = classNames.bind(styles);
 const TestList = ({ className, tests, beforeHooks, afterHooks, enableCode }) => (
   <div className={ cx(className) }>
     { !!beforeHooks && beforeHooks.map(test => (
-      <Test key={ test.uuid } test={ test } enableCode={ enableCode } />)
-    ) }
+      <Test key={ test.uuid } test={ test } enableCode={ enableCode } />))
+    }
     { !!tests && tests.map(test => (
-      <Test key={ test.uuid } test={ test } enableCode={ enableCode } />)
-    ) }
+      <Test key={ test.uuid } test={ test } enableCode={ enableCode } />))
+    }
     { !!afterHooks && afterHooks.map(test => (
-      <Test key={ test.uuid } test={ test } enableCode={ enableCode } />)
-    ) }
+      <Test key={ test.uuid } test={ test } enableCode={ enableCode } />))
+    }
   </div>
 );
 

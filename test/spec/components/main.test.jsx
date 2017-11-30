@@ -44,9 +44,9 @@ describe('<MainHTML />', () => {
       scripts: 'function noop(){return;}'
     };
     const wrapper = shallow(<Main data={ data } { ...opts } />);
-    expect(wrapper.find('style')).to.have.html('<style>body{display:block;}</style>');
-    expect(wrapper.find('script')).to.have.html(
-      '<script type="text/javascript">function noop(){return;}</script>'
-    );
+    expect(wrapper.find('style'))
+      .to.have.html('<style>body{display:block;}</style>');
+    expect(wrapper.find('script'))
+      .to.have.html('<script type="text/javascript">function noop(){return;}</script>');
   });
 });
