@@ -1,5 +1,11 @@
 # mochawesome-report-generator changelog
 
+## [3.0.1] / 2017-12-01
+No release is complete without a quick hotfix.
+
+### Fixed
+- The `transform-react-constant-elements` babel plugin was causing one of the React components to be hoisted as a `const` when it should not have been. This caused React to throw an error and the whole report to fail to load. (https://github.com/adamgruber/mochawesome/issues/215)
+
 ## [3.0.0] / 2017-11-30
 ### Added
 - The report now displays a loading animation when loading and when toggling filters.
@@ -118,6 +124,7 @@ You can still use the `--reportFilename` flag to set the filename of the generat
 ## 1.0.0 / 2016-12-18
 - Initial release
 
+[3.0.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.0.0...3.0.1
 [3.0.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.3.2...3.0.0
 [2.3.2]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.3.1...2.3.2
 [2.3.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.3.0...2.3.1
