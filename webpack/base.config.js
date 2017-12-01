@@ -1,5 +1,7 @@
+/* eslint-disable */
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const pkg = require('../package.json');
@@ -24,9 +26,14 @@ if (env === 'production') {
       NODE_ENV: JSON.stringify('production')
     }
   }));
-  plugins.push(new webpack.optimize.UglifyJsPlugin({
-    compress: { warnings: false },
-    output: { inline_script: true }
+  plugins.push(new UglifyJsPlugin({
+    uglifyOptions: {
+      compress: { warnings: false },
+      output: {
+        comments: /^! mochawesome/,
+        inline_script: true
+      },
+    }
   }));
 }
 
