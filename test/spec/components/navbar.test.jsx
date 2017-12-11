@@ -3,20 +3,9 @@ import { mount } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
-import proxyquire from 'proxyquire';
 import QuickSummary from 'components/quick-summary';
-
+import Navbar from 'components/navbar';
 import testData from 'sample-data/test.json';
-
-proxyquire.noCallThru();
-
-const openSideNavSpy = sinon.spy();
-
-const Navbar = proxyquire('components/navbar', {
-  '../../js/reportStore': {
-    openSideNav: openSideNavSpy
-  }
-}).default;
 
 chai.use(chaiEnzyme());
 
@@ -35,6 +24,7 @@ describe('<Navbar />', () => {
 
   beforeEach(() => {
     props = {
+      onMenuClick: sinon.spy(),
       reportTitle: 'test',
       stats: testData.stats
     };
@@ -51,7 +41,7 @@ describe('<Navbar />', () => {
   it('opens side nav', () => {
     const { menuBtn } = getInstance(props);
     menuBtn.simulate('click');
-    expect(openSideNavSpy.calledOnce).to.equal(true);
+    expect(props.onMenuClick.calledOnce).to.equal(true);
   });
 
   describe('when pendingPercent is 100', () => {
