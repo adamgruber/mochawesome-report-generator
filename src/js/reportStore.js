@@ -22,20 +22,20 @@ class ReportStore {
     this.showHooksOptions = [ 'failed', 'always', 'never', 'context' ];
   }
 
-  @action openSideNav() {
+  @action.bound openSideNav() {
     this.sideNavOpen = true;
   }
 
-  @action closeSideNav() {
+  @action.bound closeSideNav() {
     this.sideNavOpen = false;
   }
 
-  @action toggleFilter(prop) {
+  @action.bound toggleFilter(prop) {
     this.toggleIsLoading(true);
     this[prop] = !this[prop];
   }
 
-  @action setShowHooks(prop) {
+  @action.bound setShowHooks(prop) {
     if (this._isValidShowHookOption(prop)) {
       this.toggleIsLoading(true);
       this.showHooks = prop;
@@ -111,7 +111,7 @@ class ReportStore {
     const showHooks = this._getShowHooks(config);
 
     Object.assign(this, { data, ...config, reportTitle, showHooks });
-    this.allSuites = [ data.suites ];
+    this.allSuites = data.suites ? [ data.suites ] : [];
     this.stats = data.stats;
     this.enableChart = !!config.enableCharts;
     this.initialLoadTimeout = 300;
