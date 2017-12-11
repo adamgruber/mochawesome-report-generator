@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { extendObservable, observable, action } from 'mobx';
 
 const transduce = (items, mapper, reducer, initial) =>
   items.reduce(
@@ -7,19 +7,28 @@ const transduce = (items, mapper, reducer, initial) =>
   );
 
 class ReportStore {
-  @observable isLoading = true;
-  @observable sideNavOpen = false;
-  @observable showPassed = true;
-  @observable showFailed = true;
-  @observable showPending = true;
-  @observable showSkipped = false;
-  @observable showHooks = 'failed';
-  @observable.shallow filteredSuites = [];
+  constructor(data = {}, config = {}) {
+    Object.assign(this, config, {
+      allSuites: data.suites ? [ data.suites ] : [],
+      devMode: !!config.dev,
+      enableChart: !!config.enableCharts,
+      initialLoadTimeout: 300,
+      reportTitle: config.reportTitle || data.reportTitle,
+      showHooksOptions: [ 'failed', 'always', 'never', 'context' ],
+      stats: data.stats || {},
+      VERSION: '__VERSION__'
+    });
 
-  constructor(data = {}) {
-    this.VERSION = '__VERSION__';
-    this.data = data;
-    this.showHooksOptions = [ 'failed', 'always', 'never', 'context' ];
+    extendObservable(this, {
+      filteredSuites: observable.shallow([]),
+      isLoading: true,
+      showFailed: true,
+      showHooks: this._getShowHooks(config),
+      showPassed: true,
+      showPending: true,
+      showSkipped: false,
+      sideNavOpen: false
+    });
   }
 
   @action.bound openSideNav() {
@@ -100,23 +109,14 @@ class ReportStore {
   );
 
   _getShowHooks = ({ showHooks }) => {
+    const showHooksDefault = 'failed';
+
     if (!showHooks) {
-      return this.showHooks;
+      return showHooksDefault;
     }
-    return this._isValidShowHookOption(showHooks) ? showHooks : this.showHooks;
+
+    return this._isValidShowHookOption(showHooks) ? showHooks : showHooksDefault;
   };
-
-  setInitialData({ data, config }) {
-    const reportTitle = config.reportTitle || data.reportTitle;
-    const showHooks = this._getShowHooks(config);
-
-    Object.assign(this, { data, ...config, reportTitle, showHooks });
-    this.allSuites = data.suites ? [ data.suites ] : [];
-    this.stats = data.stats;
-    this.enableChart = !!config.enableCharts;
-    this.initialLoadTimeout = 300;
-    this.devMode = !!config.dev;
-  }
 
   updateFilteredSuites(timeout = this.initialLoadTimeout) {
     setTimeout(() => {
@@ -126,7 +126,4 @@ class ReportStore {
   }
 }
 
-const reportStore = new ReportStore();
-export default reportStore;
-
-export { ReportStore };
+export default ReportStore;

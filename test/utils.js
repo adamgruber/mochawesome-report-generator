@@ -1,9 +1,4 @@
 /* eslint-disable import/prefer-default-export */
+import ReportStore from 'js/reportStore';
 
-import { ReportStore } from 'js/reportStore';
-
-export const createStore = (data = {}, config = {}) => {
-  const store = new ReportStore();
-  store.setInitialData({ data, config });
-  return store;
-};
+export const createStore = (data = {}, config = {}) => new ReportStore(data, config);
