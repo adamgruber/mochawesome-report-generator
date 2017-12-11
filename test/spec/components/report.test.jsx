@@ -6,9 +6,9 @@ import sinon from 'sinon';
 
 import Report from 'components/report';
 import DevTools from 'mobx-react-devtools';
-import { ReportStore } from 'js/reportStore';
 
 import testData from 'sample-data/nested.json';
+import { createStore } from 'utils';
 
 chai.use(chaiEnzyme());
 
@@ -26,7 +26,7 @@ describe('<MochawesomeReport />', () => {
   };
 
   beforeEach(() => {
-    reportStore = new ReportStore();
+    reportStore = createStore();
     props = { store: reportStore };
     clock = sinon.useFakeTimers();
   });
