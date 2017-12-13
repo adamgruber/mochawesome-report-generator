@@ -22,11 +22,11 @@ class ReportStore {
     extendObservable(this, {
       filteredSuites: observable.shallow([]),
       isLoading: true,
-      showFailed: true,
+      showFailed: config.showFailed !== undefined ? config.showFailed : true,
       showHooks: this._getShowHooks(config),
-      showPassed: true,
-      showPending: true,
-      showSkipped: false,
+      showPassed: config.showPassed !== undefined ? config.showPassed : true,
+      showPending: config.showPending !== undefined ? config.showPending : true,
+      showSkipped: config.showSkipped !== undefined ? config.showSkipped : false,
       sideNavOpen: false
     });
   }
@@ -102,7 +102,7 @@ class ReportStore {
       console.error(`Warning: '${selection}' is not a valid option for property: '${property}'. Valid options are: ${options.join(', ')}`); // eslint-disable-line
     }
     return isValid;
-  };
+  }
 
   _isValidShowHookOption = option => (
     this._isValidOption('showHooks', this.showHooksOptions, option)
@@ -116,7 +116,7 @@ class ReportStore {
     }
 
     return this._isValidShowHookOption(showHooks) ? showHooks : showHooksDefault;
-  };
+  }
 
   updateFilteredSuites(timeout = this.initialLoadTimeout) {
     setTimeout(() => {

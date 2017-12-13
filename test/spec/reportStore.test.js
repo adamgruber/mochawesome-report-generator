@@ -55,7 +55,8 @@ describe('ReportStore', () => {
     store = createStore(testData, {
       enableCharts: true,
       dev: true,
-      showHooks: 'context'
+      showHooks: 'context',
+      showPassed: false
     });
     expect(store).to.have.property('reportTitle', undefined);
     expect(store).to.have.property('stats', testData.stats);
@@ -64,6 +65,7 @@ describe('ReportStore', () => {
     expect(store).to.have.property('enableChart', true);
     expect(store).to.have.property('devMode', true);
     expect(store).to.have.property('showHooks', 'context');
+    expect(store).to.have.property('showPassed', false);
   });
 
   it('with invalid config options', () => {
