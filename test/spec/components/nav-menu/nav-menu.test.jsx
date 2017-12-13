@@ -3,33 +3,21 @@ import { mount } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
-import proxyquire from 'proxyquire';
 
 import ToggleSwitch from 'components/toggle-switch';
 import DropdownSelector from 'components/dropdown-selector';
 import NavMenuList from 'components/nav-menu/nav-menu-list';
+import NavMenu from 'components/nav-menu/nav-menu';
 
 import testData from 'sample-data/hooks.json';
+import { createStore } from 'utils';
 
-proxyquire.noCallThru();
-
-const closeSideNavSpy = sinon.spy();
-const toggleFilterSpy = sinon.spy();
-const setShowHooksSpy = sinon.spy();
-
-const NavMenu = proxyquire('components/nav-menu/nav-menu', {
-  '../../js/reportStore': {
-    closeSideNav: closeSideNavSpy,
-    toggleFilter: toggleFilterSpy,
-    setShowHooks: setShowHooksSpy,
-    showHooksOptions: [ 'always', 'never' ]
-  }
-}).default;
 
 chai.use(chaiEnzyme());
 
 describe('<NavMenu />', () => {
   let props;
+  let store;
 
   const getInstance = instanceProps => {
     const wrapper = mount(<NavMenu { ...instanceProps } />);
@@ -43,20 +31,19 @@ describe('<NavMenu />', () => {
   };
 
   beforeEach(() => {
-    props = {
-      suites: [ testData.suites ],
+    store = createStore({
       reportTitle: 'test',
       stats: testData.stats,
-      showPassed: true,
-      showFailed: true,
-      showPending: true,
-      showSkipped: true,
-      showHooks: 'failed',
-      sideNavOpen: true
+      suites: testData.suites
+    });
+
+    props = {
+      reportStore: store
     };
   });
 
   it('renders with toggles', () => {
+    store.openSideNav();
     const { title, navList, toggles, hooksDropdown } = getInstance(props);
     expect(title.text()).to.equal('test');
     expect(navList).to.have.lengthOf(1);
@@ -66,18 +53,18 @@ describe('<NavMenu />', () => {
   });
 
   it('renders with disabled toggles', () => {
-    const newStats = Object.assign({}, props.stats, {
-      passes: 0,
-      failures: 0,
-      pending: 0,
-      skipped: 0
+    props.reportStore = createStore({
+      reportTitle: 'test',
+      stats: {
+        passes: 0,
+        failures: 0,
+        pending: 0,
+        skipped: 0
+      }
     });
-    const newProps = Object.assign({}, props, {
-      suites: null,
-      stats: newStats
-    });
-    const { title, navList, toggles, hooksDropdown } = getInstance(newProps);
 
+    store.openSideNav();
+    const { title, navList, toggles, hooksDropdown } = getInstance(props);
     expect(title.text()).to.equal('test');
     expect(navList).to.have.lengthOf(0);
     expect(toggles).to.have.lengthOf(4);
@@ -86,36 +73,40 @@ describe('<NavMenu />', () => {
   });
 
   describe('reportStore functions', () => {
+    beforeEach(() => {
+      sinon.spy(store, 'closeSideNav');
+      sinon.spy(store, 'toggleFilter');
+      sinon.spy(store, 'setShowHooks');
+    });
+
     it('closes menu', () => {
       const { wrapper } = getInstance(props);
       wrapper.find('.nav-menu-close-btn').simulate('click');
-      expect(closeSideNavSpy.calledOnce).to.equal(true);
+      expect(store.closeSideNav.calledOnce).to.equal(true);
     });
 
     it('clicks toggles', () => {
       const { toggles } = getInstance(props);
       const switches = toggles.find('.toggle-switch-switch');
       switches.forEach(node => node.simulate('click'));
-      expect(toggleFilterSpy.callCount).to.equal(4);
+      expect(store.toggleFilter.callCount).to.equal(4);
     });
 
     it('sets hooks dropdown', () => {
       const { hooksDropdown } = getInstance(props);
       hooksDropdown.find('button').simulate('click');
       hooksDropdown.find('a').first().simulate('click');
-      expect(setShowHooksSpy.calledOnce).to.equal(true);
+      expect(store.setShowHooks.calledOnce).to.equal(true);
     });
   });
 
   it('updates the list', () => {
-    const { wrapper } = getInstance(props);
+    getInstance(props);
     sinon.spy(NavMenuList.prototype, 'shouldComponentUpdate');
-    wrapper.setProps({
-      showPassed: false,
-      showFailed: false,
-      showPending: false,
-      showSkipped: false
-    });
+    store.toggleFilter('showPassed');
+    store.toggleFilter('showFailed');
+    store.toggleFilter('showPending');
+    store.toggleFilter('showSkipped');
     expect(NavMenuList.prototype.shouldComponentUpdate.alwaysReturned(true)).to.equal(true);
   });
 });

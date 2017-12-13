@@ -1,14 +1,13 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { ReportStore } from 'js/reportStore';
 import testData from 'sample-data/nested.json';
+import { createStore } from 'utils';
 
 describe('ReportStore', () => {
   let store;
   let clock;
 
   beforeEach(() => {
-    store = new ReportStore();
     clock = sinon.useFakeTimers();
   });
 
@@ -17,69 +16,66 @@ describe('ReportStore', () => {
   });
 
   it('has the correct default state', () => {
+    store = createStore();
+    expect(store).to.have.deep.property('allSuites', []);
+    expect(store).to.have.deep.property('showHooksOptions', [
+      'failed',
+      'always',
+      'never',
+      'context'
+    ]);
     expect(store).to.include({
+      devMode: false,
+      enableChart: false,
+      initialLoadTimeout: 300,
       isLoading: true,
-      sideNavOpen: false,
-      showPassed: true,
       showFailed: true,
+      showHooks: 'failed',
+      showPassed: true,
       showPending: true,
       showSkipped: false,
-      showHooks: 'failed',
+      sideNavOpen: false,
       VERSION: '__VERSION__'
     });
   });
 
-  describe('setInitialData', () => {
-    it('without config options', () => {
-      store.setInitialData({
-        data: testData,
-        config: {}
-      });
-      expect(store).to.have.property('data', testData);
-      expect(store).to.have.property('reportTitle', undefined);
-      expect(store).to.have.property('stats', testData.stats);
-      expect(store).to.have.nested.deep.property('allSuites[0]', testData.suites);
-      expect(store).to.have.deep.property('stats', testData.stats);
-      expect(store).to.have.property('enableChart', false);
-      expect(store).to.have.property('devMode', false);
-      expect(store).to.have.property('showHooks', 'failed');
-      expect(store).to.have.property('initialLoadTimeout', 300);
-    });
+  it('without config options', () => {
+    store = createStore(testData);
+    expect(store).to.have.property('reportTitle', undefined);
+    expect(store).to.have.property('stats', testData.stats);
+    expect(store).to.have.nested.deep.property('allSuites[0]', testData.suites);
+    expect(store).to.have.deep.property('stats', testData.stats);
+    expect(store).to.have.property('enableChart', false);
+    expect(store).to.have.property('devMode', false);
+    expect(store).to.have.property('showHooks', 'failed');
+    expect(store).to.have.property('initialLoadTimeout', 300);
+  });
 
-    it('with config options', () => {
-      store.setInitialData({
-        data: testData,
-        config: {
-          enableCharts: true,
-          dev: true,
-          showHooks: 'context'
-        }
-      });
-      expect(store).to.have.property('data', testData);
-      expect(store).to.have.property('reportTitle', undefined);
-      expect(store).to.have.property('stats', testData.stats);
-      expect(store).to.have.nested.deep.property('allSuites[0]', testData.suites);
-      expect(store).to.have.deep.property('stats', testData.stats);
-      expect(store).to.have.property('enableChart', true);
-      expect(store).to.have.property('devMode', true);
-      expect(store).to.have.property('showHooks', 'context');
+  it('with config options', () => {
+    store = createStore(testData, {
+      enableCharts: true,
+      dev: true,
+      showHooks: 'context'
     });
+    expect(store).to.have.property('reportTitle', undefined);
+    expect(store).to.have.property('stats', testData.stats);
+    expect(store).to.have.nested.deep.property('allSuites[0]', testData.suites);
+    expect(store).to.have.deep.property('stats', testData.stats);
+    expect(store).to.have.property('enableChart', true);
+    expect(store).to.have.property('devMode', true);
+    expect(store).to.have.property('showHooks', 'context');
+  });
 
-
-    it('with invalid config options', () => {
-      store.setInitialData({
-        data: testData,
-        config: {
-          showHooks: 'sometimes'
-        }
-      });
-      expect(store).to.have.property('showHooks', 'failed');
+  it('with invalid config options', () => {
+    store = createStore(testData, {
+      showHooks: 'sometimes'
     });
+    expect(store).to.have.property('showHooks', 'failed');
   });
 
   describe('Actions', () => {
     beforeEach(() => {
-      store.setInitialData({ data: testData, config: {} });
+      store = createStore(testData, {});
     });
 
     it('openSideNav', () => {
@@ -146,7 +142,7 @@ describe('ReportStore', () => {
 
   describe('updateFilteredSuites', () => {
     beforeEach(() => {
-      store.setInitialData({ data: testData, config: {} });
+      store = createStore(testData, {});
       store.toggleIsLoading(true);
     });
 

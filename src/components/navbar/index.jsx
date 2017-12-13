@@ -3,18 +3,15 @@ import PropTypes from 'prop-types';
 import { QuickSummary, Icon } from 'components';
 import classNames from 'classnames/bind';
 import styles from './navbar.css';
-import reportStore from '../../js/reportStore';
 
 const cx = classNames.bind(styles);
 
-const Navbar = ({ reportTitle, stats }) => {
+const Navbar = ({ onMenuClick, reportTitle, stats }) => {
   const { passPercent, pendingPercent } = stats;
 
   const failPercent = 100 - passPercent;
   const allPending = pendingPercent === 100;
   const showPctBar = passPercent !== null && pendingPercent !== null;
-
-  const onClickFn = () => (reportStore.openSideNav());
 
   const pctBar = (prop, cname, title) => (
     <span
@@ -27,7 +24,7 @@ const Navbar = ({ reportTitle, stats }) => {
     <div className={ cx('component', 'z-depth-1') } role='navigation'>
       <div className={ cx('report-info-cnt') }>
         <button
-          onClick={ onClickFn }
+          onClick={ onMenuClick }
           className={ cx('menu-button', 'open-menu') }>
           <Icon name='menu' />
         </button>
@@ -48,6 +45,7 @@ const Navbar = ({ reportTitle, stats }) => {
 };
 
 Navbar.propTypes = {
+  onMenuClick: PropTypes.func,
   reportTitle: PropTypes.string,
   stats: PropTypes.object
 };

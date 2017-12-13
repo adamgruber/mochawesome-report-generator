@@ -9,40 +9,24 @@ import 'styles/app.global.css';
 
 const MochawesomeReport = observer(props => {
   const {
+    openSideNav,
     reportTitle,
-    allSuites,
     stats,
-    showPassed,
-    showFailed,
-    showPending,
-    showSkipped,
-    showHooks,
-    sideNavOpen,
     devMode,
     VERSION
   } = props.store;
-
-  const navMenuProps = {
-    reportTitle,
-    stats,
-    showPassed,
-    showFailed,
-    showPending,
-    showSkipped,
-    showHooks,
-    sideNavOpen
-  };
 
   return (
     <Provider reportStore={ props.store }>
       <main>
         <Navbar
+          onMenuClick={ openSideNav }
           reportTitle={ reportTitle }
           stats={ stats } />
         <ReportBody />
         <Loader />
         <Footer version={ VERSION } />
-        <NavMenu suites={ allSuites } { ...navMenuProps } />
+        <NavMenu />
         { devMode && <DevTools position={ { bottom: 0, right: 20 } } /> }
       </main>
     </Provider>

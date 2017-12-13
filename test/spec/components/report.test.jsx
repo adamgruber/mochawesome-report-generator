@@ -6,15 +6,14 @@ import sinon from 'sinon';
 
 import Report from 'components/report';
 import DevTools from 'mobx-react-devtools';
-import { ReportStore } from 'js/reportStore';
 
 import testData from 'sample-data/nested.json';
+import { createStore } from 'utils';
 
 chai.use(chaiEnzyme());
 
 describe('<MochawesomeReport />', () => {
-  let reportStore;
-  let props;
+  let store;
   let clock;
 
   const getInstance = (instanceProps, opts) => {
@@ -26,8 +25,6 @@ describe('<MochawesomeReport />', () => {
   };
 
   beforeEach(() => {
-    reportStore = new ReportStore();
-    props = { store: reportStore };
     clock = sinon.useFakeTimers();
   });
 
@@ -36,28 +33,24 @@ describe('<MochawesomeReport />', () => {
   });
 
   it('should render', () => {
-    reportStore.setInitialData({ data: testData, config: {} });
-
-    const { wrapper } = getInstance(props);
+    store = createStore(testData);
+    const { wrapper } = getInstance({ store });
     expect(wrapper.find(DevTools)).to.have.lengthOf(0);
   });
 
   it('should render in dev mode', () => {
-    reportStore.setInitialData({ data: testData, config: { dev: true } });
-    const { wrapper } = getInstance(props);
+    store = createStore(testData, { dev: true });
+    const { wrapper } = getInstance({ store });
     expect(wrapper.find(DevTools)).to.have.lengthOf(1);
   });
 
   it('should scroll to a suite', () => {
-    reportStore.setInitialData({
-      data: testData,
-      config: { enableCharts: true }
-    });
+    store = createStore(testData, { enableCharts: true });
 
     const node = document.createElement('div');
     node.setAttribute('id', 'app');
     document.body.appendChild(node);
-    const { wrapper } = getInstance(props, { attachTo: node });
+    const { wrapper } = getInstance({ store }, { attachTo: node });
     clock.next();
 
     expect(window.scrollTop).to.equal(0);
