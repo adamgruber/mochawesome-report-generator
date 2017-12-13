@@ -20,6 +20,10 @@ const expectedOptions = {
   saveHtml: true,
   ts: false,
   dev: false,
+  showPassed: true,
+  showFailed: true,
+  showPending: true,
+  showSkipped: false,
   showHooks: 'failed'
 };
 
@@ -37,7 +41,10 @@ describe('options', () => {
         reportDir: 'userDir',
         inline: true,
         enableCode: false,
-        dev: 'true'
+        dev: 'true',
+        showPassed: false,
+        showFailed: 'false',
+        showSkipped: true
       };
       process.env.MOCHAWESOME_REPORTTITLE = 'userTitle';
       process.env.MOCHAWESOME_AUTOOPEN = 'false';
@@ -54,6 +61,7 @@ describe('options', () => {
           inlineAssets: true,
           code: false,
           dev: true,
+          showFailed: false,
           reportTitle: 'userTitle'
         }));
     });
