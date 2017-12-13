@@ -69,9 +69,11 @@ mochawesome-report/
 └── mochawesome.html
 ```
 
-## CLI Options
+## Options
 
-**marge** can be configured via command line flags
+### CLI Flags
+
+**marge** can be configured via the following command line flags:
 
 Flag | Type | Default | Description 
 :--- | :--- | :------ | :----------
@@ -85,6 +87,10 @@ Flag | Type | Default | Description
 --autoOpen | boolean | false | Automatically open the report
 --overwrite | boolean | true | Overwrite existing report files. *See [notes](#overwrite).*
 --timestamp, --ts | string | | Append timestamp in specified format to report filename. *See [notes](#timestamp).*
+--showPassed | boolean |  true | Set initial state of "Show Passed" filter
+--showFailed | boolean |  true | Set initial state of "Show Failed" filter
+--showPending | boolean | true | Set initial state of "Show Pending" filter
+--showSkipped | boolean | false | Set initial state of "Show Skipped" filter
 --showHooks | string | failed | Set the default display mode for hooks
 --saveJson | boolean | false |Should report data be saved to JSON file
 --saveHtml | boolean | true | Should report be saved to HTML file
@@ -100,7 +106,8 @@ By default, report files are overwritten by subsequent report generation. Passin
 **Note:** `overwrite` will always be `false` when passing multiple files or using the `timestamp` option.
 
 #### Timestamp
-The `timestamp` option can be used to append a timestamp to the report filename. It uses [dateformat][] to parse format strings so you can pass any valid string that [dateformat][] accepts with a few exceptions. In order to produce valid filenames, the following replacements are made:
+The `timestamp` option can be used to append a timestamp to the report filename. It uses [dateformat][] to parse format strings so you can pass any valid string that [dateformat][] accepts with a few exceptions. In order to produce valid filenames, the following 
+replacements are made:
 
 Characters | Replacement | Example | Output
 :--- | :--- | :--- | :---
@@ -109,6 +116,29 @@ slashes | hyphen | 3/29/2017 | 3-29-2017
 colons | null | 17:46:21 | 174621
 
 Further, if you pass the flag with no format string, it will default to `isoDateTime`.
+
+### mochawesome `reporter-options`
+
+The above CLI flags can be used as `reporter-options` when using the mochawesome reporter.
+
+Use them in a `mocha.opts` file:
+```js
+--reporter mochawesome
+--reporter-options overwrite=true,reportTitle=My\ Custom\ Title,showPassed=false
+```
+
+or as an object when using mocha programmatically:
+
+```js
+const mocha = new Mocha({
+  reporter: 'mochawesome',
+  reporterOptions: {
+    overwrite: true,
+    reportTitle: 'My Custom Title',
+    showPassed: false
+  }
+});
+```
 
 ## Development
 
