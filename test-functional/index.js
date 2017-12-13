@@ -8,7 +8,8 @@ const mocha = new Mocha({
   reporter: '../mochawesome', // path relative to cwd
   reporterOptions: {
     dev: true,
-    overwrite: true
+    overwrite: true,
+    showPassed: false
   }
 });
 
@@ -23,9 +24,7 @@ const addDirectoryToMocha = dir => {
   fs.readdirSync(dir)
     .filter(isJSFile)
     .forEach(file => {
-      mocha.addFile(
-        path.join(dir, file)
-      );
+      mocha.addFile(path.join(dir, file));
     });
 };
 
