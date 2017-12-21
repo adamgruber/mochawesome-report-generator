@@ -61,25 +61,23 @@ describe('bin/cli', () => {
     });
   });
 
-  describe('when file is a directory', () => {
-    it('should not create a report', () => {
-      const args = getArgs([ 'test/sample-data/' ]);
-      return expect(cli(args)).to.become([ {
-        filename: 'test/sample-data/',
-        data: undefined,
-        err: '  Directories are not supported (yet).'
-      } ]);
+  describe('when arg is a directory', () => {
+    beforeEach(() => {
+      createStub.onCall(0).resolves('mochawesome-report/single.html');
+    });
+
+    it('should create a report', () => {
+      const args = getArgs([ 'test/sample-data/sub' ]);
+      return expect(cli(args)).to.become([
+        'mochawesome-report/single.html'
+      ]);
     });
   });
 
   describe('when file is not JSON', () => {
     it('should not create a report', () => {
       const args = getArgs([ 'README.md' ]);
-      return expect(cli(args)).to.become([ {
-        filename: 'README.md',
-        data: undefined,
-        err: '  You must supply a valid JSON file.'
-      } ]);
+      return expect(cli(args)).to.become([]);
     });
   });
 

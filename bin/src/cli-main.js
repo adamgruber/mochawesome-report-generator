@@ -11,7 +11,6 @@ const JsonFileRegex = /\.json{1}$/;
 const mapJsonErrors = errors => errors.map(e => `  ${e.message}`).join('\n');
 const ERRORS = {
   NOT_FOUND: '  File not found.',
-  NOT_JSON: '  You must supply a valid JSON file.',
   GENERIC: '  There was a problem loading mochawesome data.',
   INVALID_JSON: errMsgs => mapJsonErrors(errMsgs),
   IS_DIR: '  Directories are not supported (yet).'
@@ -42,8 +41,6 @@ function validateFile(file) {
       err = ERRORS.NOT_FOUND;
     } else if (e.code === 'EISDIR') {
       err = ERRORS.IS_DIR;
-    } else if (!JsonFileRegex.test(file)) {
-      err = ERRORS.NOT_JSON;
     } else if (JsonErrRegex.test(e.message)) {
       err = ERRORS.INVALID_JSON([ e ]);
     } else {
@@ -111,11 +108,17 @@ function handleResolved(resolvedValues) {
       .join('\n\n'));
     process.exitCode = 1;
   }
+
+  if (!validFiles && !errors.length) {
+    logger.info(chalk.yellow('\nDid not find any JSON files to process.'));
+    process.exitCode = 1;
+  }
+
   return resolvedValues;
 }
 
 /**
- * Get the reportFilename option to be passed to report.create
+ * Get the reportFilename option to be passed to `report.create`
  *
  * Returns the `reportFilename` option if provided otherwise
  * it returns the base filename stripped of path and extension
@@ -130,6 +133,42 @@ function getReportFilename({ filename }, { reportFilename }) {
 }
 
 /**
+ * Process arguments, recursing through any directories,
+ * to find and validate JSON files
+ *
+ * @param {array} args Array of paths
+ * @param {array} files Array to populate
+ *
+ * @return {array} File objects to be processed
+ */
+function processArgs(args, files = []) {
+  return args.reduce((acc, arg) => {
+    let stats;
+    try {
+      stats = fs.statSync(arg);
+    } catch (err) {
+      // Do nothing
+    }
+
+    // If argument is a directory, process the files inside
+    if (stats && stats.isDirectory()) {
+      return processArgs(
+        fs.readdirSync(arg).map(file => path.join(arg, file)),
+        files
+      );
+    }
+
+    // If `statSync` failed, validating will handle the error
+    // If the argument is a file, check if its a JSON file before validating
+    if (!stats || JsonFileRegex.test(arg)) {
+      acc.push(validateFile(arg));
+    }
+
+    return acc;
+  }, files);
+}
+
+/**
  * Main CLI Program
  *
  * @param {Object} args CLI arguments
@@ -140,8 +179,8 @@ function marge(args) {
   // Reset valid files count
   validFiles = 0;
 
-  // Load and validate each file
-  const files = args._.map(validateFile);
+  // Get the array of JSON files to process
+  const files = processArgs(args._);
 
   // When there are multiple valid files OR the timestamp option is set
   // we must force `overwrite` to `false` to ensure all reports are created
