@@ -5,13 +5,14 @@ const PercentClass = t.enums.of([ 'success', 'warning', 'danger' ], 'PercentClas
 const TestState = t.enums.of([ 'passed', 'failed' ], 'TestState');
 const TestSpeed = t.enums.of([ 'slow', 'medium', 'fast' ], 'TestSpeed');
 const DateString = t.refinement(t.String, isISO8601, 'DateString');
+const Duration = t.maybe(t.Integer);
 const Uuid = t.refinement(t.String, isUUID, 'UUID');
 
 const Test = t.struct({
   title: t.String,
   fullTitle: t.String,
   timedOut: t.Boolean,
-  duration: t.Integer,
+  duration: Duration,
   state: t.maybe(TestState),
   speed: t.maybe(TestSpeed),
   pass: t.Boolean,
@@ -43,7 +44,7 @@ Suite.define(t.struct({
   failures: t.list(Uuid),
   pending: t.list(Uuid),
   skipped: t.list(Uuid),
-  duration: t.Integer,
+  duration: Duration,
   rootEmpty: t.maybe(t.Boolean)
 }));
 
@@ -56,7 +57,7 @@ const TestReport = t.struct({
     failures: t.Integer,
     start: DateString,
     end: DateString,
-    duration: t.Integer,
+    duration: Duration,
     testsRegistered: t.Integer,
     passPercent: t.Number,
     pendingPercent: t.Number,
