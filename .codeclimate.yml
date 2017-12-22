@@ -32,6 +32,7 @@ exclude_paths:
 - docs/
 - dist/
 - test/
-- webpack/
+- webpack.config.js
+- webpack.loaders.js
 - bin/*.js
 - lib/*.js

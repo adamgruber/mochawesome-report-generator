@@ -16,9 +16,9 @@
     "build": "rm -rf dist/assets && NODE_ENV=production npm run webpack",
     "prepack": "npm run build && npm run compile",
     "webpack": "npm run pack:external && npm run pack:inline",
-    "pack:external": "webpack --config ./webpack/external.config.js",
-    "pack:inline": "webpack --config ./webpack/inline.config.js",
-    "devserver": "webpack-dev-server --config ./webpack/dev.config.js --inline --watch --hot",
+    "pack:external": "MARGE_ASSETS=external webpack",
+    "pack:inline": "MARGE_ASSETS=inline webpack",
+    "devserver": "webpack-dev-server --inline --watch --hot",
     "cli": "node ./bin/cli test/sample-data/test.json --dev",
     "dev": "npm run compile && npm run cli && npm run devserver",
     "dev:cli": "nodemon --watch bin/src --watch lib/src --exec npm run compile"
