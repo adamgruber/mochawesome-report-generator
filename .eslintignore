@@ -1,4 +1,5 @@
-webpack/
+webpack.config.js
+webpack.loaders.js
 coverage/
 dist/
 mochawesome-report/
