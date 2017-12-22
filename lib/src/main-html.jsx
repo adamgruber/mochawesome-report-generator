@@ -3,9 +3,9 @@ const React = require('react');
 const PropTypes = require('prop-types');
 
 function MainHTML(props) {
-  const { data, options, scripts, styles } = props;
-  const clientScript = options.dev ? 'http://localhost:8080/app.js' : 'assets/app.js';
-  const clientStyle = options.dev ? 'http://localhost:8080/app.css' : 'assets/app.css';
+  const { assetsDir, data, options, scripts, styles } = props;
+  const clientScript = options.dev ? 'http://localhost:8080/app.js' : `${assetsDir}/app.js`;
+  const clientStyle = options.dev ? 'http://localhost:8080/app.css' : `${assetsDir}/app.css`;
   return (
     <html lang='en'>
       <head>
@@ -28,6 +28,7 @@ function MainHTML(props) {
 }
 
 MainHTML.propTypes = {
+  assetsDir: PropTypes.string,
   data: PropTypes.string,
   options: PropTypes.object,
   scripts: PropTypes.string,

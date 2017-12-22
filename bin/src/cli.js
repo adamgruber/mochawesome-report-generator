@@ -5,7 +5,7 @@ const marge = require('./cli-main');
 
 // Setup yargs
 yargs
-  .usage('Usage: $0 [options] data_file [data_file2 ...]')
+  .usage('Usage: $0 [options] <data_file> [data_file2..]')
   .demand(1)
   .options(yargsOptions)
   .help('help')
