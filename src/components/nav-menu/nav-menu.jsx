@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
-import moment from 'moment';
+import { format } from 'date-fns';
 import find from 'lodash/find';
 import { Icon, ToggleSwitch, DropdownSelector } from 'components';
 import { NavMenuItem } from 'components/nav-menu';
@@ -71,7 +71,7 @@ class NavMenu extends Component {
           <div className={ cx('section') }>
             <h3 className={ cx('title') }>{ reportTitle }</h3>
             <h6 className={ cx('date') }>
-              { moment(stats.end).format('dddd, MMMM D YYYY, hh:mma') }
+              { format(stats.end, 'dddd, MMMM D, YYYY h:mma') }
             </h6>
           </div>
           <div className={ cx('section') }>

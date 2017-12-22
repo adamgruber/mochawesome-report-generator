@@ -79,6 +79,7 @@
   },
   "dependencies": {
     "chalk": "^2.3.0",
+    "date-fns": "^1.29.0",
     "dateformat": "^3.0.2",
     "fs-extra": "^4.0.2",
     "fsu": "^1.0.2",
@@ -133,7 +134,6 @@
     "mobx-react": "^4.0.0",
     "mobx-react-devtools": "^4.2.9",
     "mocha": "*",
-    "moment": "^2.15.1",
     "nodemon": "^1.11.0",
     "normalize.css": "^7.0.0",
     "nyc": "^11.4.0",
