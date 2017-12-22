@@ -7,6 +7,7 @@ const expectedOptions = {
   reportDir: 'mochawesome-report',
   reportTitle: process.cwd().split(path.sep).pop(),
   reportPageTitle: 'Mochawesome Report',
+  assetsDir: 'mochawesome-report/assets',
   inline: false,
   inlineAssets: false,
   charts: true,
@@ -39,6 +40,7 @@ describe('options', () => {
     beforeEach(() => {
       userOptions = {
         reportDir: 'userDir',
+        assetsDir: 'userDir/assets',
         inline: true,
         enableCode: false,
         dev: 'true',

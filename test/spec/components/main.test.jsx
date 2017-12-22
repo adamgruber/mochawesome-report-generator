@@ -8,42 +8,43 @@ import Main from '../../../lib/src/main-html';
 chai.use(chaiEnzyme());
 
 const data = JSON.stringify({ testdata: 'test' });
-const reportPageTitle = 'test';
+
+const getInstance = props => shallow(<Main data={ data } { ...props } />);
 
 describe('<MainHTML />', () => {
-  it('sets correct script/style urls', () => {
-    const opts = {
-      options: {
-        reportPageTitle
-      }
+  let options;
+  let props;
+
+  beforeEach(() => {
+    options = {
+      reportPageTitle: 'test'
     };
-    const wrapper = shallow(<Main data={ data } { ...opts } />);
-    expect(wrapper.find('link')).to.have.attr('href', 'assets/app.css');
-    expect(wrapper.find('script')).to.have.attr('src', 'assets/app.js');
+    props = {
+      assetsDir: 'test/assets',
+      options
+    };
+  });
+
+  it('sets correct script/style urls', () => {
+    const wrapper = getInstance(props);
+    expect(wrapper.find('link')).to.have.attr('href', 'test/assets/app.css');
+    expect(wrapper.find('script')).to.have.attr('src', 'test/assets/app.js');
   });
 
   it('sets correct script/style urls for dev', () => {
-    const opts = {
-      options: {
-        reportPageTitle,
-        dev: true
-      }
-    };
-    const wrapper = shallow(<Main data={ data } { ...opts } />);
+    props.options.dev = true;
+    const wrapper = getInstance(props);
     expect(wrapper.find('link')).to.have.attr('href', 'http://localhost:8080/app.css');
     expect(wrapper.find('script')).to.have.attr('src', 'http://localhost:8080/app.js');
   });
 
   it('renders scripts/styles inline', () => {
-    const opts = {
-      options: {
-        reportPageTitle,
-        inlineAssets: true
-      },
+    const newProps = { ...props,
+      options: { ...options, inlineAssets: true },
       styles: 'body{display:block;}',
       scripts: 'function noop(){return;}'
     };
-    const wrapper = shallow(<Main data={ data } { ...opts } />);
+    const wrapper = getInstance(newProps);
     expect(wrapper.find('style'))
       .to.have.html('<style>body{display:block;}</style>');
     expect(wrapper.find('script'))
