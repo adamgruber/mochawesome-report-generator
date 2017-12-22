@@ -12,8 +12,7 @@ const mapJsonErrors = errors => errors.map(e => `  ${e.message}`).join('\n');
 const ERRORS = {
   NOT_FOUND: '  File not found.',
   GENERIC: '  There was a problem loading mochawesome data.',
-  INVALID_JSON: errMsgs => mapJsonErrors(errMsgs),
-  IS_DIR: '  Directories are not supported (yet).'
+  INVALID_JSON: errMsgs => mapJsonErrors(errMsgs)
 };
 let validFiles;
 
@@ -39,8 +38,6 @@ function validateFile(file) {
   } catch (e) {
     if (e.code === 'ENOENT') {
       err = ERRORS.NOT_FOUND;
-    } else if (e.code === 'EISDIR') {
-      err = ERRORS.IS_DIR;
     } else if (JsonErrRegex.test(e.message)) {
       err = ERRORS.INVALID_JSON([ e ]);
     } else {
