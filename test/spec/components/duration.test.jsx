@@ -32,20 +32,28 @@ describe('<Duration />', () => {
     const wrapper = shallow(<Duration timer={ 7625134 } />);
     expect(wrapper.text()).to.equal('2:07:05.134h');
   });
+  it('days', () => {
+    const wrapper = shallow(<Duration timer={ 123456789 } />);
+    expect(wrapper.text()).to.equal('1d 10:17:36.789h');
+  });
   it('summary duration milliseconds', () => {
     const wrapper = shallow(<Duration timer={ 234 } isSummary />);
-    expect(wrapper.text()).to.equal('234MS');
+    expect(wrapper.text()).to.equal('234ms');
   });
   it('summary duration seconds', () => {
     const wrapper = shallow(<Duration timer={ 1234 } isSummary />);
-    expect(wrapper.text()).to.equal('1.234S');
+    expect(wrapper.text()).to.equal('1.234s');
   });
   it('summary duration minutes', () => {
     const wrapper = shallow(<Duration timer={ 91234 } isSummary />);
-    expect(wrapper.text()).to.equal('1:31M');
+    expect(wrapper.text()).to.equal('1:31m');
   });
   it('summary duration hours', () => {
     const wrapper = shallow(<Duration timer={ 7625134 } isSummary />);
-    expect(wrapper.text()).to.equal('2:07H');
+    expect(wrapper.text()).to.equal('2:07h');
+  });
+  it('summary duration days', () => {
+    const wrapper = shallow(<Duration timer={ 123456789 } isSummary />);
+    expect(wrapper.text()).to.equal('1d 10:17h');
   });
 });
