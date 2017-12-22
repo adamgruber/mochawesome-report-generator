@@ -1,5 +1,14 @@
 # mochawesome-report-generator changelog
 
+## Unreleased
+### Added
+- New option: `assetsDir` - specify a custom location for the report assets (js/css)
+- CLI: Support directories as agruments
+- New options: `showPassed`, `showFailed`, `showPending`, `showSkipped` - set the default state of the report filters
+
+### Changed
+- Use a top-level `<Provider>` component to make the report store available to all components
+
 ## [3.0.1] / 2017-12-01
 No release is complete without a quick hotfix.
 
