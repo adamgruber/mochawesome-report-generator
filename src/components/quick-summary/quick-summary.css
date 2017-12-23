@@ -55,13 +55,6 @@
       background-color: var(--grey100);
     }
   }
-
-  &.duration {
-    & .duration-units {
-      font-size: 14px;
-      text-transform: lowercase;
-    }
-  }
 }
 
 /* Icons / Colors */
