@@ -82,6 +82,7 @@ Flag | Type | Default | Description
 -t, --reportTitle | string | mochawesome | Report title
 -p, --reportPageTitle | string | mochawesome-report | Browser title
 -i, --inline | boolean | false | Inline report assets (scripts, styles)
+--cdn | boolean | false | Load report assets via CDN (unpkg.com)
 --assetsDir | string | [cwd]/mochawesome-report/assets | Path to save report assets (js/css)
 --charts | boolean | true | Display Suite charts
 --code | boolean | true | Display test code

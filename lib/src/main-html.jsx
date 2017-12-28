@@ -3,36 +3,46 @@ const React = require('react');
 const PropTypes = require('prop-types');
 
 function MainHTML(props) {
-  const { assetsDir, data, options, scripts, styles } = props;
-  const clientScript = options.dev ? 'http://localhost:8080/app.js' : `${assetsDir}/app.js`;
-  const clientStyle = options.dev ? 'http://localhost:8080/app.css' : `${assetsDir}/app.css`;
+  const {
+    data,
+    inlineScripts,
+    inlineStyles,
+    options,
+    scriptsUrl,
+    stylesUrl,
+    title,
+    useInlineAssets
+  } = props;
   return (
     <html lang='en'>
       <head>
         <meta charSet='utf-8' />
         <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <title>{ options.reportPageTitle }</title>
-        { options.inlineAssets
-          ? <style dangerouslySetInnerHTML={ { __html: styles } } />
-          : <link rel='stylesheet' href={ clientStyle } /> }
+        <title>{ title }</title>
+        { useInlineAssets
+          ? <style dangerouslySetInnerHTML={ { __html: inlineStyles } } />
+          : <link rel='stylesheet' href={ stylesUrl } /> }
       </head>
       <body data-raw={ data } data-config={ JSON.stringify(options) }>
         <div id='report' />
-        { options.inlineAssets
-          ? <script type='text/javascript' dangerouslySetInnerHTML={ { __html: scripts } } />
-          : <script src={ clientScript } /> }
+        { useInlineAssets
+          ? <script type='text/javascript' dangerouslySetInnerHTML={ { __html: inlineScripts } } />
+          : <script src={ scriptsUrl } /> }
       </body>
     </html>
   );
 }
 
 MainHTML.propTypes = {
-  assetsDir: PropTypes.string,
   data: PropTypes.string,
+  inlineScripts: PropTypes.string,
+  inlineStyles: PropTypes.string,
   options: PropTypes.object,
-  scripts: PropTypes.string,
-  styles: PropTypes.string
+  scriptsUrl: PropTypes.string,
+  stylesUrl: PropTypes.string,
+  title: PropTypes.string,
+  useInlineAssets: PropTypes.bool
 };
 
 module.exports = MainHTML;

@@ -10,6 +10,7 @@ const expectedOptions = {
   assetsDir: 'mochawesome-report/assets',
   inline: false,
   inlineAssets: false,
+  cdn: false,
   charts: true,
   enableCharts: true,
   code: true,
@@ -42,6 +43,7 @@ describe('options', () => {
         reportDir: 'userDir',
         assetsDir: 'userDir/assets',
         inline: true,
+        cdn: true,
         enableCode: false,
         dev: 'true',
         showPassed: false,
@@ -61,6 +63,7 @@ describe('options', () => {
       expect(getMergedOptions(userOptions))
         .to.eql(Object.assign({}, expectedOptions, userOptions, {
           inlineAssets: true,
+          cdn: true,
           code: false,
           dev: true,
           showFailed: false,

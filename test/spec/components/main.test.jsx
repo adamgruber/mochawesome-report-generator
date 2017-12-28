@@ -7,44 +7,32 @@ import Main from '../../../lib/src/main-html';
 
 chai.use(chaiEnzyme());
 
-const data = JSON.stringify({ testdata: 'test' });
-
-const getInstance = props => shallow(<Main data={ data } { ...props } />);
+const getInstance = props => shallow(<Main { ...props } />);
+let props;
 
 describe('<MainHTML />', () => {
-  let options;
-  let props;
-
   beforeEach(() => {
-    options = {
-      reportPageTitle: 'test'
-    };
     props = {
-      assetsDir: 'test/assets',
-      options
+      data: {},
+      inlineScripts: 'function noop(){return;}',
+      inlineStyles: 'body{display:block;}',
+      options: {},
+      scriptsUrl: 'app.js',
+      stylesUrl: 'app.css',
+      title: 'test',
+      useInlineAssets: false
     };
   });
 
   it('sets correct script/style urls', () => {
     const wrapper = getInstance(props);
-    expect(wrapper.find('link')).to.have.attr('href', 'test/assets/app.css');
-    expect(wrapper.find('script')).to.have.attr('src', 'test/assets/app.js');
-  });
-
-  it('sets correct script/style urls for dev', () => {
-    props.options.dev = true;
-    const wrapper = getInstance(props);
-    expect(wrapper.find('link')).to.have.attr('href', 'http://localhost:8080/app.css');
-    expect(wrapper.find('script')).to.have.attr('src', 'http://localhost:8080/app.js');
+    expect(wrapper.find('link')).to.have.attr('href', 'app.css');
+    expect(wrapper.find('script')).to.have.attr('src', 'app.js');
   });
 
   it('renders scripts/styles inline', () => {
-    const newProps = { ...props,
-      options: { ...options, inlineAssets: true },
-      styles: 'body{display:block;}',
-      scripts: 'function noop(){return;}'
-    };
-    const wrapper = getInstance(newProps);
+    props.useInlineAssets = true;
+    const wrapper = getInstance(props);
     expect(wrapper.find('style'))
       .to.have.html('<style>body{display:block;}</style>');
     expect(wrapper.find('script'))
