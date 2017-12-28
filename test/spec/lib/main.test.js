@@ -5,6 +5,7 @@ import sinon from 'sinon';
 import chai, { expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import dateFormat from 'dateformat';
+import React from 'react';
 
 import testData from 'sample-data/test.json';
 import pkg from '../../../package.json';
@@ -306,6 +307,125 @@ describe('lib/main', () => {
       it('does not copy assets', () => (
         mareport.create(testData, { dev: true }).then(() => {
           expect(copySyncStub.called).to.equal(false);
+        })
+      ));
+    });
+  });
+
+  describe('getAssets', () => {
+    beforeEach(() => {
+      existsSyncStub.returns(true);
+      outputFileStub.resolves(null);
+      readFileSyncStub.returns('app');
+      sinon.spy(React, 'createElement');
+    });
+
+    afterEach(() => {
+      React.createElement.restore();
+    });
+
+    describe('when dev is true', () => {
+      let options;
+      beforeEach(() => {
+        options = {
+          dev: true
+        };
+      });
+
+      it('should NOT copy assets', () => (
+        mareport.create(testData, options).then(() => {
+          expect(copySyncStub.called).to.equal(false);
+        })
+      ));
+
+      it('should return correct asset props', () => {
+        mareport.create(testData, options).then(() => {
+          const props = React.createElement.getCall(0).args[1];
+          expect(props).to.include({
+            inlineScripts: null,
+            inlineStyles: null,
+            scriptsUrl: 'http://localhost:8080/app.js',
+            stylesUrl: 'http://localhost:8080/app.css'
+          });
+        });
+      });
+    });
+
+    describe('when cdn is true', () => {
+      let options;
+      beforeEach(() => {
+        options = {
+          cdn: true
+        };
+      });
+
+      it('should NOT copy assets', () => (
+        mareport.create(testData, options).then(() => {
+          expect(copySyncStub.called).to.equal(false);
+        })
+      ));
+
+      it('should return correct asset props', () => (
+        mareport.create(testData, options).then(() => {
+          const props = React.createElement.getCall(0).args[1];
+          expect(props).to.include({
+            inlineScripts: null,
+            inlineStyles: null,
+            scriptsUrl: `https://unpkg.com/mochawesome-report-generator@${pkg.version}/dist/app.js`,
+            stylesUrl: `https://unpkg.com/mochawesome-report-generator@${pkg.version}/dist/app.css`
+          });
+        })
+      ));
+    });
+
+    describe('when inlineAssets is true', () => {
+      let options;
+      beforeEach(() => {
+        options = {
+          inlineAssets: true
+        };
+      });
+
+      it('should NOT copy assets', () => (
+        mareport.create(testData, options).then(() => {
+          expect(copySyncStub.called).to.equal(false);
+        })
+      ));
+
+      it('should return correct asset props', () => (
+        mareport.create(testData, options).then(() => {
+          const props = React.createElement.getCall(0).args[1];
+          expect(props).to.include({
+            inlineScripts: 'app',
+            inlineStyles: 'app',
+            scriptsUrl: 'assets/app.js',
+            stylesUrl: 'assets/app.css'
+          });
+        })
+      ));
+    });
+
+    describe('when dev, cdn, and inlineAssets are false', () => {
+      let options;
+      beforeEach(() => {
+        options = {};
+      });
+
+      it('should copy assets', () => (
+        mareport.create(testData, options).then(() => {
+          expect(copySyncStub.called).to.equal(true);
+        })
+      ));
+
+      it('should return correct asset props', () => (
+        mareport.create(testData, options).then(() => {
+          const props = React.createElement.getCall(0).args[1];
+          expect(props).to.include({
+            inlineScripts: null,
+            inlineStyles: null,
+            scriptsUrl: 'assets/app.js',
+            stylesUrl: 'assets/app.css'
+          });
         })
       ));
     });
