@@ -2,9 +2,10 @@
 
 ## Unreleased
 ### Added
-- New option: `assetsDir` - specify a custom location for the report assets (js/css)
-- CLI: Support directories as agruments
-- New options: `showPassed`, `showFailed`, `showPending`, `showSkipped` - set the default state of the report filters
+- New option: **`cdn`**. Set to `true` to load all report assets via CDN (unpkg.com). No assets will be copied to disk.
+- New option: **`assetsDir`**. Use this to specify a custom location to save the report assets to.
+- The CLI has been updated to support directories as agruments.
+- New options: **`showPassed`, `showFailed`, `showPending`, `showSkipped`**. Use these to set the default state of the report filters.
 
 ### Changed
 - Use a top-level `<Provider>` component to make the report store available to all components
