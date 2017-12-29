@@ -9,7 +9,7 @@ mochawesome-report-generator (marge)
 <img align="right" src="./docs/marge-report-1.0.1.png" alt="Mochawesome Report" width="55%" />
 
 - Simple, clean, and modern design
-- Beautiful charts (via ChartJS)
+- Beautiful charts
 - Support for test and suite nesting
 - Displays before and after hooks
 - Review test code inline

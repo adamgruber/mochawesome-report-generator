@@ -75,6 +75,27 @@
   height: 50px;
 }
 
+.chart-slice {
+  stroke: #fff;
+  stroke-width: 2px;
+
+  @nest :global(.ct-series-a) & {
+    fill: var(--green500);
+  }
+
+  @nest :global(.ct-series-b) & {
+    fill: var(--red500);
+  }
+
+  @nest :global(.ct-series-c) & {
+    fill: var(--ltblue500);
+  }
+
+  @nest :global(.ct-series-d) & {
+    fill: var(--black38);
+  }
+}
+
 /* Tablet 768 and up */
 @media (--screen-sm) {
   .chart-wrap {

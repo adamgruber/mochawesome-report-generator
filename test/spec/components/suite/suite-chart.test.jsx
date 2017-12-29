@@ -1,36 +1,24 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import proxyquire from 'proxyquire';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
-
-proxyquire.noCallThru();
-
-const SuiteChart = proxyquire('components/suite/chart', {
-  'chart.js': () => {}
-}).default;
+import SuiteChart from 'components/suite/chart';
+import Chartist from 'chartist';
 
 chai.use(chaiEnzyme());
 
 describe('<SuiteChart />', () => {
-  let node;
-
-  const getInstance = instanceProps => {
-    const wrapper = mount(<SuiteChart { ...instanceProps } />, {
-      attachTo: node
-    });
-    return wrapper;
-  };
+  const getInstance = instanceProps => (
+    mount(<SuiteChart { ...instanceProps } />)
+  );
 
   beforeEach(() => {
-    node = document.createElement('div');
-    node.setAttribute('id', 'app');
-    document.body.appendChild(node);
+    sinon.spy(Chartist, 'Pie');
   });
 
   afterEach(() => {
-    document.getElementById('app').remove();
+    Chartist.Pie.restore();
   });
 
   it('renders chart', () => {
@@ -41,7 +29,19 @@ describe('<SuiteChart />', () => {
       totalSkipped: 1
     };
     getInstance(props);
-    expect(document.querySelectorAll('canvas').length).to.equal(1);
+    const chartData = Chartist.Pie.getCall(0).args[1];
+    const chartOpts = Chartist.Pie.getCall(0).args[2];
+    expect(chartData.series).to.deep.equal([ 8, 5, 2, 1 ]);
+    expect(chartOpts).to.deep.equal({
+      classNames: { sliceDonutSolid: 'suite-chart-slice' },
+      chartPadding: 0,
+      donut: true,
+      donutSolid: true,
+      donutWidth: 9,
+      ignoreEmptyValues: true,
+      showLabel: false,
+      startAngle: 180
+    });
   });
 
   it('calls shouldComponentUpdate', () => {

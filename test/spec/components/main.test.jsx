@@ -13,7 +13,7 @@ let props;
 describe('<MainHTML />', () => {
   beforeEach(() => {
     props = {
-      data: {},
+      data: '',
       inlineScripts: 'function noop(){return;}',
       inlineStyles: 'body{display:block;}',
       options: {},
