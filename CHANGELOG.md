@@ -8,6 +8,7 @@
 - New options: **`showPassed`, `showFailed`, `showPending`, `showSkipped`**. Use these to set the default state of the report filters.
 
 ### Changed
+- Excluded Mobx DevTools from production bundle
 - Dropped ChartJS in favor of Chartist
 - Dropped moment.js in favor of date-fns
 - Use a top-level `<Provider>` component to make the report store available to all components
