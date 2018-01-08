@@ -1,38 +1,15 @@
----
-engines:
-  duplication:
-    enabled: true
+version: "2"
+checks:
+  method-lines:
     config:
-      languages:
-        javascript:
-          mass_threshold: 90
-  eslint:
-    enabled: true
-    channel: "eslint-3"
-    config:
-      extensions:
-        - ".js"
-        - ".jsx"
-  fixme:
-    enabled: true
-    exclude_fingerprints:
-      - 063e105fd06bf7d28c3ae977517b81af
-ratings:
-  paths:
-  - "src/**/*.css"
-  - "src/**/*.js"
-  - "src/**/*.jsx"
-  - "lib/**/*.js"
-  - "bin/**/*.js"
-exclude_paths:
-- node_modules/
-- coverage/
-- .nyc_output/
-- mochawesome-report/
-- docs/
-- dist/
-- test/
-- webpack.config.js
-- webpack.loaders.js
-- bin/*.js
-- lib/*.js
+      threshold: 75
+exclude_patterns:
+- "bin/*.js"
+- "dist/"
+- "docs/"
+- "lib/*.js"
+- "node_modules/"
+- "test-functional/"
+- "test/"
+- "webpack.config.js"
+- "webpack.loaders.js"
