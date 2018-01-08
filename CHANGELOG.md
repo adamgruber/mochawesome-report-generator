@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## Unreleased
+
+## [3.1.0] / 2018-01-08
 ### Added
 - New option: **`cdn`**. Set to `true` to load all report assets via CDN (unpkg.com). No assets will be copied to disk.
 - New option: **`assetsDir`**. Use this to specify a custom location to save the report assets to.
@@ -137,6 +139,7 @@ You can still use the `--reportFilename` flag to set the filename of the generat
 ## 1.0.0 / 2016-12-18
 - Initial release
 
+[3.1.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.0.1...3.1.0
 [3.0.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.0.0...3.0.1
 [3.0.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.3.2...3.0.0
 [2.3.2]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.3.1...2.3.2
