@@ -3,6 +3,10 @@ checks:
   method-lines:
     config:
       threshold: 75
+  similar-code:
+    config:
+      threshold:
+        javascript: 90
 exclude_patterns:
 - "bin/*.js"
 - "dist/"
