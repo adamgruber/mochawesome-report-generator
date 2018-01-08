@@ -5,7 +5,7 @@ import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
 
 import Report from 'components/report';
-import DevTools from 'mobx-react-devtools';
+import MobxDevTool from 'components/mobxDevtool';
 
 import testData from 'sample-data/nested.json';
 import { createStore } from 'utils';
@@ -35,13 +35,7 @@ describe('<MochawesomeReport />', () => {
   it('should render', () => {
     store = createStore(testData);
     const { wrapper } = getInstance({ store });
-    expect(wrapper.find(DevTools)).to.have.lengthOf(0);
-  });
-
-  it('should render in dev mode', () => {
-    store = createStore(testData, { dev: true });
-    const { wrapper } = getInstance({ store });
-    expect(wrapper.find(DevTools)).to.have.lengthOf(1);
+    expect(wrapper.find(MobxDevTool)).to.have.lengthOf(0);
   });
 
   it('should scroll to a suite', () => {
@@ -56,5 +50,11 @@ describe('<MochawesomeReport />', () => {
     expect(window.scrollTop).to.equal(0);
     wrapper.find('.nav-menu-link').at(3).simulate('click');
     document.getElementById('app').remove();
+  });
+
+  it('should render dev tool', () => {
+    store = createStore(testData, { dev: true });
+    const { wrapper } = getInstance({ store });
+    expect(wrapper.find(MobxDevTool)).to.have.lengthOf(1);
   });
 });

@@ -67,6 +67,7 @@
     ],
     "exclude": [
       "test/**/*",
+      "src/components/mobxDevtool.js",
       "src/components/summary",
       "src/components/status-bar",
       "src/components/radio-button"
