@@ -11,6 +11,9 @@ const { eslint, babel, globalCss, localCss, font } = loaders;
 const env = (!!process.env.BABEL_ENV && process.env.BABEL_ENV) ||
           (!!process.env.NODE_ENV && process.env.NODE_ENV) ||
           'development';
+
+console.log(`NODE_ENV set to: ${env}`);
+
 let assets = process.env.MARGE_ASSETS;
 if (assets !== 'inline' && assets !== 'external') {
   assets = 'external';
@@ -23,15 +26,11 @@ const cssFilename = assets === 'inline' ? '[name].inline.css' : '[name].css';
 const plugins = [
   new StyleLintPlugin({ context: 'src', files: '**/*.css', color: true, emitErrors: false }),
   new ExtractTextPlugin({ filename: cssFilename, allChunks: true }),
-  new webpack.BannerPlugin(`mochawesome-report-generator ${pkg.version} | https://github.com/adamgruber/mochawesome-report-generator`)
+  new webpack.BannerPlugin(`mochawesome-report-generator ${pkg.version} | https://github.com/adamgruber/mochawesome-report-generator`),
+  new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(env) })
 ];
 
 if (env === 'production') {
-  plugins.push(new webpack.DefinePlugin({
-    'process.env': {
-      NODE_ENV: JSON.stringify('production')
-    }
-  }));
   plugins.push(new UglifyJsPlugin({
     uglifyOptions: {
       compress: { warnings: false },

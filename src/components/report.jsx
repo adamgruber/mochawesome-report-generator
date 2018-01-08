@@ -1,11 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import PropTypes from 'prop-types';
-import DevTools from 'mobx-react-devtools';
 import { Provider, observer } from 'mobx-react';
 import { Footer, Loader, Navbar, ReportBody } from 'components';
 import { NavMenu } from 'components/nav-menu';
 import 'styles/app.global.css';
+import MobxDevTool from './mobxDevtool';
 
 const MochawesomeReport = observer(props => {
   const {
@@ -27,7 +27,7 @@ const MochawesomeReport = observer(props => {
         <Loader />
         <Footer version={ VERSION } />
         <NavMenu />
-        { devMode && <DevTools position={ { bottom: 0, right: 20 } } /> }
+        { devMode && <MobxDevTool position={ { bottom: 0, right: 20 } } /> }
       </main>
     </Provider>
   );
