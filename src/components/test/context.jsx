@@ -7,6 +7,7 @@ import styles from './test.css';
 
 const cx = classNames.bind(styles);
 
+const videoRegEx = /(?:mp4|webm)$/i;
 const imgRegEx = /(?:png|jpe?g|gif)$/i;
 const protocolRegEx = /^(?:(?:https?|ftp):\/\/)/i;
 const urlRegEx = /^(?:(?:https?|ftp):\/\/)?(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/ // eslint-disable-line
@@ -23,6 +24,19 @@ class TestContext extends Component {
       PropTypes.array
     ])
   };
+
+  renderVideo = (ctx, title) => {
+    const isUrl = urlRegEx.test(ctx);
+    const hasProtocol = protocolRegEx.test(ctx);
+    const linkUrl = (isUrl && !hasProtocol) ? `http://${ctx}` : ctx;
+
+    return (
+      <video controls src={ linkUrl } className={ cx('video') }>
+        <track kind='captions' />
+        {title}
+      </video>
+    );
+  }
 
   renderImage = (ctx, title) => {
     const isUrl = urlRegEx.test(ctx);
@@ -56,6 +70,11 @@ class TestContext extends Component {
   }
 
   renderContextContent = (content, title, highlight = false) => {
+    // Videos
+    if (videoRegEx.test(content)) {
+      return this.renderVideo(content, title);
+    }
+
     // Images
     if (imgRegEx.test(content)) {
       return this.renderImage(content, title);
