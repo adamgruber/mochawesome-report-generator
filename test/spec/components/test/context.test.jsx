@@ -18,6 +18,8 @@ describe('<TestContext />', () => {
       ctxItems: wrapper.find('.test-context-item'),
       img: wrapper.find('.test-image'),
       imgLink: wrapper.find('.test-image-link'),
+      video: wrapper.find('.test-video'),
+      videoLink: wrapper.find('.test-video-link'),
       link: wrapper.find('.test-text-link'),
       snippet: wrapper.find(CodeSnippet)
     };
@@ -133,6 +135,45 @@ describe('<TestContext />', () => {
       expect(wrapper).to.have.className('test');
       expect(snippet).to.have.lengthOf(0);
       expect(img).to.have.lengthOf(1);
+    });
+
+    it('renders local video', () => {
+      const context = '/testvideo.mp4';
+      const { wrapper, snippet, video } = getInstance({
+        context: JSON.stringify(context),
+        className: 'test'
+      });
+      expect(wrapper).to.have.className('test');
+      expect(snippet).to.have.lengthOf(0);
+      expect(wrapper).to.have.descendants('video');
+      expect(video).to.have.attr('src', '/testvideo.mp4');
+    });
+
+    it('renders video url with protocol', () => {
+      const context = 'http://test.url.com/testvideo.mp4';
+      const { wrapper, snippet, videoLink } = getInstance({
+        context: JSON.stringify(context),
+        className: 'test'
+      });
+      expect(wrapper).to.have.className('test');
+      expect(snippet).to.have.lengthOf(0);
+      expect(wrapper).to.have.descendants('video');
+      expect(wrapper).to.have.descendants('a.test-video-link');
+      expect(videoLink).to.have.attr('href', 'http://test.url.com/testvideo.mp4');
+      videoLink.simulate('click', { stopPropagation: noop });
+    });
+
+    it('renders image url without protocol', () => {
+      const context = 'test.url.com/testvideo.mp4';
+      const { wrapper, snippet, videoLink } = getInstance({
+        context: JSON.stringify(context),
+        className: 'test'
+      });
+      expect(wrapper).to.have.className('test');
+      expect(snippet).to.have.lengthOf(0);
+      expect(wrapper).to.have.descendants('video');
+      expect(wrapper).to.have.descendants('a.test-video-link');
+      expect(videoLink).to.have.attr('href', 'http://test.url.com/testvideo.mp4');
     });
   });
 

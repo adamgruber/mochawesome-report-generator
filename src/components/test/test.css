@@ -253,19 +253,13 @@
   }
 }
 
-.image-link {
+.image-link, .video-link {
   display: inline-block;
   font-size: 11px;
   padding: 0 1em 1em 1em;
 }
 
-.image {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-.video {
+.image, .video {
   display: block;
   max-width: 100%;
   height: auto;

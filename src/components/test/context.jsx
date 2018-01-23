@@ -33,7 +33,14 @@ class TestContext extends Component {
     return (
       <video controls src={ linkUrl } className={ cx('video') }>
         <track kind='captions' />
-        {title}
+        { title }
+        <a
+          href={linkUrl}
+          className={ cx('video-link') }
+          rel='noopener noreferrer'
+          target='_blank' >
+          { linkUrl }
+        </a>
       </video>
     );
   }
