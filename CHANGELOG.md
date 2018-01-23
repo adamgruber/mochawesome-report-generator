@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## Unreleased
+### Added
+- Video links in context will render as `<video>` tags [#87](https://github.com/adamgruber/mochawesome-report-generator/pull/87) (@NicholasBoll)
 
 ## [3.1.0] / 2018-01-08
 ### Added
