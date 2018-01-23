@@ -35,7 +35,7 @@ class TestContext extends Component {
         <track kind='captions' />
         { title }
         <a
-          href={linkUrl}
+          href={ linkUrl }
           className={ cx('video-link') }
           rel='noopener noreferrer'
           target='_blank' >
