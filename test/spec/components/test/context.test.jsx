@@ -145,7 +145,7 @@ describe('<TestContext />', () => {
       });
       expect(wrapper).to.have.className('test');
       expect(snippet).to.have.lengthOf(0);
-      expect(wrapper).to.have.descendants('video');
+      expect(wrapper).to.have.exactly(1).descendants('video');
       expect(video).to.have.attr('src', '/testvideo.mp4');
     });
 
@@ -157,10 +157,9 @@ describe('<TestContext />', () => {
       });
       expect(wrapper).to.have.className('test');
       expect(snippet).to.have.lengthOf(0);
-      expect(wrapper).to.have.descendants('video');
-      expect(wrapper).to.have.descendants('a.test-video-link');
+      expect(wrapper).to.have.exactly(1).descendants('video');
+      expect(wrapper).to.have.exactly(1).descendants('a.test-video-link');
       expect(videoLink).to.have.attr('href', 'http://test.url.com/testvideo.mp4');
-      videoLink.simulate('click', { stopPropagation: noop });
     });
 
     it('renders image url without protocol', () => {
@@ -171,8 +170,8 @@ describe('<TestContext />', () => {
       });
       expect(wrapper).to.have.className('test');
       expect(snippet).to.have.lengthOf(0);
-      expect(wrapper).to.have.descendants('video');
-      expect(wrapper).to.have.descendants('a.test-video-link');
+      expect(wrapper).to.have.exactly(1).descendants('video');
+      expect(wrapper).to.have.exactly(1).descendants('a.test-video-link');
       expect(videoLink).to.have.attr('href', 'http://test.url.com/testvideo.mp4');
     });
   });
