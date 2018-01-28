@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## Unreleased
+
+## [3.1.1] / 2018-01-28
 ### Added
 - Video links in context will render as `<video>` tags [#87](https://github.com/adamgruber/mochawesome-report-generator/pull/87) (@NicholasBoll)
 
@@ -141,6 +143,7 @@ You can still use the `--reportFilename` flag to set the filename of the generat
 ## 1.0.0 / 2016-12-18
 - Initial release
 
+[3.1.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.0...3.1.1
 [3.1.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.0.1...3.1.0
 [3.0.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.0.0...3.0.1
 [3.0.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/2.3.2...3.0.0
