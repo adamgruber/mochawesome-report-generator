@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## Unreleased
+### Fixed
+- Skip copying assets and rendering HTML when `html` option is `false` [mochawesome #237](https://github.com/adamgruber/mochawesome/issues/237)
 
 ## [3.1.1] / 2018-01-28
 ### Added

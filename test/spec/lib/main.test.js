@@ -71,6 +71,18 @@ describe('lib/main', () => {
       return expect(promise).to.become([ null, expectedJsonFile ]);
     });
 
+    it('does not copy assets when saving only json', () => {
+      opts.saveHtml = false;
+      opts.saveJson = true;
+      const expectedJsonFile = path.resolve(process.cwd(), 'test', 'test.json');
+      outputFileStub
+        .onCall(0).resolves('')
+        .onCall(1).resolves(expectedJsonFile);
+      return mareport.create(testData, opts).then(() => {
+        expect(copySyncStub.called).to.equal(false);
+      });
+    });
+
     it('saves html and json', () => {
       opts.saveJson = true;
       const expectedHtmlFile = path.resolve(process.cwd(), 'test', 'test.html');
