@@ -39,8 +39,8 @@ describe('<Dropdown />', () => {
   });
 
   afterEach(() => {
-    itemSelectedSpy.reset();
-    toggleSpy.reset();
+    itemSelectedSpy.resetHistory();
+    toggleSpy.resetHistory();
     unmountSpy.restore();
   });
 

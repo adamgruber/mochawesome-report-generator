@@ -33,9 +33,9 @@ describe('<MainHTML />', () => {
   it('renders scripts/styles inline', () => {
     props.useInlineAssets = true;
     const wrapper = getInstance(props);
-    expect(wrapper.find('style'))
-      .to.have.html('<style>body{display:block;}</style>');
-    expect(wrapper.find('script'))
-      .to.have.html('<script type="text/javascript">function noop(){return;}</script>');
+    expect(wrapper.find('style').html())
+      .to.equal('<style>body{display:block;}</style>');
+    expect(wrapper.find('script').html())
+      .to.equal('<script type="text/javascript">function noop(){return;}</script>');
   });
 });

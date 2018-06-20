@@ -10,7 +10,7 @@ chai.use(chaiEnzyme());
 describe('<MaterialIcon />', () => {
   it('renders basic icon', () => {
     const wrapper = shallow(<MaterialIcon name='add' />);
-    expect(wrapper).to.have.html('<i class="material-icons">&#xe145;</i>');
+    expect(wrapper.html()).to.equal('<i class="material-icons">&#xe145;</i>');
   });
 
   it('renders icon with options', () => {
@@ -20,7 +20,7 @@ describe('<MaterialIcon />', () => {
       className: 'icontest'
     };
     const wrapper = shallow(<MaterialIcon name='add' { ...opts } />);
-    expect(wrapper).to.have.html('<i class="material-icons md-18 md-dark icontest">&#xe145;</i>');
+    expect(wrapper.html()).to.equal('<i class="material-icons md-18 md-dark icontest">&#xe145;</i>');
   });
 
   it('does not render when name is not provided', () => {
