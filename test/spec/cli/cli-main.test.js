@@ -27,8 +27,8 @@ const getArgs = (files, args) => Object.assign({}, { _: files }, args);
 
 afterEach(() => {
   createStub.reset();
-  logger.info.reset();
-  logger.error.reset();
+  logger.info.resetHistory();
+  logger.error.resetHistory();
 });
 
 describe('bin/cli', () => {
