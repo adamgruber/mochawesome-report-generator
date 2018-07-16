@@ -6,6 +6,16 @@ const transduce = (items, mapper, reducer, initial) =>
     initial
   );
 
+const initPropState = (prop, config) => {
+  const exists = p => typeof p !== 'undefined' && p !== null;
+  const ls = localStorage.getItem(prop);
+  const cs = config[prop];
+
+  // eslint-disable-next-line no-nested-ternary
+  const state = exists(ls) ? ls === 'true' : exists(cs) ? cs : true;
+  return state;
+};
+
 class ReportStore {
   constructor(data = {}, config = {}) {
     Object.assign(this, config, {
@@ -22,11 +32,11 @@ class ReportStore {
     extendObservable(this, {
       filteredSuites: observable.shallow([]),
       isLoading: true,
-      showFailed: config.showFailed !== undefined ? config.showFailed : true,
+      showFailed: initPropState('showFailed', config),
       showHooks: this._getShowHooks(config),
-      showPassed: config.showPassed !== undefined ? config.showPassed : true,
-      showPending: config.showPending !== undefined ? config.showPending : true,
-      showSkipped: config.showSkipped !== undefined ? config.showSkipped : false,
+      showPassed: initPropState('showPassed', config),
+      showPending: initPropState('showPending', config),
+      showSkipped: initPropState('showSkipped', config),
       sideNavOpen: false
     });
   }
@@ -42,6 +52,9 @@ class ReportStore {
   @action.bound toggleFilter(prop) {
     this.toggleIsLoading(true);
     this[prop] = !this[prop];
+    if (localStorage) {
+      localStorage.setItem(prop, this[prop]);
+    }
   }
 
   @action.bound setShowHooks(prop) {
@@ -59,16 +72,16 @@ class ReportStore {
 
   _mapHook = hook => (
     ((this.showHooks === 'always')
-    || (this.showHooks === 'failed' && hook.fail)
-    || (this.showHooks === 'context' && hook.context))
+      || (this.showHooks === 'failed' && hook.fail)
+      || (this.showHooks === 'context' && hook.context))
     && hook
   )
 
   _mapTest = test => (
     ((this.showPassed && test.pass)
-    || (this.showFailed && test.fail)
-    || (this.showPending && test.pending)
-    || (this.showSkipped && test.skipped))
+      || (this.showFailed && test.fail)
+      || (this.showPending && test.pending)
+      || (this.showSkipped && test.skipped))
     && test
   )
 
