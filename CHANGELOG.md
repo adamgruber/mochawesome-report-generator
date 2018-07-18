@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## Unreleased
+### Fixed
+- Updated webpack config to correctly set `devtool` to `false` when building for production. [#101](https://github.com/adamgruber/mochawesome-report-generator/issues/101)
 
 ## [3.1.2] / 2018-04-20
 ### Fixed
