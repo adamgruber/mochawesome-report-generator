@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## Unreleased
+
+## [3.1.3] / 2018-07-18
 ### Fixed
 - Updated webpack config to correctly set `devtool` to `false` when building for production. [#101](https://github.com/adamgruber/mochawesome-report-generator/issues/101)
 
@@ -149,6 +151,7 @@ You can still use the `--reportFilename` flag to set the filename of the generat
 ## 1.0.0 / 2016-12-18
 - Initial release
 
+[3.1.3]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.2...3.1.3
 [3.1.2]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.1...3.1.2
 [3.1.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.0...3.1.1
 [3.1.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.0.1...3.1.0
