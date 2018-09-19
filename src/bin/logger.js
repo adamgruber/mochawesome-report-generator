@@ -5,6 +5,6 @@
  *
  */
 module.exports = {
-  info: msg => console.log.apply(console, [ msg ]),
-  error: msg => console.error.apply(console, [ msg ])
+  info: msg => console.log.apply(console, [msg]),
+  error: msg => console.error.apply(console, [msg]),
 };

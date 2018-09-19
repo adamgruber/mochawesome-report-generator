@@ -12,7 +12,7 @@ const mapJsonErrors = errors => errors.map(e => `  ${e.message}`).join('\n');
 const ERRORS = {
   NOT_FOUND: '  File not found.',
   GENERIC: '  There was a problem loading mochawesome data.',
-  INVALID_JSON: errMsgs => mapJsonErrors(errMsgs)
+  INVALID_JSON: errMsgs => mapJsonErrors(errMsgs),
 };
 let validFiles;
 
@@ -39,7 +39,7 @@ function validateFile(file) {
     if (e.code === 'ENOENT') {
       err = ERRORS.NOT_FOUND;
     } else if (JsonErrRegex.test(e.message)) {
-      err = ERRORS.INVALID_JSON([ e ]);
+      err = ERRORS.INVALID_JSON([e]);
     } else {
       err = ERRORS.GENERIC;
     }
@@ -48,7 +48,9 @@ function validateFile(file) {
   // If the file was loaded successfully,
   // validate the json against the TestReport schema
   if (data) {
-    const validationResult = t.validate(data, types.TestReport, { strict: true });
+    const validationResult = t.validate(data, types.TestReport, {
+      strict: true,
+    });
     if (!validationResult.isValid()) {
       err = ERRORS.INVALID_JSON(validationResult.errors);
     } else {
@@ -59,7 +61,7 @@ function validateFile(file) {
   return {
     filename: file,
     data,
-    err
+    err,
   };
 }
 
@@ -95,14 +97,18 @@ function handleResolved(resolvedValues) {
 
   if (saved.length) {
     logger.info(chalk.green('\n✓ Reports saved:'));
-    logger.info(saved.map(savedFile => `${chalk.underline(savedFile)}`).join('\n'));
+    logger.info(
+      saved.map(savedFile => `${chalk.underline(savedFile)}`).join('\n')
+    );
   }
 
   if (errors.length) {
     logger.info(chalk.red('\n✘ Some files could not be processed:'));
-    logger.info(errors
-      .map(e => `${chalk.underline(e.filename)}\n${chalk.dim(e.err)}`)
-      .join('\n\n'));
+    logger.info(
+      errors
+        .map(e => `${chalk.underline(e.filename)}\n${chalk.dim(e.err)}`)
+        .join('\n\n')
+    );
     process.exitCode = 1;
   }
 
@@ -126,7 +132,13 @@ function handleResolved(resolvedValues) {
  * @return {string} Filename
  */
 function getReportFilename({ filename }, { reportFilename }) {
-  return reportFilename || filename.split(path.sep).pop().replace(JsonFileRegex, '');
+  return (
+    reportFilename ||
+    filename
+      .split(path.sep)
+      .pop()
+      .replace(JsonFileRegex, '')
+  );
 }
 
 /**
@@ -197,7 +209,10 @@ function marge(args) {
 
     // If a filename option was provided, all files get that name
     const reportFilename = getReportFilename(file, args);
-    return report.create(file.data, Object.assign({}, args, { reportFilename }));
+    return report.create(
+      file.data,
+      Object.assign({}, args, { reportFilename })
+    );
   });
 
   return Promise.all(promises)

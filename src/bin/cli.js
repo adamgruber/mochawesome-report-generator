@@ -11,8 +11,7 @@ yargs
   .help('help')
   .alias('h', 'help')
   .version()
-  .epilog('Copyright 2016-2017 Adam Gruber')
-  .argv;
+  .epilog('Copyright 2016-2017 Adam Gruber').argv;
 
 // Call the main cli program
 marge(yargs.argv);
