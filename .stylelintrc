@@ -1,5 +1,8 @@
 {
-  "extends": "stylelint-config-standard",
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-prettier"
+  ],
   "plugins": [
     "stylelint-order"
   ],
@@ -11,7 +14,6 @@
     "font-family-name-quotes": "always-unless-keyword",
     "font-family-no-missing-generic-family-keyword": null,
     "font-weight-notation": "named-where-possible",
-    "max-empty-lines": 2,
     "max-nesting-depth": 3,
     "no-descending-specificity": null,
     "no-duplicate-selectors": true,
@@ -26,7 +28,6 @@
     "selector-pseudo-element-colon-notation": "single",
     "selector-type-no-unknown": [ true, { ignoreTypes: ["/^--/"] } ],
     "shorthand-property-no-redundant-values": null,
-    "string-quotes": "single",
     "time-min-milliseconds": 100,
     "unit-whitelist": ["px", "rem", "em", "%", "deg", "s"],
     "value-no-vendor-prefix": true
