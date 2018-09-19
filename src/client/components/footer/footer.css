@@ -16,9 +16,8 @@
   }
 
   & a {
-    @apply --link-transition;
-
     color: var(--black54);
+    transition: var(--link-transition);
 
     &:hover {
       color: var(--black87);

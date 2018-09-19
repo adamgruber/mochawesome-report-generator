@@ -17,7 +17,7 @@
 }
 
 .close-btn {
-  @apply --button-base;
+  @extend %button-base;
 
   position: absolute;
   top: 16px;
@@ -44,7 +44,7 @@
 }
 
 .close-button {
-  @apply --button-base;
+  @extend %button-base;
 
   position: absolute;
   top: 14px;
@@ -76,10 +76,9 @@
 }
 
 .control-label {
-  @apply --font-regular;
-
   display: inline-block;
   flex-grow: 1;
+  font-family: var(--font-family--regular);
   font-size: 13px;
   vertical-align: top;
   line-height: 24px;
@@ -127,7 +126,7 @@
 }
 
 .list {
-  @apply --list-unstyled;
+  @extend %list-unstyled;
 }
 
 .main {
@@ -169,8 +168,8 @@
   }
 
   & span {
-    @apply --link-transition;
-    @apply --text-overflow;
+    transition: var(--link-transition);
+    @extend %text-overflow;
   }
 }
 

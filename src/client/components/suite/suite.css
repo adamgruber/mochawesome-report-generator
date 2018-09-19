@@ -1,7 +1,7 @@
 @import '../../styles/vars';
 
 .component {
-  @apply --clearfix;
+  @extend %clearfix;
 
   position: relative;
   background-color: #fff;
@@ -23,7 +23,7 @@
 
 .root-suite,
 .list-main > .component {
-  @apply --z-depth-1;
+  @extend %z-depth-1;
 
   margin: 0 0 24px 0;
 }
@@ -34,7 +34,7 @@
 }
 
 .header {
-  @apply --clearfix;
+  @extend %clearfix;
 
   padding: 12px 16px;
   border-bottom: 1px solid var(--grey300);
@@ -46,20 +46,18 @@
 }
 
 .title {
-  @apply --font-light;
-
+  font-family: var(--font-family--light);
   margin: 0;
 }
 
 .filename {
-  @apply --font-regular;
-
   color: var(--black54);
+  font-family: var(--font-family--regular);
   margin: 6px 0 0 0;
 }
 
 .body {
-  @apply --clearfix;
+  @extend %clearfix;
 
   @nest .has-suites > & {
     border-bottom: 1px solid var(--grey300);

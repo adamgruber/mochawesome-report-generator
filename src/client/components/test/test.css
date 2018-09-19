@@ -22,7 +22,7 @@
 }
 
 .header {
-  @apply --clearfix;
+  @extend %clearfix;
 
   display: flex;
   position: relative;
@@ -35,10 +35,10 @@
 }
 
 .title {
-  @apply --font-regular;
-  @apply --text-overflow;
+  @extend %text-overflow;
 
   flex-grow: 1;
+  font-family: var(--font-family--regular);
   font-size: 13px;
   line-height: 24px;
   margin: 0;
@@ -97,8 +97,7 @@
 }
 
 .duration {
-  @apply --font-regular;
-
+  font-family: var(--font-family--regular);
   line-height: 24px;
   color: var(--black54);
 
@@ -198,9 +197,8 @@
 }
 
 .code-label {
-  @apply --font-regular;
-
   position: absolute;
+  font-family: var(--font-family--regular);
   top: 0;
   right: 0;
   padding: 0.2em 0.6em;
@@ -215,9 +213,9 @@
 }
 
 .context-title {
-  @apply --font-regular;
-  @apply --text-overflow;
+  @extend %text-overflow;
 
+  font-family: var(--font-family--regular);
   font-size: 13px;
   color: var(--black54);
   margin: 0;
@@ -233,9 +231,9 @@
 }
 
 .context-item-title {
-  @apply --font-medium;
-  @apply --text-overflow;
+  @extend %text-overflow;
 
+  font-family: var(--font-family--medium);
   font-size: 13px;
   margin: 0;
   padding: 0 11px 11px 11px;
@@ -244,8 +242,8 @@
 .text-link {
   display: inline-block;
   padding: 0 1em 1em 1em;
-  font-size: 11px;
   font-family: var(--font-family-mono);
+  font-size: 11px;
   color: var(--ltblue700);
 
   &:hover {
