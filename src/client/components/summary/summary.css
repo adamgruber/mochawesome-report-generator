@@ -14,12 +14,12 @@
   text-align: center;
   @apply --column;
   float: left;
-  width: calc((4 / 12) * 100)%;
+  width: calc((4 / 12) * 100) %;
 
   @media (--screen-sm) {
-    width: calc((2 / 12) * 100)%;
+    width: calc((2 / 12) * 100) %;
   }
-  &:nth-child(-n+3) {
+  &:nth-child(-n + 3) {
     margin-bottom: 8px;
   }
 }
@@ -101,7 +101,6 @@
       }
     }
   }
-
 }
 
 .failures {
@@ -169,7 +168,7 @@
     padding-top: calc(var(--navbar-height) + 4px);
   }
   .col {
-    &:nth-child(-n+3) {
+    &:nth-child(-n + 3) {
       margin-bottom: 0;
     }
   }

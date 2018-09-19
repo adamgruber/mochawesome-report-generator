@@ -6,8 +6,7 @@
 
 @font-face {
   font-family: 'robotolight';
-  src:
-    url('../fonts/roboto-light-webfont.woff2') format('woff2'),
+  src: url('../fonts/roboto-light-webfont.woff2') format('woff2'),
     url('../fonts/roboto-light-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
@@ -15,8 +14,7 @@
 
 @font-face {
   font-family: 'robotomedium';
-  src:
-    url('../fonts/roboto-medium-webfont.woff2') format('woff2'),
+  src: url('../fonts/roboto-medium-webfont.woff2') format('woff2'),
     url('../fonts/roboto-medium-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
@@ -24,8 +22,7 @@
 
 @font-face {
   font-family: 'robotoregular';
-  src:
-    url('../fonts/roboto-regular-webfont.woff2') format('woff2'),
+  src: url('../fonts/roboto-regular-webfont.woff2') format('woff2'),
     url('../fonts/roboto-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
@@ -35,9 +32,10 @@
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: normal;
-  src:
-    url(../../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
-    url(../../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff) format('woff');
+  src: url(../../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2)
+      format('woff2'),
+    url(../../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff)
+      format('woff');
 }
 
 .material-icons {
@@ -45,7 +43,7 @@
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
+  font-size: 24px; /* Preferred icon size */
   line-height: 1;
   text-transform: none;
   letter-spacing: normal;
@@ -67,18 +65,34 @@
 }
 
 /* Rules for sizing the icon. */
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-18 {
+  font-size: 18px;
+}
+.material-icons.md-24 {
+  font-size: 24px;
+}
+.material-icons.md-36 {
+  font-size: 36px;
+}
+.material-icons.md-48 {
+  font-size: 48px;
+}
 
 /* Rules for using icons as black on a light background. */
-.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
-.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54);
+}
+.material-icons.md-dark.md-inactive {
+  color: rgba(0, 0, 0, 0.26);
+}
 
 /* Rules for using icons as white on a dark background. */
-.material-icons.md-light { color: rgba(255, 255, 255, 1); }
-.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+.material-icons.md-light {
+  color: rgba(255, 255, 255, 1);
+}
+.material-icons.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.3);
+}
 
 * {
   box-sizing: border-box;
@@ -160,15 +174,18 @@ pre {
 }
 
 .z-depth-3 {
-  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 .z-depth-4 {
-  box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21);
+  box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22),
+    0 25px 55px 0 rgba(0, 0, 0, 0.21);
 }
 
 .z-depth-5 {
-  box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
+  box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2),
+    0 40px 77px 0 rgba(0, 0, 0, 0.22);
 }
 
 @media (--screen-sm) {
