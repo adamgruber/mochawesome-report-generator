@@ -5,7 +5,10 @@ import hljs from 'highlight.js/lib/highlight';
 import ReportStore from './reportStore';
 
 // Register hljs languages
-hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
+hljs.registerLanguage(
+  'javascript',
+  require('highlight.js/lib/languages/javascript')
+);
 hljs.registerLanguage('diff', require('highlight.js/lib/languages/diff'));
 
 // Initialize the store

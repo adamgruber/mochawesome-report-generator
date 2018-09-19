@@ -13,7 +13,7 @@ class NavMenuList extends Component {
     showPassed: PropTypes.bool,
     showFailed: PropTypes.bool,
     showPending: PropTypes.bool,
-    showSkipped: PropTypes.bool
+    showSkipped: PropTypes.bool,
   };
 
   shouldComponentUpdate(nextProps) {
@@ -21,17 +21,25 @@ class NavMenuList extends Component {
   }
 
   render() {
-    const { suites, showPassed, showFailed, showPending, showSkipped } = this.props;
+    const {
+      suites,
+      showPassed,
+      showFailed,
+      showPending,
+      showSkipped,
+    } = this.props;
     const navItemProps = { showPassed, showFailed, showPending, showSkipped };
 
-    return !!suites && (
-      <div>
-        { suites.map(subSuite => (
-          <ul key={ subSuite.uuid } className={ cx('list', 'sub') }>
-            <NavMenuItem suite={ subSuite } { ...navItemProps } />
-          </ul>))
-        }
-      </div>
+    return (
+      !!suites && (
+        <div>
+          {suites.map(subSuite => (
+            <ul key={subSuite.uuid} className={cx('list', 'sub')}>
+              <NavMenuItem suite={subSuite} {...navItemProps} />
+            </ul>
+          ))}
+        </div>
+      )
     );
   }
 }

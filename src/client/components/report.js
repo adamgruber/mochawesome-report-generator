@@ -7,33 +7,28 @@ import 'styles/app.global.css';
 import MobxDevTool from './mobxDevtool';
 
 const MochawesomeReport = observer(props => {
-  const {
-    openSideNav,
-    reportTitle,
-    stats,
-    devMode,
-    VERSION
-  } = props.store;
+  const { openSideNav, reportTitle, stats, devMode, VERSION } = props.store;
 
   return (
-    <Provider reportStore={ props.store }>
+    <Provider reportStore={props.store}>
       <main>
         <Navbar
-          onMenuClick={ openSideNav }
-          reportTitle={ reportTitle }
-          stats={ stats } />
+          onMenuClick={openSideNav}
+          reportTitle={reportTitle}
+          stats={stats}
+        />
         <ReportBody />
         <Loader />
-        <Footer version={ VERSION } />
+        <Footer version={VERSION} />
         <NavMenu />
-        { devMode && <MobxDevTool position={ { bottom: 0, right: 20 } } /> }
+        {devMode && <MobxDevTool position={{ bottom: 0, right: 20 }} />}
       </main>
     </Provider>
   );
 });
 
 MochawesomeReport.propTypes = {
-  store: PropTypes.object
+  store: PropTypes.object,
 };
 
 MochawesomeReport.displayName = 'MochawesomeReport';

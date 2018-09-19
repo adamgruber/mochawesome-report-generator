@@ -14,17 +14,17 @@ class CodeSnippet extends Component {
 
   static propTypes = {
     className: PropTypes.string,
-    code: PropTypes.oneOfType([ PropTypes.string, PropTypes.array ]),
+    code: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     lang: PropTypes.string,
     highlight: PropTypes.bool,
     label: PropTypes.string,
-    showLabel: PropTypes.bool
+    showLabel: PropTypes.bool,
   };
 
   static defaultProps = {
     lang: 'javascript',
     highlight: true,
-    showLabel: false
+    showLabel: false,
   };
 
   componentDidMount() {
@@ -58,40 +58,59 @@ class CodeSnippet extends Component {
       [lang]: shouldHighlight,
       hljs: !shouldHighlight,
       'code-diff': isDiff,
-      'inline-diff': isInlineDiff
+      'inline-diff': isInlineDiff,
     });
 
-    const renderLegendLeft = () => (isInlineDiff
-      ? <span className={ cx('code-diff-actual') }>actual</span>
-      : <span className={ cx('code-diff-expected') }>+ expected</span>
-    );
+    const renderLegendLeft = () =>
+      isInlineDiff ? (
+        <span className={cx('code-diff-actual')}>actual</span>
+      ) : (
+        <span className={cx('code-diff-expected')}>+ expected</span>
+      );
 
-    const renderLegendRight = () => (isInlineDiff
-      ? <span className={ cx('code-diff-expected') }>{'expected\n\n'}</span>
-      : <span className={ cx('code-diff-actual') }>{'- actual\n\n'}</span>
-    );
+    const renderLegendRight = () =>
+      isInlineDiff ? (
+        <span className={cx('code-diff-expected')}>{'expected\n\n'}</span>
+      ) : (
+        <span className={cx('code-diff-actual')}>{'- actual\n\n'}</span>
+      );
 
     const mapInlineDiffCode = ({ added, removed, value }, i) => {
       if (added) {
-        return <span key={ i } className={ cx('code-diff-expected') }>{ value }</span>;
+        return (
+          <span key={i} className={cx('code-diff-expected')}>
+            {value}
+          </span>
+        );
       }
 
       if (removed) {
-        return <span key={ i } className={ cx('code-diff-actual') }>{ value }</span>;
+        return (
+          <span key={i} className={cx('code-diff-actual')}>
+            {value}
+          </span>
+        );
       }
 
       return value;
     };
 
-    return !!code && (
-      <pre className={ cxName } ref={ node => { this.node = node; } }>
-        <code>
-          { isDiff && renderLegendLeft() }
-          { isDiff && renderLegendRight() }
-          { isInlineDiff ? code.map(mapInlineDiffCode) : code }
-        </code>
-        { !!label && showLabel && <span className={ cx('code-label') }>{ label }</span> }
-      </pre>
+    return (
+      !!code && (
+        <pre
+          className={cxName}
+          ref={node => {
+            this.node = node;
+          }}>
+          <code>
+            {isDiff && renderLegendLeft()}
+            {isDiff && renderLegendRight()}
+            {isInlineDiff ? code.map(mapInlineDiffCode) : code}
+          </code>
+          {!!label &&
+            showLabel && <span className={cx('code-label')}>{label}</span>}
+        </pre>
+      )
     );
   }
 }

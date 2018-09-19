@@ -16,8 +16,18 @@ class Suite extends Component {
 
   render() {
     const { className, suite, enableChart, enableCode } = this.props;
-    const { root, rootEmpty, suites, tests, beforeHooks, afterHooks,
-      uuid, title, file, duration } = suite;
+    const {
+      root,
+      rootEmpty,
+      suites,
+      tests,
+      beforeHooks,
+      afterHooks,
+      uuid,
+      title,
+      file,
+      duration,
+    } = suite;
 
     const hasSuites = !isEmpty(suites);
     const hasTests = !isEmpty(tests);
@@ -33,22 +43,26 @@ class Suite extends Component {
     const totalPending = hasPending ? suite.pending.length : 0;
     const totalSkipped = hasSkipped ? suite.skipped.length : 0;
 
-    const subSuites = isMain => hasSuites && (
-      <SuiteList
-        suites={ suites }
-        enableChart={ enableChart }
-        enableCode={ enableCode }
-        main={ isMain } />
-    );
+    const subSuites = isMain =>
+      hasSuites && (
+        <SuiteList
+          suites={suites}
+          enableChart={enableChart}
+          enableCode={enableCode}
+          main={isMain}
+        />
+      );
 
-    const testListComp = () => (hasTests || hasBeforeHooks || hasAfterHooks) && (
-      <TestList
-        uuid={ uuid }
-        tests={ tests }
-        beforeHooks={ beforeHooks }
-        afterHooks={ afterHooks }
-        enableCode={ enableCode } />
-    );
+    const testListComp = () =>
+      (hasTests || hasBeforeHooks || hasAfterHooks) && (
+        <TestList
+          uuid={uuid}
+          tests={tests}
+          beforeHooks={beforeHooks}
+          afterHooks={afterHooks}
+          enableCode={enableCode}
+        />
+      );
 
     const cxname = cx('component', className, {
       'root-suite': root,
@@ -60,7 +74,7 @@ class Suite extends Component {
       'has-failed': hasFailures,
       'has-pending': hasPending,
       'has-skipped': hasSkipped,
-      'chart-enabled': enableChart
+      'chart-enabled': enableChart,
     });
 
     const summaryProps = {
@@ -70,9 +84,14 @@ class Suite extends Component {
       totalFailures,
       totalPending,
       totalSkipped,
-      className: cx({ 'no-margin': title === '' && file === '' })
+      className: cx({ 'no-margin': title === '' && file === '' }),
     };
-    const chartProps = { totalPasses, totalFailures, totalPending, totalSkipped };
+    const chartProps = {
+      totalPasses,
+      totalFailures,
+      totalPending,
+      totalSkipped,
+    };
 
     if (rootEmpty && !hasBeforeHooks && !hasAfterHooks) {
       return subSuites(true);
@@ -81,18 +100,18 @@ class Suite extends Component {
     const hideHeader = root && !hasTests && (hasBeforeHooks || hasAfterHooks);
 
     return (
-      <section className={ cxname } id={ uuid }>
-        { !hideHeader &&
-          <header className={ cx('header') }>
-            { title !== '' && <h3 className={ cx('title') }>{ title }</h3> }
-            { file !== '' && <h6 className={ cx('filename') }>{ file }</h6> }
-            { hasTests && enableChart && <SuiteChart { ...chartProps } /> }
-            { hasTests && <SuiteSummary { ...summaryProps } /> }
+      <section className={cxname} id={uuid}>
+        {!hideHeader && (
+          <header className={cx('header')}>
+            {title !== '' && <h3 className={cx('title')}>{title}</h3>}
+            {file !== '' && <h6 className={cx('filename')}>{file}</h6>}
+            {hasTests && enableChart && <SuiteChart {...chartProps} />}
+            {hasTests && <SuiteSummary {...summaryProps} />}
           </header>
-        }
-        <div className={ cx('body') }>
-          { testListComp() }
-          { subSuites() }
+        )}
+        <div className={cx('body')}>
+          {testListComp()}
+          {subSuites()}
         </div>
       </section>
     );
@@ -103,7 +122,7 @@ Suite.propTypes = {
   suite: PropTypes.object,
   className: PropTypes.string,
   enableChart: PropTypes.bool,
-  enableCode: PropTypes.bool
+  enableCode: PropTypes.bool,
 };
 
 export default Suite;

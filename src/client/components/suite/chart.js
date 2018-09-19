@@ -15,7 +15,7 @@ class SuiteChart extends Component {
     totalPasses: PropTypes.number,
     totalFailures: PropTypes.number,
     totalPending: PropTypes.number,
-    totalSkipped: PropTypes.number
+    totalSkipped: PropTypes.number,
   };
 
   componentDidMount() {
@@ -27,28 +27,40 @@ class SuiteChart extends Component {
   }
 
   renderChart() {
-    const { totalPasses, totalFailures, totalPending, totalSkipped } = this.props;
-    new Chartist.Pie(this.node, {
-      series: [ totalPasses, totalFailures, totalPending, totalSkipped ]
-    }, {
-      classNames: {
-        sliceDonutSolid: cx('chart-slice')
+    const {
+      totalPasses,
+      totalFailures,
+      totalPending,
+      totalSkipped,
+    } = this.props;
+    new Chartist.Pie(
+      this.node,
+      {
+        series: [totalPasses, totalFailures, totalPending, totalSkipped],
       },
-      chartPadding: 0,
-      donut: true,
-      donutSolid: true,
-      donutWidth: 9,
-      ignoreEmptyValues: true,
-      showLabel: false,
-      startAngle: 180
-    });
+      {
+        classNames: {
+          sliceDonutSolid: cx('chart-slice'),
+        },
+        chartPadding: 0,
+        donut: true,
+        donutSolid: true,
+        donutWidth: 9,
+        ignoreEmptyValues: true,
+        showLabel: false,
+        startAngle: 180,
+      }
+    );
   }
 
   render() {
     return (
       <div
-        className={ cx('chart-wrap', 'ct-chart') }
-        ref={ node => { this.node = node; } } />
+        className={cx('chart-wrap', 'ct-chart')}
+        ref={node => {
+          this.node = node;
+        }}
+      />
     );
   }
 }

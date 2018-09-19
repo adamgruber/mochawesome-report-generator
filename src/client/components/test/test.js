@@ -16,28 +16,45 @@ class Test extends PureComponent {
 
   static propTypes = {
     test: PropTypes.object,
-    enableCode: PropTypes.bool
-  }
+    enableCode: PropTypes.bool,
+  };
 
   static defaultProps = {
-    enableCode: true
-  }
+    enableCode: true,
+  };
 
   state = {
-    expanded: false
-  }
+    expanded: false,
+  };
 
   toggleExpandedState() {
     const { test, enableCode } = this.props;
-    if ((enableCode && test.pass) || !!test.context || test.fail || test.isHook) {
+    if (
+      (enableCode && test.pass) ||
+      !!test.context ||
+      test.fail ||
+      test.isHook
+    ) {
       this.setState({ expanded: !this.state.expanded });
     }
   }
 
   render() {
     const { test, enableCode } = this.props;
-    const { uuid, title, speed, duration, pass, fail, pending,
-      skipped, isHook, err, code, context } = test;
+    const {
+      uuid,
+      title,
+      speed,
+      duration,
+      pass,
+      fail,
+      pending,
+      skipped,
+      isHook,
+      err,
+      code,
+      context,
+    } = test;
 
     const testIcon = () => {
       let iconName;
@@ -66,7 +83,13 @@ class Test extends PureComponent {
         }
         iconClassName = 'hook';
       }
-      return <Icon name={ iconName } className={ cx('icon', iconClassName) } size={ isHook ? 24 : 18 } />;
+      return (
+        <Icon
+          name={iconName}
+          className={cx('icon', iconClassName)}
+          size={isHook ? 24 : 18}
+        />
+      );
     };
 
     const cxname = cx('component', {
@@ -77,29 +100,65 @@ class Test extends PureComponent {
       skipped,
       hook: isHook,
       inactive: pending || skipped || (pass && !enableCode && !context),
-      'with-context': !!context
+      'with-context': !!context,
     });
 
     return (
-      <section id={ uuid } className={ cxname }>
-        <header className={ cx('header') } onClick={ this.toggleExpandedState }>
-          { testIcon() }
-          <h4 className={ cx('title') } title={ title }>{ title }</h4>
-          <div className={ cx('info') }>
-            { !!context && <Icon name='chat_bubble_outline' className={ cx('context-icon') } size={ 18 } /> }
-            { !isHook && <Duration className={ cx('duration') } timer={ duration } /> }
-            { !isHook && <Icon name='timer' className={ cx('duration-icon', speed) } size={ 18 } /> }
+      <section id={uuid} className={cxname}>
+        <header className={cx('header')} onClick={this.toggleExpandedState}>
+          {testIcon()}
+          <h4 className={cx('title')} title={title}>
+            {title}
+          </h4>
+          <div className={cx('info')}>
+            {!!context && (
+              <Icon
+                name="chat_bubble_outline"
+                className={cx('context-icon')}
+                size={18}
+              />
+            )}
+            {!isHook && (
+              <Duration className={cx('duration')} timer={duration} />
+            )}
+            {!isHook && (
+              <Icon
+                name="timer"
+                className={cx('duration-icon', speed)}
+                size={18}
+              />
+            )}
           </div>
         </header>
-        { !!err.message && <p className={ cx('error-message') }>{ err.message }</p> }
-        { this.state.expanded &&
-          <div className={ cx('body') }>
-            { <CodeSnippet className={ cx('code-snippet') } code={ err.estack } highlight={ false } label='Stack Trace' /> }
-            { <CodeSnippet className={ cx('code-snippet') } code={ err.diff } lang='diff' label='Diff' /> }
-            { enableCode && <CodeSnippet className={ cx('code-snippet') } code={ code } label='Test Code' /> }
-            { !!context && <TestContext context={ context } /> }
+        {!!err.message && <p className={cx('error-message')}>{err.message}</p>}
+        {this.state.expanded && (
+          <div className={cx('body')}>
+            {
+              <CodeSnippet
+                className={cx('code-snippet')}
+                code={err.estack}
+                highlight={false}
+                label="Stack Trace"
+              />
+            }
+            {
+              <CodeSnippet
+                className={cx('code-snippet')}
+                code={err.diff}
+                lang="diff"
+                label="Diff"
+              />
+            }
+            {enableCode && (
+              <CodeSnippet
+                className={cx('code-snippet')}
+                code={code}
+                label="Test Code"
+              />
+            )}
+            {!!context && <TestContext context={context} />}
           </div>
-        }
+        )}
       </section>
     );
   }
