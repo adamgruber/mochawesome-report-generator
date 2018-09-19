@@ -20,7 +20,7 @@ const readFileSyncStub = sinon.stub();
 const openerStub = sinon.stub();
 const existsSyncStub = sinon.stub();
 const writeFileUniqueStub = sinon.stub();
-const mareport = proxyquire('../../../lib/src/main', {
+const mareport = proxyquire('../../../src/lib/main', {
   'fs-extra': {
     outputFile: outputFileStub,
     outputFileSync: outputFileSyncStub,

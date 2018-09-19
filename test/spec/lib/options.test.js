@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import path from 'path';
 import { expect } from 'chai';
-import { getMergedOptions } from '../../../lib/src/options';
+import { getMergedOptions } from '../../../src/lib/options';
 
 const expectedOptions = {
   reportDir: 'mochawesome-report',

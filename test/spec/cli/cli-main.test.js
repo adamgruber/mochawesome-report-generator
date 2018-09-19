@@ -15,7 +15,7 @@ const logger = {
   info: sinon.spy(),
   error: sinon.spy()
 };
-const cli = proxyquire('../../../bin/src/cli-main', {
+const cli = proxyquire('../../../src/bin/cli-main', {
   '../lib/main': {
     create: createStub
   },

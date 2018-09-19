@@ -1,5 +1,4 @@
---watch-extensions jsx
---require babel-register
---require jsdom-global/register
+--require @babel/register
 --require raf/polyfill
+--require jsdom-global/register
 --require test/helper.js
