@@ -1,2 +1,2 @@
 node_modules/**/*.css
-src/components/summary/*.css
+src/client/components/summary/*.css
