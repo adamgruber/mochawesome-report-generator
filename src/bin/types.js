@@ -1,9 +1,12 @@
 const t = require('tcomb');
 const { isUUID, isISO8601 } = require('validator');
 
-const PercentClass = t.enums.of([ 'success', 'warning', 'danger' ], 'PercentClass');
-const TestState = t.enums.of([ 'passed', 'failed' ], 'TestState');
-const TestSpeed = t.enums.of([ 'slow', 'medium', 'fast' ], 'TestSpeed');
+const PercentClass = t.enums.of(
+  ['success', 'warning', 'danger'],
+  'PercentClass'
+);
+const TestState = t.enums.of(['passed', 'failed'], 'TestState');
+const TestSpeed = t.enums.of(['slow', 'medium', 'fast'], 'TestSpeed');
 const DateString = t.refinement(t.String, isISO8601, 'DateString');
 const Duration = t.maybe(t.Integer);
 const Uuid = t.refinement(t.String, isUUID, 'UUID');
@@ -25,28 +28,30 @@ const Test = t.struct({
   parentUUID: t.maybe(Uuid),
   skipped: t.Boolean,
   context: t.maybe(t.String),
-  isHook: t.Boolean
+  isHook: t.Boolean,
 });
 
 const Suite = t.declare('Suite');
-Suite.define(t.struct({
-  title: t.String,
-  suites: t.list(Suite),
-  tests: t.list(Test),
-  root: t.Boolean,
-  _timeout: t.Integer,
-  file: t.String,
-  uuid: Uuid,
-  fullFile: t.String,
-  beforeHooks: t.list(Test),
-  afterHooks: t.list(Test),
-  passes: t.list(Uuid),
-  failures: t.list(Uuid),
-  pending: t.list(Uuid),
-  skipped: t.list(Uuid),
-  duration: Duration,
-  rootEmpty: t.maybe(t.Boolean)
-}));
+Suite.define(
+  t.struct({
+    title: t.String,
+    suites: t.list(Suite),
+    tests: t.list(Test),
+    root: t.Boolean,
+    _timeout: t.Integer,
+    file: t.String,
+    uuid: Uuid,
+    fullFile: t.String,
+    beforeHooks: t.list(Test),
+    afterHooks: t.list(Test),
+    passes: t.list(Uuid),
+    failures: t.list(Uuid),
+    pending: t.list(Uuid),
+    skipped: t.list(Uuid),
+    duration: Duration,
+    rootEmpty: t.maybe(t.Boolean),
+  })
+);
 
 const TestReport = t.struct({
   stats: t.struct({
@@ -67,10 +72,10 @@ const TestReport = t.struct({
     hasSkipped: t.Boolean,
     passPercentClass: PercentClass,
     pendingPercentClass: PercentClass,
-    context: t.maybe(t.String)
+    context: t.maybe(t.String),
   }),
   suites: Suite,
-  copyrightYear: t.Integer
+  copyrightYear: t.Integer,
 });
 
 module.exports = { TestReport };
