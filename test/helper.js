@@ -15,8 +15,11 @@ enzyme.configure({ adapter: new Adapter() });
 
 // Setup path lookups
 const path = require('path');
-require('app-module-path').addPath(__dirname);
-require('app-module-path').addPath(path.join(__dirname, '..', 'src'));
+const { addPath } = require('app-module-path');
+
+addPath(__dirname);
+addPath(path.join(__dirname, '..', 'src'));
+addPath(path.join(__dirname, '..', 'src', 'client'));
 
 // CSS Modules Runtime
 const cssHook = require('css-modules-require-hook');
