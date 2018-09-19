@@ -38,118 +38,122 @@ const isFunction = require('lodash.isfunction');
  */
 export const yargsOptions = {
   f: {
-    alias: [ 'reportFilename' ],
+    alias: ['reportFilename'],
     describe: 'Filename of saved report',
     string: true,
-    requiresArg: true
+    requiresArg: true,
   },
   o: {
-    alias: [ 'reportDir' ],
+    alias: ['reportDir'],
     default: 'mochawesome-report',
     describe: 'Path to save report',
     string: true,
     normalize: true,
-    requiresArg: true
+    requiresArg: true,
   },
   t: {
-    alias: [ 'reportTitle' ],
-    default: () => process.cwd().split(path.sep).pop(),
+    alias: ['reportTitle'],
+    default: () =>
+      process
+        .cwd()
+        .split(path.sep)
+        .pop(),
     describe: 'Report title',
     string: true,
-    requiresArg: true
+    requiresArg: true,
   },
   p: {
-    alias: [ 'reportPageTitle' ],
+    alias: ['reportPageTitle'],
     default: 'Mochawesome Report',
     describe: 'Browser title',
     string: true,
-    requiresArg: true
+    requiresArg: true,
   },
   i: {
-    alias: [ 'inline', 'inlineAssets' ],
+    alias: ['inline', 'inlineAssets'],
     default: false,
     describe: 'Inline report assets (styles, scripts)',
-    boolean: true
+    boolean: true,
   },
   assetsDir: {
     describe: 'Path to save assets',
     string: true,
     normalize: true,
-    requiresArg: true
+    requiresArg: true,
   },
   cdn: {
     default: false,
     describe: 'Load report assets via CDN',
-    boolean: true
+    boolean: true,
   },
   charts: {
-    alias: [ 'enableCharts' ],
+    alias: ['enableCharts'],
     default: true,
     describe: 'Display charts',
-    boolean: true
+    boolean: true,
   },
   code: {
-    alias: [ 'enableCode' ],
+    alias: ['enableCode'],
     default: true,
     describe: 'Display test code',
-    boolean: true
+    boolean: true,
   },
   autoOpen: {
     default: false,
     describe: 'Automatically open the report HTML',
-    boolean: true
+    boolean: true,
   },
   overwrite: {
     default: true,
     describe: 'Overwrite existing files when saving',
-    boolean: true
+    boolean: true,
   },
   timestamp: {
-    alias: [ 'ts' ],
+    alias: ['ts'],
     default: false,
     describe: 'Append timestamp in specified format to filename',
-    string: true
+    string: true,
   },
   showPassed: {
     default: true,
     describe: 'Set intial state for "Show Passed" filter',
-    boolean: true
+    boolean: true,
   },
   showFailed: {
     default: true,
     describe: 'Set intial state for "Show Failed" filter',
-    boolean: true
+    boolean: true,
   },
   showPending: {
     default: true,
     describe: 'Set intial state for "Show Pending" filter',
-    boolean: true
+    boolean: true,
   },
   showSkipped: {
     default: false,
     describe: 'Set intial state for "Show Skipped" filter',
-    boolean: true
+    boolean: true,
   },
   showHooks: {
     default: 'failed',
     describe: 'Display hooks in the report',
-    choices: [ 'always', 'never', 'failed', 'context' ]
+    choices: ['always', 'never', 'failed', 'context'],
   },
   saveJson: {
     default: false,
     describe: 'Save report data to JSON file',
-    boolean: true
+    boolean: true,
   },
   saveHtml: {
     default: true,
     describe: 'Save report to HTML file',
-    boolean: true
+    boolean: true,
   },
   dev: {
     default: false,
     describe: 'Enable dev mode',
-    boolean: true
-  }
+    boolean: true,
+  },
 };
 
 /**
@@ -167,14 +171,12 @@ export const yargsOptions = {
 function _getUserOption(userOptions, optToGet, isBool) {
   const envVar = `MOCHAWESOME_${optToGet.toUpperCase()}`;
   if (userOptions && typeof userOptions[optToGet] !== 'undefined') {
-    return (isBool && typeof userOptions[optToGet] === 'string')
+    return isBool && typeof userOptions[optToGet] === 'string'
       ? userOptions[optToGet] === 'true'
       : userOptions[optToGet];
   }
   if (typeof process.env[envVar] !== 'undefined') {
-    return isBool
-      ? process.env[envVar] === 'true'
-      : process.env[envVar];
+    return isBool ? process.env[envVar] === 'true' : process.env[envVar];
   }
   return undefined;
 }
@@ -199,13 +201,15 @@ function assignVal(obj, prop, userVal, defaultVal) {
  *
  * @return {Object} Merged options
  */
-export const getMergedOptions = function (userOptions) {
+export const getMergedOptions = function(userOptions) {
   const mergedOptions = {};
 
   Object.keys(yargsOptions).forEach(optKey => {
     const yargOpt = yargsOptions[optKey];
     const aliases = yargOpt.alias;
-    const defaultVal = isFunction(yargOpt.default) ? yargOpt.default() : yargOpt.default;
+    const defaultVal = isFunction(yargOpt.default)
+      ? yargOpt.default()
+      : yargOpt.default;
     const isBool = yargOpt.boolean;
     let userVal = _getUserOption(userOptions, optKey, isBool);
 
@@ -223,10 +227,13 @@ export const getMergedOptions = function (userOptions) {
       }
 
       // Handle cases where the main option is not a single letter
-      if (optKey.length > 1) assignVal(mergedOptions, optKey, userVal, defaultVal);
+      if (optKey.length > 1)
+        assignVal(mergedOptions, optKey, userVal, defaultVal);
 
       // Loop through aliases to set val
-      aliases.forEach(alias => assignVal(mergedOptions, alias, userVal, defaultVal));
+      aliases.forEach(alias =>
+        assignVal(mergedOptions, alias, userVal, defaultVal)
+      );
     } else {
       // For options without aliases, use the option regardless of length
       assignVal(mergedOptions, optKey, userVal, defaultVal);
