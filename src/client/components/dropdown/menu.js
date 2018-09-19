@@ -12,8 +12,15 @@ class DropdownMenu extends Component {
   _getItemText = item => get(item, this.props.itemTitleProp);
 
   _renderMenu = (listItem, i) => {
-    const { selected, showSelected, selectedClassName,
-      linkClassName, itemClassName, itemRenderFn, itemClickFn } = this.props;
+    const {
+      selected,
+      showSelected,
+      selectedClassName,
+      linkClassName,
+      itemClassName,
+      itemRenderFn,
+      itemClickFn,
+    } = this.props;
     const { items } = listItem;
     const itemText = this._getItemText(listItem);
     const isSelected = isEqual(listItem, selected);
@@ -28,32 +35,39 @@ class DropdownMenu extends Component {
     const itemClass = cx('list-item', itemClassName, {
       'link-item': !listItem.items,
       selected: showSelected && isSelected,
-      [selectedClassName]: showSelected && isSelected && selectedClassName
+      [selectedClassName]: showSelected && isSelected && selectedClassName,
     });
     const textClass = cx('list-item-text');
     const linkClass = cx('list-item-link', linkClassName);
 
-    const renderItem = () => itemRenderFn
-      ? itemRenderFn(listItem, itemText, itemClickFn)
-      : <a className={ linkClass } href='' onClick={ clickFn }>{ itemText }</a>;
+    const renderItem = () =>
+      itemRenderFn ? (
+        itemRenderFn(listItem, itemText, itemClickFn)
+      ) : (
+        <a className={linkClass} href="" onClick={clickFn}>
+          {itemText}
+        </a>
+      );
 
     return (
-      <li key={ i } className={ itemClass }>
-        { items ? <span className={ textClass }>{ itemText }</span> : renderItem() }
-        { items && <ul className={ subListClass }>{ items.map(this._renderMenu) }</ul> }
+      <li key={i} className={itemClass}>
+        {items ? <span className={textClass}>{itemText}</span> : renderItem()}
+        {items && (
+          <ul className={subListClass}>{items.map(this._renderMenu)}</ul>
+        )}
       </li>
     );
-  }
+  };
 
   render() {
     const { className, menuRef, style, list, menuAlign, open } = this.props;
     const cxname = cx('list', 'list-main', className, `align-${menuAlign}`, {
       open,
-      close: open === false
+      close: open === false,
     });
     return (
-      <ul className={ cxname } style={ style } ref={ menuRef }>
-        { !!list && list.map(this._renderMenu) }
+      <ul className={cxname} style={style} ref={menuRef}>
+        {!!list && list.map(this._renderMenu)}
       </ul>
     );
   }
@@ -62,11 +76,13 @@ class DropdownMenu extends Component {
 DropdownMenu.propTypes = {
   className: PropTypes.string,
   menuRef: PropTypes.func,
-  list: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string,
-    items: PropTypes.array
-  })),
-  menuAlign: PropTypes.oneOf([ 'left', 'right' ]),
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      items: PropTypes.array,
+    })
+  ),
+  menuAlign: PropTypes.oneOf(['left', 'right']),
   open: PropTypes.bool,
   style: PropTypes.object,
   selected: PropTypes.object,
@@ -76,13 +92,13 @@ DropdownMenu.propTypes = {
   itemClassName: PropTypes.string,
   itemRenderFn: PropTypes.func,
   itemClickFn: PropTypes.func,
-  itemTitleProp: PropTypes.string
+  itemTitleProp: PropTypes.string,
 };
 
 DropdownMenu.defaultProps = {
   menuAlign: 'left',
   showSelected: false,
-  itemTitleProp: 'title'
+  itemTitleProp: 'title',
 };
 
 DropdownMenu.displayName = 'DropdownMenu';

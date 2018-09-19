@@ -9,14 +9,14 @@ const transduce = (items, mapper, reducer, initial) =>
 class ReportStore {
   constructor(data = {}, config = {}) {
     Object.assign(this, config, {
-      allSuites: data.suites ? [ data.suites ] : [],
+      allSuites: data.suites ? [data.suites] : [],
       devMode: !!config.dev,
       enableChart: !!config.enableCharts,
       initialLoadTimeout: 300,
       reportTitle: config.reportTitle || data.reportTitle,
-      showHooksOptions: [ 'failed', 'always', 'never', 'context' ],
+      showHooksOptions: ['failed', 'always', 'never', 'context'],
       stats: data.stats || {},
-      VERSION: '__VERSION__'
+      VERSION: '__VERSION__',
     });
 
     extendObservable(this, {
@@ -26,87 +26,104 @@ class ReportStore {
       showHooks: this._getShowHooks(config),
       showPassed: config.showPassed !== undefined ? config.showPassed : true,
       showPending: config.showPending !== undefined ? config.showPending : true,
-      showSkipped: config.showSkipped !== undefined ? config.showSkipped : false,
-      sideNavOpen: false
+      showSkipped:
+        config.showSkipped !== undefined ? config.showSkipped : false,
+      sideNavOpen: false,
     });
   }
 
-  @action.bound openSideNav() {
+  @action.bound
+  openSideNav() {
     this.sideNavOpen = true;
   }
 
-  @action.bound closeSideNav() {
+  @action.bound
+  closeSideNav() {
     this.sideNavOpen = false;
   }
 
-  @action.bound toggleFilter(prop) {
+  @action.bound
+  toggleFilter(prop) {
     this.toggleIsLoading(true);
     this[prop] = !this[prop];
   }
 
-  @action.bound setShowHooks(prop) {
+  @action.bound
+  setShowHooks(prop) {
     if (this._isValidShowHookOption(prop)) {
       this.toggleIsLoading(true);
       this.showHooks = prop;
     }
   }
 
-  @action toggleIsLoading(isLoading) {
-    this.isLoading = (isLoading !== undefined)
-      ? isLoading
-      : !this.isLoading;
+  @action
+  toggleIsLoading(isLoading) {
+    this.isLoading = isLoading !== undefined ? isLoading : !this.isLoading;
   }
 
-  _mapHook = hook => (
-    ((this.showHooks === 'always')
-    || (this.showHooks === 'failed' && hook.fail)
-    || (this.showHooks === 'context' && hook.context))
-    && hook
-  )
+  _mapHook = hook =>
+    (this.showHooks === 'always' ||
+      (this.showHooks === 'failed' && hook.fail) ||
+      (this.showHooks === 'context' && hook.context)) &&
+    hook;
 
-  _mapTest = test => (
-    ((this.showPassed && test.pass)
-    || (this.showFailed && test.fail)
-    || (this.showPending && test.pending)
-    || (this.showSkipped && test.skipped))
-    && test
-  )
+  _mapTest = test =>
+    ((this.showPassed && test.pass) ||
+      (this.showFailed && test.fail) ||
+      (this.showPending && test.pending) ||
+      (this.showSkipped && test.skipped)) &&
+    test;
 
   _mapSuite = suite => {
     const suites = suite.suites.length
       ? this._getFilteredTests(suite.suites)
       : [];
     const tests = transduce(suite.tests, this._mapTest, this._reduceItem, []);
-    const beforeHooks = transduce(suite.beforeHooks, this._mapHook, this._reduceItem, []);
-    const afterHooks = transduce(suite.afterHooks, this._mapHook, this._reduceItem, []);
+    const beforeHooks = transduce(
+      suite.beforeHooks,
+      this._mapHook,
+      this._reduceItem,
+      []
+    );
+    const afterHooks = transduce(
+      suite.afterHooks,
+      this._mapHook,
+      this._reduceItem,
+      []
+    );
 
-    return (beforeHooks.length || afterHooks.length || tests.length || suites.length)
+    return beforeHooks.length ||
+      afterHooks.length ||
+      tests.length ||
+      suites.length
       ? Object.assign({}, suite, { suites, beforeHooks, afterHooks, tests })
       : null;
-  }
+  };
 
   _reduceItem = (acc, item) => {
     if (item) {
       acc.push(item);
     }
     return acc;
-  }
+  };
 
-  _getFilteredTests = suite => (
-    transduce(suite, this._mapSuite, this._reduceItem, [])
-  )
+  _getFilteredTests = suite =>
+    transduce(suite, this._mapSuite, this._reduceItem, []);
 
   _isValidOption = (property, options, selection) => {
     const isValid = options.indexOf(selection) >= 0;
     if (!isValid) {
-      console.error(`Warning: '${selection}' is not a valid option for property: '${property}'. Valid options are: ${options.join(', ')}`); // eslint-disable-line
+      console.error(
+        `Warning: '${selection}' is not a valid option for property: '${property}'. Valid options are: ${options.join(
+          ', '
+        )}`
+      ); // eslint-disable-line
     }
     return isValid;
-  }
+  };
 
-  _isValidShowHookOption = option => (
-    this._isValidOption('showHooks', this.showHooksOptions, option)
-  );
+  _isValidShowHookOption = option =>
+    this._isValidOption('showHooks', this.showHooksOptions, option);
 
   _getShowHooks = ({ showHooks }) => {
     const showHooksDefault = 'failed';
@@ -115,8 +132,10 @@ class ReportStore {
       return showHooksDefault;
     }
 
-    return this._isValidShowHookOption(showHooks) ? showHooks : showHooksDefault;
-  }
+    return this._isValidShowHookOption(showHooks)
+      ? showHooks
+      : showHooksDefault;
+  };
 
   updateFilteredSuites(timeout = this.initialLoadTimeout) {
     setTimeout(() => {

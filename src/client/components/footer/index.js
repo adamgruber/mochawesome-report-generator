@@ -8,26 +8,35 @@ const cx = classNames.bind(styles);
 
 const urls = {
   site: 'http://adamgruber.github.io/mochawesome/',
-  github: 'https://github.com/adamgruber'
+  github: 'https://github.com/adamgruber',
 };
 
 const Footer = ({ version }) => {
   const copyrightYear = new Date().getFullYear();
   return (
-    <footer className={ cx('component') }>
-      <div className='container'>
+    <footer className={cx('component')}>
+      <div className="container">
         <p>
-          &copy;{ copyrightYear }&nbsp;<a href={ urls.site } target='_blank' rel='noopener noreferrer'>Mochawesome</a>
+          &copy;
+          {copyrightYear}
+          &nbsp;
+          <a href={urls.site} target="_blank" rel="noopener noreferrer">
+            Mochawesome
+          </a>
           &nbsp;was designed and built by&nbsp;
-          <a href={ urls.github } target='_blank' rel='noopener noreferrer'>Adam Gruber</a> • <span>v{version}</span>
-        </p>{}
+          <a href={urls.github} target="_blank" rel="noopener noreferrer">
+            Adam Gruber
+          </a>{' '}
+          • <span>v{version}</span>
+        </p>
+        {}
       </div>
     </footer>
   );
 };
 
 Footer.propTypes = {
-  version: PropTypes.string
+  version: PropTypes.string,
 };
 
 export default Footer;

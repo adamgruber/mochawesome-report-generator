@@ -16,7 +16,7 @@ class Dropdown extends Component {
     list: PropTypes.array,
     linkClassName: PropTypes.string,
     menuClassName: PropTypes.string,
-    menuAlign: PropTypes.oneOf([ 'left', 'right' ]),
+    menuAlign: PropTypes.oneOf(['left', 'right']),
     menuStyle: PropTypes.object,
     selected: PropTypes.object,
     selectedClassName: PropTypes.string,
@@ -26,16 +26,16 @@ class Dropdown extends Component {
     onToggle: PropTypes.func,
     itemRenderFn: PropTypes.func,
     toggleIcon: PropTypes.element,
-    itemTitleProp: PropTypes.string
+    itemTitleProp: PropTypes.string,
   };
 
   static defaultProps = {
     iconOnly: false,
-    itemTitleProp: 'title'
+    itemTitleProp: 'title',
   };
 
   state = {
-    open: null
+    open: null,
   };
 
   componentDidMount() {
@@ -48,7 +48,12 @@ class Dropdown extends Component {
 
   documentClickHandler(event) {
     const ddEl = this.node;
-    if (ddEl && event.target !== ddEl && !ddEl.contains(event.target) && this.state.open) {
+    if (
+      ddEl &&
+      event.target !== ddEl &&
+      !ddEl.contains(event.target) &&
+      this.state.open
+    ) {
       this.closeMenu();
     }
   }
@@ -56,7 +61,7 @@ class Dropdown extends Component {
   select = item => {
     this.closeMenu();
     this.props.onItemSelected(item);
-  }
+  };
 
   closeMenu = () => {
     this.setState({ open: false });
@@ -64,7 +69,7 @@ class Dropdown extends Component {
     if (this.props.onToggle) {
       this.props.onToggle(false);
     }
-  }
+  };
 
   toggleListDisplay = () => {
     this.setState({ open: !this.state.open });
@@ -72,15 +77,28 @@ class Dropdown extends Component {
     if (this.props.onToggle) {
       this.props.onToggle(!this.state.open);
     }
-  }
+  };
 
   _getItemText = item => get(item, this.props.itemTitleProp);
 
   render() {
-    const { list, selected, className, iconOnly, menuAlign,
-      menuClassName, menuStyle, toggleClassName, selectedClassName,
-      showSelected, linkClassName, itemClassName, itemTitleProp,
-      itemRenderFn, toggleIcon } = this.props;
+    const {
+      list,
+      selected,
+      className,
+      iconOnly,
+      menuAlign,
+      menuClassName,
+      menuStyle,
+      toggleClassName,
+      selectedClassName,
+      showSelected,
+      linkClassName,
+      itemClassName,
+      itemTitleProp,
+      itemRenderFn,
+      toggleIcon,
+    } = this.props;
     const { open } = this.state;
 
     const displayItem = selected || { title: 'Please select' };
@@ -89,25 +107,30 @@ class Dropdown extends Component {
     const toggleFn = () => this.toggleListDisplay();
 
     return (
-      <div ref={ node => { this.node = node; } } className={ compClass } >
-        <button className={ toggleClass } onClick={ toggleFn } >
-          { !iconOnly && this._getItemText(displayItem) }
-          { !!toggleIcon && toggleIcon }
+      <div
+        ref={node => {
+          this.node = node;
+        }}
+        className={compClass}>
+        <button className={toggleClass} onClick={toggleFn}>
+          {!iconOnly && this._getItemText(displayItem)}
+          {!!toggleIcon && toggleIcon}
         </button>
         <DropdownMenu
-          className={ menuClassName }
-          menuAlign={ menuAlign }
-          open={ open }
-          style={ menuStyle }
-          list={ list }
-          selected={ selected }
-          showSelected={ showSelected }
-          selectedClassName={ selectedClassName }
-          linkClassName={ linkClassName }
-          itemClassName={ itemClassName }
-          itemTitleProp={ itemTitleProp }
-          itemRenderFn={ itemRenderFn }
-          itemClickFn={ itemRenderFn ? this.closeMenu : this.select } />
+          className={menuClassName}
+          menuAlign={menuAlign}
+          open={open}
+          style={menuStyle}
+          list={list}
+          selected={selected}
+          showSelected={showSelected}
+          selectedClassName={selectedClassName}
+          linkClassName={linkClassName}
+          itemClassName={itemClassName}
+          itemTitleProp={itemTitleProp}
+          itemRenderFn={itemRenderFn}
+          itemClickFn={itemRenderFn ? this.closeMenu : this.select}
+        />
       </div>
     );
   }

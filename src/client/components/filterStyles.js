@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 class FilterStyles extends Component {
   static propTypes = {
-    filtered: PropTypes.array
-  }
+    filtered: PropTypes.array,
+  };
 
   componentDidMount() {
     console.log(this.node);
@@ -12,8 +12,11 @@ class FilterStyles extends Component {
 
   render() {
     return (
-      <style ref={ c => { this.node = c; } }>
-        { this.props.filtered.forEach(filter => `#${filter}:{display:none;}`) }
+      <style
+        ref={c => {
+          this.node = c;
+        }}>
+        {this.props.filtered.forEach(filter => `#${filter}:{display:none;}`)}
       </style>
     );
   }

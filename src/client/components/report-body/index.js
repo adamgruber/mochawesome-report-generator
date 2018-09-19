@@ -5,10 +5,11 @@ import { inject, observer } from 'mobx-react';
 import { Suite } from 'components/suite';
 import cx from 'classnames';
 
-@inject('reportStore') @observer
+@inject('reportStore')
+@observer
 class ReportBody extends React.Component {
   static propTypes = {
-    reportStore: PropTypes.object
+    reportStore: PropTypes.object,
   };
 
   updateSuites(timeout) {
@@ -24,14 +25,14 @@ class ReportBody extends React.Component {
           showFailed,
           showPending,
           showSkipped,
-          showHooks
+          showHooks,
         } = this.props.reportStore;
         return {
           showPassed,
           showFailed,
           showPending,
           showSkipped,
-          showHooks
+          showHooks,
         };
       },
       () => this.updateSuites(0),
@@ -47,18 +48,19 @@ class ReportBody extends React.Component {
     const {
       enableCode,
       enableChart,
-      filteredSuites: suites
+      filteredSuites: suites,
     } = this.props.reportStore;
 
     return (
-      <div id='details' className={ cx('details', 'container') }>
-        { suites.map(suite => (
+      <div id="details" className={cx('details', 'container')}>
+        {suites.map(suite => (
           <Suite
-            key={ suite.uuid }
-            suite={ suite }
-            enableChart={ enableChart }
-            enableCode={ enableCode } />))
-        }
+            key={suite.uuid}
+            suite={suite}
+            enableChart={enableChart}
+            enableCode={enableCode}
+          />
+        ))}
       </div>
     );
   }

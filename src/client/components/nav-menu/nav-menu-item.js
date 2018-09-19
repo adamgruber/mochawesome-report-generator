@@ -15,7 +15,7 @@ class NavMenuItem extends Component {
     showPassed: PropTypes.bool,
     showFailed: PropTypes.bool,
     showPending: PropTypes.bool,
-    showSkipped: PropTypes.bool
+    showSkipped: PropTypes.bool,
   };
 
   shouldComponentUpdate(nextProps) {
@@ -23,7 +23,13 @@ class NavMenuItem extends Component {
   }
 
   render() {
-    const { suite, showPassed, showFailed, showPending, showSkipped } = this.props;
+    const {
+      suite,
+      showPassed,
+      showFailed,
+      showPending,
+      showSkipped,
+    } = this.props;
     const { suites, uuid, title } = suite;
     const navItemProps = { showPassed, showFailed, showPending, showSkipped };
 
@@ -36,7 +42,8 @@ class NavMenuItem extends Component {
     const fail = hasTests && hasFailures;
     const pend = hasTests && hasPending && !hasFailures;
     const skip = hasTests && hasSkipped && !hasFailures && !hasPending;
-    const pass = hasTests && hasPasses && !hasFailures && !hasPending && !hasSkipped;
+    const pass =
+      hasTests && hasPasses && !hasFailures && !hasPending && !hasSkipped;
 
     const shouldBeDisabled = () => {
       let count = 0;
@@ -50,13 +57,20 @@ class NavMenuItem extends Component {
       if (!showPending && hasPending) count -= 1;
       if (!showFailed && hasFailures) count -= 1;
       if (!showPassed && hasPasses) count -= 1;
-      if (!showSkipped && !showPending && !showFailed && !showPassed && !hasTests) count -= 1;
+      if (
+        !showSkipped &&
+        !showPending &&
+        !showFailed &&
+        !showPassed &&
+        !hasTests
+      )
+        count -= 1;
 
       return count <= 0;
     };
 
     const anchorCxName = cx('link', {
-      disabled: shouldBeDisabled()
+      disabled: shouldBeDisabled(),
     });
 
     const suiteIcon = () => {
@@ -78,7 +92,13 @@ class NavMenuItem extends Component {
         iconName = 'close';
         iconClassName = 'fail';
       }
-      return <Icon name={ iconName } className={ cx('link-icon', iconClassName) } size={ 18 } />;
+      return (
+        <Icon
+          name={iconName}
+          className={cx('link-icon', iconClassName)}
+          size={18}
+        />
+      );
     };
 
     const scrollToSuite = (e, suiteId) => {
@@ -89,21 +109,27 @@ class NavMenuItem extends Component {
       const { top } = suiteEl.getBoundingClientRect();
       // Get the details container and get its top padding
       const detailsCnt = document.getElementById('details');
-      let topPad = window.getComputedStyle(detailsCnt).getPropertyValue('padding-top');
+      let topPad = window
+        .getComputedStyle(detailsCnt)
+        .getPropertyValue('padding-top');
       topPad = parseInt(topPad, 10);
       // Calc the y position to scroll to
       // 4px offset due to shadow
-      const scrollY = (document.body.scrollTop + top) - (topPad + 4);
+      const scrollY = document.body.scrollTop + top - (topPad + 4);
       window.scrollTo(0, scrollY);
     };
 
     return (
-      <li className={ cx('item', { 'has-tests': hasTests }) }>
-        <a href={ `#${uuid}` } className={ anchorCxName } onClick={ e => scrollToSuite(e, uuid) }>
-          { suiteIcon() }
-          <span>{ title === '' ? uuid : title }</span>
+      <li className={cx('item', { 'has-tests': hasTests })}>
+        <a
+          href={`#${uuid}`}
+          className={anchorCxName}
+          onClick={e => scrollToSuite(e, uuid)}>
+          {suiteIcon()}
+          <span>{title === '' ? uuid : title}</span>
         </a>
-        { suites && !!suites.length && <NavMenuList suites={ suites } { ...navItemProps } /> }
+        {suites &&
+          !!suites.length && <NavMenuList suites={suites} {...navItemProps} />}
       </li>
     );
   }

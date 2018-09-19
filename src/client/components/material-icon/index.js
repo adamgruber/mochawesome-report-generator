@@ -14,15 +14,22 @@ class Icon extends PureComponent {
       !!foreground && `md-${foreground}`,
       className
     );
-    return !!iconCode && <i className={ cxName } dangerouslySetInnerHTML={ { __html: `&#x${iconCode};` } } />;
+    return (
+      !!iconCode && (
+        <i
+          className={cxName}
+          dangerouslySetInnerHTML={{ __html: `&#x${iconCode};` }}
+        />
+      )
+    );
   }
 }
 
 Icon.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string,
-  size: PropTypes.oneOf([ 18, 24, 36, 48 ]),
-  foreground: PropTypes.oneOf([ 'light', 'dark' ])
+  size: PropTypes.oneOf([18, 24, 36, 48]),
+  foreground: PropTypes.oneOf(['light', 'dark']),
 };
 
 Icon.displayName = 'MaterialIcon';

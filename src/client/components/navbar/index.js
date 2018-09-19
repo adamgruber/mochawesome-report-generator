@@ -15,31 +15,34 @@ const Navbar = ({ onMenuClick, reportTitle, stats }) => {
 
   const pctBar = (prop, cname, title) => (
     <span
-      className={ cx('pct-bar-segment', cname) }
-      style={ { width: `${prop}%` } }
-      title={ `${prop.toFixed(1)}% ${title}` } />
+      className={cx('pct-bar-segment', cname)}
+      style={{ width: `${prop}%` }}
+      title={`${prop.toFixed(1)}% ${title}`}
+    />
   );
 
   return (
-    <div className={ cx('component', 'z-depth-1') } role='navigation'>
-      <div className={ cx('report-info-cnt') }>
+    <div className={cx('component', 'z-depth-1')} role="navigation">
+      <div className={cx('report-info-cnt')}>
         <button
-          onClick={ onMenuClick }
-          className={ cx('menu-button', 'open-menu') }>
-          <Icon name='menu' />
+          onClick={onMenuClick}
+          className={cx('menu-button', 'open-menu')}>
+          <Icon name="menu" />
         </button>
-        <h1 className={ cx('report-title') } title={ reportTitle }>{ reportTitle }</h1>
+        <h1 className={cx('report-title')} title={reportTitle}>
+          {reportTitle}
+        </h1>
       </div>
-      <div className={ cx('stats') }>
-        <QuickSummary stats={ stats } />
+      <div className={cx('stats')}>
+        <QuickSummary stats={stats} />
       </div>
-      { showPctBar &&
-        <div className={ cx('pct-bar') }>
-          { allPending && pctBar(pendingPercent, 'pend', 'Pending') }
-          { !allPending && pctBar(passPercent, 'pass', 'Passing') }
-          { !allPending && pctBar(failPercent, 'fail', 'Failing') }
+      {showPctBar && (
+        <div className={cx('pct-bar')}>
+          {allPending && pctBar(pendingPercent, 'pend', 'Pending')}
+          {!allPending && pctBar(passPercent, 'pass', 'Passing')}
+          {!allPending && pctBar(failPercent, 'fail', 'Failing')}
         </div>
-      }
+      )}
     </div>
   );
 };
@@ -47,7 +50,7 @@ const Navbar = ({ onMenuClick, reportTitle, stats }) => {
 Navbar.propTypes = {
   onMenuClick: PropTypes.func,
   reportTitle: PropTypes.string,
-  stats: PropTypes.object
+  stats: PropTypes.object,
 };
 
 Navbar.displayName = 'Navbar';

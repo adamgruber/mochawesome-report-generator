@@ -6,21 +6,24 @@ import styles from './loader.css';
 
 const cx = classNames.bind(styles);
 
-@inject('reportStore') @observer
+@inject('reportStore')
+@observer
 class Loader extends Component {
   static propTypes = {
-    reportStore: PropTypes.object
+    reportStore: PropTypes.object,
   };
 
   render() {
     const { isLoading } = this.props.reportStore;
-    return isLoading && (
-      <div className={ cx('component') }>
-        <div className={ cx('wrap') }>
-          <div className={ cx('spinner') } />
-          <h4 className={ cx('text') }>Generating Report</h4>
+    return (
+      isLoading && (
+        <div className={cx('component')}>
+          <div className={cx('wrap')}>
+            <div className={cx('spinner')} />
+            <h4 className={cx('text')}>Generating Report</h4>
+          </div>
         </div>
-      </div>
+      )
     );
   }
 }

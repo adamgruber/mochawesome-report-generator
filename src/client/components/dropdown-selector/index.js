@@ -7,29 +7,41 @@ import styles from './dropdown-selector.css';
 const cx = classNames.bind(styles);
 
 const toggleIcon = () => (
-  <Icon name='arrow_drop_down' size={ 18 } className={ cx('toggle-icon') } />
+  <Icon name="arrow_drop_down" size={18} className={cx('toggle-icon')} />
 );
 
 function DropdownSelector(props) {
-  const { className, labelClassName, label, icon, iconClassName, onSelect, selections, selected,
-    ddClassName, ddMenuClassName, ddSelectedClassName } = props;
+  const {
+    className,
+    labelClassName,
+    label,
+    icon,
+    iconClassName,
+    onSelect,
+    selections,
+    selected,
+    ddClassName,
+    ddMenuClassName,
+    ddSelectedClassName,
+  } = props;
   const labelCxName = cx('label', { 'with-icon': !!icon }, labelClassName);
   return (
-    <div className={ cx('component', className) }>
-      { !!icon && <Icon name={ icon } className={ cx('icon', iconClassName) } /> }
-      { !!label && <span className={ labelCxName }>{ label }</span> }
+    <div className={cx('component', className)}>
+      {!!icon && <Icon name={icon} className={cx('icon', iconClassName)} />}
+      {!!label && <span className={labelCxName}>{label}</span>}
       <Dropdown
-        className={ cx('dropdown', ddClassName) }
-        menuClassName={ cx('menu', ddMenuClassName) }
-        selectedClassName={ cx('item-selected', ddSelectedClassName) }
-        toggleClassName={ cx('toggle') }
-        itemClassName={ cx('item') }
-        linkClassName={ cx('item-link') }
+        className={cx('dropdown', ddClassName)}
+        menuClassName={cx('menu', ddMenuClassName)}
+        selectedClassName={cx('item-selected', ddSelectedClassName)}
+        toggleClassName={cx('toggle')}
+        itemClassName={cx('item')}
+        linkClassName={cx('item-link')}
         showSelected
-        list={ selections }
-        selected={ selected }
-        onItemSelected={ onSelect }
-        toggleIcon={ toggleIcon() } />
+        list={selections}
+        selected={selected}
+        onItemSelected={onSelect}
+        toggleIcon={toggleIcon()}
+      />
     </div>
   );
 }
@@ -45,7 +57,7 @@ DropdownSelector.propTypes = {
   label: PropTypes.string,
   onSelect: PropTypes.func.isRequired,
   selected: PropTypes.object,
-  selections: PropTypes.array.isRequired
+  selections: PropTypes.array.isRequired,
 };
 
 DropdownSelector.displayName = 'DropdownSelector';

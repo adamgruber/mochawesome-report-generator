@@ -7,8 +7,8 @@ class Duration extends PureComponent {
     className: PropTypes.string,
     unitsClassName: PropTypes.string,
     timer: PropTypes.number,
-    isSummary: PropTypes.bool
-  }
+    isSummary: PropTypes.bool,
+  };
 
   _getDurationObj = durationInMs => {
     const DAY = 24 * 60 * 60 * 1000;
@@ -26,7 +26,7 @@ class Duration extends PureComponent {
     const ms = durationInMs % SECOND;
 
     return { days, hrs, min, sec, ms };
-  }
+  };
 
   formatSummaryDuration = context => {
     const { days, hrs, min, sec, ms } = context;
@@ -43,7 +43,7 @@ class Duration extends PureComponent {
       return `${hrs}:${min < 10 ? `0${min}` : min}`;
     }
     return `${days}d ${hrs}:${min < 10 ? `0${min}` : min}`;
-  }
+  };
 
   formatDuration = context => {
     const { days, hrs, min, sec, ms } = context;
@@ -57,10 +57,14 @@ class Duration extends PureComponent {
         }
         return `${min}:${sec < 10 ? `0${sec}` : sec}.${ms}m`;
       }
-      return `${hrs}:${min < 10 ? `0${min}` : min}:${sec < 10 ? `0${sec}` : sec}.${ms}h`;
+      return `${hrs}:${min < 10 ? `0${min}` : min}:${
+        sec < 10 ? `0${sec}` : sec
+      }.${ms}h`;
     }
-    return `${days}d ${hrs}:${min < 10 ? `0${min}` : min}:${sec < 10 ? `0${sec}` : sec}.${ms}h`;
-  }
+    return `${days}d ${hrs}:${min < 10 ? `0${min}` : min}:${
+      sec < 10 ? `0${sec}` : sec
+    }.${ms}h`;
+  };
 
   getSummaryDurationUnits = context => {
     const { hrs, min, sec } = context;
@@ -74,7 +78,7 @@ class Duration extends PureComponent {
       return 'm';
     }
     return 'h';
-  }
+  };
 
   render() {
     const { className, unitsClassName, timer, isSummary } = this.props;
@@ -85,13 +89,17 @@ class Duration extends PureComponent {
     if (isSummary) {
       return (
         <span>
-          <span className={ classNames(className) }>{ summaryDuration }</span>
-          <span className={ classNames(unitsClassName) }>{ units }</span>
+          <span className={classNames(className)}>{summaryDuration}</span>
+          <span className={classNames(unitsClassName)}>{units}</span>
         </span>
       );
     }
 
-    return <span className={ classNames(className) }>{ this.formatDuration(duration) }</span>;
+    return (
+      <span className={classNames(className)}>
+        {this.formatDuration(duration)}
+      </span>
+    );
   }
 }
 
