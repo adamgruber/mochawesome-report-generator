@@ -23,15 +23,14 @@ const fileExtRegex = /\.[^.]*?$/;
  */
 function saveFile(filename, data, overwrite) {
   if (overwrite) {
-    return fs.outputFile(filename, data)
-      .then(() => filename);
+    return fs.outputFile(filename, data).then(() => filename);
   } else {
     return new Promise((resolve, reject) => {
       fsu.writeFileUnique(
         filename.replace(fileExtRegex, '{_###}$&'),
         data,
         { force: true },
-        (err, savedFile) => err === null ? resolve(savedFile) : reject(err)
+        (err, savedFile) => (err === null ? resolve(savedFile) : reject(err))
       );
     });
   }
@@ -46,7 +45,11 @@ function saveFile(filename, data, overwrite) {
  */
 function openFile(filename) {
   return new Promise((resolve, reject) => {
-    opener(filename, null, err => err === null ? resolve(filename) : reject(err));
+    opener(
+      filename,
+      null,
+      err => (err === null ? resolve(filename) : reject(err))
+    );
   });
 }
 
@@ -70,12 +73,12 @@ function loadFile(filename) {
  */
 function getTimestampFormat(timestamp) {
   switch (timestamp) {
-  case '':
-  case 'true':
-  case true:
-    return 'isoDateTime';
-  default:
-    return timestamp;
+    case '':
+    case 'true':
+    case true:
+      return 'isoDateTime';
+    default:
+      return timestamp;
   }
 }
 
@@ -164,7 +167,7 @@ function _shouldCopyAssets(assetsDir) {
 function copyAssets({ assetsDir }) {
   if (_shouldCopyAssets(assetsDir)) {
     fs.copySync(distDir, assetsDir, {
-      filter: src => !/inline/.test(src)
+      filter: src => !/inline/.test(src),
     });
   }
 }
@@ -184,7 +187,7 @@ function getAssets(reportOptions) {
     inlineScripts: null,
     inlineStyles: null,
     scriptsUrl: path.join(relativeAssetsDir, 'app.js'),
-    stylesUrl: path.join(relativeAssetsDir, 'app.css')
+    stylesUrl: path.join(relativeAssetsDir, 'app.css'),
   };
 
   // If using inline assets, load files and strings
@@ -195,8 +198,12 @@ function getAssets(reportOptions) {
 
   // If using CDN, return remote urls
   if (cdn) {
-    assets.scriptsUrl = `https://unpkg.com/mochawesome-report-generator@${pkg.version}/dist/app.js`;
-    assets.stylesUrl = `https://unpkg.com/mochawesome-report-generator@${pkg.version}/dist/app.css`;
+    assets.scriptsUrl = `https://unpkg.com/mochawesome-report-generator@${
+      pkg.version
+    }/dist/app.js`;
+    assets.stylesUrl = `https://unpkg.com/mochawesome-report-generator@${
+      pkg.version
+    }/dist/app.css`;
   }
 
   // In DEV mode, return local urls
@@ -242,13 +249,15 @@ function prepare(reportData, opts) {
   // Render basic template to string
   // const { styles, scripts } = assets;
 
-  const renderedHtml = render(React.createElement(MainHTML, {
-    data,
-    options: reportOptions,
-    title: reportOptions.reportPageTitle,
-    useInlineAssets: reportOptions.inlineAssets && !reportOptions.cdn,
-    ...assets
-  }));
+  const renderedHtml = render(
+    React.createElement(MainHTML, {
+      data,
+      options: reportOptions,
+      title: reportOptions.reportPageTitle,
+      useInlineAssets: reportOptions.inlineAssets && !reportOptions.cdn,
+      ...assets,
+    })
+  );
 
   const html = `<!doctype html>\n${renderedHtml}`;
   return { html, reportOptions };
@@ -270,19 +279,24 @@ function create(data, opts) {
     autoOpen,
     overwrite,
     jsonFile,
-    htmlFile
+    htmlFile,
   } = reportOptions;
 
   const savePromises = [];
 
-  savePromises.push(saveHtml !== false
-    ? saveFile(htmlFile, html, overwrite)
-      .then(savedHtml => (autoOpen && openFile(savedHtml)) || savedHtml)
-    : null);
+  savePromises.push(
+    saveHtml !== false
+      ? saveFile(htmlFile, html, overwrite).then(
+          savedHtml => (autoOpen && openFile(savedHtml)) || savedHtml
+        )
+      : null
+  );
 
-  savePromises.push(saveJson
-    ? saveFile(jsonFile, JSON.stringify(data, null, 2), overwrite)
-    : null);
+  savePromises.push(
+    saveJson
+      ? saveFile(jsonFile, JSON.stringify(data, null, 2), overwrite)
+      : null
+  );
 
   return Promise.all(savePromises);
 }
