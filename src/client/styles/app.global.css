@@ -1,8 +1,8 @@
 @import 'normalize.css';
 @import 'vars';
 @import 'type';
-@import '../../node_modules/highlight.js/styles/solarized-light';
-@import '../../node_modules/chartist/dist/chartist';
+@import '../../../node_modules/highlight.js/styles/solarized-light';
+@import '../../../node_modules/chartist/dist/chartist';
 
 @font-face {
   font-family: 'robotolight';
@@ -32,9 +32,9 @@
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: normal;
-  src: url(../../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2)
+  src: url(../../../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2)
       format('woff2'),
-    url(../../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff)
+    url(../../../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff)
       format('woff');
 }
 
@@ -118,9 +118,8 @@ body {
 }
 
 a {
-  @apply --link-transition;
-
   text-decoration: none;
+  transition: var(--link-transition);
 
   &:hover {
     text-decoration: underline;
@@ -135,11 +134,11 @@ pre {
 
 .clearfix,
 .cf {
-  @apply --clearfix;
+  @extend %clearfix;
 }
 
 .container {
-  @apply --clearfix;
+  @extend %clearfix;
 
   margin-right: auto;
   margin-left: auto;
@@ -148,7 +147,7 @@ pre {
 }
 
 .row {
-  @apply --row;
+  @extend %row;
 }
 
 .details {

@@ -1,11 +1,11 @@
 @import '../../styles/vars';
 
 .component {
-  @apply --clearfix;
-  @apply --font-regular;
-  @apply --list-unstyled;
+  @extend %clearfix;
+  @extend %list-unstyled;
 
   display: flex;
+  font-family: var(--font-family--regular);
   font-size: 15px;
   margin: 16px 0 0 0;
 

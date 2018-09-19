@@ -1,7 +1,7 @@
 @import '../../styles/vars';
 
 .item {
-  @apply --column;
+  @extend %column;
 
   font-size: 18px;
   text-align: center;

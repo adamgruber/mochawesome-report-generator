@@ -5,9 +5,9 @@
 }
 
 .menu {
-  @apply --font-light;
-  @apply --z-depth-1;
+  @extend %z-depth-1;
 
+  font-family: var(--font-family-light);
   min-width: 70px;
   width: 70px;
   background: #fff;
@@ -15,9 +15,8 @@
 }
 
 .toggle {
-  @apply --font-regular;
-
   display: inline-block;
+  font-family: var(--font-family-regular);
   font-size: 14px;
   color: var(--black54);
   vertical-align: top;

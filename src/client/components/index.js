@@ -6,7 +6,7 @@ export { default as Icon } from './material-icon';
 export { default as Loader } from './loader';
 export { default as MochawesomeReport } from './report';
 export { default as Navbar } from './navbar';
-export { default as NavMenu } from './nav-menu';
+export * from './nav-menu';
 export { default as QuickSummary } from './quick-summary';
 export { default as RadioButton } from './radio-button';
 export { default as ReportBody } from './report-body';

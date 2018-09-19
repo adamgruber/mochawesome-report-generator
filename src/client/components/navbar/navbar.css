@@ -1,7 +1,7 @@
 @import '../../styles/vars';
 
 .component {
-  @apply --clearfix;
+  @extend %clearfix;
 
   display: flex;
   position: fixed;
@@ -24,7 +24,7 @@
 }
 
 .menu-button {
-  @apply --button-base;
+  @extend %button-base;
 
   padding: 16px 12px;
   height: 24px;
@@ -36,9 +36,8 @@
 }
 
 .report-title {
-  @apply --font-light;
-
   flex-grow: 1;
+  font-family: var(--font-family--light);
   color: #fff;
   font-size: 18px;
   line-height: calc(var(--navbar-height-short) - 4px);
@@ -49,7 +48,7 @@
 }
 
 .pct-bar {
-  @apply --clearfix;
+  @extend %clearfix;
 
   display: flex;
   position: absolute;

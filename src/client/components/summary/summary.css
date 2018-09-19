@@ -11,8 +11,9 @@
 }
 
 .col {
+  @extend %column;
+
   text-align: center;
-  @apply --column;
   float: left;
   width: calc((4 / 12) * 100) %;
 
@@ -25,18 +26,16 @@
 }
 
 .label {
-  @apply --font-light;
-
   color: var(--gray);
+  font-family: var(--font-family--light);
   text-transform: uppercase;
   display: none;
   margin: 0;
 }
 
 .count {
-  @apply --font-regular;
-
   display: inline;
+  font-family: var(--font-family--regular);
   color: var(--gray-light);
   text-align: center;
   margin: 0;
@@ -45,7 +44,7 @@
     font-size: 21px;
   }
   &:before {
-    @apply --ma-icon;
+    @extend %ma-icon;
     font-size: 20px;
     margin-right: 4px;
   }
@@ -87,7 +86,7 @@
   & .label,
   & .label:after,
   & .count {
-    @apply --link-transition;
+    transition: var(--link-transition);
 
     @nest .active& {
       color: var(--brand-success);
@@ -114,7 +113,7 @@
   & .label,
   & .label:after,
   & .count {
-    @apply --link-transition;
+    transition: var(--link-transition);
 
     @nest .active& {
       color: var(--brand-danger);
@@ -141,7 +140,7 @@
   & .label,
   & .label:after,
   & .count {
-    @apply --link-transition;
+    transition: var(--link-transition);
 
     @nest .active& {
       color: var(--brand-info);

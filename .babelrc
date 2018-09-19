@@ -1,7 +1,12 @@
 {
   "presets": [
     "@babel/preset-react",
-    "@babel/preset-env"
+    [
+      "@babel/preset-env",
+      {
+        "targets": ">0.25%, not ie 11, not op_mini all, not dead"
+      }
+    ]
   ],
   "plugins": [
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
