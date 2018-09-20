@@ -8,10 +8,11 @@ const transduce = (items, mapper, reducer, initial) =>
 
 class ReportStore {
   constructor(data = {}, config = {}) {
-    Object.assign(this, config, {
+    Object.assign(this, {
       allSuites: data.suites ? [data.suites] : [],
       devMode: !!config.dev,
       enableChart: !!config.enableCharts,
+      enableCode: !!config.enableCode,
       initialLoadTimeout: 300,
       reportTitle: config.reportTitle || data.reportTitle,
       showHooksOptions: ['failed', 'always', 'never', 'context'],
@@ -20,7 +21,7 @@ class ReportStore {
     });
 
     extendObservable(this, {
-      filteredSuites: observable.shallow([]),
+      filteredSuites: [],
       isLoading: true,
       showFailed: config.showFailed !== undefined ? config.showFailed : true,
       showHooks: this._getShowHooks(config),
@@ -29,6 +30,8 @@ class ReportStore {
       showSkipped:
         config.showSkipped !== undefined ? config.showSkipped : false,
       sideNavOpen: false,
+    }, {
+      filteredSuites: observable.shallow
     });
   }
 
