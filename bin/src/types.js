@@ -2,7 +2,7 @@ const t = require('tcomb');
 const { isUUID, isISO8601 } = require('validator');
 
 const PercentClass = t.enums.of([ 'success', 'warning', 'danger' ], 'PercentClass');
-const TestState = t.enums.of([ 'passed', 'failed' ], 'TestState');
+const TestState = t.enums.of([ 'passed', 'failed', 'pending', 'skipped' ], 'TestState');
 const TestSpeed = t.enums.of([ 'slow', 'medium', 'fast' ], 'TestSpeed');
 const DateString = t.refinement(t.String, isISO8601, 'DateString');
 const Duration = t.maybe(t.Integer);

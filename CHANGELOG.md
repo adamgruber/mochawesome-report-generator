@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## Unreleased
+### Changed
+- Added `pending` and `skipped` to `TestState` enum. [#111](https://github.com/adamgruber/mochawesome-report-generator/issues/111)
 
 ## [3.1.3] / 2018-07-18
 ### Fixed
