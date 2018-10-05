@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
-## Unreleased
+## [Unreleased]
+
+## [3.1.4] / 2018-10-05
 ### Changed
 - Added `pending` and `skipped` to `TestState` enum. [#111](https://github.com/adamgruber/mochawesome-report-generator/issues/111)
 
@@ -153,6 +155,8 @@ You can still use the `--reportFilename` flag to set the filename of the generat
 ## 1.0.0 / 2016-12-18
 - Initial release
 
+[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.4...HEAD
+[3.1.4]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.3...3.1.4
 [3.1.3]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.2...3.1.3
 [3.1.2]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.1...3.1.2
 [3.1.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.0...3.1.1
