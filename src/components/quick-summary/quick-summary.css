@@ -15,6 +15,10 @@
   margin: 0 0 8px 0;
 }
 
+.control {
+  cursor: pointer;
+}
+
 .item {
   @apply --font-light;
 
