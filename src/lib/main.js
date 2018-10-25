@@ -24,16 +24,16 @@ const fileExtRegex = /\.[^.]*?$/;
 function saveFile(filename, data, overwrite) {
   if (overwrite) {
     return fs.outputFile(filename, data).then(() => filename);
-  } else {
-    return new Promise((resolve, reject) => {
-      fsu.writeFileUnique(
-        filename.replace(fileExtRegex, '{_###}$&'),
-        data,
-        { force: true },
-        (err, savedFile) => (err === null ? resolve(savedFile) : reject(err))
-      );
-    });
   }
+
+  return new Promise((resolve, reject) => {
+    fsu.writeFileUnique(
+      filename.replace(fileExtRegex, '{_###}$&'),
+      data,
+      { force: true },
+      (err, savedFile) => (err === null ? resolve(savedFile) : reject(err))
+    );
+  });
 }
 
 /**

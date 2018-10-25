@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable no-unused-expressions */
 const yargs = require('yargs');
 const { yargsOptions } = require('../lib/options');
 const marge = require('./cli-main');

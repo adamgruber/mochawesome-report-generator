@@ -190,7 +190,7 @@ function _getUserOption(userOptions, optToGet, isBool) {
 function assignVal(obj, prop, userVal, defaultVal) {
   const val = userVal !== undefined ? userVal : defaultVal;
   if (val !== undefined) {
-    obj[prop] = val;
+    obj[prop] = val; // eslint-disable-line
   }
 }
 
@@ -201,7 +201,7 @@ function assignVal(obj, prop, userVal, defaultVal) {
  *
  * @return {Object} Merged options
  */
-export const getMergedOptions = function(userOptions) {
+export const getMergedOptions = function getMergedOptions(userOptions) {
   const mergedOptions = {};
 
   Object.keys(yargsOptions).forEach(optKey => {
