@@ -21,7 +21,7 @@
     "devserver": "webpack-dev-server --inline --watch --hot",
     "cli": "node ./bin/cli test/sample-data/test.json --dev",
     "dev": "npm run compile && npm run cli && npm run devserver",
-    "dev:cli": "nodemon --watch bin/src --watch lib/src --exec npm run compile"
+    "dev:cli": "nodemon --watch src/bin --watch src/lib --exec npm run compile"
   },
   "author": "Adam Gruber",
   "license": "MIT",
