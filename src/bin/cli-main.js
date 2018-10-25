@@ -188,6 +188,8 @@ function marge(args) {
   // Reset valid files count
   validFiles = 0;
 
+  const newArgs = Object.assign({}, args);
+
   // Get the array of JSON files to process
   const files = processArgs(args._);
 
@@ -195,7 +197,7 @@ function marge(args) {
   // we must force `overwrite` to `false` to ensure all reports are created
   /* istanbul ignore else */
   if (validFiles > 1 || args.timestamp !== false) {
-    args.overwrite = false;
+    newArgs.overwrite = false;
   }
 
   const promises = files.map(file => {
@@ -208,10 +210,10 @@ function marge(args) {
     // Default value is name of file
 
     // If a filename option was provided, all files get that name
-    const reportFilename = getReportFilename(file, args);
+    const reportFilename = getReportFilename(file, newArgs);
     return report.create(
       file.data,
-      Object.assign({}, args, { reportFilename })
+      Object.assign({}, newArgs, { reportFilename })
     );
   });
 
