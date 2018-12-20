@@ -11,6 +11,7 @@ const { getMergedOptions } = require('./options');
 
 const distDir = path.join(__dirname, '..', 'dist');
 const fileExtRegex = /\.[^.]*?$/;
+const semverRegex = /\d+\.\d+\.\d+(?:-(alpha|beta)\.\d+)?/;
 
 /**
  * Saves a file
@@ -148,7 +149,7 @@ function _shouldCopyAssets(assetsDir) {
 
   try {
     const appCss = loadFile(path.join(assetsDir, 'app.css'));
-    const appCssVersion = /\d+\.\d+\.\d+/.exec(appCss);
+    const appCssVersion = semverRegex.exec(appCss);
     if (!appCssVersion || appCssVersion[0] !== pkg.version) {
       return true;
     }
@@ -294,7 +295,12 @@ function create(data, opts) {
 
   savePromises.push(
     saveJson
-      ? saveFile(jsonFile, JSON.stringify(data, null, 2), overwrite)
+      ? saveFile(
+          jsonFile,
+          // Preserve `undefined` values as `null` when stringifying
+          JSON.stringify(data, (k, v) => (v === undefined ? null : v), 2),
+          overwrite
+        )
       : null
   );
 
