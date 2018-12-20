@@ -2,8 +2,6 @@ language: node_js
 node_js:
   - 'node'
   - 'lts/*'
-before_install:
-  - npm install react-test-renderer
 addons:
   code_climate:
     repo_token: 5a6fbf144bbc7fe5bf3dccf6ddc6ac4eae6a95636073a604c2aa27e535e789a9
