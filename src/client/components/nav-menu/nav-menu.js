@@ -15,7 +15,7 @@ const cx = classNames.bind(styles);
 class NavMenu extends Component {
   static propTypes = {
     reportStore: PropTypes.shape({
-      allSuites: PropTypes.array,
+      results: PropTypes.array,
       closeSideNav: PropTypes.func,
       reportTitle: PropTypes.string,
       setShowHooks: PropTypes.func,
@@ -33,7 +33,7 @@ class NavMenu extends Component {
 
   render() {
     const {
-      allSuites,
+      results,
       closeSideNav,
       reportTitle,
       setShowHooks,
@@ -130,8 +130,8 @@ class NavMenu extends Component {
             />
           </div>
           <div className={cx('section')}>
-            {!!allSuites &&
-              allSuites.map(suite => (
+            {!!results &&
+              results.map(suite => (
                 <ul
                   key={suite.uuid}
                   className={cx('list', 'main', {

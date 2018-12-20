@@ -9,12 +9,12 @@ const transduce = (items, mapper, reducer, initial) =>
 class ReportStore {
   constructor(data = {}, config = {}) {
     Object.assign(this, {
-      allSuites: data.suites ? [data.suites] : [],
       devMode: !!config.dev,
       enableChart: !!config.enableCharts,
       enableCode: !!config.enableCode,
       initialLoadTimeout: 300,
       reportTitle: config.reportTitle || data.reportTitle,
+      results: data.results || [],
       showHooksOptions: ['failed', 'always', 'never', 'context'],
       stats: data.stats || {},
       VERSION: '__VERSION__',
@@ -143,7 +143,7 @@ class ReportStore {
   updateFilteredSuites(timeout = this.initialLoadTimeout) {
     setTimeout(() => {
       this.toggleIsLoading(false);
-      this.filteredSuites = this._getFilteredTests(this.allSuites);
+      this.filteredSuites = this._getFilteredTests(this.results);
     }, timeout);
   }
 }
