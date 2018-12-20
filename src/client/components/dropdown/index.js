@@ -46,18 +46,6 @@ class Dropdown extends Component {
     document.removeEventListener('click', this.documentClickHandler.bind(this));
   }
 
-  documentClickHandler(event) {
-    const ddEl = this.node;
-    if (
-      ddEl &&
-      event.target !== ddEl &&
-      !ddEl.contains(event.target) &&
-      this.state.open
-    ) {
-      this.closeMenu();
-    }
-  }
-
   select = item => {
     this.closeMenu();
     this.props.onItemSelected(item);
@@ -72,7 +60,8 @@ class Dropdown extends Component {
   };
 
   toggleListDisplay = () => {
-    this.setState({ open: !this.state.open });
+    const { open } = this.state;
+    this.setState({ open: !open });
     /* istanbul ignore else */
     if (this.props.onToggle) {
       this.props.onToggle(!this.state.open);
@@ -80,6 +69,18 @@ class Dropdown extends Component {
   };
 
   _getItemText = item => get(item, this.props.itemTitleProp);
+
+  documentClickHandler(event) {
+    const ddEl = this.node;
+    if (
+      ddEl &&
+      event.target !== ddEl &&
+      !ddEl.contains(event.target) &&
+      this.state.open
+    ) {
+      this.closeMenu();
+    }
+  }
 
   render() {
     const {
@@ -112,7 +113,7 @@ class Dropdown extends Component {
           this.node = node;
         }}
         className={compClass}>
-        <button className={toggleClass} onClick={toggleFn}>
+        <button type="button" className={toggleClass} onClick={toggleFn}>
           {!iconOnly && this._getItemText(displayItem)}
           {!!toggleIcon && toggleIcon}
         </button>

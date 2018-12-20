@@ -7,7 +7,6 @@ import {
   parseSuite,
   PASSED,
   FAILED,
-  PENDING,
   BEFORE,
   BEFORE_EACH,
   AFTER,

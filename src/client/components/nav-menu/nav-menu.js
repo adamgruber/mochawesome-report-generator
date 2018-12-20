@@ -64,9 +64,17 @@ class NavMenu extends Component {
 
     return (
       <div className={cx('wrap', { open: sideNavOpen })}>
-        <div onClick={closeSideNav} className={cx('overlay')} />
+        <div
+          onClick={closeSideNav}
+          className={cx('overlay')}
+          role="button"
+          tabIndex="0"
+        />
         <nav className={cx('menu')}>
-          <button onClick={closeSideNav} className={cx('close-btn')}>
+          <button
+            type="button"
+            onClick={closeSideNav}
+            className={cx('close-btn')}>
             <Icon name="close" />
           </button>
           <div className={cx('section')}>

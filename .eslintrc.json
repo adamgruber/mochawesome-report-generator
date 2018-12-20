@@ -10,7 +10,10 @@
     "import/no-extraneous-dependencies": 0,
     "lines-between-class-members": 0,
     "react/destructuring-assignment": 0,
-    "no-underscore-dangle": 0
+    "react/default-props-match-prop-types": [0, { "allowRequiredDefaults": true }],
+    "no-underscore-dangle": 0,
+    "jsx-a11y/click-events-have-key-events": 1,
+    "jsx-a11y/anchor-is-valid": 1
   },
   "env": {
     "browser": true,

@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import React from 'react';
 import { mount } from 'enzyme';
 import chai, { expect } from 'chai';
