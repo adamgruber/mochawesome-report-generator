@@ -10,9 +10,18 @@ import SuiteChart from 'components/suite/chart';
 import SuiteList from 'components/suite/list';
 import TestList from 'components/test/list';
 
-import basicSuite from 'sample-data/suite.json';
-import nestedSuite from 'sample-data/test.json';
-import hooksSuite from 'sample-data/hooks-only.json';
+import { makeSuite, makeTest } from 'fixtures';
+
+const basicSuite = makeSuite({
+  tests: [makeTest('passed'), makeTest('failed')]
+});
+
+const hooksSuite = makeSuite({
+  hooks: [
+    makeTest('passed', { hook: 'before' }),
+    makeTest('failed', { hook: 'after' }),
+  ]
+});
 
 chai.use(chaiEnzyme());
 
@@ -75,65 +84,70 @@ describe('<Suite />', () => {
 
   it('renders a suite with only hooks', () => {
     const instProps = Object.assign({}, props, {
-      suite: hooksSuite.suites
+      suite: hooksSuite
     });
     const { chart, summary, testList, header } = getInstance(instProps);
     expect(chart).to.have.lengthOf(0);
     expect(summary).to.have.lengthOf(0);
     expect(testList).to.have.lengthOf(1);
-    expect(header).to.have.lengthOf(0);
+    expect(header).to.have.lengthOf(1);
   });
 
   it('renders a suite with only before hooks', () => {
-    const suite = Object.assign({}, hooksSuite.suites);
+    const suite = Object.assign({}, hooksSuite);
     suite.afterHooks = [];
     const instProps = Object.assign({}, props, { suite });
     const { chart, summary, testList, header } = getInstance(instProps);
     expect(chart).to.have.lengthOf(0);
     expect(summary).to.have.lengthOf(0);
     expect(testList).to.have.lengthOf(1);
-    expect(header).to.have.lengthOf(0);
+    expect(header).to.have.lengthOf(1);
   });
 
   it('renders a suite with only after hooks', () => {
-    const suite = Object.assign({}, hooksSuite.suites);
+    const suite = Object.assign({}, hooksSuite);
     suite.beforeHooks = [];
     const instProps = Object.assign({}, props, { suite });
     const { chart, summary, testList, header } = getInstance(instProps);
     expect(chart).to.have.lengthOf(0);
     expect(summary).to.have.lengthOf(0);
     expect(testList).to.have.lengthOf(1);
-    expect(header).to.have.lengthOf(0);
+    expect(header).to.have.lengthOf(1);
   });
 
   it('renders root suite with tests', () => {
-    const suite = Object.assign({}, nestedSuite.suites);
-    suite.rootEmpty = false;
-    suite.tests = nestedSuite.suites.suites[0].tests;
+    const suite = makeSuite({
+      tests: [makeTest('passed')],
+      isRoot: true
+    });
     const instProps = Object.assign({}, props, { suite });
     const { chart, summary, testList, suiteList, header } = getInstance(instProps);
     expect(chart).to.have.lengthOf(1);
     expect(summary).to.have.lengthOf(1);
     expect(testList).to.have.lengthOf(1);
-    expect(suiteList).to.have.lengthOf(1);
+    expect(suiteList).to.have.lengthOf(0);
     expect(header).to.have.lengthOf(1);
   });
 
   it('renders root suite without tests', () => {
-    const instProps = Object.assign({}, props, {
-      suite: nestedSuite.suites
-    });
+    const suite = makeSuite({ isRoot: true });
+    const instProps = Object.assign({}, props, { suite });
     const { chart, summary, testList, suiteList, header } = getInstance(instProps);
     expect(chart).to.have.lengthOf(0);
     expect(summary).to.have.lengthOf(0);
     expect(testList).to.have.lengthOf(0);
-    expect(suiteList).to.have.lengthOf(1);
+    expect(suiteList).to.have.lengthOf(0);
     expect(header).to.have.lengthOf(0);
   });
 
   describe('shouldComponentUpdate', () => {
     let scuSpy;
+    let initialSuite;
+    let updatedSuite;
+
     beforeEach(() => {
+      initialSuite = makeSuite({ tests: [makeTest('passed')] });
+      updatedSuite = makeSuite({ tests: [makeTest('failed')] });
       scuSpy = sinon.spy(Suite.prototype, 'shouldComponentUpdate');
     });
 
@@ -143,20 +157,20 @@ describe('<Suite />', () => {
 
     it('returns true when next props do not equal current props', () => {
       const instProps = Object.assign({}, props, {
-        suite: basicSuite
+        suite: initialSuite
       });
       const { wrapper } = getInstance(instProps);
-      wrapper.setProps({ suite: nestedSuite.suites });
+      wrapper.setProps({ suite: updatedSuite });
       expect(scuSpy.calledOnce).to.equal(true);
       expect(scuSpy.returned(true)).to.equal(true);
     });
 
     it('returns false when next props equal current props', () => {
       const instProps = Object.assign({}, props, {
-        suite: basicSuite
+        suite: initialSuite
       });
       const { wrapper } = getInstance(instProps);
-      wrapper.setProps({ suite: basicSuite });
+      wrapper.setProps({ suite: initialSuite });
       expect(scuSpy.calledOnce).to.equal(true);
       expect(scuSpy.returned(false)).to.equal(true);
     });

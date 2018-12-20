@@ -9,7 +9,9 @@ import DropdownSelector from 'components/dropdown-selector';
 import NavMenuList from 'components/nav-menu/nav-menu-list';
 import NavMenu from 'components/nav-menu/nav-menu';
 
-import testData from 'sample-data/hooks.json';
+// import testData from 'sample-data/hooks.json';
+import { hooks as testData } from 'fixtures/reports';
+
 import { createStore } from 'utils';
 
 
@@ -34,7 +36,7 @@ describe('<NavMenu />', () => {
     store = createStore({
       reportTitle: 'test',
       stats: testData.stats,
-      suites: testData.suites
+      results: testData.results
     });
 
     props = {

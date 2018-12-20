@@ -108,7 +108,7 @@ describe('bin/cli', () => {
         filename: 'test/sample-data/invalid.json',
         data: invalidTestData,
         // eslint-disable-next-line max-len
-        err: '  Invalid value "dangerous" supplied to /stats/passPercentClass: PercentClass\n  Invalid value undefined supplied to /suites/title: String'
+        err: '  Invalid value null supplied to /stats/suites: Number\n  Invalid value undefined supplied to /results/0/title: String'
       } ]);
     });
   });
