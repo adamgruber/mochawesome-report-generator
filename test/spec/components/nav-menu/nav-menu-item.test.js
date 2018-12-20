@@ -16,12 +16,12 @@ describe('<NavMenuItem />', () => {
   let props;
 
   const getInstance = instanceProps => {
-    const wrapper = mount(<NavMenuItem { ...instanceProps } />);
+    const wrapper = mount(<NavMenuItem {...instanceProps} />);
     return {
       wrapper,
       links: wrapper.find('.nav-menu-link span'),
       navList: wrapper.find(NavMenuList),
-      disabledLinks: wrapper.find('.nav-menu-disabled')
+      disabledLinks: wrapper.find('.nav-menu-disabled'),
     };
   };
 
@@ -30,13 +30,13 @@ describe('<NavMenuItem />', () => {
       showPassed: true,
       showFailed: true,
       showPending: true,
-      showSkipped: true
+      showSkipped: true,
     };
   });
 
   it('should render', () => {
     const testProps = Object.assign({}, props, {
-      suite: testSuite
+      suite: testSuite,
     });
     const { links, navList, disabledLinks } = getInstance(testProps);
     expect(navList).to.have.lengthOf(3);
@@ -46,14 +46,18 @@ describe('<NavMenuItem />', () => {
   });
 
   it('should render disabled when toggles are off', () => {
-    const testProps = Object.assign({}, {
-      showPassed: false,
-      showFailed: false,
-      showPending: false,
-      showSkipped: false
-    }, {
-      suite: testSuite
-    });
+    const testProps = Object.assign(
+      {},
+      {
+        showPassed: false,
+        showFailed: false,
+        showPending: false,
+        showSkipped: false,
+      },
+      {
+        suite: testSuite,
+      }
+    );
     const { links, navList, disabledLinks } = getInstance(testProps);
     expect(navList).to.have.lengthOf(3);
     expect(links).to.have.lengthOf(6);
@@ -63,10 +67,10 @@ describe('<NavMenuItem />', () => {
 
   it('should render uuid as title when suite title is empty', () => {
     const newSuite = Object.assign({}, testSuite, {
-      title: ''
+      title: '',
     });
     const testProps = Object.assign({}, props, {
-      suite: newSuite
+      suite: newSuite,
     });
     const { links, navList } = getInstance(testProps);
     expect(navList).to.have.lengthOf(3);

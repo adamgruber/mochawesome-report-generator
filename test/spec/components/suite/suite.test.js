@@ -13,14 +13,14 @@ import TestList from 'components/test/list';
 import { makeSuite, makeTest } from 'fixtures';
 
 const basicSuite = makeSuite({
-  tests: [makeTest('passed'), makeTest('failed')]
+  tests: [makeTest('passed'), makeTest('failed')],
 });
 
 const hooksSuite = makeSuite({
   hooks: [
     makeTest('passed', { hook: 'before' }),
     makeTest('failed', { hook: 'after' }),
-  ]
+  ],
 });
 
 chai.use(chaiEnzyme());
@@ -28,27 +28,27 @@ chai.use(chaiEnzyme());
 describe('<Suite />', () => {
   let props;
   const getInstance = instanceProps => {
-    const wrapper = shallow(<Suite { ...instanceProps } />);
+    const wrapper = shallow(<Suite {...instanceProps} />);
     return {
       wrapper,
       chart: wrapper.find(SuiteChart),
       summary: wrapper.find(SuiteSummary),
       testList: wrapper.find(TestList),
       suiteList: wrapper.find(SuiteList),
-      header: wrapper.find('.suite-header')
+      header: wrapper.find('.suite-header'),
     };
   };
 
   beforeEach(() => {
     props = {
       className: 'test',
-      enableChart: true
+      enableChart: true,
     };
   });
 
   it('renders basic suite', () => {
     const instProps = Object.assign({}, props, {
-      suite: basicSuite
+      suite: basicSuite,
     });
     const { chart, summary, testList, header } = getInstance(instProps);
     expect(chart).to.have.lengthOf(1);
@@ -60,10 +60,10 @@ describe('<Suite />', () => {
   it('renders basic suite without title or filename', () => {
     const newSuite = Object.assign({}, basicSuite, {
       title: '',
-      file: ''
+      file: '',
     });
     const instProps = Object.assign({}, props, {
-      suite: newSuite
+      suite: newSuite,
     });
     const { wrapper } = getInstance(instProps);
     expect(wrapper.find('.suite-title')).to.have.lengthOf(0);
@@ -73,7 +73,7 @@ describe('<Suite />', () => {
   it('renders basic suite without chart', () => {
     const instProps = Object.assign({}, props, {
       suite: basicSuite,
-      enableChart: false
+      enableChart: false,
     });
     const { chart, summary, testList, header } = getInstance(instProps);
     expect(chart).to.have.lengthOf(0);
@@ -84,7 +84,7 @@ describe('<Suite />', () => {
 
   it('renders a suite with only hooks', () => {
     const instProps = Object.assign({}, props, {
-      suite: hooksSuite
+      suite: hooksSuite,
     });
     const { chart, summary, testList, header } = getInstance(instProps);
     expect(chart).to.have.lengthOf(0);
@@ -118,10 +118,12 @@ describe('<Suite />', () => {
   it('renders root suite with tests', () => {
     const suite = makeSuite({
       tests: [makeTest('passed')],
-      isRoot: true
+      isRoot: true,
     });
     const instProps = Object.assign({}, props, { suite });
-    const { chart, summary, testList, suiteList, header } = getInstance(instProps);
+    const { chart, summary, testList, suiteList, header } = getInstance(
+      instProps
+    );
     expect(chart).to.have.lengthOf(1);
     expect(summary).to.have.lengthOf(1);
     expect(testList).to.have.lengthOf(1);
@@ -132,7 +134,9 @@ describe('<Suite />', () => {
   it('renders root suite without tests', () => {
     const suite = makeSuite({ isRoot: true });
     const instProps = Object.assign({}, props, { suite });
-    const { chart, summary, testList, suiteList, header } = getInstance(instProps);
+    const { chart, summary, testList, suiteList, header } = getInstance(
+      instProps
+    );
     expect(chart).to.have.lengthOf(0);
     expect(summary).to.have.lengthOf(0);
     expect(testList).to.have.lengthOf(0);
@@ -157,7 +161,7 @@ describe('<Suite />', () => {
 
     it('returns true when next props do not equal current props', () => {
       const instProps = Object.assign({}, props, {
-        suite: initialSuite
+        suite: initialSuite,
       });
       const { wrapper } = getInstance(instProps);
       wrapper.setProps({ suite: updatedSuite });
@@ -167,7 +171,7 @@ describe('<Suite />', () => {
 
     it('returns false when next props equal current props', () => {
       const instProps = Object.assign({}, props, {
-        suite: initialSuite
+        suite: initialSuite,
       });
       const { wrapper } = getInstance(instProps);
       wrapper.setProps({ suite: initialSuite });

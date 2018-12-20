@@ -15,7 +15,7 @@ import {
   FAILED_BEFORE,
   FAILED_BEFORE_EACH,
   FAILED_AFTER,
-  FAILED_AFTER_EACH
+  FAILED_AFTER_EACH,
 } from './index';
 import * as types from '../../src/bin/types';
 
@@ -25,24 +25,22 @@ const pending = makeTest('pending');
 const skipped = makeTest('skipped');
 const tests = { passed, failed, pending, skipped };
 
-const suite = [
-  [BEFORE, BEFORE_EACH, AFTER, AFTER_EACH, PASSED, FAILED]
-];
+const suite = [[BEFORE, BEFORE_EACH, AFTER, AFTER_EACH, PASSED, FAILED]];
 
 const suiteFailedBefore = [
-  [FAILED_BEFORE, BEFORE_EACH, AFTER, AFTER_EACH, PASSED, FAILED]
+  [FAILED_BEFORE, BEFORE_EACH, AFTER, AFTER_EACH, PASSED, FAILED],
 ];
 
 const suiteFailedBeforeEach = [
-  [BEFORE, FAILED_BEFORE_EACH, AFTER, AFTER_EACH, PASSED, FAILED]
+  [BEFORE, FAILED_BEFORE_EACH, AFTER, AFTER_EACH, PASSED, FAILED],
 ];
 
 const suiteFailedAfter = [
-  [BEFORE, BEFORE_EACH, FAILED_AFTER, AFTER_EACH, PASSED, FAILED]
+  [BEFORE, BEFORE_EACH, FAILED_AFTER, AFTER_EACH, PASSED, FAILED],
 ];
 
 const suiteFailedAfterEach = [
-  [BEFORE, BEFORE_EACH, AFTER, FAILED_AFTER_EACH, PASSED, FAILED]
+  [BEFORE, BEFORE_EACH, AFTER, FAILED_AFTER_EACH, PASSED, FAILED],
 ];
 
 describe('test fixtures', () => {

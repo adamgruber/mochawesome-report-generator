@@ -20,20 +20,20 @@ const reactionSpy = sinon.stub().callsFake((fn1, fn2) => {
 
 const ReportBody = proxyquire('components/report-body', {
   mobx: {
-    reaction: reactionSpy
-  }
+    reaction: reactionSpy,
+  },
 }).default;
 
 describe('<ReportBody />', () => {
   let props;
 
   const getInstance = instanceProps => {
-    const wrapper = shallow(<ReportBody { ...instanceProps } />, {
-      lifecycleExperimental: true
+    const wrapper = shallow(<ReportBody {...instanceProps} />, {
+      lifecycleExperimental: true,
     });
     return {
       wrapper: wrapper.dive(),
-      suites: wrapper.dive().find(Suite)
+      suites: wrapper.dive().find(Suite),
     };
   };
 
@@ -42,10 +42,10 @@ describe('<ReportBody />', () => {
       reportStore: {
         enableCode: true,
         initialLoadTimeout: 0,
-        filteredSuites: [ basicSuite ],
-        updateFilteredSuites: () => [ basicSuite ],
-        toggleIsLoading: sinon.spy()
-      }
+        filteredSuites: [basicSuite],
+        updateFilteredSuites: () => [basicSuite],
+        toggleIsLoading: sinon.spy(),
+      },
     };
   });
 

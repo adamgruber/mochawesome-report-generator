@@ -7,7 +7,7 @@ import Main from '../../../src/lib/main-html';
 
 chai.use(chaiEnzyme());
 
-const getInstance = props => shallow(<Main { ...props } />);
+const getInstance = props => shallow(<Main {...props} />);
 let props;
 
 describe('<MainHTML />', () => {
@@ -20,7 +20,7 @@ describe('<MainHTML />', () => {
       scriptsUrl: 'app.js',
       stylesUrl: 'app.css',
       title: 'test',
-      useInlineAssets: false
+      useInlineAssets: false,
     };
   });
 
@@ -33,9 +33,11 @@ describe('<MainHTML />', () => {
   it('renders scripts/styles inline', () => {
     props.useInlineAssets = true;
     const wrapper = getInstance(props);
-    expect(wrapper.find('style').html())
-      .to.equal('<style>body{display:block;}</style>');
-    expect(wrapper.find('script').html())
-      .to.equal('<script type="text/javascript">function noop(){return;}</script>');
+    expect(wrapper.find('style').html()).to.equal(
+      '<style>body{display:block;}</style>'
+    );
+    expect(wrapper.find('script').html()).to.equal(
+      '<script type="text/javascript">function noop(){return;}</script>'
+    );
   });
 });

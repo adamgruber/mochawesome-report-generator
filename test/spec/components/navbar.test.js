@@ -13,12 +13,12 @@ describe('<Navbar />', () => {
   let props;
 
   const getInstance = instanceProps => {
-    const wrapper = mount(<Navbar { ...instanceProps } />);
+    const wrapper = mount(<Navbar {...instanceProps} />);
     return {
       wrapper,
       title: wrapper.find('.navbar-report-title'),
       menuBtn: wrapper.find('.navbar-menu-button'),
-      pctBar: wrapper.find('.navbar-pct-bar')
+      pctBar: wrapper.find('.navbar-pct-bar'),
     };
   };
 
@@ -26,7 +26,7 @@ describe('<Navbar />', () => {
     props = {
       onMenuClick: sinon.spy(),
       reportTitle: 'test',
-      stats: testData.stats
+      stats: testData.stats,
     };
   });
 
@@ -48,7 +48,7 @@ describe('<Navbar />', () => {
     beforeEach(() => {
       props = {
         reportTitle: 'test',
-        stats: { passPercent: 0, pendingPercent: 100 }
+        stats: { passPercent: 0, pendingPercent: 100 },
       };
     });
 
@@ -63,7 +63,7 @@ describe('<Navbar />', () => {
     beforeEach(() => {
       props = {
         reportTitle: 'test',
-        stats: { passPercent: null, pendingPercent: null }
+        stats: { passPercent: null, pendingPercent: null },
       };
     });
 

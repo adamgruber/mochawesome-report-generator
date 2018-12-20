@@ -16,12 +16,12 @@ describe('<Dropdown />', () => {
   const toggleSpy = sinon.spy();
 
   const getInstance = instanceProps => {
-    const wrapper = mount(<Dropdown { ...instanceProps } />);
+    const wrapper = mount(<Dropdown {...instanceProps} />);
     return {
       wrapper,
       toggle: wrapper.find('.dropdown-toggle'),
       menu: wrapper.find(DropdownMenu),
-      items: wrapper.find('.dropdown-list-item-link')
+      items: wrapper.find('.dropdown-list-item-link'),
     };
   };
 
@@ -31,10 +31,10 @@ describe('<Dropdown />', () => {
       list: [
         { title: 'Always', value: 'always' },
         { title: 'Never', value: 'never' },
-        { title: 'Failed', value: 'failed' }
+        { title: 'Failed', value: 'failed' },
       ],
       onToggle: toggleSpy,
-      onItemSelected: itemSelectedSpy
+      onItemSelected: itemSelectedSpy,
     };
   });
 
@@ -68,12 +68,12 @@ describe('<Dropdown />', () => {
       list: [
         { title: 'First', value: 1 },
         { title: 'Second', value: 2 },
-        { title: 'Nested', items: [ { title: 'Third', value: 3 } ] }
+        { title: 'Nested', items: [{ title: 'Third', value: 3 }] },
       ],
       showSelected: true,
       selected: { title: 'Failed', value: 'failed' },
       menuAlign: 'right',
-      itemRenderFn: item => <div className='custom'>{item.title}</div>
+      itemRenderFn: item => <div className="custom">{item.title}</div>,
     });
     const { wrapper, menu, toggle, items } = getInstance(testProps);
     expect(menu).to.have.lengthOf(1);

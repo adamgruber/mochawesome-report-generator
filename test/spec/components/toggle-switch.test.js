@@ -14,12 +14,12 @@ describe('<ToggleSwitch />', () => {
   let toggleFn;
 
   const getInstance = instanceProps => {
-    const wrapper = shallow(<ToggleSwitch { ...instanceProps } />);
+    const wrapper = shallow(<ToggleSwitch {...instanceProps} />);
     return {
       wrapper,
       icon: wrapper.find(Icon),
       label: wrapper.find('.label'),
-      toggle: wrapper.find('.toggle-switch-switch')
+      toggle: wrapper.find('.toggle-switch-switch'),
     };
   };
 
@@ -42,7 +42,7 @@ describe('<ToggleSwitch />', () => {
     const testProps = Object.assign({}, props, {
       active: true,
       label: 'test',
-      icon: 'add'
+      icon: 'add',
     });
     const { icon, label, toggle } = getInstance(testProps);
 

@@ -22,7 +22,7 @@ describe('ReportStore', () => {
       'failed',
       'always',
       'never',
-      'context'
+      'context',
     ]);
     expect(store).to.include({
       devMode: false,
@@ -35,7 +35,7 @@ describe('ReportStore', () => {
       showPending: true,
       showSkipped: false,
       sideNavOpen: false,
-      VERSION: '__VERSION__'
+      VERSION: '__VERSION__',
     });
   });
 
@@ -56,7 +56,7 @@ describe('ReportStore', () => {
       enableCharts: true,
       dev: true,
       showHooks: 'context',
-      showPassed: false
+      showPassed: false,
     });
     expect(store).to.have.property('reportTitle', undefined);
     expect(store).to.have.property('stats', testData.stats);
@@ -70,7 +70,7 @@ describe('ReportStore', () => {
 
   it('with invalid config options', () => {
     store = createStore(testData, {
-      showHooks: 'sometimes'
+      showHooks: 'sometimes',
     });
     expect(store).to.have.property('showHooks', 'failed');
   });

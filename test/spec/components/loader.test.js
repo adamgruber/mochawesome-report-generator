@@ -11,15 +11,15 @@ describe('<Loader />', () => {
   let props;
 
   const getInstance = instanceProps => {
-    const wrapper = shallow(<Loader { ...instanceProps } />);
+    const wrapper = shallow(<Loader {...instanceProps} />);
     return { wrapper: wrapper.dive() };
   };
 
   beforeEach(() => {
     props = {
       reportStore: {
-        isLoading: true
-      }
+        isLoading: true,
+      },
     };
   });
 

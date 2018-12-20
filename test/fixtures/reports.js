@@ -31,11 +31,17 @@ const hooks = makeReport([
   [
     [FAILED_BEFORE, AFTER, PASSED, PASSED],
     [BEFORE_EACH, FAILED_AFTER, PENDING, FAILED],
-    BEFORE, BEFORE_EACH, AFTER, AFTER_EACH, PENDING, PASSED, FAILED
-  ]
+    BEFORE,
+    BEFORE_EACH,
+    AFTER,
+    AFTER_EACH,
+    PENDING,
+    PASSED,
+    FAILED,
+  ],
 ]);
 
 module.exports = {
   nested,
-  hooks
+  hooks,
 };

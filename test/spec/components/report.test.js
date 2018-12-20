@@ -6,7 +6,7 @@ import chaiEnzyme from 'chai-enzyme';
 import Report from 'components/report';
 import MobxDevTool from 'components/mobxDevtool';
 
-import { nested as testData} from 'fixtures/reports';
+import { nested as testData } from 'fixtures/reports';
 import { createStore } from 'utils';
 
 chai.use(chaiEnzyme());
@@ -15,10 +15,10 @@ describe('<MochawesomeReport />', () => {
   let store;
 
   const getInstance = (instanceProps, opts) => {
-    const wrapper = mount(<Report { ...instanceProps } />, opts);
+    const wrapper = mount(<Report {...instanceProps} />, opts);
     return {
       wrapper,
-      toggleSwitches: wrapper.find('.toggle-switch-switch')
+      toggleSwitches: wrapper.find('.toggle-switch-switch'),
     };
   };
 
