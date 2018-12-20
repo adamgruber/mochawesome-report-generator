@@ -21,7 +21,11 @@ function RadioButton(props) {
     <div className={cx('component', className)}>
       {!!icon && <Icon name={icon} className={iconClassName} />}
       {!!label && <span className={labelCxName}>{label}</span>}
-      <div className={cx('outer', { off: !active })} onClick={onClick}>
+      <div
+        className={cx('outer', { off: !active })}
+        onClick={onClick}
+        role="button"
+        tabIndex="0">
         <span className={cx('inner')} />
       </div>
     </div>

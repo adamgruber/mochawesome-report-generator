@@ -1,11 +1,11 @@
 // Polyfill matchMedia
-window.matchMedia = window.matchMedia || (
-  () => ({
+window.matchMedia =
+  window.matchMedia ||
+  (() => ({
     matches: false,
     addListener: () => {},
-    removeListener: () => {}
-  })
-);
+    removeListener: () => {},
+  }));
 
 // Setup Enzyme Adapter
 const enzyme = require('enzyme');
@@ -25,5 +25,5 @@ addPath(path.join(__dirname, '..', 'src', 'client'));
 const cssHook = require('css-modules-require-hook');
 
 cssHook({
-  generateScopedName: '[name]-[local]'
+  generateScopedName: '[name]-[local]',
 });

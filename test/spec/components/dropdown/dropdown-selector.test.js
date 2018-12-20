@@ -12,12 +12,12 @@ describe('<DropdownSelector />', () => {
   let props;
 
   const getInstance = instanceProps => {
-    const wrapper = shallow(<DropdownSelector { ...instanceProps } />);
+    const wrapper = shallow(<DropdownSelector {...instanceProps} />);
     return {
       wrapper,
       label: wrapper.find('.label'),
       icon: wrapper.find(Icon),
-      dropdown: wrapper.find(Dropdown)
+      dropdown: wrapper.find(Dropdown),
     };
   };
 
@@ -28,9 +28,9 @@ describe('<DropdownSelector />', () => {
       selections: [
         { title: 'Always', value: 'always' },
         { title: 'Never', value: 'never' },
-        { title: 'Failed', value: 'failed' }
+        { title: 'Failed', value: 'failed' },
       ],
-      label: 'Show Hooks'
+      label: 'Show Hooks',
     };
   });
 

@@ -14,419 +14,406 @@
     "other": 2,
     "hasOther": true,
     "skipped": 2,
-    "hasSkipped": true,
-    "passPercentClass": "danger",
-    "pendingPercentClass": "danger"
+    "hasSkipped": true
   },
-  "suites": {
-    "title": "",
-    "suites": [
-      {
-        "title": "Hooks",
-        "suites": [
-          {
-            "title": "Nested Failed Before",
-            "suites": [],
-            "tests": [
-              {
-                "title": "should be true",
-                "fullTitle": "Hooks Nested Failed Before should be true",
-                "timedOut": false,
-                "duration": 0,
-                "pass": false,
-                "fail": false,
-                "pending": false,
-                "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
-                "err": {},
-                "isRoot": false,
-                "uuid": "853afd74-a7d0-4040-af5f-42bcb5062278",
-                "parentUUID": "6d2c79d2-1873-4414-a704-65e3fbaf86ba",
-                "isHook": false,
-                "skipped": true
-              },
-              {
-                "title": "should be true",
-                "fullTitle": "Hooks Nested Failed Before should be true",
-                "timedOut": false,
-                "duration": 0,
-                "pass": false,
-                "fail": false,
-                "pending": false,
-                "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
-                "err": {},
-                "isRoot": false,
-                "uuid": "452ce072-d0dc-40b6-9a7c-db7fbd2b1553",
-                "parentUUID": "6d2c79d2-1873-4414-a704-65e3fbaf86ba",
-                "isHook": false,
-                "skipped": true
-              }
-            ],
-            "pending": [],
-            "root": false,
-            "_timeout": 2000,
-            "file": "/cases/hooks-failing.js",
-            "uuid": "6d2c79d2-1873-4414-a704-65e3fbaf86ba",
-            "beforeHooks": [
-              {
-                "title": "\"before all\" hook for \"should be false\"",
-                "fullTitle": "Hooks Nested Failed Before \"before all\" hook for \"should be false\"",
-                "timedOut": false,
-                "duration": 0,
-                "state": "failed",
-                "pass": false,
-                "fail": true,
-                "pending": false,
-                "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the before hook.');",
-                "err": {
-                  "estack": "ReferenceError: a is not defined\n    at Context.before (helpers.js:42:21)"
+  "results": [
+    {
+      "title": "",
+      "suites": [
+        {
+          "title": "Hooks",
+          "suites": [
+            {
+              "title": "Nested Failed Before",
+              "suites": [],
+              "tests": [
+                {
+                  "title": "should be true",
+                  "fullTitle": "Hooks Nested Failed Before should be true",
+                  "timedOut": false,
+                  "duration": 0,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
+                  "err": {},
+                  "uuid": "853afd74-a7d0-4040-af5f-42bcb5062278",
+                  "parentUUID": "6d2c79d2-1873-4414-a704-65e3fbaf86ba",
+                  "isHook": false,
+                  "skipped": true
                 },
-                "isRoot": false,
-                "uuid": "1e445313-1f42-413a-9518-0d970b8179f0",
-                "parentUUID": "6d2c79d2-1873-4414-a704-65e3fbaf86ba",
-                "isHook": true,
-                "skipped": false
-              }
-            ],
-            "afterHooks": [
-              {
-                "title": "\"after all\" hook",
-                "fullTitle": "Hooks Nested Failed Before \"after all\" hook",
-                "timedOut": false,
-                "duration": 0,
-                "pass": false,
-                "fail": false,
-                "pending": false,
-                "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the after hook.');",
-                "err": {},
-                "isRoot": false,
-                "uuid": "c28b9c5c-68e8-407d-978f-a7ce6f267910",
-                "parentUUID": "6d2c79d2-1873-4414-a704-65e3fbaf86ba",
-                "isHook": true,
-                "skipped": false
-              }
-            ],
-            "fullFile": "/Users/adamgruber/Sites/ma-test/cases/hooks-failing.js",
-            "passes": [],
-            "failures": [],
-            "skipped": ["853afd74-a7d0-4040-af5f-42bcb5062278", "452ce072-d0dc-40b6-9a7c-db7fbd2b1553"],
-            "duration": 0,
-            "rootEmpty": false
-          },
-          {
-            "title": "Nested Failed After",
-            "suites": [],
-            "tests": [
-              {
-                "title": "should be false",
-                "fullTitle": "Hooks Nested Failed After should be false",
-                "timedOut": false,
-                "duration": 0,
-                "pass": false,
-                "fail": false,
-                "pending": true,
-                "code": "",
-                "err": {},
-                "isRoot": false,
-                "uuid": "97bb36b3-e9ac-40cf-a8b0-8a82990fbf02",
-                "parentUUID": "df1fd56b-25be-403c-bb54-99cd41d1defd",
-                "isHook": false,
-                "skipped": false
-              },
-              {
-                "title": "should be false",
-                "fullTitle": "Hooks Nested Failed After should be false",
-                "timedOut": false,
-                "duration": 0,
-                "state": "failed",
-                "pass": false,
-                "fail": true,
-                "pending": false,
-                "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
-                "err": {
-                  "operator": "to equal",
-                  "expected": "{\n  \"bar\": true\n  \"baz\": 1\n  \"foo\": true\n}",
-                  "details": "at bar, A has false and B has true",
-                  "showDiff": true,
-                  "actual": "{\n  \"bar\": false\n  \"baz\": 1\n  \"foo\": true\n}",
-                  "negate": false,
-                  "assertion": {
-                    "obj": {
-                      "foo": true,
-                      "bar": false,
-                      "baz": 1
-                    },
-                    "anyOne": false,
+                {
+                  "title": "should be true",
+                  "fullTitle": "Hooks Nested Failed Before should be true",
+                  "timedOut": false,
+                  "duration": 0,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
+                  "err": {},
+                  "uuid": "452ce072-d0dc-40b6-9a7c-db7fbd2b1553",
+                  "parentUUID": "6d2c79d2-1873-4414-a704-65e3fbaf86ba",
+                  "isHook": false,
+                  "skipped": true
+                }
+              ],
+              "pending": [],
+              "root": false,
+              "_timeout": 2000,
+              "file": "/cases/hooks-failing.js",
+              "uuid": "6d2c79d2-1873-4414-a704-65e3fbaf86ba",
+              "beforeHooks": [
+                {
+                  "title": "\"before all\" hook for \"should be false\"",
+                  "fullTitle": "Hooks Nested Failed Before \"before all\" hook for \"should be false\"",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the before hook.');",
+                  "err": {
+                    "estack": "ReferenceError: a is not defined\n    at Context.before (helpers.js:42:21)"
+                  },
+                  "uuid": "1e445313-1f42-413a-9518-0d970b8179f0",
+                  "parentUUID": "6d2c79d2-1873-4414-a704-65e3fbaf86ba",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [
+                {
+                  "title": "\"after all\" hook",
+                  "fullTitle": "Hooks Nested Failed Before \"after all\" hook",
+                  "timedOut": false,
+                  "duration": 0,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the after hook.');",
+                  "err": {},
+                  "uuid": "c28b9c5c-68e8-407d-978f-a7ce6f267910",
+                  "parentUUID": "6d2c79d2-1873-4414-a704-65e3fbaf86ba",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "fullFile": "/Users/adamgruber/Sites/ma-test/cases/hooks-failing.js",
+              "passes": [],
+              "failures": [],
+              "skipped": [
+                "853afd74-a7d0-4040-af5f-42bcb5062278",
+                "452ce072-d0dc-40b6-9a7c-db7fbd2b1553"
+              ],
+              "duration": 0,
+              "rootEmpty": false
+            },
+            {
+              "title": "Nested Failed After",
+              "suites": [],
+              "tests": [
+                {
+                  "title": "should be false",
+                  "fullTitle": "Hooks Nested Failed After should be false",
+                  "timedOut": false,
+                  "duration": 0,
+                  "pass": false,
+                  "fail": false,
+                  "pending": true,
+                  "code": "",
+                  "err": {},
+                  "uuid": "97bb36b3-e9ac-40cf-a8b0-8a82990fbf02",
+                  "parentUUID": "df1fd56b-25be-403c-bb54-99cd41d1defd",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should be false",
+                  "fullTitle": "Hooks Nested Failed After should be false",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
+                  "err": {
+                    "operator": "to equal",
+                    "expected": "{\n  \"bar\": true\n  \"baz\": 1\n  \"foo\": true\n}",
+                    "details": "at bar, A has false and B has true",
+                    "showDiff": true,
+                    "actual": "{\n  \"bar\": false\n  \"baz\": 1\n  \"foo\": true\n}",
                     "negate": false,
-                    "params": {
-                      "operator": "to equal",
-                      "expected": {
-                        "foo": true,
-                        "bar": true,
-                        "baz": 1
-                      },
-                      "details": "at bar, A has false and B has true",
-                      "showDiff": true,
-                      "actual": {
+                    "assertion": {
+                      "obj": {
                         "foo": true,
                         "bar": false,
                         "baz": 1
                       },
+                      "anyOne": false,
                       "negate": false,
-                      "assertion": "[Circular ~.suites.suites.0.suites.1.tests.1.err.assertion]"
+                      "params": {
+                        "operator": "to equal",
+                        "expected": {
+                          "foo": true,
+                          "bar": true,
+                          "baz": 1
+                        },
+                        "details": "at bar, A has false and B has true",
+                        "showDiff": true,
+                        "actual": {
+                          "foo": true,
+                          "bar": false,
+                          "baz": 1
+                        },
+                        "negate": false,
+                        "assertion": "[Circular ~.suites.suites.0.suites.1.tests.1.err.assertion]"
+                      },
+                      "light": false
                     },
-                    "light": false
+                    "_message": "expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)",
+                    "generatedMessage": true,
+                    "estack": "AssertionError: expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)\n    at Assertion.fail (node_modules/should/cjs/should.js:258:17)\n    at Assertion.value (node_modules/should/cjs/should.js:335:19)\n    at Context.<anonymous> (helpers.js:32:20)",
+                    "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
                   },
-                  "_message": "expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)",
-                  "generatedMessage": true,
-                  "estack": "AssertionError: expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)\n    at Assertion.fail (node_modules/should/cjs/should.js:258:17)\n    at Assertion.value (node_modules/should/cjs/should.js:335:19)\n    at Context.<anonymous> (helpers.js:32:20)",
-                  "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
-                },
-                "isRoot": false,
-                "uuid": "181368f3-849e-47d5-a221-fb78d3eb0055",
-                "parentUUID": "df1fd56b-25be-403c-bb54-99cd41d1defd",
-                "isHook": false,
-                "skipped": false
-              }
-            ],
-            "pending": ["97bb36b3-e9ac-40cf-a8b0-8a82990fbf02"],
-            "root": false,
-            "_timeout": 2000,
-            "file": "/cases/hooks-failing.js",
-            "uuid": "df1fd56b-25be-403c-bb54-99cd41d1defd",
-            "beforeHooks": [
-              {
-                "title": "\"before each\" hook",
-                "fullTitle": "Hooks Nested Failed After \"before each\" hook",
-                "timedOut": false,
-                "duration": 0,
-                "pass": false,
-                "fail": false,
-                "pending": false,
-                "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the before each hook.');",
-                "err": {},
-                "isRoot": false,
-                "uuid": "a33a26db-9821-4343-b250-4b904a4f7849",
-                "parentUUID": "df1fd56b-25be-403c-bb54-99cd41d1defd",
-                "isHook": true,
-                "skipped": false
-              }
-            ],
-            "afterHooks": [
-              {
-                "title": "\"after all\" hook",
-                "fullTitle": "Hooks Nested Failed After \"after all\" hook",
-                "timedOut": false,
-                "duration": 0,
-                "state": "failed",
-                "pass": false,
-                "fail": true,
-                "pending": false,
-                "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the after hook.');",
-                "err": {
-                  "estack": "ReferenceError: a is not defined\n    at Context.after (helpers.js:58:21)"
-                },
-                "isRoot": false,
-                "uuid": "a30b636f-ac1d-48a6-a992-a2ad0091484e",
-                "parentUUID": "df1fd56b-25be-403c-bb54-99cd41d1defd",
-                "isHook": true,
-                "skipped": false
-              }
-            ],
-            "fullFile": "/Users/adamgruber/Sites/ma-test/cases/hooks-failing.js",
-            "passes": [],
-            "failures": ["181368f3-849e-47d5-a221-fb78d3eb0055"],
-            "skipped": [],
-            "duration": 0,
-            "rootEmpty": false
-          }
-        ],
-        "tests": [
-          {
-            "title": "should be false",
-            "fullTitle": "Hooks should be false",
-            "timedOut": false,
-            "duration": 0,
-            "pass": false,
-            "fail": false,
-            "pending": true,
-            "code": "",
-            "err": {},
-            "isRoot": false,
-            "uuid": "842e53e0-88d3-4e03-874d-f88db310a48d",
-            "parentUUID": "8c5b98de-eff6-4967-98ab-1a4d1ab44164",
-            "isHook": false,
-            "skipped": false
-          },
-          {
-            "title": "should be true",
-            "fullTitle": "Hooks should be true",
-            "timedOut": false,
-            "duration": 2,
-            "state": "passed",
-            "speed": "fast",
-            "pass": true,
-            "fail": false,
-            "pending": false,
-            "context": "\"context\"",
-            "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
-            "err": {},
-            "isRoot": false,
-            "uuid": "b4e6a7c9-1daa-4f74-9872-30a03464eab4",
-            "parentUUID": "8c5b98de-eff6-4967-98ab-1a4d1ab44164",
-            "isHook": false,
-            "skipped": false
-          },
-          {
-            "title": "should be false",
-            "fullTitle": "Hooks should be false",
-            "timedOut": false,
-            "duration": 2,
-            "state": "failed",
-            "pass": false,
-            "fail": true,
-            "pending": false,
-            "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
-            "err": {
-              "operator": "to equal",
-              "expected": "{\n  \"bar\": true\n  \"baz\": 1\n  \"foo\": true\n}",
-              "details": "at bar, A has false and B has true",
-              "showDiff": true,
-              "actual": "{\n  \"bar\": false\n  \"baz\": 1\n  \"foo\": true\n}",
-              "negate": false,
-              "assertion": {
-                "obj": {
-                  "foo": true,
-                  "bar": false,
-                  "baz": 1
-                },
-                "anyOne": false,
+                  "uuid": "181368f3-849e-47d5-a221-fb78d3eb0055",
+                  "parentUUID": "df1fd56b-25be-403c-bb54-99cd41d1defd",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "pending": ["97bb36b3-e9ac-40cf-a8b0-8a82990fbf02"],
+              "root": false,
+              "_timeout": 2000,
+              "file": "/cases/hooks-failing.js",
+              "uuid": "df1fd56b-25be-403c-bb54-99cd41d1defd",
+              "beforeHooks": [
+                {
+                  "title": "\"before each\" hook",
+                  "fullTitle": "Hooks Nested Failed After \"before each\" hook",
+                  "timedOut": false,
+                  "duration": 0,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the before each hook.');",
+                  "err": {},
+                  "uuid": "a33a26db-9821-4343-b250-4b904a4f7849",
+                  "parentUUID": "df1fd56b-25be-403c-bb54-99cd41d1defd",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [
+                {
+                  "title": "\"after all\" hook",
+                  "fullTitle": "Hooks Nested Failed After \"after all\" hook",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the after hook.');",
+                  "err": {
+                    "estack": "ReferenceError: a is not defined\n    at Context.after (helpers.js:58:21)"
+                  },
+                  "uuid": "a30b636f-ac1d-48a6-a992-a2ad0091484e",
+                  "parentUUID": "df1fd56b-25be-403c-bb54-99cd41d1defd",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "fullFile": "/Users/adamgruber/Sites/ma-test/cases/hooks-failing.js",
+              "passes": [],
+              "failures": ["181368f3-849e-47d5-a221-fb78d3eb0055"],
+              "skipped": [],
+              "duration": 0,
+              "rootEmpty": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "should be false",
+              "fullTitle": "Hooks should be false",
+              "timedOut": false,
+              "duration": 0,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "code": "",
+              "err": {},
+              "uuid": "842e53e0-88d3-4e03-874d-f88db310a48d",
+              "parentUUID": "8c5b98de-eff6-4967-98ab-1a4d1ab44164",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should be true",
+              "fullTitle": "Hooks should be true",
+              "timedOut": false,
+              "duration": 2,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"context\"",
+              "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
+              "err": {},
+              "uuid": "b4e6a7c9-1daa-4f74-9872-30a03464eab4",
+              "parentUUID": "8c5b98de-eff6-4967-98ab-1a4d1ab44164",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should be false",
+              "fullTitle": "Hooks should be false",
+              "timedOut": false,
+              "duration": 2,
+              "state": "failed",
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "code": "// true.should.eql(bool);\nexp.should.eql(bool ? exp : expWrong);\nshouldAddContext && addContext(this, 'context');",
+              "err": {
+                "operator": "to equal",
+                "expected": "{\n  \"bar\": true\n  \"baz\": 1\n  \"foo\": true\n}",
+                "details": "at bar, A has false and B has true",
+                "showDiff": true,
+                "actual": "{\n  \"bar\": false\n  \"baz\": 1\n  \"foo\": true\n}",
                 "negate": false,
-                "params": {
-                  "operator": "to equal",
-                  "expected": {
-                    "foo": true,
-                    "bar": true,
-                    "baz": 1
-                  },
-                  "details": "at bar, A has false and B has true",
-                  "showDiff": true,
-                  "actual": {
+                "assertion": {
+                  "obj": {
                     "foo": true,
                     "bar": false,
                     "baz": 1
                   },
+                  "anyOne": false,
                   "negate": false,
-                  "assertion": "[Circular ~.suites.suites.0.tests.2.err.assertion]"
+                  "params": {
+                    "operator": "to equal",
+                    "expected": {
+                      "foo": true,
+                      "bar": true,
+                      "baz": 1
+                    },
+                    "details": "at bar, A has false and B has true",
+                    "showDiff": true,
+                    "actual": {
+                      "foo": true,
+                      "bar": false,
+                      "baz": 1
+                    },
+                    "negate": false,
+                    "assertion": "[Circular ~.suites.suites.0.tests.2.err.assertion]"
+                  },
+                  "light": false
                 },
-                "light": false
+                "_message": "expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)",
+                "generatedMessage": true,
+                "estack": "AssertionError: expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)\n    at Assertion.fail (node_modules/should/cjs/should.js:258:17)\n    at Assertion.value (node_modules/should/cjs/should.js:335:19)\n    at Context.<anonymous> (helpers.js:32:20)",
+                "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
               },
-              "_message": "expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)",
-              "generatedMessage": true,
-              "estack": "AssertionError: expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)\n    at Assertion.fail (node_modules/should/cjs/should.js:258:17)\n    at Assertion.value (node_modules/should/cjs/should.js:335:19)\n    at Context.<anonymous> (helpers.js:32:20)",
-              "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
+              "uuid": "dee59e51-592d-4b90-a48f-8cd4051bb7c4",
+              "parentUUID": "8c5b98de-eff6-4967-98ab-1a4d1ab44164",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "pending": ["842e53e0-88d3-4e03-874d-f88db310a48d"],
+          "root": false,
+          "_timeout": 2000,
+          "file": "/cases/hooks-failing.js",
+          "uuid": "8c5b98de-eff6-4967-98ab-1a4d1ab44164",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook",
+              "fullTitle": "Hooks \"before all\" hook",
+              "timedOut": false,
+              "duration": 0,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the before hook.');",
+              "err": {},
+              "uuid": "150ec91b-5329-44b0-a510-5866f871b711",
+              "parentUUID": "8c5b98de-eff6-4967-98ab-1a4d1ab44164",
+              "isHook": true,
+              "skipped": false
             },
-            "isRoot": false,
-            "uuid": "dee59e51-592d-4b90-a48f-8cd4051bb7c4",
-            "parentUUID": "8c5b98de-eff6-4967-98ab-1a4d1ab44164",
-            "isHook": false,
-            "skipped": false
-          }
-        ],
-        "pending": ["842e53e0-88d3-4e03-874d-f88db310a48d"],
-        "root": false,
-        "_timeout": 2000,
-        "file": "/cases/hooks-failing.js",
-        "uuid": "8c5b98de-eff6-4967-98ab-1a4d1ab44164",
-        "beforeHooks": [
-          {
-            "title": "\"before all\" hook",
-            "fullTitle": "Hooks \"before all\" hook",
-            "timedOut": false,
-            "duration": 0,
-            "pass": false,
-            "fail": false,
-            "pending": false,
-            "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the before hook.');",
-            "err": {},
-            "isRoot": false,
-            "uuid": "150ec91b-5329-44b0-a510-5866f871b711",
-            "parentUUID": "8c5b98de-eff6-4967-98ab-1a4d1ab44164",
-            "isHook": true,
-            "skipped": false
-          },
-          {
-            "title": "\"before each\" hook",
-            "fullTitle": "Hooks \"before each\" hook",
-            "timedOut": false,
-            "duration": 0,
-            "pass": false,
-            "fail": false,
-            "pending": false,
-            "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the before each hook.');",
-            "err": {},
-            "isRoot": false,
-            "uuid": "215b65a4-e008-4094-8c43-e8f216b6a66f",
-            "parentUUID": "8c5b98de-eff6-4967-98ab-1a4d1ab44164",
-            "isHook": true,
-            "skipped": false
-          }
-        ],
-        "afterHooks": [
-          {
-            "title": "\"after all\" hook",
-            "fullTitle": "Hooks \"after all\" hook",
-            "timedOut": false,
-            "duration": 0,
-            "pass": false,
-            "fail": false,
-            "pending": false,
-            "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the after hook.');",
-            "err": {},
-            "isRoot": false,
-            "uuid": "52b787a1-b608-4bfa-ae58-40be05532bd2",
-            "parentUUID": "8c5b98de-eff6-4967-98ab-1a4d1ab44164",
-            "isHook": true,
-            "skipped": false
-          },
-          {
-            "title": "\"after each\" hook",
-            "fullTitle": "Hooks \"after each\" hook",
-            "timedOut": false,
-            "duration": 0,
-            "pass": false,
-            "fail": false,
-            "pending": false,
-            "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the after each hook.');",
-            "err": {},
-            "isRoot": false,
-            "uuid": "ab2e9825-6392-4682-9833-4d6cce5abacf",
-            "parentUUID": "8c5b98de-eff6-4967-98ab-1a4d1ab44164",
-            "isHook": true,
-            "skipped": false
-          }
-        ],
-        "fullFile": "/Users/adamgruber/Sites/ma-test/cases/hooks-failing.js",
-        "passes": ["b4e6a7c9-1daa-4f74-9872-30a03464eab4"],
-        "failures": ["dee59e51-592d-4b90-a48f-8cd4051bb7c4"],
-        "skipped": [],
-        "duration": 4,
-        "rootEmpty": false
-      }
-    ],
-    "tests": [],
-    "pending": [],
-    "root": true,
-    "_timeout": 2000,
-    "uuid": "3422f52d-1d6f-41eb-b95c-ade4861183ca",
-    "beforeHooks": [],
-    "afterHooks": [],
-    "fullFile": "",
-    "file": "",
-    "passes": [],
-    "failures": [],
-    "skipped": [],
-    "duration": 0,
-    "rootEmpty": true
-  },
-  "copyrightYear": 2017
+            {
+              "title": "\"before each\" hook",
+              "fullTitle": "Hooks \"before each\" hook",
+              "timedOut": false,
+              "duration": 0,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the before each hook.');",
+              "err": {},
+              "uuid": "215b65a4-e008-4094-8c43-e8f216b6a66f",
+              "parentUUID": "8c5b98de-eff6-4967-98ab-1a4d1ab44164",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook",
+              "fullTitle": "Hooks \"after all\" hook",
+              "timedOut": false,
+              "duration": 0,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the after hook.');",
+              "err": {},
+              "uuid": "52b787a1-b608-4bfa-ae58-40be05532bd2",
+              "parentUUID": "8c5b98de-eff6-4967-98ab-1a4d1ab44164",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"after each\" hook",
+              "fullTitle": "Hooks \"after each\" hook",
+              "timedOut": false,
+              "duration": 0,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "code": "shouldFail\n  ? console.log(a)\n  : console.log('This is the after each hook.');",
+              "err": {},
+              "uuid": "ab2e9825-6392-4682-9833-4d6cce5abacf",
+              "parentUUID": "8c5b98de-eff6-4967-98ab-1a4d1ab44164",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "fullFile": "/Users/adamgruber/Sites/ma-test/cases/hooks-failing.js",
+          "passes": ["b4e6a7c9-1daa-4f74-9872-30a03464eab4"],
+          "failures": ["dee59e51-592d-4b90-a48f-8cd4051bb7c4"],
+          "skipped": [],
+          "duration": 4,
+          "rootEmpty": false
+        }
+      ],
+      "tests": [],
+      "pending": [],
+      "root": true,
+      "_timeout": 2000,
+      "uuid": "3422f52d-1d6f-41eb-b95c-ade4861183ca",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "fullFile": "",
+      "file": "",
+      "passes": [],
+      "failures": [],
+      "skipped": [],
+      "duration": 0,
+      "rootEmpty": true
+    }
+  ]
 }

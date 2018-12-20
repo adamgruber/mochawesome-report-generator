@@ -1,10 +1,6 @@
 const t = require('tcomb');
 const { isUUID, isISO8601 } = require('validator');
 
-const PercentClass = t.enums.of(
-  ['success', 'warning', 'danger'],
-  'PercentClass'
-);
 const TestState = t.enums.of(
   ['passed', 'failed', 'pending', 'skipped'],
   'TestState'
@@ -13,6 +9,20 @@ const TestSpeed = t.enums.of(['slow', 'medium', 'fast'], 'TestSpeed');
 const DateString = t.refinement(t.String, isISO8601, 'DateString');
 const Duration = t.maybe(t.Integer);
 const Uuid = t.refinement(t.String, isUUID, 'UUID');
+
+const ReportMeta = t.struct({
+  mocha: t.struct({
+    version: t.String
+  }),
+  mochawesome: t.struct({
+    options: t.Object,
+    version: t.String
+  }),
+  marge: t.struct({
+    options: t.Object,
+    version: t.String
+  })
+});
 
 const Test = t.struct({
   title: t.String,
@@ -26,7 +36,6 @@ const Test = t.struct({
   pending: t.Boolean,
   code: t.String,
   err: t.Object,
-  isRoot: t.Boolean,
   uuid: Uuid,
   parentUUID: t.maybe(Uuid),
   skipped: t.Boolean,
@@ -73,12 +82,9 @@ const TestReport = t.struct({
     hasOther: t.Boolean,
     skipped: t.Integer,
     hasSkipped: t.Boolean,
-    passPercentClass: PercentClass,
-    pendingPercentClass: PercentClass,
-    context: t.maybe(t.String),
   }),
-  suites: Suite,
-  copyrightYear: t.Integer,
+  results: t.list(Suite),
+  meta: t.maybe(ReportMeta)
 });
 
-module.exports = { TestReport };
+module.exports = { TestReport, Test, Suite };

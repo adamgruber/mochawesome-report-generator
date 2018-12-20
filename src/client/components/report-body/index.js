@@ -12,10 +12,6 @@ class ReportBody extends React.Component {
     reportStore: PropTypes.object,
   };
 
-  updateSuites(timeout) {
-    this.props.reportStore.updateFilteredSuites(timeout);
-  }
-
   componentDidMount() {
     this.updateSuites();
     this.disposer = reaction(
@@ -42,6 +38,10 @@ class ReportBody extends React.Component {
 
   componentWillUnmount() {
     this.disposer();
+  }
+
+  updateSuites(timeout) {
+    this.props.reportStore.updateFilteredSuites(timeout);
   }
 
   render() {

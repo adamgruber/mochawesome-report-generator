@@ -9,9 +9,10 @@ import DropdownSelector from 'components/dropdown-selector';
 import NavMenuList from 'components/nav-menu/nav-menu-list';
 import NavMenu from 'components/nav-menu/nav-menu';
 
-import testData from 'sample-data/hooks.json';
-import { createStore } from 'utils';
+// import testData from 'sample-data/hooks.json';
+import { hooks as testData } from 'fixtures/reports';
 
+import { createStore } from 'utils';
 
 chai.use(chaiEnzyme());
 
@@ -20,13 +21,13 @@ describe('<NavMenu />', () => {
   let store;
 
   const getInstance = instanceProps => {
-    const wrapper = mount(<NavMenu { ...instanceProps } />);
+    const wrapper = mount(<NavMenu {...instanceProps} />);
     return {
       wrapper,
       title: wrapper.find('.title'),
       navList: wrapper.find('.nav-menu-main'),
       toggles: wrapper.find(ToggleSwitch),
-      hooksDropdown: wrapper.find(DropdownSelector)
+      hooksDropdown: wrapper.find(DropdownSelector),
     };
   };
 
@@ -34,11 +35,11 @@ describe('<NavMenu />', () => {
     store = createStore({
       reportTitle: 'test',
       stats: testData.stats,
-      suites: testData.suites
+      results: testData.results,
     });
 
     props = {
-      reportStore: store
+      reportStore: store,
     };
   });
 
@@ -59,8 +60,8 @@ describe('<NavMenu />', () => {
         passes: 0,
         failures: 0,
         pending: 0,
-        skipped: 0
-      }
+        skipped: 0,
+      },
     });
 
     store.openSideNav();
@@ -95,7 +96,10 @@ describe('<NavMenu />', () => {
     it('sets hooks dropdown', () => {
       const { hooksDropdown } = getInstance(props);
       hooksDropdown.find('button').simulate('click');
-      hooksDropdown.find('a').first().simulate('click');
+      hooksDropdown
+        .find('a')
+        .first()
+        .simulate('click');
       expect(store.setShowHooks.calledOnce).to.equal(true);
     });
   });
@@ -107,6 +111,8 @@ describe('<NavMenu />', () => {
     store.toggleFilter('showFailed');
     store.toggleFilter('showPending');
     store.toggleFilter('showSkipped');
-    expect(NavMenuList.prototype.shouldComponentUpdate.alwaysReturned(true)).to.equal(true);
+    expect(
+      NavMenuList.prototype.shouldComponentUpdate.alwaysReturned(true)
+    ).to.equal(true);
   });
 });

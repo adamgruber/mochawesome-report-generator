@@ -15,7 +15,7 @@ const cx = classNames.bind(styles);
 class NavMenu extends Component {
   static propTypes = {
     reportStore: PropTypes.shape({
-      allSuites: PropTypes.array,
+      results: PropTypes.array,
       closeSideNav: PropTypes.func,
       reportTitle: PropTypes.string,
       setShowHooks: PropTypes.func,
@@ -33,7 +33,7 @@ class NavMenu extends Component {
 
   render() {
     const {
-      allSuites,
+      results,
       closeSideNav,
       reportTitle,
       setShowHooks,
@@ -64,9 +64,17 @@ class NavMenu extends Component {
 
     return (
       <div className={cx('wrap', { open: sideNavOpen })}>
-        <div onClick={closeSideNav} className={cx('overlay')} />
+        <div
+          onClick={closeSideNav}
+          className={cx('overlay')}
+          role="button"
+          tabIndex="0"
+        />
         <nav className={cx('menu')}>
-          <button onClick={closeSideNav} className={cx('close-btn')}>
+          <button
+            type="button"
+            onClick={closeSideNav}
+            className={cx('close-btn')}>
             <Icon name="close" />
           </button>
           <div className={cx('section')}>
@@ -130,8 +138,8 @@ class NavMenu extends Component {
             />
           </div>
           <div className={cx('section')}>
-            {!!allSuites &&
-              allSuites.map(suite => (
+            {!!results &&
+              results.map(suite => (
                 <ul
                   key={suite.uuid}
                   className={cx('list', 'main', {

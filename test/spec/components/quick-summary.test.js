@@ -11,10 +11,10 @@ describe('<QuickSummary />', () => {
   let props;
 
   const getInstance = instanceProps => {
-    const wrapper = shallow(<QuickSummary { ...instanceProps } />);
+    const wrapper = shallow(<QuickSummary {...instanceProps} />);
     return {
       wrapper,
-      lists: wrapper.find('.quick-summary-list')
+      lists: wrapper.find('.quick-summary-list'),
     };
   };
 
@@ -27,8 +27,8 @@ describe('<QuickSummary />', () => {
         passes: 9,
         failures: 5,
         pending: 5,
-        skipped: 8
-      }
+        skipped: 8,
+      },
     };
   });
 

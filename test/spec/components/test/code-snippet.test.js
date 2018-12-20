@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import React from 'react';
 import { mount } from 'enzyme';
 import chai, { expect } from 'chai';
@@ -11,18 +12,17 @@ chai.use(chaiEnzyme());
 describe('<CodeSnippet />', () => {
   let node;
 
-  const getInstance = instanceProps => (
-    mount(
-      <CodeSnippet { ...instanceProps } />,
-      { attachTo: node }
-    )
-  );
+  const getInstance = instanceProps =>
+    mount(<CodeSnippet {...instanceProps} />, { attachTo: node });
 
   beforeEach(() => {
     node = document.createElement('div');
     node.setAttribute('id', 'app');
     document.body.appendChild(node);
-    hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
+    hljs.registerLanguage(
+      'javascript',
+      require('highlight.js/lib/languages/javascript')
+    );
     hljs.registerLanguage('diff', require('highlight.js/lib/languages/diff'));
   });
 
@@ -32,25 +32,33 @@ describe('<CodeSnippet />', () => {
 
   it('renders and highlights js snippet', () => {
     const props = {
-      code: 'function(){console.log(\'sample code\');}'
+      code: "function(){console.log('sample code');}",
     };
     const wrapper = getInstance(props);
     expect(wrapper.find('pre').hasClass('javascript')).to.equal(true);
     expect(document.querySelectorAll('.hljs-keyword').length).to.equal(1);
-    expect(document.querySelectorAll('.test-code-diff-expected').length).to.equal(0);
-    expect(document.querySelectorAll('.test-code-diff-actual').length).to.equal(0);
+    expect(
+      document.querySelectorAll('.test-code-diff-expected').length
+    ).to.equal(0);
+    expect(document.querySelectorAll('.test-code-diff-actual').length).to.equal(
+      0
+    );
   });
 
   it('renders and highlights diff snippet', () => {
     const props = {
       code: ' {\n-   "a": 2\n+   "a": 1\n }\n',
-      lang: 'diff'
+      lang: 'diff',
     };
     const wrapper = getInstance(props);
     expect(wrapper.find('pre').hasClass('diff')).to.equal(true);
     expect(wrapper.find('pre').hasClass('inline-diff')).to.equal(false);
-    expect(document.querySelectorAll('.test-code-diff-expected').length).to.equal(1);
-    expect(document.querySelectorAll('.test-code-diff-actual').length).to.equal(1);
+    expect(
+      document.querySelectorAll('.test-code-diff-expected').length
+    ).to.equal(1);
+    expect(document.querySelectorAll('.test-code-diff-actual').length).to.equal(
+      1
+    );
     expect(document.querySelectorAll('.hljs-addition').length).to.equal(3);
     expect(document.querySelectorAll('.hljs-deletion').length).to.equal(1);
   });
@@ -61,22 +69,26 @@ describe('<CodeSnippet />', () => {
         { count: 6, value: '{\n  "a": ' },
         { count: 1, added: undefined, removed: true, value: '2' },
         { count: 1, added: true, removed: undefined, value: '1' },
-        { count: 2, value: '\n}' }
+        { count: 2, value: '\n}' },
       ],
-      lang: 'diff'
+      lang: 'diff',
     };
     const wrapper = getInstance(props, { useInlineDiffs: true });
     expect(wrapper.find('pre').hasClass('diff')).to.equal(false);
     expect(wrapper.find('pre').hasClass('inline-diff')).to.equal(true);
-    expect(document.querySelectorAll('.test-code-diff-expected').length).to.equal(2);
-    expect(document.querySelectorAll('.test-code-diff-actual').length).to.equal(2);
+    expect(
+      document.querySelectorAll('.test-code-diff-expected').length
+    ).to.equal(2);
+    expect(document.querySelectorAll('.test-code-diff-actual').length).to.equal(
+      2
+    );
   });
 
   it('does not highlight when prop is false', () => {
     const props = {
-      code: 'function(){console.log(\'sample code\');}',
+      code: "function(){console.log('sample code');}",
       highlight: false,
-      lang: 'piglatin'
+      lang: 'piglatin',
     };
     const wrapper = getInstance(props);
     expect(wrapper.hasClass('piglatin')).to.equal(false);
@@ -85,9 +97,9 @@ describe('<CodeSnippet />', () => {
 
   it('renders label', () => {
     const props = {
-      code: 'function(){console.log(\'sample code\');}',
+      code: "function(){console.log('sample code');}",
       showLabel: true,
-      label: 'code'
+      label: 'code',
     };
     getInstance(props);
     expect(document.querySelectorAll('.test-code-label').length).to.equal(1);
@@ -100,21 +112,25 @@ describe('<CodeSnippet />', () => {
 
   it('does not render HTML tags as markup', () => {
     const props = {
-      code: '<strong class="tag--should-not-render">sample text</strong>'
+      code: '<strong class="tag--should-not-render">sample text</strong>',
     };
     getInstance(props);
-    expect(document.querySelectorAll('.tag--should-not-render').length).to.equal(0);
+    expect(
+      document.querySelectorAll('.tag--should-not-render').length
+    ).to.equal(0);
   });
 
   it('calls shouldComponentUpdate', () => {
     const props = {
-      code: 'function(){console.log(\'sample code\');}'
+      code: "function(){console.log('sample code');}",
     };
     const wrapper = getInstance(props);
     sinon.spy(CodeSnippet.prototype, 'shouldComponentUpdate');
     wrapper.setProps({
-      highlight: false
+      highlight: false,
     });
-    expect(CodeSnippet.prototype.shouldComponentUpdate.calledOnce).to.equal(true);
+    expect(CodeSnippet.prototype.shouldComponentUpdate.calledOnce).to.equal(
+      true
+    );
   });
 });

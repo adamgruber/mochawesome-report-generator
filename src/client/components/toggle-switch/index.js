@@ -23,7 +23,11 @@ function ToggleSwitch(props) {
     <div className={cx('component', className, { disabled })}>
       {!!icon && <Icon name={icon} className={cx('icon', iconClassName)} />}
       {!!label && <span className={labelCxName}>{label}</span>}
-      <div className={cx('switch', { off: !active })} onClick={onClickFn}>
+      <div
+        className={cx('switch', { off: !active })}
+        onClick={onClickFn}
+        role="button"
+        tabIndex="0">
         <span className={cx('toggle', 'z-depth-1')} />
       </div>
     </div>

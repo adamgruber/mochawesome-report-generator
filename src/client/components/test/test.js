@@ -9,11 +9,6 @@ import styles from './test.css';
 const cx = classNames.bind(styles);
 
 class Test extends PureComponent {
-  constructor() {
-    super();
-    this.toggleExpandedState = this.toggleExpandedState.bind(this);
-  }
-
   static propTypes = {
     test: PropTypes.object,
     enableCode: PropTypes.bool,
@@ -23,19 +18,25 @@ class Test extends PureComponent {
     enableCode: true,
   };
 
+  constructor() {
+    super();
+    this.toggleExpandedState = this.toggleExpandedState.bind(this);
+  }
+
   state = {
     expanded: false,
   };
 
   toggleExpandedState() {
     const { test, enableCode } = this.props;
+    const { expanded } = this.state;
     if (
       (enableCode && test.pass) ||
       !!test.context ||
       test.fail ||
       test.isHook
     ) {
-      this.setState({ expanded: !this.state.expanded });
+      this.setState({ expanded: !expanded });
     }
   }
 
@@ -105,7 +106,11 @@ class Test extends PureComponent {
 
     return (
       <section id={uuid} className={cxname}>
-        <header className={cx('header')} onClick={this.toggleExpandedState}>
+        <header
+          className={cx('header')}
+          onClick={this.toggleExpandedState}
+          role="button"
+          tabIndex="0">
           {testIcon()}
           <h4 className={cx('title')} title={title}>
             {title}

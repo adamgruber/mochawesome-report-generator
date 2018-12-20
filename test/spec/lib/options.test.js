@@ -5,7 +5,10 @@ import { getMergedOptions } from '../../../src/lib/options';
 
 const expectedOptions = {
   reportDir: 'mochawesome-report',
-  reportTitle: process.cwd().split(path.sep).pop(),
+  reportTitle: process
+    .cwd()
+    .split(path.sep)
+    .pop(),
   reportPageTitle: 'Mochawesome Report',
   assetsDir: 'mochawesome-report/assets',
   inline: false,
@@ -26,13 +29,12 @@ const expectedOptions = {
   showFailed: true,
   showPending: true,
   showSkipped: false,
-  showHooks: 'failed'
+  showHooks: 'failed',
 };
 
 describe('options', () => {
   it('should get base options when no user options exist', () => {
-    expect(getMergedOptions())
-      .to.eql(expectedOptions);
+    expect(getMergedOptions()).to.eql(expectedOptions);
   });
 
   describe('with user-supplied options', () => {
@@ -48,7 +50,7 @@ describe('options', () => {
         dev: 'true',
         showPassed: false,
         showFailed: 'false',
-        showSkipped: true
+        showSkipped: true,
       };
       process.env.MOCHAWESOME_REPORTTITLE = 'userTitle';
       process.env.MOCHAWESOME_AUTOOPEN = 'false';
@@ -60,15 +62,16 @@ describe('options', () => {
     });
 
     it('should get merged options', () => {
-      expect(getMergedOptions(userOptions))
-        .to.eql(Object.assign({}, expectedOptions, userOptions, {
+      expect(getMergedOptions(userOptions)).to.eql(
+        Object.assign({}, expectedOptions, userOptions, {
           inlineAssets: true,
           cdn: true,
           code: false,
           dev: true,
           showFailed: false,
-          reportTitle: 'userTitle'
-        }));
+          reportTitle: 'userTitle',
+        })
+      );
     });
   });
 });

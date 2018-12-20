@@ -25,6 +25,7 @@ const Navbar = ({ onMenuClick, reportTitle, stats }) => {
     <div className={cx('component', 'z-depth-1')} role="navigation">
       <div className={cx('report-info-cnt')}>
         <button
+          type="button"
           onClick={onMenuClick}
           className={cx('menu-button', 'open-menu')}>
           <Icon name="menu" />
