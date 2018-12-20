@@ -1,7 +1,23 @@
 import t from 'tcomb-validation';
 import { expect } from 'chai';
-import { makeTest, makeSuite, makeReport } from './fixtures';
-import * as types from '../src/bin/types';
+import {
+  makeTest,
+  makeSuite,
+  makeReport,
+  parseSuite,
+  PASSED,
+  FAILED,
+  PENDING,
+  BEFORE,
+  BEFORE_EACH,
+  AFTER,
+  AFTER_EACH,
+  FAILED_BEFORE,
+  FAILED_BEFORE_EACH,
+  FAILED_AFTER,
+  FAILED_AFTER_EACH
+} from './index';
+import * as types from '../../src/bin/types';
 
 const passed = makeTest('passed', { hook: 'beforeEach' });
 const failed = makeTest('failed', { hook: 'after' });
@@ -9,80 +25,25 @@ const pending = makeTest('pending');
 const skipped = makeTest('skipped');
 const tests = { passed, failed, pending, skipped };
 
-const suite = makeSuite({
-  isRoot: true,
-  suites: [
-    makeSuite({
-      hooks: [
-        makeTest('passed', { hook: 'before' }),
-        makeTest('passed', { hook: 'beforeEach' }),
-        makeTest('passed', { hook: 'after' }),
-        makeTest('passed', { hook: 'afterEach' }),
-      ],
-      tests: [makeTest('passed'), makeTest('failed')],
-    }),
-  ],
-});
+const suite = [
+  [BEFORE, BEFORE_EACH, AFTER, AFTER_EACH, PASSED, FAILED]
+];
 
-const suiteFailedBefore = makeSuite({
-  isRoot: true,
-  suites: [
-    makeSuite({
-      hooks: [
-        makeTest('failed', { hook: 'before' }),
-        makeTest('passed', { hook: 'beforeEach' }),
-        makeTest('passed', { hook: 'after' }),
-        makeTest('passed', { hook: 'afterEach' }),
-      ],
-      tests: [makeTest('passed'), makeTest('failed')],
-    }),
-  ],
-});
+const suiteFailedBefore = [
+  [FAILED_BEFORE, BEFORE_EACH, AFTER, AFTER_EACH, PASSED, FAILED]
+];
 
-const suiteFailedBeforeEach = makeSuite({
-  isRoot: true,
-  suites: [
-    makeSuite({
-      hooks: [
-        makeTest('passed', { hook: 'before' }),
-        makeTest('failed', { hook: 'beforeEach' }),
-        makeTest('passed', { hook: 'after' }),
-        makeTest('passed', { hook: 'afterEach' }),
-      ],
-      tests: [makeTest('passed'), makeTest('failed')],
-    }),
-  ],
-});
+const suiteFailedBeforeEach = [
+  [BEFORE, FAILED_BEFORE_EACH, AFTER, AFTER_EACH, PASSED, FAILED]
+];
 
-const suiteFailedAfter = makeSuite({
-  isRoot: true,
-  suites: [
-    makeSuite({
-      hooks: [
-        makeTest('passed', { hook: 'before' }),
-        makeTest('passed', { hook: 'beforeEach' }),
-        makeTest('failed', { hook: 'after' }),
-        makeTest('passed', { hook: 'afterEach' }),
-      ],
-      tests: [makeTest('passed'), makeTest('failed')],
-    }),
-  ],
-});
+const suiteFailedAfter = [
+  [BEFORE, BEFORE_EACH, FAILED_AFTER, AFTER_EACH, PASSED, FAILED]
+];
 
-const suiteFailedAfterEach = makeSuite({
-  isRoot: true,
-  suites: [
-    makeSuite({
-      hooks: [
-        makeTest('passed', { hook: 'before' }),
-        makeTest('passed', { hook: 'beforeEach' }),
-        makeTest('passed', { hook: 'after' }),
-        makeTest('failed', { hook: 'afterEach' }),
-      ],
-      tests: [makeTest('passed'), makeTest('failed')],
-    }),
-  ],
-});
+const suiteFailedAfterEach = [
+  [BEFORE, BEFORE_EACH, AFTER, FAILED_AFTER_EACH, PASSED, FAILED]
+];
 
 describe('test fixtures', () => {
   Object.keys(tests).forEach(type => {
@@ -97,7 +58,8 @@ describe('test fixtures', () => {
 
 describe('suite fixtures', () => {
   it('should validate suite', () => {
-    const result = t.validate(suite, types.Suite, { strict: true });
+    const parsed = makeSuite(parseSuite(suite));
+    const result = t.validate(parsed, types.Suite, { strict: true });
     const errMsgs = result.errors.map(err => err.message);
     expect(errMsgs).to.deep.equal([]);
     expect(result.isValid()).to.equal(true);

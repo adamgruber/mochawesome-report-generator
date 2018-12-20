@@ -1,6 +1,18 @@
 /* eslint-disable import/prefer-default-export, no-use-before-define, no-param-reassign */
 const faker = require('faker');
 
+const PASSED = 'passed';
+const FAILED = 'failed';
+const PENDING = 'pending';
+const BEFORE = 'before';
+const BEFORE_EACH = 'beforeEach';
+const AFTER = 'after';
+const AFTER_EACH = 'afterEach';
+const FAILED_BEFORE = 'failedBefore';
+const FAILED_BEFORE_EACH = 'failedBeforeEach';
+const FAILED_AFTER = 'failedAfter';
+const FAILED_AFTER_EACH = 'failedAfterEach';
+
 const baseTest = {
   title: null,
   fullTitle: null,
@@ -17,7 +29,7 @@ const baseTest = {
   uuid: null,
   parentUUID: null,
   isHook: null,
-  skipped: null
+  skipped: null,
 };
 
 const testStates = {
@@ -273,8 +285,8 @@ function countStuff(countSuite, counts) {
       skipped: 0,
       other: 0,
       duration: 0,
-      testsRegistered: 0
-    }
+      testsRegistered: 0,
+    };
   }
 
   // Count failed hooks
@@ -304,14 +316,14 @@ function countStuff(countSuite, counts) {
   counts.testsRegistered += countSuite.tests.length;
 
   // Count array lenghts
-  [
-    'suites', 'passes', 'pending', 'failures', 'skipped'
-  ].forEach(arrayType => {
-      counts[arrayType] += countSuite[arrayType].length;
+  ['suites', 'passes', 'pending', 'failures', 'skipped'].forEach(arrayType => {
+    counts[arrayType] += countSuite[arrayType].length;
   });
 
   if (countSuite.suites.length) {
-    countSuite.suites.forEach(s => { countStuff(s, counts); });
+    countSuite.suites.forEach(s => {
+      countStuff(s, counts);
+    });
   }
 
   return counts;
@@ -329,13 +341,17 @@ function stats(rootSuite, attrs = {}) {
     end: '2018-10-31T15:29:14.967Z',
     duration: counts.duration,
     testsRegistered: counts.testsRegistered,
-    passPercent: Math.round((counts.passes / (counts.testsRegistered - counts.pending)) * 1000) / 10,
-    pendingPercent: Math.round((counts.pending / counts.testsRegistered) * 1000) /10,
+    passPercent:
+      Math.round(
+        (counts.passes / (counts.testsRegistered - counts.pending)) * 1000
+      ) / 10,
+    pendingPercent:
+      Math.round((counts.pending / counts.testsRegistered) * 1000) / 10,
     other: counts.other,
     hasOther: counts.other > 0,
     skipped: counts.skipped,
     hasSkipped: counts.skipped > 0,
-    ...attrs
+    ...attrs,
   };
 }
 
@@ -372,12 +388,7 @@ function isSkippedTest(test) {
  *
  * @return {object} Suite object
  */
-function makeSuite({
-  hooks = [],
-  tests = [],
-  suites = [],
-  isRoot = false,
-}) {
+function makeSuite({ hooks = [], tests = [], suites = [], isRoot = false }) {
   // Generate the suite UUID
   const uuid = faker.random.uuid();
 
@@ -522,19 +533,67 @@ function makeTest(type, options = {}) {
   return testFns[type](attrs);
 }
 
+const testsParseMap = {
+  passed: () => makeTest('passed'),
+  failed: () => makeTest('failed'),
+  pending: () => makeTest('pending'),
+};
+
+const hooksParseMap = {
+  before: () => makeTest('passed', { hook: 'before' }),
+  beforeEach: () => makeTest('passed', { hook: 'beforeEach' }),
+  after: () => makeTest('passed', { hook: 'after' }),
+  afterEach: () => makeTest('passed', { hook: 'afterEach' }),
+  failedBefore: () => makeTest('failed', { hook: 'before' }),
+  failedBeforeEach: () => makeTest('failed', { hook: 'beforeEach' }),
+  failedAfter: () => makeTest('failed', { hook: 'after' }),
+  failedAfterEach: () => makeTest('failed', { hook: 'afterEach' }),
+};
+
+/**
+ * Parse a shorthand suite definition and return an object
+ * to be passed to `makeSuite`
+ *
+ * @param {array} def Shorthand definition
+ * @param {bool} isRoot
+ *
+ * @return {object} `makeSuite` object parameter
+ */
+function parseSuite(def, isRoot = false) {
+  return def.reduce(
+    (acc, suiteDef) => {
+      if (Array.isArray(suiteDef)) {
+        acc.suites.push(makeSuite(parseSuite(suiteDef)));
+      } else if (typeof suiteDef === 'object') {
+        acc[suiteDef.isHook ? 'hook' : 'tests'].push(suiteDef);
+      } else if (typeof suiteDef === 'string') {
+        if (hooksParseMap[suiteDef]) {
+          acc.hooks.push(hooksParseMap[suiteDef]());
+        } else if (testsParseMap[suiteDef]) {
+          acc.tests.push(testsParseMap[suiteDef]());
+        }
+      }
+
+      return acc;
+    },
+    { hooks: [], tests: [], suites: [], isRoot }
+  );
+}
+
 /**
  * Build out a fake report with given suites and options
  *
- * @param {object} rootSuite Root suite
+ * @param {array|object} suites Suites definition
  * @param {object} mochawesomeOpts Mochawesome options
  * @param {object} margeOpts Marge options
  *
  * @return {object} Report object
  */
-function makeReport(rootSuite, mochawesomeOpts = {}, margeOpts = {}) {
-  if (!rootSuite || typeof rootSuite !== 'object') {
-    throw new Error(`Cannot make report from root suite: ${rootSuite}`);
-  }
+function makeReport(suites, mochawesomeOpts = {}, margeOpts = {}) {
+  const rootSuite = Array.isArray(suites)
+    ? makeSuite(parseSuite(suites, true))
+    : suites;
+
   return {
     stats: stats(rootSuite),
     results: [rootSuite],
@@ -558,4 +617,16 @@ module.exports = {
   makeTest,
   makeSuite,
   makeReport,
+  parseSuite,
+  PASSED,
+  FAILED,
+  PENDING,
+  BEFORE,
+  BEFORE_EACH,
+  AFTER,
+  AFTER_EACH,
+  FAILED_BEFORE,
+  FAILED_BEFORE_EACH,
+  FAILED_AFTER,
+  FAILED_AFTER_EACH,
 };
