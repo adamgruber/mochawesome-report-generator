@@ -11,7 +11,7 @@ const Uuid = t.refinement(t.String, isUUID, 'UUID');
 const Test = t.struct({
   title: t.String,
   fullTitle: t.String,
-  timedOut: t.Boolean,
+  timedOut: t.maybe(t.Boolean),
   duration: Duration,
   state: t.maybe(TestState),
   speed: t.maybe(TestSpeed),
