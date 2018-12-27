@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+
+## [3.1.5] / 2018-12-27
 ### Changed
 - Relaxed validation for `timedOut` property in Tests to provide better compatibility with Cypress [#88](https://github.com/adamgruber/mochawesome-report-generator/issues/88)
 
@@ -157,7 +159,8 @@ You can still use the `--reportFilename` flag to set the filename of the generat
 ## 1.0.0 / 2016-12-18
 - Initial release
 
-[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.4...HEAD
+[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.5...HEAD
+[3.1.5]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.4...3.1.5
 [3.1.4]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.3...3.1.4
 [3.1.3]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.2...3.1.3
 [3.1.2]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.1...3.1.2
