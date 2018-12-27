@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+### Changed
+- Relaxed validation for `timedOut` property in Tests to provide better compatibility with Cypress [#88](https://github.com/adamgruber/mochawesome-report-generator/issues/88)
 
 ## [3.1.4] / 2018-10-05
 ### Changed
