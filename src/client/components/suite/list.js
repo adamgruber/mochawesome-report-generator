@@ -7,7 +7,7 @@ import Suite from './suite';
 const cx = classNames.bind(styles);
 
 const SuiteList = ({ suites, enableChart, enableCode, main }) => (
-  <div className={cx({ 'list-main': main })}>
+  <ul className={cx('list', { 'list-main': main })}>
     {!!suites &&
       suites.map(suite => (
         <Suite
@@ -17,7 +17,7 @@ const SuiteList = ({ suites, enableChart, enableCode, main }) => (
           enableCode={enableCode}
         />
       ))}
-  </div>
+  </ul>
 );
 
 SuiteList.propTypes = {
