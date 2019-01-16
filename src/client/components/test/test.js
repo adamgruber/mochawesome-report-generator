@@ -93,6 +93,8 @@ class Test extends PureComponent {
       );
     };
 
+    const isInactive = pending || skipped || (pass && !enableCode && !context);
+
     const cxname = cx('component', {
       expanded: this.state.expanded,
       passed: pass,
@@ -100,43 +102,48 @@ class Test extends PureComponent {
       pending,
       skipped,
       hook: isHook,
-      inactive: pending || skipped || (pass && !enableCode && !context),
+      inactive: isInactive,
       'with-context': !!context,
     });
 
+    const { expanded } = this.state;
+
     return (
       <section id={uuid} className={cxname}>
-        <header
-          className={cx('header')}
-          onClick={this.toggleExpandedState}
-          role="button"
-          tabIndex="0">
-          {testIcon()}
-          <h4 className={cx('title')} title={title}>
-            {title}
-          </h4>
-          <div className={cx('info')}>
-            {!!context && (
-              <Icon
-                name="chat_bubble_outline"
-                className={cx('context-icon')}
-                size={18}
-              />
-            )}
-            {!isHook && (
-              <Duration className={cx('duration')} timer={duration} />
-            )}
-            {!isHook && (
-              <Icon
-                name="timer"
-                className={cx('duration-icon', speed)}
-                size={18}
-              />
-            )}
-          </div>
+        <header>
+          <button
+            aria-expanded={expanded}
+            type="button"
+            onClick={this.toggleExpandedState}
+            disabled={isInactive}
+            className={cx('header-btn')}>
+            {testIcon()}
+            <h4 className={cx('title')} title={title}>
+              {title}
+            </h4>
+            <div className={cx('info')}>
+              {!!context && (
+                <Icon
+                  name="chat_bubble_outline"
+                  className={cx('context-icon')}
+                  size={18}
+                />
+              )}
+              {!isHook && (
+                <Duration className={cx('duration')} timer={duration} />
+              )}
+              {!isHook && (
+                <Icon
+                  name="timer"
+                  className={cx('duration-icon', speed)}
+                  size={18}
+                />
+              )}
+            </div>
+          </button>
         </header>
         {!!err.message && <p className={cx('error-message')}>{err.message}</p>}
-        {this.state.expanded && (
+        {expanded && (
           <div className={cx('body')}>
             {
               <CodeSnippet

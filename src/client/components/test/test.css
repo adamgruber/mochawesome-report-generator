@@ -21,16 +21,22 @@
   transition: border-color 0.2s ease-out;
 }
 
-.header {
-  @extend %clearfix;
-
+.header-btn {
   display: flex;
   position: relative;
-  padding: 10px 0;
-  margin: 0 16px 0 13px;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px 16px 10px 13px;
+  width: 100%;
 
-  @nest .component:not(.inactive) & {
-    cursor: pointer;
+  &[disabled] {
+    cursor: default;
+  }
+
+  &:focus {
+    box-shadow: 0 0 2px 0 var(--ltblue500);
+    outline: none;
   }
 }
 
@@ -43,6 +49,7 @@
   line-height: 24px;
   margin: 0;
   padding-right: 12px;
+  text-align: left;
 
   @nest .hook & {
     color: var(--black54);
