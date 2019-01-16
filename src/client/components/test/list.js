@@ -13,7 +13,7 @@ const TestList = ({
   afterHooks,
   enableCode,
 }) => (
-  <div className={cx(className)}>
+  <ul className={cx('list', className)}>
     {!!beforeHooks &&
       beforeHooks.map(test => (
         <Test key={test.uuid} test={test} enableCode={enableCode} />
@@ -26,7 +26,7 @@ const TestList = ({
       afterHooks.map(test => (
         <Test key={test.uuid} test={test} enableCode={enableCode} />
       ))}
-  </div>
+  </ul>
 );
 
 TestList.propTypes = {

@@ -109,7 +109,7 @@ class Test extends PureComponent {
     const { expanded } = this.state;
 
     return (
-      <section id={uuid} className={cxname}>
+      <li id={uuid} className={cxname}>
         <header>
           <button
             aria-expanded={expanded}
@@ -171,7 +171,7 @@ class Test extends PureComponent {
             {!!context && <TestContext context={context} />}
           </div>
         )}
-      </section>
+      </li>
     );
   }
 }
