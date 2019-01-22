@@ -31,6 +31,7 @@
   border: none;
   border-left: 3px solid transparent;
   cursor: pointer;
+  flex-wrap: wrap;
   padding: 10px 16px 10px 13px;
   transition: border-color 0.2s ease-out;
   width: 100%;
@@ -176,9 +177,11 @@
 }
 
 .error-message {
-  font-size: 12px;
-  margin: 0 16px 10px 13px;
   color: var(--red500);
+  font-size: 12px;
+  margin: 10px 0 0 0;
+  text-align: left;
+  width: 100%;
 }
 
 .code-snippet {

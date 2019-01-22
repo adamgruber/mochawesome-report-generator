@@ -140,9 +140,9 @@ class Test extends PureComponent {
                 />
               )}
             </div>
+            {!!err.message && <p className={cx('error-message')}>{err.message}</p>}
           </button>
         </header>
-        {!!err.message && <p className={cx('error-message')}>{err.message}</p>}
         {expanded && (
           <div className={cx('body-wrap')}>
             <div className={cx('body')}>
