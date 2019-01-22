@@ -144,31 +144,33 @@ class Test extends PureComponent {
         </header>
         {!!err.message && <p className={cx('error-message')}>{err.message}</p>}
         {expanded && (
-          <div className={cx('body')}>
-            {
-              <CodeSnippet
-                className={cx('code-snippet')}
-                code={err.estack}
-                highlight={false}
-                label="Stack Trace"
-              />
-            }
-            {
-              <CodeSnippet
-                className={cx('code-snippet')}
-                code={err.diff}
-                lang="diff"
-                label="Diff"
-              />
-            }
-            {enableCode && (
-              <CodeSnippet
-                className={cx('code-snippet')}
-                code={code}
-                label="Test Code"
-              />
-            )}
-            {!!context && <TestContext context={context} />}
+          <div className={cx('body-wrap')}>
+            <div className={cx('body')}>
+              {
+                <CodeSnippet
+                  className={cx('code-snippet')}
+                  code={err.estack}
+                  highlight={false}
+                  label="Stack Trace"
+                />
+              }
+              {
+                <CodeSnippet
+                  className={cx('code-snippet')}
+                  code={err.diff}
+                  lang="diff"
+                  label="Diff"
+                />
+              }
+              {enableCode && (
+                <CodeSnippet
+                  className={cx('code-snippet')}
+                  code={code}
+                  label="Test Code"
+                />
+              )}
+              {!!context && <TestContext context={context} />}
+            </div>
           </div>
         )}
       </li>

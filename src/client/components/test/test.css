@@ -2,23 +2,20 @@
 
 .component {
   border-bottom: 1px solid var(--grey300);
-  border-left: 3px solid transparent;
 
-  &:hover:not(.inactive) {
-    border-left-color: var(--grey500);
+  &.expanded.passed {
+    & .body-wrap,
+    & .header-btn {
+      border-left-color: var(--green500);
+    }
   }
 
-  &.expanded.passed,
-  &.expanded.passed:hover {
-    border-left-color: var(--green500);
+  &.expanded.failed {
+    & .body-wrap,
+    & .header-btn {
+      border-left-color: var(--red500);
+    }
   }
-
-  &.expanded.failed,
-  &.expanded.failed:hover {
-    border-left-color: var(--red500);
-  }
-
-  transition: border-color 0.2s ease-out;
 }
 
 .list {
@@ -32,8 +29,10 @@
   position: relative;
   background: #fff;
   border: none;
+  border-left: 3px solid transparent;
   cursor: pointer;
   padding: 10px 16px 10px 13px;
+  transition: border-color 0.2s ease-out;
   width: 100%;
 
   &[disabled] {
@@ -43,6 +42,11 @@
   &:focus {
     box-shadow: 0 0 2px 0 var(--ltblue500);
     outline: none;
+  }
+
+  &:focus:not([disabled]),
+  &:hover:not([disabled]) {
+    border-left-color: var(--grey500);
   }
 }
 
@@ -149,6 +153,16 @@
   top: 1px;
 }
 
+.body-wrap {
+  border-left: 3px solid transparent;
+  transition: border-color 0.2s ease-out;
+
+  @nest .expanded & {
+    display: block;
+    padding-bottom: 10px;
+  }
+}
+
 .body {
   display: none;
   background-color: var(--grey50);
@@ -157,7 +171,7 @@
 
   @nest .expanded & {
     display: block;
-    margin: 0 16px 10px 13px;
+    margin: 0 16px 0 13px;
   }
 }
 
