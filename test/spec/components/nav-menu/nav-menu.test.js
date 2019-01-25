@@ -88,8 +88,8 @@ describe('<NavMenu />', () => {
 
     it('clicks toggles', () => {
       const { toggles } = getInstance(props);
-      const switches = toggles.find('.toggle-switch-switch');
-      switches.forEach(node => node.simulate('click'));
+      const switches = toggles.find('.toggle-switch-toggle-input');
+      switches.forEach(node => node.simulate('change'));
       expect(store.toggleFilter.callCount).to.equal(4);
     });
 

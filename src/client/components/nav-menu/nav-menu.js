@@ -90,6 +90,7 @@ class NavMenu extends Component {
               labelClassName={cx('control-label')}
               icon="check"
               iconClassName={cx('toggle-icon-passed')}
+              id="passed-toggle"
               active={showPassed}
               disabled={stats.passes === 0}
               toggleFn={() => toggleFilter('showPassed')}
@@ -101,6 +102,7 @@ class NavMenu extends Component {
               labelClassName={cx('control-label')}
               icon="close"
               iconClassName={cx('toggle-icon-failed')}
+              id="failed-toggle"
               active={showFailed}
               disabled={stats.failures === 0}
               toggleFn={() => toggleFilter('showFailed')}
@@ -112,6 +114,7 @@ class NavMenu extends Component {
               labelClassName={cx('control-label')}
               icon="pause"
               iconClassName={cx('toggle-icon-pending')}
+              id="pending-toggle"
               active={showPending}
               disabled={stats.pending === 0}
               toggleFn={() => toggleFilter('showPending')}
@@ -123,6 +126,7 @@ class NavMenu extends Component {
               labelClassName={cx('control-label')}
               icon="stop"
               iconClassName={cx('toggle-icon-skipped')}
+              id="skipped-toggle"
               active={showSkipped}
               disabled={stats.skipped === 0}
               toggleFn={() => toggleFilter('showSkipped')}

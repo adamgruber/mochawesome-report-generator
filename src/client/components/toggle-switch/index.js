@@ -15,21 +15,25 @@ function ToggleSwitch(props) {
     label,
     icon,
     iconClassName,
+    id,
     toggleFn,
   } = props;
   const labelCxName = cx('label', { 'with-icon': !!icon }, labelClassName);
-  const onClickFn = e => !disabled && toggleFn(e);
+  const onChangeFn = e => !disabled && toggleFn(e);
   return (
     <div className={cx('component', className, { disabled })}>
       {!!icon && <Icon name={icon} className={cx('icon', iconClassName)} />}
-      {!!label && <span className={labelCxName}>{label}</span>}
-      <div
-        className={cx('switch', { off: !active })}
-        onClick={onClickFn}
-        role="button"
-        tabIndex="0">
-        <span className={cx('toggle', 'z-depth-1')} />
-      </div>
+      <label className={labelCxName} htmlFor={id}>{label}
+        <input
+          aria-label={`Toggle status: ${active ? 'on' : 'off'}`}
+          type="checkbox"
+          id={id}
+          className={cx('toggle-input')}
+          checked={active}
+          disabled={disabled}
+          onChange={onChangeFn} />
+        <span className={cx('toggle')} />
+      </label>
     </div>
   );
 }
@@ -42,6 +46,7 @@ ToggleSwitch.propTypes = {
   label: PropTypes.string,
   icon: PropTypes.string,
   iconClassName: PropTypes.string,
+  id: PropTypes.string.isRequired,
   toggleFn: PropTypes.func.isRequired,
 };
 
