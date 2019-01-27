@@ -217,8 +217,4 @@
     cursor: pointer;
     opacity: 0;
   }
-
-  .close-btn {
-    display: none;
-  }
 }
