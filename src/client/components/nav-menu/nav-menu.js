@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {reaction} from 'mobx';
 import { inject, observer } from 'mobx-react';
 import { format } from 'date-fns';
 import find from 'lodash/find';
@@ -30,6 +31,43 @@ class NavMenu extends Component {
       toggleFilter: PropTypes.func,
     }),
   };
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.onKeydown);
+    if (this.overlay) {
+      this.overlay.addEventListener('click', this.closeMenu);
+    }
+    this.disposer = reaction(
+      () => this.props.reportStore.sideNavOpen,
+      this.onOpenChange,
+      { delay: 100 }
+    )
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.onKeydown);
+    this.overlay.removeEventListener('click', this.closeMenu);
+    this.disposer();
+  }
+
+  closeMenu = () => {
+    const { closeSideNav, sideNavOpen } = this.props.reportStore;
+    if (sideNavOpen) {
+      closeSideNav();
+    }
+  }
+
+  onKeydown = (e) => {
+    if (e.key=== 'Escape'){
+      this.closeMenu();
+    }
+  }
+
+  onOpenChange = (isOpen) => {
+    if (isOpen && this.closeBtn) {
+      this.closeBtn.focus();
+    }
+  }
 
   render() {
     const {
@@ -65,16 +103,15 @@ class NavMenu extends Component {
     return (
       <div className={cx('wrap', { open: sideNavOpen })}>
         <div
-          onClick={closeSideNav}
           className={cx('overlay')}
-          role="button"
-          tabIndex="0"
+          ref={ node => { this.overlay = node; } }
         />
         <nav className={cx('menu')}>
           <button
             type="button"
             onClick={closeSideNav}
-            className={cx('close-btn')}>
+            className={cx('close-btn')}
+            ref={ node => { this.closeBtn = node; } }>
             <Icon name="close" />
           </button>
           <div className={cx('section')}>
@@ -90,6 +127,7 @@ class NavMenu extends Component {
               labelClassName={cx('control-label')}
               icon="check"
               iconClassName={cx('toggle-icon-passed')}
+              id="passed-toggle"
               active={showPassed}
               disabled={stats.passes === 0}
               toggleFn={() => toggleFilter('showPassed')}
@@ -101,6 +139,7 @@ class NavMenu extends Component {
               labelClassName={cx('control-label')}
               icon="close"
               iconClassName={cx('toggle-icon-failed')}
+              id="failed-toggle"
               active={showFailed}
               disabled={stats.failures === 0}
               toggleFn={() => toggleFilter('showFailed')}
@@ -112,6 +151,7 @@ class NavMenu extends Component {
               labelClassName={cx('control-label')}
               icon="pause"
               iconClassName={cx('toggle-icon-pending')}
+              id="pending-toggle"
               active={showPending}
               disabled={stats.pending === 0}
               toggleFn={() => toggleFilter('showPending')}
@@ -123,6 +163,7 @@ class NavMenu extends Component {
               labelClassName={cx('control-label')}
               icon="stop"
               iconClassName={cx('toggle-icon-skipped')}
+              id="skipped-toggle"
               active={showSkipped}
               disabled={stats.skipped === 0}
               toggleFn={() => toggleFilter('showSkipped')}

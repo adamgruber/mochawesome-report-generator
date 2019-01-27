@@ -197,7 +197,7 @@ describe('<Test />', () => {
     const wrapper = shallow(<Test {...instanceProps} />);
     return {
       wrapper,
-      header: wrapper.find('.test-header'),
+      headerBtn: wrapper.find('.test-header-btn'),
       snippets: wrapper.find(CodeSnippet),
       errorMsg: wrapper.find('.test-error-message'),
       ctx: wrapper.find(TestContext),
@@ -215,13 +215,13 @@ describe('<Test />', () => {
   });
 
   it('renders passing test', () => {
-    const { header, snippets, errorMsg, ctx } = getInstance({
+    const { headerBtn, snippets, errorMsg, ctx } = getInstance({
       test: passingTest,
     });
     expect(snippets).to.have.lengthOf(0);
     expect(errorMsg).to.have.lengthOf(0);
     expect(ctx).to.have.lengthOf(0);
-    header.simulate('click');
+    headerBtn.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.calledOnce).to.equal(true);
   });
@@ -251,92 +251,98 @@ describe('<Test />', () => {
   });
 
   it('renders passing test, enableCode: false', () => {
-    const { header, snippets, errorMsg } = getInstance({
+    const { headerBtn, snippets, errorMsg } = getInstance({
       test: passingTest,
       enableCode: false,
     });
     expect(snippets).to.have.lengthOf(0);
     expect(errorMsg).to.have.lengthOf(0);
-    header.simulate('click');
+    headerBtn.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.calledOnce).to.equal(false);
   });
 
   it('renders passing test with context, enableCode: false', () => {
-    const { header, snippets, errorMsg } = getInstance({
+    const { headerBtn, snippets, errorMsg } = getInstance({
       test: passingTestWithContext,
       enableCode: false,
     });
     expect(snippets).to.have.lengthOf(0);
     expect(errorMsg).to.have.lengthOf(0);
-    header.simulate('click');
+    headerBtn.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.calledOnce).to.equal(true);
   });
 
   it('renders failing test', () => {
-    const { header, snippets, errorMsg } = getInstance({ test: failingTest });
+    const { headerBtn, snippets, errorMsg } = getInstance({
+      test: failingTest,
+    });
     expect(snippets).to.have.lengthOf(0);
     expect(errorMsg).to.have.lengthOf(1);
-    header.simulate('click');
+    headerBtn.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.calledOnce).to.equal(true);
   });
 
   it('renders pending test', () => {
-    const { header, snippets, errorMsg } = getInstance({ test: pendingTest });
+    const { headerBtn, snippets, errorMsg } = getInstance({
+      test: pendingTest,
+    });
     expect(snippets).to.have.lengthOf(0);
     expect(errorMsg).to.have.lengthOf(0);
-    header.simulate('click');
+    headerBtn.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.called).to.equal(false);
   });
 
   it('renders skipped test', () => {
-    const { header, snippets, errorMsg } = getInstance({ test: skippedTest });
+    const { headerBtn, snippets, errorMsg } = getInstance({
+      test: skippedTest,
+    });
     expect(snippets).to.have.lengthOf(0);
     expect(errorMsg).to.have.lengthOf(0);
-    header.simulate('click');
+    headerBtn.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.called).to.equal(false);
   });
 
   it('renders a before hook', () => {
-    const { header, snippets, errorMsg } = getInstance({ test: beforeHook });
+    const { headerBtn, snippets, errorMsg } = getInstance({ test: beforeHook });
     expect(snippets).to.have.lengthOf(0);
     expect(errorMsg).to.have.lengthOf(0);
-    header.simulate('click');
+    headerBtn.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.calledOnce).to.equal(true);
   });
 
   it('renders a failed before hook', () => {
-    const { header, snippets, errorMsg } = getInstance({
+    const { headerBtn, snippets, errorMsg } = getInstance({
       test: beforeHookFailed,
     });
     expect(snippets).to.have.lengthOf(0);
     expect(errorMsg).to.have.lengthOf(1);
-    header.simulate('click');
+    headerBtn.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.calledOnce).to.equal(true);
   });
 
   it('renders an after hook', () => {
-    const { header, snippets, errorMsg } = getInstance({ test: afterHook });
+    const { headerBtn, snippets, errorMsg } = getInstance({ test: afterHook });
     expect(snippets).to.have.lengthOf(0);
     expect(errorMsg).to.have.lengthOf(0);
-    header.simulate('click');
+    headerBtn.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.calledOnce).to.equal(true);
   });
 
   it('renders a failed after hook', () => {
-    const { header, snippets, errorMsg } = getInstance({
+    const { headerBtn, snippets, errorMsg } = getInstance({
       test: afterHookFailed,
     });
     expect(snippets).to.have.lengthOf(0);
     expect(errorMsg).to.have.lengthOf(1);
-    header.simulate('click');
+    headerBtn.simulate('click');
     expect(toggleSpy.calledOnce).to.equal(true);
     expect(setStateSpy.calledOnce).to.equal(true);
   });

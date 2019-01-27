@@ -163,6 +163,7 @@
 
   &:active,
   &:focus {
+    box-shadow: 0 0 2px 0 var(--ltblue500);
     outline: none;
     text-decoration: none;
   }
@@ -215,9 +216,5 @@
     left: 0;
     cursor: pointer;
     opacity: 0;
-  }
-
-  .close-btn {
-    display: none;
   }
 }

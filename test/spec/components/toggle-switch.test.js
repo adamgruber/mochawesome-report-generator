@@ -5,7 +5,6 @@ import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
 
 import ToggleSwitch from 'components/toggle-switch';
-import Icon from 'components/material-icon';
 
 chai.use(chaiEnzyme());
 
@@ -17,39 +16,33 @@ describe('<ToggleSwitch />', () => {
     const wrapper = shallow(<ToggleSwitch {...instanceProps} />);
     return {
       wrapper,
-      icon: wrapper.find(Icon),
-      label: wrapper.find('.label'),
-      toggle: wrapper.find('.toggle-switch-switch'),
+      toggle: wrapper.find('.toggle-switch-toggle-input'),
     };
   };
 
   beforeEach(() => {
     toggleFn = sinon.spy();
-    props = { toggleFn, disabled: false };
+    props = { toggleFn, disabled: false, label: 'MyToggle', active: false, icon: 'add' };
   });
 
-  it('renders basic switch (off, no label)', () => {
-    const { icon, label, toggle } = getInstance(props);
+  it('renders basic switch (disabled)', () => {
+    const { toggle } = getInstance(Object.assign({}, props, { disabled: true }));
+    expect(toggle).to.be.disabled();
+  });
 
-    expect(icon).to.have.lengthOf(0);
-    expect(label).to.have.lengthOf(0);
-    expect(toggle).to.have.className('toggle-switch-off');
-    toggle.simulate('click');
+  it('renders basic switch (off)', () => {
+    const { toggle } = getInstance(props);
+    expect(toggle).to.not.be.disabled();
+    toggle.simulate('change');
     expect(toggleFn.calledOnce).to.equal(true);
   });
 
-  it('renders advanced switch (on, label, icon)', () => {
-    const testProps = Object.assign({}, props, {
-      active: true,
-      label: 'test',
-      icon: 'add',
-    });
-    const { icon, label, toggle } = getInstance(testProps);
-
-    expect(icon).to.have.lengthOf(1);
-    expect(label).to.have.lengthOf(1);
+  it('renders advanced switch (on)', () => {
+    const testProps = Object.assign({}, props, {active: true});
+    const { toggle } = getInstance(testProps);
+    expect(toggle).to.not.be.disabled();
     expect(toggle).to.not.have.className('toggle-switch-on');
-    toggle.simulate('click');
+    toggle.simulate('change');
     expect(toggleFn.calledOnce).to.equal(true);
   });
 });

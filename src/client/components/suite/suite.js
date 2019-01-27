@@ -100,20 +100,22 @@ class Suite extends Component {
     const hideHeader = root && !hasTests && (hasBeforeHooks || hasAfterHooks);
 
     return (
-      <section className={cxname} id={uuid}>
-        {!hideHeader && (
-          <header className={cx('header')}>
-            {title !== '' && <h3 className={cx('title')}>{title}</h3>}
-            {file !== '' && <h6 className={cx('filename')}>{file}</h6>}
-            {hasTests && enableChart && <SuiteChart {...chartProps} />}
-            {hasTests && <SuiteSummary {...summaryProps} />}
-          </header>
-        )}
-        <div className={cx('body')}>
-          {testListComp()}
-          {subSuites()}
-        </div>
-      </section>
+      <li id={uuid}>
+        <section className={cxname}>
+          {!hideHeader && (
+            <header className={cx('header')}>
+              {title !== '' && <h3 className={cx('title')}>{title}</h3>}
+              {file !== '' && <h6 className={cx('filename')}>{file}</h6>}
+              {hasTests && enableChart && <SuiteChart {...chartProps} />}
+              {hasTests && <SuiteSummary {...summaryProps} />}
+            </header>
+          )}
+          <div className={cx('body')}>
+            {testListComp()}
+            {subSuites()}
+          </div>
+        </section>
+      </li>
     );
   }
 }

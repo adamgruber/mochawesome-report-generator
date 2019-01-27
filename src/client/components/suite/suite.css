@@ -9,7 +9,7 @@
 }
 
 /* stylelint-disable-next-line selector-max-compound-selectors */
-.component > .body > div > .component {
+.component > .body > ul > li > .component {
   border: 1px solid var(--grey300);
   border-right: none;
   border-bottom: none;
@@ -21,15 +21,21 @@
   }
 }
 
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 .root-suite,
-.list-main > .component {
+.list-main > li > .component {
   @extend %z-depth-1;
 
   margin: 0 0 24px 0;
 }
 
 /* stylelint-disable-next-line selector-max-compound-selectors */
-.list-main > .no-tests > .body > div > .component:not(.no-suites) {
+.list-main > .no-tests > .body > ul > li > .component:not(.no-suites) {
   border-bottom: 1px solid var(--grey300);
 }
 

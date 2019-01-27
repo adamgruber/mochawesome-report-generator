@@ -2,35 +2,52 @@
 
 .component {
   border-bottom: 1px solid var(--grey300);
-  border-left: 3px solid transparent;
 
-  &:hover:not(.inactive) {
-    border-left-color: var(--grey500);
+  &.expanded.passed {
+    & .body-wrap,
+    & .header-btn {
+      border-left-color: var(--green500);
+    }
   }
 
-  &.expanded.passed,
-  &.expanded.passed:hover {
-    border-left-color: var(--green500);
+  &.expanded.failed {
+    & .body-wrap,
+    & .header-btn {
+      border-left-color: var(--red500);
+    }
   }
-
-  &.expanded.failed,
-  &.expanded.failed:hover {
-    border-left-color: var(--red500);
-  }
-
-  transition: border-color 0.2s ease-out;
 }
 
-.header {
-  @extend %clearfix;
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
+.header-btn {
   display: flex;
   position: relative;
-  padding: 10px 0;
-  margin: 0 16px 0 13px;
+  background: #fff;
+  border: none;
+  border-left: 3px solid transparent;
+  cursor: pointer;
+  flex-wrap: wrap;
+  padding: 10px 16px 10px 13px;
+  transition: border-color 0.2s ease-out;
+  width: 100%;
 
-  @nest .component:not(.inactive) & {
-    cursor: pointer;
+  &[disabled] {
+    cursor: default;
+  }
+
+  &:focus {
+    box-shadow: 0 0 2px 0 var(--ltblue500);
+    outline: none;
+  }
+
+  &:focus:not([disabled]),
+  &:hover:not([disabled]) {
+    border-left-color: var(--grey500);
   }
 }
 
@@ -43,6 +60,7 @@
   line-height: 24px;
   margin: 0;
   padding-right: 12px;
+  text-align: left;
 
   @nest .hook & {
     color: var(--black54);
@@ -136,6 +154,16 @@
   top: 1px;
 }
 
+.body-wrap {
+  border-left: 3px solid transparent;
+  transition: border-color 0.2s ease-out;
+
+  @nest .expanded & {
+    display: block;
+    padding-bottom: 10px;
+  }
+}
+
 .body {
   display: none;
   background-color: var(--grey50);
@@ -144,14 +172,16 @@
 
   @nest .expanded & {
     display: block;
-    margin: 0 16px 10px 13px;
+    margin: 0 16px 0 13px;
   }
 }
 
 .error-message {
-  font-size: 12px;
-  margin: 0 16px 10px 13px;
   color: var(--red500);
+  font-size: 12px;
+  margin: 10px 0 0 0;
+  text-align: left;
+  width: 100%;
 }
 
 .code-snippet {
