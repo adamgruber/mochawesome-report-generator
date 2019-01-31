@@ -202,6 +202,7 @@
 /* Tablet 768 and up */
 @media (--screen-sm) {
   .menu {
+    resize: horizontal;
     width: 320px;
     left: auto;
   }
