@@ -82,12 +82,10 @@ module.exports = {
       eslint({ enforce: 'pre' }),
       babel({}, pkg.version),
       globalCss({
-        minimize: true,
         importLoaders: 1,
         sourceMap: isDev,
       }),
       localCss({
-        minimize: true,
         modules: true,
         importLoaders: 1,
         localIdentName: isDev
