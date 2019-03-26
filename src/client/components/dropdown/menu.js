@@ -44,9 +44,9 @@ class DropdownMenu extends Component {
       itemRenderFn ? (
         itemRenderFn(listItem, itemText, itemClickFn)
       ) : (
-        <a className={linkClass} href="" onClick={clickFn}>
+        <button type="button" className={linkClass} onClick={clickFn}>
           {itemText}
-        </a>
+        </button>
       );
 
     return (

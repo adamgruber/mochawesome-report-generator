@@ -95,10 +95,10 @@ describe('<NavMenu />', () => {
 
     it('sets hooks dropdown', () => {
       const { hooksDropdown } = getInstance(props);
-      hooksDropdown.find('button').simulate('click');
+      hooksDropdown.find('button').first().simulate('click');
       hooksDropdown
-        .find('a')
-        .first()
+        .find('button')
+        .at(2)
         .simulate('click');
       expect(store.setShowHooks.calledOnce).to.equal(true);
     });
