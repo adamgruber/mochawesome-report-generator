@@ -74,7 +74,7 @@
     "lines": 95
   },
   "dependencies": {
-    "chalk": "^2.3.0",
+    "chalk": "^2.4.2",
     "dateformat": "^3.0.2",
     "fs-extra": "^7.0.0",
     "fsu": "^1.0.2",
@@ -85,8 +85,8 @@
     "react-dom": "^16.8.5",
     "tcomb": "^3.2.17",
     "tcomb-validation": "^3.3.0",
-    "validator": "^10.7.1",
-    "yargs": "^12.0.2"
+    "validator": "^10.11.0",
+    "yargs": "^13.2.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
