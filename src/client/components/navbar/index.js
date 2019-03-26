@@ -17,7 +17,7 @@ const Navbar = ({ onMenuClick, reportTitle, stats }) => {
     <span
       className={cx('pct-bar-segment', cname)}
       style={{ width: `${prop}%` }}
-      title={`${prop.toFixed(1)}% ${title}`}
+      title={`${prop.toFixed(2)}% ${title}`}
     />
   );
 
