@@ -124,7 +124,8 @@ class NavMenuItem extends Component {
         <a
           href={`#${uuid}`}
           className={anchorCxName}
-          onClick={e => scrollToSuite(e, uuid)}>
+          onClick={e => scrollToSuite(e, uuid)}
+          tabIndex={shouldBeDisabled() ? -1 : 0}>
           {suiteIcon()}
           <span>{title === '' ? uuid : title}</span>
         </a>

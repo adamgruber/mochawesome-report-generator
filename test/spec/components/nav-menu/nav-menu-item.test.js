@@ -63,6 +63,7 @@ describe('<NavMenuItem />', () => {
     expect(links).to.have.lengthOf(6);
     expect(disabledLinks).to.have.lengthOf(6);
     expect(links.first().text()).to.equal(testSuite.title);
+    expect(disabledLinks.first().prop('tabIndex')).to.equal(-1);
   });
 
   it('should render uuid as title when suite title is empty', () => {
