@@ -26,8 +26,9 @@
 .menu-button {
   @extend %button-base;
 
-  padding: 16px 12px;
-  height: 24px;
+  height: 40px;
+  margin: 8px 8px 0 8px;
+  padding: 8px;
   color: var(--light-icon-inactive);
 
   &:hover {
@@ -84,9 +85,5 @@
 
   .report-info-cnt {
     flex-grow: 1;
-  }
-
-  .menu-button {
-    padding: 16px 24px;
   }
 }
