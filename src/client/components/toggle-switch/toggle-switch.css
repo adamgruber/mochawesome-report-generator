@@ -37,7 +37,7 @@
     cursor: pointer;
     height: 14px;
     margin-left: auto;
-    transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1) 0s;
     width: 34px;
 
   /* knob styles */
@@ -52,7 +52,7 @@
     left: 0;
     top: -3px;
     width: 20px;
-    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1) 0s;
   }
 }
 
