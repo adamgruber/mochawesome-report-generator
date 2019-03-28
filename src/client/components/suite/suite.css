@@ -53,6 +53,7 @@
 
 .title {
   font-family: var(--font-family--light);
+  font-size: 21px;
   margin: 0;
 }
 

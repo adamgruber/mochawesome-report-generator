@@ -7,6 +7,7 @@
 - Enhanced keyboard usage (tabbing / toggling)
 - Updated all dependencies
 - Implemented test fixtures for generating sample data
+- Small design tweaks
 
 ## [3.1.5] / 2018-12-27
 ### Changed

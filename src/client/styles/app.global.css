@@ -1,7 +1,7 @@
 @import 'normalize.css';
 @import 'vars';
 @import 'type';
-@import '../../../node_modules/highlight.js/styles/solarized-light';
+@import '../../../node_modules/highlight.js/styles/atom-one-light';
 @import '../../../node_modules/chartist/dist/chartist';
 
 @font-face {
