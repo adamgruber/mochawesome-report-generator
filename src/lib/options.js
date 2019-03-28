@@ -12,7 +12,7 @@ const isFunction = require('lodash.isfunction');
  * @property {string}  assetsDir        Path to save report assets to (default: cwd/mochawesome-report/assets)
  * @property {boolean} inlineAssets     Should assets be inlined into HTML file (default: false)
  * @property {boolean} cdn              Should assets be loaded via CDN (default: false)
- * @property {boolean} charts           Should charts be enabled (default: true)
+ * @property {boolean} charts           Should charts be enabled (default: false)
  * @property {boolean} code             Should test code output be enabled (default: true)
  * @property {boolean} autoOpen         Open the report after creation (default: false)
  * @property {boolean} overwrite        Overwrite existing files (default: true)
@@ -88,7 +88,7 @@ export const yargsOptions = {
   },
   charts: {
     alias: ['enableCharts'],
-    default: true,
+    default: false,
     describe: 'Display charts',
     boolean: true,
   },

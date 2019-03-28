@@ -9,7 +9,6 @@ mochawesome-report-generator (marge)
 <img align="right" src="./docs/marge-report-1.0.1.png" alt="Mochawesome Report" width="55%" />
 
 - Simple, clean, and modern design
-- Beautiful charts
 - Support for test and suite nesting
 - Displays before and after hooks
 - Review test code inline
@@ -18,7 +17,6 @@ mochawesome-report-generator (marge)
 - Filters to display only the tests you want
 - Responsive and mobile-friendly
 - Offline viewing
-- Support for IE9+
 - CLI for generating reports independent of [mochawesome][2]
 
 ## Usage with mochawesome
@@ -84,7 +82,7 @@ Flag | Type | Default | Description
 -i, --inline | boolean | false | Inline report assets (scripts, styles)
 --cdn | boolean | false | Load report assets via CDN (unpkg.com)
 --assetsDir | string | [cwd]/mochawesome-report/assets | Path to save report assets (js/css)
---charts | boolean | true | Display Suite charts
+--charts | boolean | false | Display Suite charts
 --code | boolean | true | Display test code
 --autoOpen | boolean | false | Automatically open the report
 --overwrite | boolean | true | Overwrite existing report files. *See [notes](#overwrite).*
