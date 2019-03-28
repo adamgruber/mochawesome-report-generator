@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
+import { Icon } from 'components';
 import { TestList } from 'components/test';
 import { SuiteChart, SuiteList, SuiteSummary } from 'components/suite';
 import classNames from 'classnames/bind';
@@ -10,12 +11,27 @@ import styles from './suite.css';
 const cx = classNames.bind(styles);
 
 class Suite extends Component {
-  shouldComponentUpdate(nextProps) {
-    return !isEqual(this.props, nextProps);
+  constructor() {
+    super();
+    this.toggleExpandedState = this.toggleExpandedState.bind(this);
+  }
+
+  state = {
+    expanded: true,
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !isEqual(this.props, nextProps) || !isEqual(this.state, nextState);
+  }
+
+  toggleExpandedState() {
+    const { expanded } = this.state;
+    this.setState({ expanded: !expanded });
   }
 
   render() {
     const { className, suite, enableChart, enableCode } = this.props;
+    const { expanded } = this.state;
     const {
       root,
       rootEmpty,
@@ -104,13 +120,22 @@ class Suite extends Component {
         <section className={cxname}>
           {!hideHeader && (
             <header className={cx('header')}>
-              {title !== '' && <h3 className={cx('title')}>{title}</h3>}
+            <button
+              aria-expanded={expanded}
+              type="button"
+              onClick={this.toggleExpandedState}
+              className={cx('header-btn')}>
+              {title !== '' && <h3 className={cx('title')}>
+                <span>{title}</span>
+                <Icon name={expanded ? 'expand_less' : 'expand_more'} className={cx('icon')} size={18} />
+              </h3>}
               {file !== '' && <h6 className={cx('filename')}>{file}</h6>}
               {hasTests && enableChart && <SuiteChart {...chartProps} />}
               {hasTests && <SuiteSummary {...summaryProps} />}
+              </button>
             </header>
           )}
-          <div className={cx('body')}>
+          <div className={cx('body', !expanded && 'hide')}>
             {testListComp()}
             {subSuites()}
           </div>

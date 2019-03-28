@@ -42,7 +42,6 @@
 .header {
   @extend %clearfix;
 
-  padding: 12px 16px;
   border-bottom: 1px solid var(--grey300);
 
   @nest .no-tests > & {
@@ -51,10 +50,33 @@
   }
 }
 
+.header-btn {
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 12px 16px;
+  text-align: left;
+  width: 100%;
+
+  &:focus {
+    box-shadow: 0 0 2px 0 var(--ltblue500);
+    outline: none;
+  }
+}
+
 .title {
+  display: flex;
   font-family: var(--font-family--light);
   font-size: 21px;
   margin: 0;
+
+  & span {
+    margin-right: auto;
+  }
+
+  & .icon {
+    margin-left: 58px;
+  }
 }
 
 .filename {
@@ -66,6 +88,10 @@
 .body {
   @extend %clearfix;
 
+  &.hide {
+    display: none;
+  }
+
   @nest .has-suites > & {
     border-bottom: 1px solid var(--grey300);
   }
@@ -75,7 +101,7 @@
   display: none;
   position: absolute;
   top: 12px;
-  right: 12px;
+  right: 36px;
   width: 50px;
   height: 50px;
 }
@@ -109,7 +135,7 @@
 
   .chart-enabled:not(.no-tests) {
     & .header {
-      min-height: 74px;
+      min-height: 66px;
     }
   }
 }

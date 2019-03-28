@@ -8,6 +8,7 @@
 - Updated all dependencies
 - Implemented test fixtures for generating sample data
 - Small design tweaks
+- Allow suites to be collapsed
 
 ## [3.1.5] / 2018-12-27
 ### Changed
