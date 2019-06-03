@@ -19,6 +19,7 @@ chai.use(chaiEnzyme());
 describe('<NavMenu />', () => {
   let props;
   let store;
+  let listenerMap;
 
   const getInstance = instanceProps => {
     const wrapper = mount(<NavMenu {...instanceProps} />);
@@ -41,6 +42,15 @@ describe('<NavMenu />', () => {
     props = {
       reportStore: store,
     };
+
+    listenerMap = {};
+    sinon.stub(document, 'addEventListener').callsFake((event, cb) => {
+      listenerMap[event] = cb;
+    });
+  });
+
+  afterEach(() => {
+    document.addEventListener.restore();
   });
 
   it('renders with toggles', () => {
@@ -81,12 +91,21 @@ describe('<NavMenu />', () => {
     });
 
     it('closes menu', () => {
+      store.openSideNav();
       const { wrapper } = getInstance(props);
       wrapper.find('.nav-menu-close-btn').simulate('click');
       expect(store.closeSideNav.calledOnce).to.equal(true);
     });
 
+    it('closes menu on escape press', () => {
+      store.openSideNav();
+      getInstance(props);
+      listenerMap.keydown({ key: 'Escape' });
+      expect(store.closeSideNav.calledOnce).to.equal(true);
+    });
+
     it('clicks toggles', () => {
+      store.openSideNav();
       const { toggles } = getInstance(props);
       const switches = toggles.find('.toggle-switch-toggle-input');
       switches.forEach(node => node.simulate('change'));
@@ -94,6 +113,7 @@ describe('<NavMenu />', () => {
     });
 
     it('sets hooks dropdown', () => {
+      store.openSideNav();
       const { hooksDropdown } = getInstance(props);
       hooksDropdown.find('button').first().simulate('click');
       hooksDropdown
@@ -114,5 +134,13 @@ describe('<NavMenu />', () => {
     expect(
       NavMenuList.prototype.shouldComponentUpdate.alwaysReturned(true)
     ).to.equal(true);
+  });
+
+  it('unmounts properly', () => {
+    store.openSideNav();
+    const { wrapper } = getInstance(props);
+    const disposerSpy = sinon.spy(wrapper.instance().wrappedInstance, 'disposer');
+    wrapper.unmount();
+    expect(disposerSpy.calledOnce).to.equal(true)
   });
 });
