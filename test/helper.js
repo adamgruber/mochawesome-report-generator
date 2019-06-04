@@ -1,11 +1,11 @@
 // Polyfill matchMedia
-window.matchMedia = window.matchMedia || (
-  () => ({
+window.matchMedia =
+  window.matchMedia ||
+  (() => ({
     matches: false,
     addListener: () => {},
-    removeListener: () => {}
-  })
-);
+    removeListener: () => {},
+  }));
 
 // Setup Enzyme Adapter
 const enzyme = require('enzyme');
@@ -15,12 +15,15 @@ enzyme.configure({ adapter: new Adapter() });
 
 // Setup path lookups
 const path = require('path');
-require('app-module-path').addPath(__dirname);
-require('app-module-path').addPath(path.join(__dirname, '..', 'src'));
+const { addPath } = require('app-module-path');
+
+addPath(__dirname);
+addPath(path.join(__dirname, '..', 'src'));
+addPath(path.join(__dirname, '..', 'src', 'client'));
 
 // CSS Modules Runtime
 const cssHook = require('css-modules-require-hook');
 
 cssHook({
-  generateScopedName: '[name]-[local]'
+  generateScopedName: '[name]-[local]',
 });

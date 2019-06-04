@@ -1,6 +1,6 @@
 {
   "stats": {
-    "suites": 1,
+    "suites": null,
     "tests": 1,
     "passes": 0,
     "pending": 0,
@@ -14,101 +14,99 @@
     "other": 0,
     "hasOther": false,
     "skipped": 0,
-    "hasSkipped": false,
-    "passPercentClass": "dangerous",
-    "pendingPercentClass": "danger"
+    "hasSkipped": false
   },
-  "suites": {
-    "suites": [
-      {
-        "title": "Main Suite",
-        "suites": [],
-        "tests": [
-          {
-            "title": "should be true",
-            "fullTitle": "Main Suite should be true",
-            "timedOut": false,
-            "duration": 3,
-            "state": "failed",
-            "pass": false,
-            "fail": true,
-            "pending": false,
-            "code": "// true.should.eql(bool);\nexp.should.eql({\n  foo: true,\n  bar: true,\n  baz: 1\n});\nshouldAddContext && addContext(this, 'context');",
-            "err": {
-              "operator": "to equal",
-              "expected": "{\n  \"bar\": true\n  \"baz\": 1\n  \"foo\": true\n}",
-              "details": "at bar, A has false and B has true",
-              "showDiff": true,
-              "actual": "{\n  \"bar\": false\n  \"baz\": 1\n  \"foo\": true\n}",
-              "negate": false,
-              "assertion": {
-                "obj": {
-                  "foo": true,
-                  "bar": false,
-                  "baz": 1
-                },
-                "anyOne": false,
+  "results": [
+    {
+      "suites": [
+        {
+          "title": "Main Suite",
+          "suites": [],
+          "tests": [
+            {
+              "title": "should be true",
+              "fullTitle": "Main Suite should be true",
+              "timedOut": false,
+              "duration": 3,
+              "state": "failed",
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "code": "// true.should.eql(bool);\nexp.should.eql({\n  foo: true,\n  bar: true,\n  baz: 1\n});\nshouldAddContext && addContext(this, 'context');",
+              "err": {
+                "operator": "to equal",
+                "expected": "{\n  \"bar\": true\n  \"baz\": 1\n  \"foo\": true\n}",
+                "details": "at bar, A has false and B has true",
+                "showDiff": true,
+                "actual": "{\n  \"bar\": false\n  \"baz\": 1\n  \"foo\": true\n}",
                 "negate": false,
-                "params": {
-                  "operator": "to equal",
-                  "expected": {
-                    "foo": true,
-                    "bar": true,
-                    "baz": 1
-                  },
-                  "details": "at bar, A has false and B has true",
-                  "showDiff": true,
-                  "actual": {
+                "assertion": {
+                  "obj": {
                     "foo": true,
                     "bar": false,
                     "baz": 1
                   },
+                  "anyOne": false,
                   "negate": false,
-                  "assertion": "[Circular ~.suites.suites.0.tests.0.err.assertion]"
+                  "params": {
+                    "operator": "to equal",
+                    "expected": {
+                      "foo": true,
+                      "bar": true,
+                      "baz": 1
+                    },
+                    "details": "at bar, A has false and B has true",
+                    "showDiff": true,
+                    "actual": {
+                      "foo": true,
+                      "bar": false,
+                      "baz": 1
+                    },
+                    "negate": false,
+                    "assertion": "[Circular ~.suites.suites.0.tests.0.err.assertion]"
+                  },
+                  "light": false
                 },
-                "light": false
+                "_message": "expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)",
+                "generatedMessage": true,
+                "estack": "AssertionError: expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)\n    at Assertion.fail (node_modules/should/cjs/should.js:258:17)\n    at Assertion.value (node_modules/should/cjs/should.js:335:19)\n    at Context.<anonymous> (helpers.js:26:20)",
+                "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
               },
-              "_message": "expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)",
-              "generatedMessage": true,
-              "estack": "AssertionError: expected Object { foo: true, bar: false, baz: 1 } to equal Object { foo: true, bar: true, baz: 1 } (at bar, A has false and B has true)\n    at Assertion.fail (node_modules/should/cjs/should.js:258:17)\n    at Assertion.value (node_modules/should/cjs/should.js:335:19)\n    at Context.<anonymous> (helpers.js:26:20)",
-              "diff": " {\n-   \"bar\": false\n+   \"bar\": true\n   \"baz\": 1\n   \"foo\": true\n }\n"
-            },
-            "isRoot": false,
-            "uuid": "b88d1dce-1332-4bd9-bc1a-9ce3bceb89e4",
-            "parentUUID": "571df514-f199-464d-aa1e-aed923a241ec",
-            "isHook": false,
-            "skipped": false
-          }
-        ],
-        "pending": [],
-        "root": false,
-        "_timeout": 2000,
-        "file": "/cases/test.js",
-        "uuid": "571df514-f199-464d-aa1e-aed923a241ec",
-        "beforeHooks": [],
-        "afterHooks": [],
-        "fullFile": "/Users/adamgruber/Sites/ma-test/cases/test.js",
-        "passes": [],
-        "failures": ["b88d1dce-1332-4bd9-bc1a-9ce3bceb89e4"],
-        "skipped": [],
-        "duration": 3,
-        "rootEmpty": false
-      }
-    ],
-    "tests": [],
-    "pending": [],
-    "root": true,
-    "_timeout": 2000,
-    "uuid": "85326d2a-1546-4657-a3dc-8a210b578804",
-    "beforeHooks": [],
-    "afterHooks": [],
-    "fullFile": "",
-    "file": "",
-    "passes": [],
-    "failures": [],
-    "skipped": [],
-    "duration": 0,
-    "rootEmpty": true
-  },
-  "copyrightYear": 2017
+              "uuid": "b88d1dce-1332-4bd9-bc1a-9ce3bceb89e4",
+              "parentUUID": "571df514-f199-464d-aa1e-aed923a241ec",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "pending": [],
+          "root": false,
+          "_timeout": 2000,
+          "file": "/cases/test.js",
+          "uuid": "571df514-f199-464d-aa1e-aed923a241ec",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "fullFile": "/Users/adamgruber/Sites/ma-test/cases/test.js",
+          "passes": [],
+          "failures": ["b88d1dce-1332-4bd9-bc1a-9ce3bceb89e4"],
+          "skipped": [],
+          "duration": 3,
+          "rootEmpty": false
+        }
+      ],
+      "tests": [],
+      "pending": [],
+      "root": true,
+      "_timeout": 2000,
+      "uuid": "85326d2a-1546-4657-a3dc-8a210b578804",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "fullFile": "",
+      "file": "",
+      "passes": [],
+      "failures": [],
+      "skipped": [],
+      "duration": 0,
+      "rootEmpty": true
+    }
+  ]
 }

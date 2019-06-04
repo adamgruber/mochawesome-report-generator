@@ -20,19 +20,19 @@ const readFileSyncStub = sinon.stub();
 const openerStub = sinon.stub();
 const existsSyncStub = sinon.stub();
 const writeFileUniqueStub = sinon.stub();
-const mareport = proxyquire('../../../lib/src/main', {
+const mareport = proxyquire('../../../src/lib/main', {
   'fs-extra': {
     outputFile: outputFileStub,
     outputFileSync: outputFileSyncStub,
     copySync: copySyncStub,
     readFileSync: readFileSyncStub,
-    existsSync: existsSyncStub
+    existsSync: existsSyncStub,
   },
   fsu: {
-    writeFileUnique: writeFileUniqueStub
+    writeFileUnique: writeFileUniqueStub,
   },
   opener: openerStub,
-  '../package.json': pkg
+  '../package.json': pkg,
 });
 
 let opts;
@@ -40,7 +40,7 @@ let opts;
 beforeEach(() => {
   opts = {
     reportDir: 'test',
-    reportFilename: 'test'
+    reportFilename: 'test',
   };
   outputFileStub.reset();
   outputFileSyncStub.reset();
@@ -57,7 +57,7 @@ describe('lib/main', () => {
       const expectedHtmlFile = path.resolve(process.cwd(), 'test', 'test.html');
       outputFileStub.resolves(expectedHtmlFile);
       const promise = mareport.create(testData, opts);
-      return expect(promise).to.become([ expectedHtmlFile, null ]);
+      return expect(promise).to.become([expectedHtmlFile, null]);
     });
 
     it('saves only json', () => {
@@ -65,10 +65,12 @@ describe('lib/main', () => {
       opts.saveJson = true;
       const expectedJsonFile = path.resolve(process.cwd(), 'test', 'test.json');
       outputFileStub
-        .onCall(0).resolves('')
-        .onCall(1).resolves(expectedJsonFile);
+        .onCall(0)
+        .resolves('')
+        .onCall(1)
+        .resolves(expectedJsonFile);
       const promise = mareport.create(testData, opts);
-      return expect(promise).to.become([ null, expectedJsonFile ]);
+      return expect(promise).to.become([null, expectedJsonFile]);
     });
 
     it('does not copy assets when saving only json', () => {
@@ -76,8 +78,10 @@ describe('lib/main', () => {
       opts.saveJson = true;
       const expectedJsonFile = path.resolve(process.cwd(), 'test', 'test.json');
       outputFileStub
-        .onCall(0).resolves('')
-        .onCall(1).resolves(expectedJsonFile);
+        .onCall(0)
+        .resolves('')
+        .onCall(1)
+        .resolves(expectedJsonFile);
       return mareport.create(testData, opts).then(() => {
         expect(copySyncStub.called).to.equal(false);
       });
@@ -88,17 +92,19 @@ describe('lib/main', () => {
       const expectedHtmlFile = path.resolve(process.cwd(), 'test', 'test.html');
       const expectedJsonFile = path.resolve(process.cwd(), 'test', 'test.json');
       outputFileStub
-        .onCall(0).resolves(expectedHtmlFile)
-        .onCall(1).resolves(expectedJsonFile);
+        .onCall(0)
+        .resolves(expectedHtmlFile)
+        .onCall(1)
+        .resolves(expectedJsonFile);
       const promise = mareport.create(testData, opts);
-      return expect(promise).to.become([ expectedHtmlFile, expectedJsonFile ]);
+      return expect(promise).to.become([expectedHtmlFile, expectedJsonFile]);
     });
 
     it('does NOT save report', () => {
       opts.saveHtml = false;
       outputFileStub.resolves('');
       const promise = mareport.create(testData, opts);
-      return expect(promise).to.become([ null, null ]);
+      return expect(promise).to.become([null, null]);
     });
 
     it('with autoOpen', () => {
@@ -121,16 +127,14 @@ describe('lib/main', () => {
     describe('with timestamp', () => {
       let clock;
 
-      const getExpectedName = dateTimeStr => (
-        path.resolve(process.cwd(), 'test', `test${dateTimeStr}{_###}.html`)
-      );
+      const getExpectedName = dateTimeStr =>
+        path.resolve(process.cwd(), 'test', `test${dateTimeStr}{_###}.html`);
 
-      const cleanDateStr = fmt => (
+      const cleanDateStr = fmt =>
         dateFormat(new Date(), fmt)
           .replace(/(,\s*)|,|\s+/g, '_')
           .replace(/\\|\//g, '-')
-          .replace(/:/g, '')
-      );
+          .replace(/:/g, '');
 
       beforeEach(() => {
         // Set clock to 2017-03-29T19:30:59.913Z
@@ -146,8 +150,9 @@ describe('lib/main', () => {
         opts.overwrite = false;
         writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
-          expect(writeFileUniqueStub.args[0][0])
-            .to.equal(getExpectedName(`_${cleanDateStr('isoDateTime')}`));
+          expect(writeFileUniqueStub.args[0][0]).to.equal(
+            getExpectedName(`_${cleanDateStr('isoDateTime')}`)
+          );
         });
       });
 
@@ -156,8 +161,9 @@ describe('lib/main', () => {
         opts.overwrite = false;
         writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
-          expect(writeFileUniqueStub.args[0][0])
-            .to.equal(getExpectedName(`_${cleanDateStr('isoDateTime')}`));
+          expect(writeFileUniqueStub.args[0][0]).to.equal(
+            getExpectedName(`_${cleanDateStr('isoDateTime')}`)
+          );
         });
       });
 
@@ -166,8 +172,7 @@ describe('lib/main', () => {
         opts.overwrite = false;
         writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
-          expect(writeFileUniqueStub.args[0][0])
-            .to.equal(getExpectedName(''));
+          expect(writeFileUniqueStub.args[0][0]).to.equal(getExpectedName(''));
         });
       });
 
@@ -176,8 +181,9 @@ describe('lib/main', () => {
         opts.overwrite = false;
         writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
-          expect(writeFileUniqueStub.args[0][0])
-            .to.equal(getExpectedName(`_${cleanDateStr('isoDateTime')}`));
+          expect(writeFileUniqueStub.args[0][0]).to.equal(
+            getExpectedName(`_${cleanDateStr('isoDateTime')}`)
+          );
         });
       });
 
@@ -186,8 +192,9 @@ describe('lib/main', () => {
         opts.overwrite = false;
         writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
-          expect(writeFileUniqueStub.args[0][0])
-            .to.equal(getExpectedName(`_${cleanDateStr('fullDate')}`));
+          expect(writeFileUniqueStub.args[0][0]).to.equal(
+            getExpectedName(`_${cleanDateStr('fullDate')}`)
+          );
         });
       });
 
@@ -196,8 +203,9 @@ describe('lib/main', () => {
         opts.overwrite = false;
         writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
-          expect(writeFileUniqueStub.args[0][0])
-            .to.equal(getExpectedName(`_${cleanDateStr('longTime')}`));
+          expect(writeFileUniqueStub.args[0][0]).to.equal(
+            getExpectedName(`_${cleanDateStr('longTime')}`)
+          );
         });
       });
     });
@@ -206,10 +214,14 @@ describe('lib/main', () => {
       opts = {
         overwrite: false,
         reportDir: 'test',
-        reportFilename: 'test'
+        reportFilename: 'test',
       };
       writeFileUniqueStub.yields(null);
-      const expectedFilename = path.resolve(process.cwd(), 'test', 'test{_###}.html');
+      const expectedFilename = path.resolve(
+        process.cwd(),
+        'test',
+        'test{_###}.html'
+      );
       return mareport.create(testData, opts).then(() => {
         expect(writeFileUniqueStub.calledWith(expectedFilename)).to.equal(true);
       });
@@ -217,20 +229,26 @@ describe('lib/main', () => {
 
     it('rejects when outputFile throws', () => {
       outputFileStub.rejects(new Error('save error'));
-      return expect(mareport.create(testData, opts)).to.be.rejectedWith('save error');
+      return expect(mareport.create(testData, opts)).to.be.rejectedWith(
+        'save error'
+      );
     });
 
     it('rejects when opener throws', () => {
       opts.autoOpen = true;
       openerStub.yields('open error');
       outputFileStub.resolves(null);
-      return expect(mareport.create(testData, opts)).to.be.rejectedWith('open error');
+      return expect(mareport.create(testData, opts)).to.be.rejectedWith(
+        'open error'
+      );
     });
 
     it('rejects when writeFileUnique throws', () => {
       opts.overwrite = false;
       writeFileUniqueStub.yields('save error');
-      return expect(mareport.create(testData, opts)).to.be.rejectedWith('save error');
+      return expect(mareport.create(testData, opts)).to.be.rejectedWith(
+        'save error'
+      );
     });
   });
 
@@ -238,13 +256,23 @@ describe('lib/main', () => {
     let expectedFilename;
     let expectedFilenameWithOpts;
     beforeEach(() => {
-      expectedFilename = path.resolve(process.cwd(), 'mochawesome-report', 'mochawesome.html');
-      expectedFilenameWithOpts = path.resolve(process.cwd(), 'test', 'test.html');
+      expectedFilename = path.resolve(
+        process.cwd(),
+        'mochawesome-report',
+        'mochawesome.html'
+      );
+      expectedFilenameWithOpts = path.resolve(
+        process.cwd(),
+        'test',
+        'test.html'
+      );
     });
 
     it('with options', () => {
       mareport.createSync(testData, opts);
-      expect(outputFileSyncStub.calledWith(expectedFilenameWithOpts)).to.equal(true);
+      expect(outputFileSyncStub.calledWith(expectedFilenameWithOpts)).to.equal(
+        true
+      );
     });
 
     it('without options', () => {
@@ -260,7 +288,9 @@ describe('lib/main', () => {
 
     it('with data as string', () => {
       mareport.createSync(JSON.stringify(testData), opts);
-      expect(outputFileSyncStub.calledWith(expectedFilenameWithOpts)).to.equal(true);
+      expect(outputFileSyncStub.calledWith(expectedFilenameWithOpts)).to.equal(
+        true
+      );
     });
   });
 
@@ -316,11 +346,10 @@ describe('lib/main', () => {
     });
 
     describe('when dev option is true', () => {
-      it('does not copy assets', () => (
+      it('does not copy assets', () =>
         mareport.create(testData, { dev: true }).then(() => {
           expect(copySyncStub.called).to.equal(false);
-        })
-      ));
+        }));
     });
   });
 
@@ -340,15 +369,14 @@ describe('lib/main', () => {
       let options;
       beforeEach(() => {
         options = {
-          dev: true
+          dev: true,
         };
       });
 
-      it('should NOT copy assets', () => (
+      it('should NOT copy assets', () =>
         mareport.create(testData, options).then(() => {
           expect(copySyncStub.called).to.equal(false);
-        })
-      ));
+        }));
 
       it('should return correct asset props', () => {
         mareport.create(testData, options).then(() => {
@@ -357,7 +385,7 @@ describe('lib/main', () => {
             inlineScripts: null,
             inlineStyles: null,
             scriptsUrl: 'http://localhost:8080/app.js',
-            stylesUrl: 'http://localhost:8080/app.css'
+            stylesUrl: 'http://localhost:8080/app.css',
           });
         });
       });
@@ -367,54 +395,54 @@ describe('lib/main', () => {
       let options;
       beforeEach(() => {
         options = {
-          cdn: true
+          cdn: true,
         };
       });
 
-      it('should NOT copy assets', () => (
+      it('should NOT copy assets', () =>
         mareport.create(testData, options).then(() => {
           expect(copySyncStub.called).to.equal(false);
-        })
-      ));
+        }));
 
-      it('should return correct asset props', () => (
+      it('should return correct asset props', () =>
         mareport.create(testData, options).then(() => {
           const props = React.createElement.getCall(0).args[1];
           expect(props).to.include({
             inlineScripts: null,
             inlineStyles: null,
-            scriptsUrl: `https://unpkg.com/mochawesome-report-generator@${pkg.version}/dist/app.js`,
-            stylesUrl: `https://unpkg.com/mochawesome-report-generator@${pkg.version}/dist/app.css`
+            scriptsUrl: `https://unpkg.com/mochawesome-report-generator@${
+              pkg.version
+            }/dist/app.js`,
+            stylesUrl: `https://unpkg.com/mochawesome-report-generator@${
+              pkg.version
+            }/dist/app.css`,
           });
-        })
-      ));
+        }));
     });
 
     describe('when inlineAssets is true', () => {
       let options;
       beforeEach(() => {
         options = {
-          inlineAssets: true
+          inlineAssets: true,
         };
       });
 
-      it('should NOT copy assets', () => (
+      it('should NOT copy assets', () =>
         mareport.create(testData, options).then(() => {
           expect(copySyncStub.called).to.equal(false);
-        })
-      ));
+        }));
 
-      it('should return correct asset props', () => (
+      it('should return correct asset props', () =>
         mareport.create(testData, options).then(() => {
           const props = React.createElement.getCall(0).args[1];
           expect(props).to.include({
             inlineScripts: 'app',
             inlineStyles: 'app',
             scriptsUrl: 'assets/app.js',
-            stylesUrl: 'assets/app.css'
+            stylesUrl: 'assets/app.css',
           });
-        })
-      ));
+        }));
     });
 
     describe('when dev, cdn, and inlineAssets are false', () => {
@@ -423,23 +451,21 @@ describe('lib/main', () => {
         options = {};
       });
 
-      it('should copy assets', () => (
+      it('should copy assets', () =>
         mareport.create(testData, options).then(() => {
           expect(copySyncStub.called).to.equal(true);
-        })
-      ));
+        }));
 
-      it('should return correct asset props', () => (
+      it('should return correct asset props', () =>
         mareport.create(testData, options).then(() => {
           const props = React.createElement.getCall(0).args[1];
           expect(props).to.include({
             inlineScripts: null,
             inlineStyles: null,
             scriptsUrl: 'assets/app.js',
-            stylesUrl: 'assets/app.css'
+            stylesUrl: 'assets/app.css',
           });
-        })
-      ));
+        }));
     });
   });
 });

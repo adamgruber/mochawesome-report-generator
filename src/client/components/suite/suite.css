@@ -1,0 +1,141 @@
+@import '../../styles/vars';
+
+.component {
+  @extend %clearfix;
+
+  position: relative;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+/* stylelint-disable-next-line selector-max-compound-selectors */
+.component > .body > ul > li > .component {
+  border: 1px solid var(--grey300);
+  border-right: none;
+  border-bottom: none;
+  margin: 16px 0 16px 16px;
+
+  /* stylelint-disable-next-line selector-max-compound-selectors */
+  &.no-tests {
+    border-bottom: 1px solid var(--grey300);
+  }
+}
+
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.root-suite,
+.list-main > li > .component {
+  @extend %z-depth-1;
+
+  margin: 0 0 24px 0;
+}
+
+/* stylelint-disable-next-line selector-max-compound-selectors */
+.list-main > .no-tests > .body > ul > li > .component:not(.no-suites) {
+  border-bottom: 1px solid var(--grey300);
+}
+
+.header {
+  @extend %clearfix;
+
+  border-bottom: 1px solid var(--grey300);
+
+  @nest .no-tests > & {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.header-btn {
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 12px 16px;
+  text-align: left;
+  width: 100%;
+
+  &:focus {
+    box-shadow: 0 0 2px 0 var(--ltblue500);
+    outline: none;
+  }
+}
+
+.title {
+  display: flex;
+  font-family: var(--font-family--light);
+  font-size: 21px;
+  margin: 0;
+
+  & span {
+    margin-right: auto;
+  }
+
+  & .icon {
+    margin-left: 58px;
+  }
+}
+
+.filename {
+  color: var(--black54);
+  font-family: var(--font-family--regular);
+  margin: 6px 0 0 0;
+}
+
+.body {
+  @extend %clearfix;
+
+  &.hide {
+    display: none;
+  }
+
+  @nest .has-suites > & {
+    border-bottom: 1px solid var(--grey300);
+  }
+}
+
+.chart-wrap {
+  display: none;
+  position: absolute;
+  top: 12px;
+  right: 36px;
+  width: 50px;
+  height: 50px;
+}
+
+.chart-slice {
+  stroke: #fff;
+  stroke-width: 2px;
+
+  @nest :global(.ct-series-a) & {
+    fill: var(--green500);
+  }
+
+  @nest :global(.ct-series-b) & {
+    fill: var(--red500);
+  }
+
+  @nest :global(.ct-series-c) & {
+    fill: var(--ltblue500);
+  }
+
+  @nest :global(.ct-series-d) & {
+    fill: var(--black38);
+  }
+}
+
+/* Tablet 768 and up */
+@media (--screen-sm) {
+  .chart-wrap {
+    display: block;
+  }
+
+  .chart-enabled:not(.no-tests) {
+    & .header {
+      min-height: 66px;
+    }
+  }
+}

@@ -1,10 +1,17 @@
 {
   "presets": [
-    "react",
-    "es2015",
-    "stage-0"
+    "@babel/preset-react",
+    [
+      "@babel/preset-env",
+      {
+        "targets": ">0.25%, not ie 11, not op_mini all, not dead"
+      }
+    ]
   ],
-  "plugins": ["transform-decorators-legacy"],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }]
+  ],
   "env": {
     "test": {
       "plugins": ["istanbul"]

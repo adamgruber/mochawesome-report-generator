@@ -1,0 +1,99 @@
+@import '../../styles/vars';
+
+.cnt {
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+}
+
+.list {
+  @extend %clearfix;
+  @extend %list-unstyled;
+
+  display: flex;
+  transition: opacity 0.2s ease-out;
+  margin: 0 0 8px 0;
+}
+
+.item {
+  display: flex;
+  font-family: var(--font-family--light);
+  align-items: flex-start;
+  color: #fff;
+  font-size: 16px;
+  flex-basis: 25%;
+
+  &.tests {
+    color: #fff;
+  }
+
+  &.passes {
+    & .icon {
+      color: var(--green700);
+      background-color: var(--green100);
+    }
+  }
+
+  &.failures {
+    & .icon {
+      color: var(--red700);
+      background-color: var(--red100);
+    }
+  }
+
+  &.pending {
+    & .icon {
+      color: var(--ltblue700);
+      background-color: var(--ltblue100);
+    }
+  }
+
+  &.skipped {
+    & .icon {
+      color: var(--grey700);
+      background-color: var(--grey100);
+    }
+  }
+}
+
+/* Icons / Colors */
+.icon {
+  position: relative;
+  top: 2px;
+  font-size: 18px;
+  margin-right: 4px;
+}
+
+.circle-icon {
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 3px;
+}
+
+/* Tablet 768 and up */
+@media (--screen-sm) {
+  .cnt {
+    flex-direction: initial;
+    padding: 14px 12px 0 0;
+  }
+
+  .list {
+    margin: 0;
+  }
+
+  .item {
+    font-size: 18px;
+    flex-basis: initial;
+    margin: 0 12px;
+  }
+
+  .icon {
+    font-size: 24px;
+    width: 24px;
+    top: 0;
+  }
+
+  .circle-icon {
+    font-size: 18px;
+  }
+}

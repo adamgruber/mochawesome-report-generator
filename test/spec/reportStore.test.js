@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import testData from 'sample-data/nested.json';
 import { createStore } from 'utils';
+import { nested as testData } from '../fixtures/reports';
 
 describe('ReportStore', () => {
   let store;
@@ -17,12 +17,12 @@ describe('ReportStore', () => {
 
   it('has the correct default state', () => {
     store = createStore();
-    expect(store).to.have.deep.property('allSuites', []);
+    expect(store).to.have.deep.property('results', []);
     expect(store).to.have.deep.property('showHooksOptions', [
       'failed',
       'always',
       'never',
-      'context'
+      'context',
     ]);
     expect(store).to.include({
       devMode: false,
@@ -35,7 +35,7 @@ describe('ReportStore', () => {
       showPending: true,
       showSkipped: false,
       sideNavOpen: false,
-      VERSION: '__VERSION__'
+      VERSION: '__VERSION__',
     });
   });
 
@@ -43,7 +43,7 @@ describe('ReportStore', () => {
     store = createStore(testData);
     expect(store).to.have.property('reportTitle', undefined);
     expect(store).to.have.property('stats', testData.stats);
-    expect(store).to.have.nested.deep.property('allSuites[0]', testData.suites);
+    expect(store).to.have.nested.deep.property('results', testData.results);
     expect(store).to.have.deep.property('stats', testData.stats);
     expect(store).to.have.property('enableChart', false);
     expect(store).to.have.property('devMode', false);
@@ -56,11 +56,11 @@ describe('ReportStore', () => {
       enableCharts: true,
       dev: true,
       showHooks: 'context',
-      showPassed: false
+      showPassed: false,
     });
     expect(store).to.have.property('reportTitle', undefined);
     expect(store).to.have.property('stats', testData.stats);
-    expect(store).to.have.nested.deep.property('allSuites[0]', testData.suites);
+    expect(store).to.have.nested.deep.property('results', testData.results);
     expect(store).to.have.deep.property('stats', testData.stats);
     expect(store).to.have.property('enableChart', true);
     expect(store).to.have.property('devMode', true);
@@ -70,7 +70,7 @@ describe('ReportStore', () => {
 
   it('with invalid config options', () => {
     store = createStore(testData, {
-      showHooks: 'sometimes'
+      showHooks: 'sometimes',
     });
     expect(store).to.have.property('showHooks', 'failed');
   });

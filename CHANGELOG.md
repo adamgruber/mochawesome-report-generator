@@ -1,6 +1,15 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+### Changed
+- Updated data validation to match mochawesome v4 changes
+- Updated many components for accessibility
+- Enhanced keyboard usage (tabbing / toggling)
+- Updated all dependencies
+- Implemented test fixtures for generating sample data
+- Small design tweaks
+- Allow suites to be collapsed
+- Disable charts by default
 
 ## [3.1.5] / 2018-12-27
 ### Changed

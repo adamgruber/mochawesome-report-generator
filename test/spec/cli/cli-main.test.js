@@ -13,13 +13,13 @@ proxyquire.noCallThru();
 const createStub = sinon.stub();
 const logger = {
   info: sinon.spy(),
-  error: sinon.spy()
+  error: sinon.spy(),
 };
-const cli = proxyquire('../../../bin/src/cli-main', {
+const cli = proxyquire('../../../src/bin/cli-main', {
   '../lib/main': {
-    create: createStub
+    create: createStub,
   },
-  './logger': logger
+  './logger': logger,
 });
 
 const error = { code: 12345, message: 'Err' };
@@ -41,23 +41,25 @@ describe('bin/cli', () => {
     it('should create reports', () => {
       const args = getArgs([
         'test/sample-data/test.json',
-        'test/sample-data/single.json'
+        'test/sample-data/single.json',
       ]);
       return expect(cli(args)).to.become([
         'mochawesome-report/test.html',
-        'mochawesome-report/single.html'
+        'mochawesome-report/single.html',
       ]);
     });
   });
 
   describe('when file is not found', () => {
     it('should not create a report', () => {
-      const args = getArgs([ 'test/sample-data/not-found.json' ]);
-      return expect(cli(args)).to.become([ {
-        filename: 'test/sample-data/not-found.json',
-        data: undefined,
-        err: '  File not found.'
-      } ]);
+      const args = getArgs(['test/sample-data/not-found.json']);
+      return expect(cli(args)).to.become([
+        {
+          filename: 'test/sample-data/not-found.json',
+          data: undefined,
+          err: '  File not found.',
+        },
+      ]);
     });
   });
 
@@ -67,23 +69,22 @@ describe('bin/cli', () => {
     });
 
     it('should create a report', () => {
-      const args = getArgs([ 'test/sample-data/sub' ]);
-      return expect(cli(args)).to.become([
-        'mochawesome-report/single.html'
-      ]);
+      const args = getArgs(['test/sample-data/sub']);
+      return expect(cli(args)).to.become(['mochawesome-report/single.html']);
     });
   });
 
   describe('when file is not JSON', () => {
     it('should not create a report', () => {
-      const args = getArgs([ 'README.md' ]);
+      const args = getArgs(['README.md']);
       return expect(cli(args)).to.become([]);
     });
   });
 
   describe('when JSON cannot be parsed', () => {
     beforeEach(() => {
-      sinon.stub(JSON, 'parse')
+      sinon
+        .stub(JSON, 'parse')
         .throws({ message: 'Unexpected token b in JSON at position 4' });
     });
 
@@ -92,31 +93,35 @@ describe('bin/cli', () => {
     });
 
     it('should not create a report', () => {
-      const args = getArgs([ 'test/sample-data/bad.json' ]);
-      return expect(cli(args)).to.become([ {
-        filename: 'test/sample-data/bad.json',
-        data: undefined,
-        err: '  Unexpected token b in JSON at position 4'
-      } ]);
+      const args = getArgs(['test/sample-data/bad.json']);
+      return expect(cli(args)).to.become([
+        {
+          filename: 'test/sample-data/bad.json',
+          data: undefined,
+          err: '  Unexpected token b in JSON at position 4',
+        },
+      ]);
     });
   });
 
   describe('when JSON fails validation', () => {
     it('should not create a report', () => {
-      const args = getArgs([ 'test/sample-data/invalid.json' ]);
-      return expect(cli(args)).to.become([ {
-        filename: 'test/sample-data/invalid.json',
-        data: invalidTestData,
-        // eslint-disable-next-line max-len
-        err: '  Invalid value "dangerous" supplied to /stats/passPercentClass: PercentClass\n  Invalid value undefined supplied to /suites/title: String'
-      } ]);
+      const args = getArgs(['test/sample-data/invalid.json']);
+      return expect(cli(args)).to.become([
+        {
+          filename: 'test/sample-data/invalid.json',
+          data: invalidTestData,
+          // eslint-disable-next-line max-len
+          err:
+            '  Invalid value null supplied to /stats/suites: Number\n  Invalid value undefined supplied to /results/0/title: String',
+        },
+      ]);
     });
   });
 
   describe('when a generic error occurs', () => {
     beforeEach(() => {
-      sinon.stub(fs, 'readFileSync')
-        .throws(error);
+      sinon.stub(fs, 'readFileSync').throws(error);
     });
 
     afterEach(() => {
@@ -124,12 +129,14 @@ describe('bin/cli', () => {
     });
 
     it('should not create a report', () => {
-      const args = getArgs([ 'test/sample-data/generic.json' ]);
-      return expect(cli(args)).to.become([ {
-        filename: 'test/sample-data/generic.json',
-        data: undefined,
-        err: '  There was a problem loading mochawesome data.'
-      } ]);
+      const args = getArgs(['test/sample-data/generic.json']);
+      return expect(cli(args)).to.become([
+        {
+          filename: 'test/sample-data/generic.json',
+          data: undefined,
+          err: '  There was a problem loading mochawesome data.',
+        },
+      ]);
     });
   });
 
@@ -138,7 +145,7 @@ describe('bin/cli', () => {
       createStub.rejects(error);
     });
     it('should reject when create fails', () => {
-      const args = getArgs([ 'test/sample-data/test.json' ]);
+      const args = getArgs(['test/sample-data/test.json']);
       return expect(cli(args)).to.be.rejectedWith(error);
     });
   });
@@ -150,10 +157,7 @@ describe('bin/cli', () => {
       });
 
       it('should be false when timestamp option is passed', () => {
-        const args = getArgs(
-          [ 'test/sample-data/test.json' ],
-          { timestamp: '' }
-        );
+        const args = getArgs(['test/sample-data/test.json'], { timestamp: '' });
 
         return cli(args).then(() => {
           expect(createStub.args[0][1]).to.have.property('overwrite', false);
@@ -163,7 +167,7 @@ describe('bin/cli', () => {
       it('should be false when multiple valid files exist', () => {
         const args = getArgs([
           'test/sample-data/test.json',
-          'test/sample-data/single.json'
+          'test/sample-data/single.json',
         ]);
 
         return cli(args).then(() => {
@@ -178,21 +182,26 @@ describe('bin/cli', () => {
       });
 
       it('should default to filename when option not provided', () => {
-        const args = getArgs([ 'test/sample-data/test.json' ]);
+        const args = getArgs(['test/sample-data/test.json']);
 
         return cli(args).then(() => {
-          expect(createStub.args[0][1]).to.have.property('reportFilename', 'test');
+          expect(createStub.args[0][1]).to.have.property(
+            'reportFilename',
+            'test'
+          );
         });
       });
 
       it('should be option when provided', () => {
-        const args = getArgs(
-          [ 'test/sample-data/test.json' ],
-          { reportFilename: 'sample' }
-        );
+        const args = getArgs(['test/sample-data/test.json'], {
+          reportFilename: 'sample',
+        });
 
         return cli(args).then(() => {
-          expect(createStub.args[0][1]).to.have.property('reportFilename', 'sample');
+          expect(createStub.args[0][1]).to.have.property(
+            'reportFilename',
+            'sample'
+          );
         });
       });
     });
