@@ -1,6 +1,6 @@
 {
   "name": "mochawesome-report-generator",
-  "version": "4.0.0-alpha.1",
+  "version": "4.0.0-alpha.2",
   "description": "Generates gorgeous HTML reports from mochawesome reporter.",
   "scripts": {
     "lint": "eslint src test --ext js",
