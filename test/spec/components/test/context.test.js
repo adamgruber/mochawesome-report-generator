@@ -175,6 +175,26 @@ describe('<TestContext />', () => {
       );
     });
 
+    it('renders video url with protocol and mediafragment', () => {
+      const context = 'http://test.url.com/testvideo.mp4#t=123';
+      const { wrapper, snippet, videoLink } = getInstance({
+        context: JSON.stringify(context),
+        className: 'test',
+      });
+      expect(wrapper).to.have.className('test');
+      expect(snippet).to.have.lengthOf(0);
+      expect(wrapper)
+        .to.have.exactly(1)
+        .descendants('video');
+      expect(wrapper)
+        .to.have.exactly(1)
+        .descendants('a.test-video-link');
+      expect(videoLink).to.have.attr(
+        'href',
+        'http://test.url.com/testvideo.mp4#t=123'
+      );
+    });
+
     it('renders image url without protocol', () => {
       const context = 'test.url.com/testvideo.mp4';
       const { wrapper, snippet, videoLink } = getInstance({
