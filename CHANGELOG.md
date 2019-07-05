@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+
+## [4.0.1] / 2019-07-05
 ### Changed
 - Video links in context now support mediafragment uris [mochawesome #287](https://github.com/adamgruber/mochawesome/issues/287)
 
@@ -172,7 +174,8 @@ You can still use the `--reportFilename` flag to set the filename of the generat
 ## 1.0.0 / 2016-12-18
 - Initial release
 
-[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/4.0.0...HEAD
+[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/4.0.1...HEAD
+[4.0.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/4.0.0...4.0.1
 [4.0.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.5...4.0.0
 [3.1.5]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.4...3.1.5
 [3.1.4]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.3...3.1.4
