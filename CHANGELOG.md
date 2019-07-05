@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+### Changed
+- Video links in context now support mediafragment uris [mochawesome #287](https://github.com/adamgruber/mochawesome/issues/287)
 
 ## [4.0.0] / 2019-06-04
 ### Changed
