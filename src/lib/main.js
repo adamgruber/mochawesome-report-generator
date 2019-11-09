@@ -93,7 +93,7 @@ function getTimestampFormat(timestamp) {
  *
  * @return {string} Fully resolved path without extension
  */
-function getFilename({ reportDir, reportFilename = 'mochawesome', timestamp }) {
+function getFilename({ reportDir, rootDir = process.cwd() , reportFilename = 'mochawesome', timestamp }) {
   let ts = '';
   if (timestamp !== false && timestamp !== 'false') {
     const format = getTimestampFormat(timestamp);
@@ -106,7 +106,7 @@ function getFilename({ reportDir, reportFilename = 'mochawesome', timestamp }) {
       .replace(/:/g, '');
   }
   const filename = `${reportFilename.replace(fileExtRegex, '')}${ts}`;
-  return path.resolve(process.cwd(), reportDir, filename);
+  return path.resolve(rootDir, reportDir, filename);
 }
 
 /**
