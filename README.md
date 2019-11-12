@@ -144,7 +144,7 @@ const mocha = new Mocha({
 
 To develop locally, clone the repo and install dependencies. In order to test end-to-end you must also clone [mochawesome][2] into a directory at the same level as this repo.
 
-You can start the dev server with `npm run devserver`. If you are working on the CLI, use `npm run dev:cli` to watch for changes and rebuild.
+You can install first `npm install`, then clone mochawesome into a directory at the same level as this repo, in mochawesome directory, install dependecies `npm install`, and then in this directory, start the dev server with `npm run devserver`. If you are working on the CLI, use `npm run dev:cli` to watch for changes and rebuild.
 
 ### Running Tests
 
