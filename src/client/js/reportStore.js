@@ -52,6 +52,16 @@ class ReportStore {
   }
 
   @action.bound
+  filterOnly(prop) {
+    this.toggleIsLoading(true);
+    this.showPassed = false;
+    this.showFailed = false;
+    this.showPending = false;
+    this.showSkipped = false;
+    this[prop] = true;
+  }
+
+  @action.bound
   setShowHooks(prop) {
     if (this._isValidShowHookOption(prop)) {
       this.toggleIsLoading(true);
