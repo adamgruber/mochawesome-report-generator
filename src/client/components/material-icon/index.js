@@ -19,9 +19,11 @@ class Icon extends PureComponent {
         <i
           className={cxName}
           dangerouslySetInnerHTML={{ __html: `&#x${iconCode};` }}
-          {...(onClick ? {onClick} : {})}
-          role="button"
-          tabIndex="0"
+          {...(onClick ? {
+            onClick,
+            role: 'button',
+            tabIndex: '0',
+          } : {})}
         />
       )
     );
