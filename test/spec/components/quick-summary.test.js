@@ -29,6 +29,9 @@ describe('<QuickSummary />', () => {
         pending: 5,
         skipped: 8,
       },
+      reportStore: {
+        filterOnly: () => null,
+      }
     };
   });
 
