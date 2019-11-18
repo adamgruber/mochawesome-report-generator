@@ -50,7 +50,7 @@
   word-wrap: normal;
   white-space: nowrap;
   direction: ltr;
-  cursor: default;
+  cursor: pointer;
   user-select: none;
 
   /* Support for all WebKit browsers. */
