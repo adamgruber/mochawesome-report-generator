@@ -1,7 +1,7 @@
 {
-  "name": "mochawesome-report-generator",
-  "version": "4.0.1",
-  "description": "Generates gorgeous HTML reports from mochawesome reporter.",
+  "name": "goalkeeper-report-generator",
+  "version": "0.0.1",
+  "description": "Generates gorgeous HTML reports from mochawesome reporter to Goalkeeper.",
   "scripts": {
     "lint": "eslint src test --ext js",
     "stylelint": "stylelint src/**/*.css src/components/**/*.css",
@@ -23,7 +23,7 @@
     "dev": "npm run compile && npm run cli && npm run devserver",
     "dev:cli": "nodemon --watch src/bin --watch src/lib --exec npm run compile"
   },
-  "author": "Adam Gruber",
+  "author": "houce",
   "license": "MIT",
   "repository": {
     "type": "git",
