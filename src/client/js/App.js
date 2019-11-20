@@ -28,7 +28,7 @@ const App = ({store}) => {
             <MochawesomeReport store={store} />
           </Route>
           <Route path="/">
-            <h2> Home </h2>
+            <h2> Home!!!!!!! </h2>
           </Route>
         </Switch>
       </div>
