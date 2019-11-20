@@ -163,6 +163,10 @@ Or if you want to run a single test:
 Or mix and match:
 `npm run test:functional path/to/some/tests path/to/another/test.js`
 
+#### Work with Goalkeeper
+
+Run `npm run prepack` and then `yarn link`.
+
 [1]: https://mochajs.org/
 [2]: https://github.com/adamgruber/mochawesome
 [dateformat]: https://github.com/felixge/node-dateformat

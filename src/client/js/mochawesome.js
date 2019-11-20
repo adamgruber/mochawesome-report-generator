@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MochawesomeReport } from 'components';
 import hljs from 'highlight.js/lib/highlight';
+
+import App from './App';
 import ReportStore from './reportStore';
 
 // Register hljs languages
@@ -25,6 +26,6 @@ bodyEl.removeAttribute('data-config');
 window.marge = store;
 
 ReactDOM.render(
-  React.createElement(MochawesomeReport, { store }),
+  <App store={store} />,
   document.getElementById('report')
 );
