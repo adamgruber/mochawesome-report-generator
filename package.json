@@ -1,7 +1,7 @@
 {
   "name": "goalkeeper-report-generator",
   "version": "0.0.1",
-  "description": "Generates gorgeous HTML reports from mochawesome reporter to Goalkeeper.",
+  "description": "Generates gorgeous HTML reports from mochawesome reporter, used for Goalkeeper.",
   "scripts": {
     "lint": "eslint src test --ext js",
     "stylelint": "stylelint src/**/*.css src/components/**/*.css",
@@ -27,7 +27,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/adamgruber/mochawesome-report-generator"
+    "url": "https://github.com/HOUCe/mochawesome-report-generator"
   },
   "keywords": [
     "mochawesome",
@@ -35,7 +35,9 @@
     "reporter",
     "json",
     "react",
-    "report generator"
+    "report generator",
+    "goalkeeper",
+    "e2e"
   ],
   "main": "lib/main.js",
   "bin": {
