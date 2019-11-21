@@ -15,7 +15,7 @@ const App = ({store}) => {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Dashboard</Link>
             </li>
             <li>
               <Link to="/reports">reports</Link>
@@ -28,7 +28,7 @@ const App = ({store}) => {
             <MochawesomeReport store={store} />
           </Route>
           <Route path="/">
-            <h2> Home!!!!!!! </h2>
+            <h2> Dashboard </h2>
           </Route>
         </Switch>
       </div>
