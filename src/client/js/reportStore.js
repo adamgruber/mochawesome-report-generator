@@ -18,6 +18,7 @@ class ReportStore {
       showHooksOptions: ['failed', 'always', 'never', 'context'],
       stats: data.stats || {},
       VERSION: '__VERSION__',
+      e2eMedia: data.e2eMedia || {}
     });
 
     extendObservable(this, {

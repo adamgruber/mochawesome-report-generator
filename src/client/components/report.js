@@ -9,6 +9,8 @@ import MobxDevTool from './mobxDevtool';
 const MochawesomeReport = observer(props => {
   const { openSideNav, reportTitle, stats, devMode, VERSION } = props.store;
 
+  // console.log(window.marge)
+
   return (
     <Provider reportStore={props.store}>
       <main>
