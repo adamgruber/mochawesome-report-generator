@@ -93,28 +93,61 @@ describe('ReportStore', () => {
       expect(store).to.have.property('sideNavOpen', false);
     });
 
-    it('toggleFilter, showPassed', () => {
-      expect(store).to.have.property('showPassed', true);
-      store.toggleFilter('showPassed');
-      expect(store).to.have.property('showPassed', false);
+    describe('toggleFilter', () => {
+      [
+        ['showPassed', true],
+        ['showFailed', true],
+        ['showPending', true],
+        ['showSkipped', false]
+      ].forEach(([filter, initial]) => {
+        it(`${filter}`, () => {
+          expect(store).to.have.property(filter, initial);
+          store.toggleFilter(filter);
+          expect(store).to.have.property(filter, !initial);
+        });    
+      })
     });
 
-    it('toggleFilter, showFailed', () => {
-      expect(store).to.have.property('showFailed', true);
-      store.toggleFilter('showFailed');
-      expect(store).to.have.property('showFailed', false);
-    });
+    describe('toggleSingleFilter', () => {
+      const filters = ['showPassed', 'showFailed', 'showPending', 'showSkipped'];
+      describe('when `singleFilter` is NOT set', () => {
+        filters.forEach(filter => {
+          it(`should set expected filter state when toggling: ${filter}`, () => {
+            store.toggleSingleFilter(filter);
+            filters.forEach(f => {
+              if (f === filter) {
+                expect(store[f]).to.equal(true);
+              } else {
+                expect(store[f]).to.equal(false);
+              }
+            })
+          });
+        })
+      });
 
-    it('toggleFilter, showPending', () => {
-      expect(store).to.have.property('showPending', true);
-      store.toggleFilter('showPending');
-      expect(store).to.have.property('showPending', false);
-    });
+      describe('when `singleFilter` is set', () => {
+        beforeEach(() => {
+          store.singleFilter = 'showPassed';
+        });
 
-    it('toggleFilter, showSkipped', () => {
-      expect(store).to.have.property('showSkipped', false);
-      store.toggleFilter('showSkipped');
-      expect(store).to.have.property('showSkipped', true);
+        it('should set expected filter state when toggling active filter', () => {
+          store.toggleSingleFilter('showPassed');
+          filters.forEach(f => {
+            expect(store[f]).to.equal(store.initialFilterState[f]);
+          });
+        });
+
+        it('should set expected filter state when toggling different filter', () => {
+          store.toggleSingleFilter('showFailed');
+          filters.forEach(f => {
+              if (f === 'showFailed') {
+                expect(store[f]).to.equal(true);
+              } else {
+                expect(store[f]).to.equal(false);
+              }
+          });
+        });
+      });
     });
 
     it('setShowHooks', () => {
