@@ -14,7 +14,7 @@ class ReportStore {
       enableCode: !!config.enableCode,
       initialLoadTimeout: 300,
       reportTitle: config.reportTitle || data.reportTitle,
-      results: data.results || [],
+      results: Array.isArray(data.results) ? data.results.reverse() : [],
       showHooksOptions: ['failed', 'always', 'never', 'context'],
       stats: data.stats || {},
       VERSION: '__VERSION__',
