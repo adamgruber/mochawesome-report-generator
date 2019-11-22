@@ -18,6 +18,12 @@ describe('ReportStore', () => {
   it('has the correct default state', () => {
     store = createStore();
     expect(store).to.have.deep.property('results', []);
+    expect(store).to.have.deep.property('filters', [
+      'showPassed',
+      'showFailed',
+      'showPending',
+      'showSkipped',
+    ]);
     expect(store).to.have.deep.property('showHooksOptions', [
       'failed',
       'always',

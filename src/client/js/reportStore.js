@@ -6,14 +6,13 @@ const transduce = (items, mapper, reducer, initial) =>
     initial
   );
 
-const filters = ['showPassed', 'showFailed', 'showPending', 'showSkipped'];
-
 class ReportStore {
   constructor(data = {}, config = {}) {
     Object.assign(this, {
       devMode: !!config.dev,
       enableChart: !!config.enableCharts,
       enableCode: !!config.enableCode,
+      filters: ['showPassed', 'showFailed', 'showPending', 'showSkipped'],
       initialLoadTimeout: 300,
       initialFilterState: null,
       reportTitle: config.reportTitle || data.reportTitle,
@@ -43,7 +42,7 @@ class ReportStore {
 
   initialize() {
     // Save initial filter state so we can restore after quick filtering
-    this.initialFilterState = filters.reduce((acc, filter) => ({
+    this.initialFilterState = this.filters.reduce((acc, filter) => ({
       ...acc,
       [filter]: this[filter],
     }), {})
@@ -72,7 +71,7 @@ class ReportStore {
     // Not in single filter mode or changing single filter
     if (this.singleFilter !== prop) {
       // Set filters to false
-      filters.filter(filter => filter !== prop).forEach(filter => {
+      this.filters.filter(filter => filter !== prop).forEach(filter => {
         this[filter] = false;
       });
 
@@ -180,7 +179,7 @@ class ReportStore {
   };
 
   _restoreInitialFilterState = () => {
-    filters.forEach(filter => {
+    this.filters.forEach(filter => {
       this[filter] = this.initialFilterState[filter];
     });
   };
