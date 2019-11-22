@@ -23,6 +23,19 @@
   font-size: 16px;
   flex-basis: 25%;
 
+  & button {
+    @extend %button-base;
+
+    display: flex;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+
+    &:hover .icon {
+      border-color: #fff;
+    }
+  }
+
   &.tests {
     color: #fff;
   }
@@ -31,6 +44,16 @@
     & .icon {
       color: var(--green700);
       background-color: var(--green100);
+
+      @nest .single-filter & {
+        background-color: var(--grey300);
+        color: var(--grey500);
+      }
+
+      @nest .single-filter--passed & {
+        color: #fff;
+        background-color: var(--green700);
+      }
     }
   }
 
@@ -38,6 +61,16 @@
     & .icon {
       color: var(--red700);
       background-color: var(--red100);
+
+      @nest .single-filter & {
+        background-color: var(--grey300);
+        color: var(--grey500);
+      }
+
+      @nest .single-filter--failed & {
+        color: #fff;
+        background-color: var(--red700);
+      }
     }
   }
 
@@ -45,6 +78,16 @@
     & .icon {
       color: var(--ltblue700);
       background-color: var(--ltblue100);
+
+      @nest .single-filter & {
+        background-color: var(--grey300);
+        color: var(--grey500);
+      }
+
+      @nest .single-filter--pending & {
+        color: #fff;
+        background-color: var(--ltblue700);
+      }
     }
   }
 
@@ -52,6 +95,16 @@
     & .icon {
       color: var(--grey700);
       background-color: var(--grey100);
+
+      @nest .single-filter & {
+        background-color: var(--grey300);
+        color: var(--grey500);
+      }
+
+      @nest .single-filter--skipped & {
+        color: #fff;
+        background-color: var(--grey700);
+      }
     }
   }
 }
@@ -67,7 +120,9 @@
 .circle-icon {
   font-size: 12px;
   border-radius: 50%;
-  padding: 3px;
+  padding: 2px;
+  border: 1px solid transparent;
+  transition: border-color 0.2s ease-out;
 }
 
 /* Tablet 768 and up */
