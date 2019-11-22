@@ -30,6 +30,12 @@ describe('ReportStore', () => {
       'never',
       'context',
     ]);
+    expect(store).to.have.deep.property('initialFilterState', {
+        showPassed: true,
+        showFailed: true,
+        showPending: true,
+        showSkipped: false,
+    });
     expect(store).to.include({
       devMode: false,
       enableChart: false,
