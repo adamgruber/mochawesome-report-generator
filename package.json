@@ -1,7 +1,7 @@
 {
-  "name": "mochawesome-report-generator",
-  "version": "4.0.1",
-  "description": "Generates gorgeous HTML reports from mochawesome reporter.",
+  "name": "goalkeeper-report-generator",
+  "version": "0.0.6",
+  "description": "Generates gorgeous HTML reports from mochawesome reporter, used for Goalkeeper.",
   "scripts": {
     "lint": "eslint src test --ext js",
     "stylelint": "stylelint src/**/*.css src/components/**/*.css",
@@ -23,11 +23,11 @@
     "dev": "npm run compile && npm run cli && npm run devserver",
     "dev:cli": "nodemon --watch src/bin --watch src/lib --exec npm run compile"
   },
-  "author": "Adam Gruber",
+  "author": "houce",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/adamgruber/mochawesome-report-generator"
+    "url": "https://github.com/HOUCe/goalkeeper-report-generator"
   },
   "keywords": [
     "mochawesome",
@@ -35,7 +35,9 @@
     "reporter",
     "json",
     "react",
-    "report generator"
+    "report generator",
+    "goalkeeper",
+    "e2e"
   ],
   "main": "lib/main.js",
   "bin": {
@@ -83,6 +85,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
+    "react-router-dom": "^5.1.2",
     "tcomb": "^3.2.17",
     "tcomb-validation": "^3.3.0",
     "validator": "^10.11.0",
@@ -135,6 +138,7 @@
     "mobx-react": "^5.2.8",
     "mobx-react-devtools": "^6.1.1",
     "mocha": "^6.0.2",
+    "mochawesome": "^4.1.0",
     "nodemon": "^1.18.10",
     "normalize.css": "^8.0.0",
     "nyc": "^13.3.0",

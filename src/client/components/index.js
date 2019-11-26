@@ -5,6 +5,7 @@ export { default as Footer } from './footer';
 export { default as Icon } from './material-icon';
 export { default as Loader } from './loader';
 export { default as MochawesomeReport } from './report';
+export { default as ReportDetail } from './report-detail';
 export { default as Navbar } from './navbar';
 export * from './nav-menu';
 export { default as QuickSummary } from './quick-summary';
