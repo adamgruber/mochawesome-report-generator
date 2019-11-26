@@ -6,7 +6,7 @@ import styles from './navbar.css';
 
 const cx = classNames.bind(styles);
 
-const Navbar = ({ onMenuClick, reportTitle, stats }) => {
+const Navbar = ({ onMenuClick, reportTitle, stats, icon = 'menu', showQuickSummary = true }) => {
   const { passPercent, pendingPercent } = stats;
 
   const failPercent = 100 - passPercent;
@@ -28,15 +28,17 @@ const Navbar = ({ onMenuClick, reportTitle, stats }) => {
           type="button"
           onClick={onMenuClick}
           className={cx('menu-button', 'open-menu')}>
-          <Icon name="menu" />
+          <Icon name={icon} />
         </button>
         <h1 className={cx('report-title')} title={reportTitle}>
           {reportTitle}
         </h1>
       </div>
-      <div className={cx('stats')}>
-        <QuickSummary stats={stats} />
-      </div>
+      {showQuickSummary && (
+        <div className={cx('stats')}>
+          <QuickSummary stats={stats} />
+        </div>
+      )}
       {showPctBar && (
         <div className={cx('pct-bar')}>
           {allPending && pctBar(pendingPercent, 'pend', 'Pending')}
@@ -52,6 +54,8 @@ Navbar.propTypes = {
   onMenuClick: PropTypes.func,
   reportTitle: PropTypes.string,
   stats: PropTypes.object,
+  icon: PropTypes.string,
+  showQuickSummary: PropTypes.bool
 };
 
 Navbar.displayName = 'Navbar';

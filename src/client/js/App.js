@@ -6,7 +6,7 @@ import {
   Link,
 } from "react-router-dom";
 import PropTypes from 'prop-types';
-import { MochawesomeReport } from '../components';
+import { MochawesomeReport, ReportDetail } from '../components';
 
 const App = ({store}) => {
   return (
@@ -26,6 +26,9 @@ const App = ({store}) => {
         <Switch>
           <Route path="/reports">
             <MochawesomeReport store={store} />
+          </Route>
+          <Route path="/detail">
+            <ReportDetail store={store} />
           </Route>
           <Route path="/">
             <h2> Dashboard </h2>

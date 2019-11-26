@@ -21,11 +21,11 @@ const Footer = ({ version }) => {
           {copyrightYear}
           &nbsp;
           <a href={urls.site} target="_blank" rel="noopener noreferrer">
-            Mochawesome
+            GoalKeeper
           </a>
           &nbsp;was designed and built by&nbsp;
           <a href={urls.github} target="_blank" rel="noopener noreferrer">
-            Adam Gruber
+            知乎会员前端
           </a>{' '}
           • <span>v{version}</span>
         </p>
