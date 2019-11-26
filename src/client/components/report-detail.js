@@ -11,8 +11,6 @@ const ReportDetail = observer(props => {
   const {store, history} = props
   const { devMode, VERSION, reportTitle, stats } = store;
 
-  console.log('!!!!!!!!!!!!!!props!!!!!!!!!!', props)
-
   return (
     <Provider reportStore={props.store}>
       <main>
