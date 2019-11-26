@@ -1,6 +1,6 @@
 {
   "name": "goalkeeper-report-generator",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Generates gorgeous HTML reports from mochawesome reporter, used for Goalkeeper.",
   "scripts": {
     "lint": "eslint src test --ext js",
