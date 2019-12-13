@@ -12,7 +12,9 @@ class ReportStore {
       devMode: !!config.dev,
       enableChart: !!config.enableCharts,
       enableCode: !!config.enableCode,
+      filters: ['showPassed', 'showFailed', 'showPending', 'showSkipped'],
       initialLoadTimeout: 300,
+      initialFilterState: null,
       reportTitle: config.reportTitle || data.reportTitle,
       results: data.results || [],
       showHooksOptions: ['failed', 'always', 'never', 'context'],
@@ -29,10 +31,21 @@ class ReportStore {
       showPending: config.showPending !== undefined ? config.showPending : true,
       showSkipped:
         config.showSkipped !== undefined ? config.showSkipped : false,
+      singleFilter: null,
       sideNavOpen: false,
     }, {
       filteredSuites: observable.shallow
     });
+
+    this.initialize();
+  }
+
+  initialize() {
+    // Save initial filter state so we can restore after quick filtering
+    this.initialFilterState = this.filters.reduce((acc, filter) => ({
+      ...acc,
+      [filter]: this[filter],
+    }), {})
   }
 
   @action.bound
@@ -48,7 +61,32 @@ class ReportStore {
   @action.bound
   toggleFilter(prop) {
     this.toggleIsLoading(true);
+    // Clear single filter prop
+    this.singleFilter = null;
     this[prop] = !this[prop];
+  }
+
+  @action.bound
+  toggleSingleFilter(prop) {
+    // Not in single filter mode or changing single filter
+    if (this.singleFilter !== prop) {
+      // Set filters to false
+      this.filters.filter(filter => filter !== prop).forEach(filter => {
+        this[filter] = false;
+      });
+
+      // Set single filter to true
+      this[prop] = true;
+
+      // Update single filter prop
+      this.singleFilter = prop;
+    } else {
+      // Restore filters
+      this._restoreInitialFilterState()
+
+      // Clear single filter prop
+      this.singleFilter = null;
+    }
   }
 
   @action.bound
@@ -138,6 +176,12 @@ class ReportStore {
     return this._isValidShowHookOption(showHooks)
       ? showHooks
       : showHooksDefault;
+  };
+
+  _restoreInitialFilterState = () => {
+    this.filters.forEach(filter => {
+      this[filter] = this.initialFilterState[filter];
+    });
   };
 
   updateFilteredSuites(timeout = this.initialLoadTimeout) {

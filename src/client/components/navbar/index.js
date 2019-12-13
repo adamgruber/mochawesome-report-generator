@@ -6,7 +6,7 @@ import styles from './navbar.css';
 
 const cx = classNames.bind(styles);
 
-const Navbar = ({ onMenuClick, reportTitle, stats }) => {
+const Navbar = ({ onMenuClick, onQuickFilterClick, reportTitle, singleFilter, stats }) => {
   const { passPercent, pendingPercent } = stats;
 
   const failPercent = 100 - passPercent;
@@ -35,7 +35,10 @@ const Navbar = ({ onMenuClick, reportTitle, stats }) => {
         </h1>
       </div>
       <div className={cx('stats')}>
-        <QuickSummary stats={stats} />
+        <QuickSummary
+          stats={stats}
+          onQuickFilterClick={onQuickFilterClick}
+          singleFilter={singleFilter} />
       </div>
       {showPctBar && (
         <div className={cx('pct-bar')}>
@@ -50,7 +53,9 @@ const Navbar = ({ onMenuClick, reportTitle, stats }) => {
 
 Navbar.propTypes = {
   onMenuClick: PropTypes.func,
+  onQuickFilterClick: PropTypes.func,
   reportTitle: PropTypes.string,
+  singleFilter: PropTypes.string,
   stats: PropTypes.object,
 };
 

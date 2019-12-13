@@ -7,13 +7,15 @@ import 'styles/app.global.css';
 import MobxDevTool from './mobxDevtool';
 
 const MochawesomeReport = observer(props => {
-  const { openSideNav, reportTitle, stats, devMode, VERSION } = props.store;
+  const { openSideNav, toggleSingleFilter, singleFilter, reportTitle, stats, devMode, VERSION } = props.store;
 
   return (
     <Provider reportStore={props.store}>
       <main>
         <Navbar
           onMenuClick={openSideNav}
+          onQuickFilterClick={toggleSingleFilter}
+          singleFilter={singleFilter}
           reportTitle={reportTitle}
           stats={stats}
         />

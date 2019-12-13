@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+### Added
+- Clicking icons in navbar enable quick filtering of single test type
 
 ## [4.0.1] / 2019-07-05
 ### Changed

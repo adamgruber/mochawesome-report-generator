@@ -6,7 +6,7 @@ import styles from './quick-summary.css';
 
 const cx = classNames.bind(styles);
 
-const QuickSummary = ({ stats }) => {
+const QuickSummary = ({ onQuickFilterClick, singleFilter, stats }) => {
   const {
     duration,
     suites,
@@ -16,6 +16,11 @@ const QuickSummary = ({ stats }) => {
     pending,
     skipped,
   } = stats;
+
+  const filterClasses = singleFilter
+    ? ['single-filter', `single-filter--${singleFilter.slice(4).toLowerCase()}`]
+    : '';
+
   return (
     <div className={cx('cnt')}>
       <ul className={cx('list')}>
@@ -36,25 +41,33 @@ const QuickSummary = ({ stats }) => {
           {testsRegistered}
         </li>
       </ul>
-      <ul className={cx('list')}>
+      <ul className={cx('list', filterClasses)}>
         <li className={cx('item', 'passes')} title="Passed">
-          <Icon name="check" className={cx('icon', 'circle-icon')} />
-          {passes}
+          <button type="button" onClick={() => onQuickFilterClick('showPassed')}>
+            <Icon name="check" className={cx('icon', 'circle-icon')} />
+            {passes}
+          </button>
         </li>
         <li className={cx('item', 'failures')} title="Failed">
-          <Icon name="close" className={cx('icon', 'circle-icon')} />
-          {failures}
+          <button type="button" onClick={() => onQuickFilterClick('showFailed')}>
+            <Icon name="close" className={cx('icon', 'circle-icon')} />
+            {failures}
+          </button>
         </li>
         {!!pending && (
           <li className={cx('item', 'pending')} title="Pending">
-            <Icon name="pause" className={cx('icon', 'circle-icon')} />
-            {pending}
+            <button type="button" onClick={() => onQuickFilterClick('showPending')}>
+              <Icon name="pause" className={cx('icon', 'circle-icon')} />
+              {pending}
+            </button>
           </li>
         )}
         {!!skipped && (
           <li className={cx('item', 'skipped')} title="Skipped">
-            <Icon name="stop" className={cx('icon', 'circle-icon')} />
-            {skipped}
+            <button type="button" onClick={() => onQuickFilterClick('showSkipped')}>
+              <Icon name="stop" className={cx('icon', 'circle-icon')} />
+              {skipped}
+            </button>
           </li>
         )}
       </ul>
@@ -63,6 +76,8 @@ const QuickSummary = ({ stats }) => {
 };
 
 QuickSummary.propTypes = {
+  onQuickFilterClick: PropTypes.func,
+  singleFilter: PropTypes.string,
   stats: PropTypes.object,
 };
 
