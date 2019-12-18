@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+
+## [4.1.0] / 2019-12-18
 ### Added
 - Clicking icons in navbar enable quick filtering of single test type
 
@@ -176,7 +178,8 @@ You can still use the `--reportFilename` flag to set the filename of the generat
 ## 1.0.0 / 2016-12-18
 - Initial release
 
-[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/4.0.1...HEAD
+[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/4.1.0...HEAD
+[4.1.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/4.0.1...4.1.0
 [4.0.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/4.0.0...4.0.1
 [4.0.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.5...4.0.0
 [3.1.5]: https://github.com/adamgruber/mochawesome-report-generator/compare/3.1.4...3.1.5
