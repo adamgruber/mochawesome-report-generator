@@ -1,6 +1,6 @@
 mochawesome-report-generator (marge)
 ============================
-[![npm](https://img.shields.io/npm/v/mochawesome-report-generator.svg)](http://www.npmjs.com/package/mochawesome-report-generator) [![Build Status](https://img.shields.io/travis/adamgruber/mochawesome-report-generator/master.svg)](https://travis-ci.org/adamgruber/mochawesome-report-generator) [![Test Coverage](https://api.codeclimate.com/v1/badges/613427ae1baabfb75360/test_coverage)](https://codeclimate.com/github/adamgruber/mochawesome-report-generator/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/613427ae1baabfb75360/maintainability)](https://codeclimate.com/github/adamgruber/mochawesome-report-generator/maintainability)
+[![npm](https://img.shields.io/npm/v/mochawesome-report-generator.svg)](http://www.npmjs.com/package/mochawesome-report-generator) ![Node CI](https://github.com/adamgruber/mochawesome-report-generator/workflows/Node%20CI/badge.svg)
 
 **marge** (**m**och**a**wesome-**r**eport-**ge**nerator) is the counterpart to [mochawesome][2], a custom reporter for use with the Javascript testing framework, [mocha][1]. Marge takes the JSON output from [mochawesome][2] and generates a full fledged HTML/CSS report that helps visualize your test suites.
 
@@ -21,9 +21,9 @@ mochawesome-report-generator (marge)
 
 ## Usage with mochawesome
 
-1. Add Mochawesome to your project:
+1. Add Mochawesome and React to your project:
 
-  `npm install --save-dev mochawesome`
+  `npm install --save-dev mochawesome react react-dom`
 
 2. Tell mocha to use the Mochawesome reporter:
 
@@ -121,10 +121,16 @@ Further, if you pass the flag with no format string, it will default to `isoDate
 
 The above CLI flags can be used as `reporter-options` when using the mochawesome reporter.
 
-Use them in a `mocha.opts` file:
+Use them in a `.mocharc.js` file:
 ```js
---reporter mochawesome
---reporter-options overwrite=true,reportTitle=My\ Custom\ Title,showPassed=false
+module.exports = {
+    reporter: 'node_modules/mochawesome',
+    'reporter-option': [
+        'overwrite=true',
+        'reportTitle=My\ Custom\ Title',
+        'showPassed=false'
+    ],
+};
 ```
 
 or as an object when using mocha programmatically:
