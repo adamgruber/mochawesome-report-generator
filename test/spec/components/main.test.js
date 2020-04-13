@@ -1,13 +1,12 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import chai, { expect } from 'chai';
-import chaiEnzyme from 'chai-enzyme';
+import { expect } from 'chai';
+import renderMainHTML from '../../../src/lib/main-html';
 
-import Main from '../../../src/lib/main-html';
+const getInstance = props => {
+  const rendered = renderMainHTML(props);
+  document.write(rendered);
+  return rendered;
+}
 
-chai.use(chaiEnzyme());
-
-const getInstance = props => shallow(<Main {...props} />);
 let props;
 
 describe('<MainHTML />', () => {
@@ -25,18 +24,23 @@ describe('<MainHTML />', () => {
   });
 
   it('sets correct script/style urls', () => {
-    const wrapper = getInstance(props);
-    expect(wrapper.find('link')).to.have.attr('href', 'app.css');
-    expect(wrapper.find('script')).to.have.attr('src', 'app.js');
+    getInstance(props);
+    const linkEl = document.head.querySelector('link');
+    const scriptEl = document.body.querySelector('script');
+    expect(linkEl.getAttribute('href')).to.equal('app.css');
+    expect(scriptEl.getAttribute('src')).to.equal('app.js');
   });
 
   it('renders scripts/styles inline', () => {
     props.useInlineAssets = true;
-    const wrapper = getInstance(props);
-    expect(wrapper.find('style').html()).to.equal(
+    getInstance(props);
+    const styleEl = document.head.querySelector('style');
+    expect(styleEl.outerHTML).to.equal(
       '<style>body{display:block;}</style>'
     );
-    expect(wrapper.find('script').html()).to.equal(
+    const scriptEl = document.body.querySelector('script');
+
+    expect(scriptEl.outerHTML).to.equal(
       '<script type="text/javascript">function noop(){return;}</script>'
     );
   });
