@@ -76,6 +76,7 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "dateformat": "^3.0.2",
+    "escape-html": "^1.0.3",
     "fs-extra": "^7.0.0",
     "fsu": "^1.0.2",
     "lodash.isfunction": "^3.0.8",
@@ -85,10 +86,6 @@
     "tcomb-validation": "^3.3.0",
     "validator": "^10.11.0",
     "yargs": "^13.2.2"
-  },
-  "peerDependencies": {
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
@@ -150,6 +147,8 @@
     "prettier": "^1.16.4",
     "proxyquire": "^2.1.0",
     "raf": "^3.4.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-test-renderer": "^16.8.5",
     "sinon": "^7.3.0",
     "string-replace-loader": "^2.1.1",

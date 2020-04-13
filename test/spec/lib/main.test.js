@@ -5,7 +5,6 @@ import sinon from 'sinon';
 import chai, { expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import dateFormat from 'dateformat';
-import React from 'react';
 
 import testData from 'sample-data/test.json';
 import pkg from '../../../package.json';
@@ -20,6 +19,7 @@ const readFileSyncStub = sinon.stub();
 const openerStub = sinon.stub();
 const existsSyncStub = sinon.stub();
 const writeFileUniqueStub = sinon.stub();
+const rendererStub = sinon.stub();
 const mareport = proxyquire('../../../src/lib/main', {
   'fs-extra': {
     outputFile: outputFileStub,
@@ -33,6 +33,7 @@ const mareport = proxyquire('../../../src/lib/main', {
   },
   opener: openerStub,
   '../package.json': pkg,
+  './main-html': rendererStub,
 });
 
 let opts;
@@ -358,11 +359,10 @@ describe('lib/main', () => {
       existsSyncStub.returns(true);
       outputFileStub.resolves(null);
       readFileSyncStub.returns('app');
-      sinon.spy(React, 'createElement');
     });
 
     afterEach(() => {
-      React.createElement.restore();
+      rendererStub.reset();
     });
 
     describe('when dev is true', () => {
@@ -378,17 +378,16 @@ describe('lib/main', () => {
           expect(copySyncStub.called).to.equal(false);
         }));
 
-      it('should return correct asset props', () => {
+      it('should return correct asset props', () => 
         mareport.create(testData, options).then(() => {
-          const props = React.createElement.getCall(0).args[1];
+          const props = rendererStub.getCall(0).args[0];
           expect(props).to.include({
             inlineScripts: null,
             inlineStyles: null,
             scriptsUrl: 'http://localhost:8080/app.js',
             stylesUrl: 'http://localhost:8080/app.css',
           });
-        });
-      });
+        }));
     });
 
     describe('when cdn is true', () => {
@@ -406,7 +405,7 @@ describe('lib/main', () => {
 
       it('should return correct asset props', () =>
         mareport.create(testData, options).then(() => {
-          const props = React.createElement.getCall(0).args[1];
+          const props = rendererStub.getCall(0).args[0];
           expect(props).to.include({
             inlineScripts: null,
             inlineStyles: null,
@@ -435,7 +434,7 @@ describe('lib/main', () => {
 
       it('should return correct asset props', () =>
         mareport.create(testData, options).then(() => {
-          const props = React.createElement.getCall(0).args[1];
+          const props = rendererStub.getCall(0).args[0];
           expect(props).to.include({
             inlineScripts: 'app',
             inlineStyles: 'app',
@@ -458,7 +457,7 @@ describe('lib/main', () => {
 
       it('should return correct asset props', () =>
         mareport.create(testData, options).then(() => {
-          const props = React.createElement.getCall(0).args[1];
+          const props = rendererStub.getCall(0).args[0];
           expect(props).to.include({
             inlineScripts: null,
             inlineStyles: null,

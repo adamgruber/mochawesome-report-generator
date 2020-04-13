@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+### Changed
+- Remove react dependencies
 
 ## [5.0.0] - 2020-04-10
 ### Changed
