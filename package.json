@@ -87,10 +87,6 @@
     "validator": "^10.11.0",
     "yargs": "^13.2.2"
   },
-  "peerDependencies": {
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5"
-  },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.4.0",
