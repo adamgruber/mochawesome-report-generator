@@ -21,9 +21,9 @@ mochawesome-report-generator (marge)
 
 ## Usage with mochawesome
 
-1. Add Mochawesome and React to your project:
+1. Add Mochawesome to your project:
 
-  `npm install --save-dev mochawesome react react-dom`
+  `npm install --save-dev mochawesome`
 
 2. Tell mocha to use the Mochawesome reporter:
 
