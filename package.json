@@ -76,6 +76,7 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "dateformat": "^3.0.2",
+    "escape-html": "^1.0.3",
     "fs-extra": "^7.0.0",
     "fsu": "^1.0.2",
     "lodash.isfunction": "^3.0.8",
