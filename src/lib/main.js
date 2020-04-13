@@ -1,11 +1,9 @@
 const fs = require('fs-extra');
 const fsu = require('fsu');
 const path = require('path');
-const React = require('react');
 const opener = require('opener');
 const dateFormat = require('dateformat');
-const render = require('react-dom/server').renderToStaticMarkup;
-const MainHTML = require('./main-html');
+const renderMainHTML = require('./main-html');
 const pkg = require('../package.json');
 const { getMergedOptions } = require('./options');
 
@@ -248,17 +246,13 @@ function prepare(reportData, opts) {
   const assets = getAssets(reportOptions);
 
   // Render basic template to string
-  // const { styles, scripts } = assets;
-
-  const renderedHtml = render(
-    React.createElement(MainHTML, {
-      data,
-      options: reportOptions,
-      title: reportOptions.reportPageTitle,
-      useInlineAssets: reportOptions.inlineAssets && !reportOptions.cdn,
-      ...assets,
-    })
-  );
+  const renderedHtml = renderMainHTML({
+    data,
+    options: reportOptions,
+    title: reportOptions.reportPageTitle,
+    useInlineAssets: reportOptions.inlineAssets && !reportOptions.cdn,
+    ...assets,
+  });
 
   const html = `<!doctype html>\n${renderedHtml}`;
   return { html, reportOptions };
