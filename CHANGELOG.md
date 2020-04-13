@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+
+## [5.1.0] - 2020-04-13
 ### Changed
 - Remove react dependencies
 
@@ -165,7 +167,8 @@ No release is complete without a quick hotfix.
 ## 1.0.0 - 2016-12-18
 - Initial release
 
-[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/5.0.0...HEAD
+[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/5.1.0...HEAD
+[5.1.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/5.0.0...5.1.0
 [5.0.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/4.1.0...5.0.0
 [4.1.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/4.0.1...4.1.0
 [4.0.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/4.0.0...4.0.1
