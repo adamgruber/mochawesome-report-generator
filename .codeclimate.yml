@@ -1,19 +1,18 @@
-version: "2"
+version: '2'
 checks:
   method-lines:
     config:
       threshold: 75
   similar-code:
     config:
-      threshold:
-        javascript: 90
+      threshold: 90
 exclude_patterns:
-- "bin/*.js"
-- "dist/"
-- "docs/"
-- "lib/*.js"
-- "node_modules/"
-- "test-functional/"
-- "test/"
-- "webpack.config.js"
-- "webpack.loaders.js"
+  - 'bin/*.js'
+  - 'dist/'
+  - 'docs/'
+  - 'lib/*.js'
+  - 'node_modules/'
+  - 'test-functional/'
+  - 'test/'
+  - 'webpack.config.js'
+  - 'webpack.loaders.js'
