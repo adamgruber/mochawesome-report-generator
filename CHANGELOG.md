@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+### Changed
+- Replace custom duration formatting with `pretty-ms` [mochawesome #322](https://github.com/adamgruber/mochawesome/issues/322)
 
 ## [5.1.0] - 2020-04-13
 ### Changed
