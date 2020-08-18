@@ -26,11 +26,7 @@ const QuickSummary = ({ onQuickFilterClick, singleFilter, stats }) => {
       <ul className={cx('list')}>
         <li className={cx('item', 'duration')} title="Duration">
           <Icon name="timer" className={cx('icon')} />
-          <Duration
-            unitsClassName={cx('duration-units')}
-            timer={duration}
-            isSummary
-          />
+          <Duration timer={duration} />
         </li>
         <li className={cx('item', 'suites')} title="Suites">
           <Icon name="library_books" className={cx('icon')} />
@@ -43,20 +39,26 @@ const QuickSummary = ({ onQuickFilterClick, singleFilter, stats }) => {
       </ul>
       <ul className={cx('list', filterClasses)}>
         <li className={cx('item', 'passes')} title="Passed">
-          <button type="button" onClick={() => onQuickFilterClick('showPassed')}>
+          <button
+            type="button"
+            onClick={() => onQuickFilterClick('showPassed')}>
             <Icon name="check" className={cx('icon', 'circle-icon')} />
             {passes}
           </button>
         </li>
         <li className={cx('item', 'failures')} title="Failed">
-          <button type="button" onClick={() => onQuickFilterClick('showFailed')}>
+          <button
+            type="button"
+            onClick={() => onQuickFilterClick('showFailed')}>
             <Icon name="close" className={cx('icon', 'circle-icon')} />
             {failures}
           </button>
         </li>
         {!!pending && (
           <li className={cx('item', 'pending')} title="Pending">
-            <button type="button" onClick={() => onQuickFilterClick('showPending')}>
+            <button
+              type="button"
+              onClick={() => onQuickFilterClick('showPending')}>
               <Icon name="pause" className={cx('icon', 'circle-icon')} />
               {pending}
             </button>
@@ -64,7 +66,9 @@ const QuickSummary = ({ onQuickFilterClick, singleFilter, stats }) => {
         )}
         {!!skipped && (
           <li className={cx('item', 'skipped')} title="Skipped">
-            <button type="button" onClick={() => onQuickFilterClick('showSkipped')}>
+            <button
+              type="button"
+              onClick={() => onQuickFilterClick('showSkipped')}>
               <Icon name="stop" className={cx('icon', 'circle-icon')} />
               {skipped}
             </button>

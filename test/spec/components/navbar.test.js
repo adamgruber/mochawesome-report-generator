@@ -48,7 +48,7 @@ describe('<Navbar />', () => {
     beforeEach(() => {
       props = {
         reportTitle: 'test',
-        stats: { passPercent: 0, pendingPercent: 100 },
+        stats: { duration: 30, passPercent: 0, pendingPercent: 100 },
       };
     });
 
@@ -63,7 +63,7 @@ describe('<Navbar />', () => {
     beforeEach(() => {
       props = {
         reportTitle: 'test',
-        stats: { passPercent: null, pendingPercent: null },
+        stats: { duration: 30, passPercent: null, pendingPercent: null },
       };
     });
 

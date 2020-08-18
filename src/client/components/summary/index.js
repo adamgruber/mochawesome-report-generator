@@ -22,7 +22,7 @@ const Summary = props => {
         <div className="row">
           <div className={cx('col', 'duration')}>
             <h1 className={cx('count')}>
-              <Duration timer={duration} isSummary />
+              <Duration timer={duration} />
             </h1>
             <h4 className={cx('label')}>{}</h4>
           </div>
