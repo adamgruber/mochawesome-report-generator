@@ -115,7 +115,7 @@ spaces, commas | underscore | Wed March 29, 2017 | Wed_March_29_2017
 slashes | hyphen | 3/29/2017 | 3-29-2017
 colons | null | 17:46:21 | 174621
 
-Further, if you pass the flag with no format string, it will default to `isoDateTime`.
+If you pass `true` as the format string, it will default to `isoDateTime`.
 
 ### mochawesome `reporter-options`
 
