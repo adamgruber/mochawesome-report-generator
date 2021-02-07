@@ -80,7 +80,7 @@
     "fs-extra": "^7.0.0",
     "fsu": "^1.0.2",
     "lodash.isfunction": "^3.0.8",
-    "opener": "^1.4.2",
+    "opener": "^1.5.2",
     "prop-types": "^15.7.2",
     "tcomb": "^3.2.17",
     "tcomb-validation": "^3.3.0",
