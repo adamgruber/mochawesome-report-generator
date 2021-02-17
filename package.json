@@ -159,7 +159,7 @@
     "stylelint-config-standard": "^18.2.0",
     "stylelint-order": "^2.1.0",
     "stylelint-webpack-plugin": "^0.10.5",
-    "uglifyjs-webpack-plugin": "^2.1.2",
+    "terser-webpack-plugin": "^4.2.3",
     "url-loader": "^1.1.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",

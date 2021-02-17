@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const loaders = require('./webpack.loaders');
@@ -39,20 +39,6 @@ const plugins = [
   ),
   new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(env) }),
 ];
-
-if (env === 'production') {
-  plugins.push(
-    new UglifyJsPlugin({
-      uglifyOptions: {
-        compress: { warnings: false },
-        output: {
-          comments: /^! mochawesome/,
-          inline_script: true,
-        },
-      },
-    })
-  );
-}
 
 module.exports = {
   mode: env,
@@ -97,6 +83,14 @@ module.exports = {
       font('ttf', { limit: fontLimit }),
       font('svg', { limit: fontLimit }),
     ],
+  },
+  optimization: {
+    minimize: env === 'production',
+    minimizer: [new TerserPlugin({
+      extractComments: {
+        banner: () => `mochawesome-report-generator ${pkg.version} | https://github.com/adamgruber/mochawesome-report-generator`,
+      },
+    })],
   },
   plugins,
 };
