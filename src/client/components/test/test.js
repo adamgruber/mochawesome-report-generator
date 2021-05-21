@@ -93,7 +93,7 @@ class Test extends PureComponent {
       );
     };
 
-    const isInactive = pending || skipped || (pass && !enableCode && !context);
+    const isInactive = !context && (pending || skipped || (pass && !enableCode));
 
     const cxname = cx('component', {
       expanded: this.state.expanded,
