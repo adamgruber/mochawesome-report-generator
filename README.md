@@ -91,7 +91,7 @@ Flag | Type | Default | Description
 --showFailed | boolean |  true | Set initial state of "Show Failed" filter
 --showPending | boolean | true | Set initial state of "Show Pending" filter
 --showSkipped | boolean | false | Set initial state of "Show Skipped" filter
---showHooks | string | failed | Set the default display mode for hooks ('failed', 'always', 'never', 'context')
+--showHooks | string | failed | Set the default display mode for hooks <br>• `failed`: show only failed hooks<br>• `always`: show all hooks<br>• `never`: hide all hooks<br>• `context`: show only hooks that have context
 --saveJson | boolean | false |Should report data be saved to JSON file
 --saveHtml | boolean | true | Should report be saved to HTML file
 --dev | boolean | false | Enable dev mode (requires local webpack dev server)
