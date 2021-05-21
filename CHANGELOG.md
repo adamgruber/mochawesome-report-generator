@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+### Fixed
+- Allow pending/skipped tests with context to be expanded [mochawesome #337](https://github.com/adamgruber/mochawesome/issues/337)
 
 ## [5.2.0] - 2021-02-16
 ### Changed
@@ -172,7 +174,8 @@ No release is complete without a quick hotfix.
 ## 1.0.0 - 2016-12-18
 - Initial release
 
-[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/5.1.0...HEAD
+[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/5.2.0...HEAD
+[5.2.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/5.1.0...5.2.0
 [5.1.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/5.0.0...5.1.0
 [5.0.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/4.1.0...5.0.0
 [4.1.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/4.0.1...4.1.0
