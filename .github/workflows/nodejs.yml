@@ -1,33 +1,18 @@
 name: Node CI
-
-on: 
-  push:
-    branches: 
-      - master
-      - main
-  pull_request:
-      types: [opened,edited,reopened,synchronize]
-    
-
+on: [push, pull_request] 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
-
+        node-version: [12.x, 14.x, 16.x]
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
     - name: npm install and test
-      run: |
-        npm ci
-        npm i react react-dom
-        npm test
-      env:
-        CI: true
+    - run: npm ci
+    - run: npm i react react-dom
+    - run: npm test
