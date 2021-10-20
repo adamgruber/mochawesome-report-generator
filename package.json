@@ -75,7 +75,7 @@
   },
   "dependencies": {
     "chalk": "^4.1.2",
-    "dateformat": "^3.0.2",
+    "dateformat": "^4.5.1",
     "escape-html": "^1.0.3",
     "fs-extra": "^7.0.0",
     "fsu": "^1.0.2",
