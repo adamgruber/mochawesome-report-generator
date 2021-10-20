@@ -85,7 +85,7 @@
     "tcomb": "^3.2.17",
     "tcomb-validation": "^3.3.0",
     "validator": "^13.6.0",
-    "yargs": "^13.2.2"
+    "yargs": "^17.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
