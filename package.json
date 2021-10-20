@@ -79,7 +79,7 @@
     "escape-html": "^1.0.3",
     "fs-extra": "^10.0.0",
     "fsu": "^2.0.2",
-    "lodash.isfunction": "^3.0.8",
+    "lodash.isfunction": "^3.0.9",
     "opener": "^1.5.2",
     "prop-types": "^15.7.2",
     "tcomb": "^3.2.17",
