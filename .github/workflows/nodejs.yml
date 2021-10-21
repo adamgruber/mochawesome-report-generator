@@ -2,8 +2,18 @@ name: Node CI
 on:
   push:
     branches:
-    - master
+      - master
+    paths-ignore:
+      - 'docs'
+      - '**.yml'
+      - '**.md'
+      - '.*'
   pull_request:
+      paths-ignore:
+      - 'docs'
+      - '**.yml'
+      - '**.md'
+      - '.*'
 jobs:
   build:
     runs-on: ubuntu-latest
