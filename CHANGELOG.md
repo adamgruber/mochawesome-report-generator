@@ -1,6 +1,13 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+
+## [6.0.0] - 2021-11-03
+### Changed
+- **BREAKING** Dropped support for Node<12
+- Updated all dependencies to latest versions with the exception of `dateformat` which has moved to es modules
+- Updated `epilog` function to use current year in copyright
+
 ### Fixed
 - Allow pending/skipped tests with context to be expanded [mochawesome #337](https://github.com/adamgruber/mochawesome/issues/337)
 
@@ -174,7 +181,8 @@ No release is complete without a quick hotfix.
 ## 1.0.0 - 2016-12-18
 - Initial release
 
-[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/5.2.0...HEAD
+[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.0.0...HEAD
+[6.0.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/5.2.0...6.0.0
 [5.2.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/5.1.0...5.2.0
 [5.1.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/5.0.0...5.1.0
 [5.0.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/4.1.0...5.0.0
