@@ -149,7 +149,7 @@ describe('lib/main', () => {
       it('with timestamp, boolean -> default format', () => {
         opts.timestamp = true;
         opts.overwrite = false;
-        writeFileUniqueStub.resolves(null);
+        writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
           expect(writeFileUniqueStub.args[0][0]).to.equal(
             getExpectedName(`_${cleanDateStr('isoDateTime')}`)
@@ -160,7 +160,7 @@ describe('lib/main', () => {
       it('with timestamp, true string -> default format', () => {
         opts.timestamp = 'true';
         opts.overwrite = false;
-        writeFileUniqueStub.resolves(null);
+        writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
           expect(writeFileUniqueStub.args[0][0]).to.equal(
             getExpectedName(`_${cleanDateStr('isoDateTime')}`)
@@ -171,7 +171,7 @@ describe('lib/main', () => {
       it('with timestamp, false string -> no timestamp', () => {
         opts.timestamp = 'false';
         opts.overwrite = false;
-        writeFileUniqueStub.resolves(null);
+        writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
           expect(writeFileUniqueStub.args[0][0]).to.equal(getExpectedName(''));
         });
@@ -180,7 +180,7 @@ describe('lib/main', () => {
       it('with timestamp, empty string -> default format', () => {
         opts.timestamp = '';
         opts.overwrite = false;
-        writeFileUniqueStub.resolves(null);
+        writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
           expect(writeFileUniqueStub.args[0][0]).to.equal(
             getExpectedName(`_${cleanDateStr('isoDateTime')}`)
@@ -191,7 +191,7 @@ describe('lib/main', () => {
       it('with timestamp, fullDate format', () => {
         opts.timestamp = 'fullDate';
         opts.overwrite = false;
-        writeFileUniqueStub.resolves(null);
+        writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
           expect(writeFileUniqueStub.args[0][0]).to.equal(
             getExpectedName(`_${cleanDateStr('fullDate')}`)
@@ -202,7 +202,7 @@ describe('lib/main', () => {
       it('with timestamp, longTime format', () => {
         opts.timestamp = 'longTime';
         opts.overwrite = false;
-        writeFileUniqueStub.resolves(null);
+        writeFileUniqueStub.yields(null);
         return mareport.create(testData, opts).then(() => {
           expect(writeFileUniqueStub.args[0][0]).to.equal(
             getExpectedName(`_${cleanDateStr('longTime')}`)
@@ -217,7 +217,7 @@ describe('lib/main', () => {
         reportDir: 'test',
         reportFilename: 'test',
       };
-      writeFileUniqueStub.resolves(null);
+      writeFileUniqueStub.yields(null);
       const expectedFilename = path.resolve(
         process.cwd(),
         'test',
@@ -246,7 +246,7 @@ describe('lib/main', () => {
 
     it('rejects when writeFileUnique throws', () => {
       opts.overwrite = false;
-      writeFileUniqueStub.rejects(new Error('save error'));
+      writeFileUniqueStub.yields(new Error('save error'));
       return expect(mareport.create(testData, opts)).to.be.rejectedWith(
         'save error'
       );
