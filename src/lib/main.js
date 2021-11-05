@@ -21,11 +21,18 @@ const semverRegex = /\d+\.\d+\.\d+(?:-(alpha|beta)\.\d+)?/;
  * @return {Promise} Resolves with filename if successfully saved
  */
 function saveFile(filename, data, overwrite) {
-  return overwrite
-    ? fs.outputFile(filename, data).then(() => filename)
-    : fsu.writeFileUnique(filename.replace(fileExtRegex, '{_###}$&'), data, {
-        force: true,
-      });
+  if (overwrite) {
+    return fs.outputFile(filename, data).then(() => filename);
+  }
+
+  return new Promise((resolve, reject) => {
+    fsu.writeFileUnique(
+      filename.replace(fileExtRegex, '{_###}$&'),
+      data,
+      { force: true },
+      (err, savedFile) => (err === null ? resolve(savedFile) : reject(err))
+    );
+  });
 }
 
 /**
