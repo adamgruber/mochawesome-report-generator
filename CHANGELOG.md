@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+
+## [6.0.1] - 2021-11-05
 ### Fixed
 - Revert `fsu` dependency to 1.1.1 to fix an issue where report creation could fail with EBADF bad descriptor errors [mochawesome #363](https://github.com/adamgruber/mochawesome/issues/363)
 
@@ -183,7 +185,8 @@ No release is complete without a quick hotfix.
 ## 1.0.0 - 2016-12-18
 - Initial release
 
-[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.0.0...HEAD
+[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.0.1...HEAD
+[6.0.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.0.0...6.0.1
 [6.0.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/5.2.0...6.0.0
 [5.2.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/5.1.0...5.2.0
 [5.1.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/5.0.0...5.1.0
