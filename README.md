@@ -75,7 +75,7 @@ mochawesome-report/
 
 Flag | Type | Default | Description 
 :--- | :--- | :------ | :----------
--f, --reportFilename | string | | Filename of saved report
+-f, --reportFilename | string | mochawesome | Filename of saved report. *See [notes](#reportFilename) for available token replacements.*
 -o, --reportDir | string | [cwd]/mochawesome-report | Path to save report
 -t, --reportTitle | string | mochawesome | Report title
 -p, --reportPageTitle | string | mochawesome-report | Browser title
@@ -100,12 +100,34 @@ Flag | Type | Default | Description
 
 *Boolean options can be negated by adding `--no` before the option. For example: `--no-code` would set `code` to `false`.*
 
-#### Overwrite
+#### reportFilename replacement tokens
+Using the following tokens it is possible to dynamically alter the filename of the generated report.
+
+- **[name]** will be replaced with the spec filename when possible. 
+- **[status]** will be replaced with the status (pass/fail) of the test run.
+- **[datetime]** will be replaced with a timestamp. The format can be - specified using the `timestamp` option.
+
+For example, given the spec `cypress/integration/sample.spec.js` and the following config:
+```
+{
+  reporter: "mochawesome",
+  reporterOptions: {
+    reportFilename: "[status]_[datetime]-[name]-report",
+    timestamp: "longDate"
+  }
+}
+```
+
+The resulting report file will be named `pass_February_23_2022-sample-report.html`
+
+**Note:** The `[name]` replacement only occurs when mocha is running one spec file per process and outputting a separate report for each spec. The most common use-case is with Cypress.
+
+#### overwrite
 By default, report files are overwritten by subsequent report generation. Passing `--overwrite=false` will not replace existing files. Instead, if a duplicate filename is found, the report will be saved with a counter digit added to the filename. (ie. `mochawesome_001.html`).
 
 **Note:** `overwrite` will always be `false` when passing multiple files or using the `timestamp` option.
 
-#### Timestamp
+#### timestamp
 The `timestamp` option can be used to append a timestamp to the report filename. It uses [dateformat][] to parse format strings so you can pass any valid string that [dateformat][] accepts with a few exceptions. In order to produce valid filenames, the following 
 replacements are made:
 
