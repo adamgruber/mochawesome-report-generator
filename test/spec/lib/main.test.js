@@ -36,6 +36,12 @@ const mareport = proxyquire('../../../src/lib/main', {
   './main-html': rendererStub,
 });
 
+const cleanDateStr = fmt =>
+  dateFormat(new Date(), fmt)
+    .replace(/(,\s*)|,|\s+/g, '_')
+    .replace(/\\|\//g, '-')
+    .replace(/:/g, '');
+
 let opts;
 
 beforeEach(() => {
@@ -131,12 +137,6 @@ describe('lib/main', () => {
       const getExpectedName = dateTimeStr =>
         path.resolve(process.cwd(), 'test', `test${dateTimeStr}{_###}.html`);
 
-      const cleanDateStr = fmt =>
-        dateFormat(new Date(), fmt)
-          .replace(/(,\s*)|,|\s+/g, '_')
-          .replace(/\\|\//g, '-')
-          .replace(/:/g, '');
-
       beforeEach(() => {
         // Set clock to 2017-03-29T19:30:59.913Z
         clock = sinon.useFakeTimers(1490815859913);
@@ -208,6 +208,97 @@ describe('lib/main', () => {
             getExpectedName(`_${cleanDateStr('longTime')}`)
           );
         });
+      });
+    });
+
+    describe('reportFilename tokens', () => {
+      it('[name]', () => {
+        opts.reportFilename = '[name].spec';
+        const expectedHtmlFile = path.resolve(
+          process.cwd(),
+          'test',
+          'test.spec.html'
+        );
+        outputFileStub.onCall(0).resolves(expectedHtmlFile);
+        const promise = mareport.create(testData, opts);
+        return expect(promise).to.become([expectedHtmlFile, null]);
+      });
+
+      it('[name], no spec name', () => {
+        const modifiedTestData = {
+          ...testData,
+          results: [
+            {
+              ...testData.results[0],
+              file: '',
+              fullFile: '',
+            },
+          ],
+        };
+        opts.reportFilename = '[name].spec';
+        const expectedHtmlFile = path.resolve(
+          process.cwd(),
+          'test',
+          'mochawesome.spec.html'
+        );
+        outputFileStub.onCall(0).resolves(expectedHtmlFile);
+        const promise = mareport.create(modifiedTestData, opts);
+        return expect(promise).to.become([expectedHtmlFile, null]);
+      });
+
+      it('[status], pass', () => {
+        const modifiedTestData = {
+          ...testData,
+          stats: {
+            failures: 0,
+          },
+        };
+        opts.reportFilename = '[status]-[name].spec';
+        const expectedHtmlFile = path.resolve(
+          process.cwd(),
+          'test',
+          'pass-test.spec.html'
+        );
+        outputFileStub.onCall(0).resolves(expectedHtmlFile);
+        const promise = mareport.create(modifiedTestData, opts);
+        return expect(promise).to.become([expectedHtmlFile, null]);
+      });
+
+      it('[status], fail', () => {
+        opts.reportFilename = '[status]-[name].spec';
+        const expectedHtmlFile = path.resolve(
+          process.cwd(),
+          'test',
+          'fail-test.spec.html'
+        );
+        outputFileStub.onCall(0).resolves(expectedHtmlFile);
+        const promise = mareport.create(testData, opts);
+        return expect(promise).to.become([expectedHtmlFile, null]);
+      });
+
+      it('[datetime], no timestamp option', () => {
+        opts.reportFilename = '[status]_[datetime]-[name].spec';
+        const expectedHtmlFile = path.resolve(
+          process.cwd(),
+          'test',
+          `fail_${cleanDateStr('isoDateTime')}-test.spec.html`
+        );
+        outputFileStub.onCall(0).resolves(expectedHtmlFile);
+        const promise = mareport.create(testData, opts);
+        return expect(promise).to.become([expectedHtmlFile, null]);
+      });
+
+      it('[datetime], with timestamp option', () => {
+        opts.reportFilename = '[status]_[datetime]-[name].spec';
+        opts.timestamp = 'fullDate';
+        const expectedHtmlFile = path.resolve(
+          process.cwd(),
+          'test',
+          `fail_${cleanDateStr('fullDate')}-test.spec.html`
+        );
+        outputFileStub.onCall(0).resolves(expectedHtmlFile);
+        const promise = mareport.create(testData, opts);
+        return expect(promise).to.become([expectedHtmlFile, null]);
       });
     });
 
@@ -285,13 +376,6 @@ describe('lib/main', () => {
       opts.autoOpen = true;
       mareport.createSync(testData, opts);
       expect(openerStub.called).to.equal(true);
-    });
-
-    it('with data as string', () => {
-      mareport.createSync(JSON.stringify(testData), opts);
-      expect(outputFileSyncStub.calledWith(expectedFilenameWithOpts)).to.equal(
-        true
-      );
     });
   });
 
