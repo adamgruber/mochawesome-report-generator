@@ -64,44 +64,70 @@ function loadFile(filename) {
 /**
  * Get the dateformat format string based on the timestamp option
  *
- * @param {string|boolean} timestamp Timestamp option value
+ * @param {string|boolean} ts Timestamp option value
  *
  * @return {string} Valid dateformat format string
  */
-function getTimestampFormat(timestamp) {
-  switch (timestamp) {
-    case '':
-    case 'true':
-    case true:
-      return 'isoDateTime';
-    default:
-      return timestamp;
-  }
+function getTimestampFormat(ts) {
+  return ts === '' ||
+    ts === true ||
+    ts === 'true' ||
+    ts === false ||
+    ts === 'false'
+    ? 'isoDateTime'
+    : ts;
 }
 
 /**
  * Construct the path/name of the HTML/JSON file to be saved
  *
- * @param {Object} reportOptions Options object
+ * @param {object} reportOptions Options object
  * @param {string} reportOptions.reportDir Directory to save report to
  * @param {string} reportOptions.reportFilename Filename to save report to
  * @param {string} reportOptions.timestamp Timestamp format to be appended to the filename
+ * @param {object} reportData JSON test data
  *
  * @return {string} Fully resolved path without extension
  */
-function getFilename({ reportDir, reportFilename = 'mochawesome', timestamp }) {
-  let ts = '';
+function getFilename({ reportDir, reportFilename, timestamp }, reportData) {
+  const DEFAULT_FILENAME = 'mochawesome';
+  const NAME_REPLACE = '[name]';
+  const STATUS_REPLACE = '[status]';
+  const DATETIME_REPLACE = '[datetime]';
+  const STATUSES = {
+    Pass: 'pass',
+    Fail: 'fail',
+  };
+
+  let filename = reportFilename || DEFAULT_FILENAME;
+
+  const hasDatetimeReplacement = filename.includes(DATETIME_REPLACE);
+  const tsFormat = getTimestampFormat(timestamp);
+  const ts = dateFormat(new Date(), tsFormat)
+    // replace commas, spaces or comma-space combinations with underscores
+    .replace(/(,\s*)|,|\s+/g, '_')
+    // replace forward and back slashes with hyphens
+    .replace(/\\|\//g, '-')
+    // remove colons
+    .replace(/:/g, '');
+
   if (timestamp !== false && timestamp !== 'false') {
-    const format = getTimestampFormat(timestamp);
-    ts = `_${dateFormat(new Date(), format)}`
-      // replace commas, spaces or comma-space combinations with underscores
-      .replace(/(,\s*)|,|\s+/g, '_')
-      // replace forward and back slashes with hyphens
-      .replace(/\\|\//g, '-')
-      // remove colons
-      .replace(/:/g, '');
+    if (!hasDatetimeReplacement) {
+      filename = `${filename}_${DATETIME_REPLACE}`;
+    }
   }
-  const filename = `${reportFilename.replace(fileExtRegex, '')}${ts}`;
+
+  const specFilename = path
+    .basename(reportData.results[0].file || '')
+    .replace(/\..+/, '');
+
+  const status = reportData.stats.failures > 0 ? STATUSES.Fail : STATUSES.Pass;
+
+  filename = filename
+    .replace(NAME_REPLACE, specFilename || DEFAULT_FILENAME)
+    .replace(STATUS_REPLACE, status)
+    .replace(DATETIME_REPLACE, ts);
+
   return path.resolve(process.cwd(), reportDir, filename);
 }
 
@@ -109,19 +135,20 @@ function getFilename({ reportDir, reportFilename = 'mochawesome', timestamp }) {
  * Get report options by extending base options
  * with user provided options
  *
- * @param {Object} opts Report options
+ * @param {object} opts Report options
+ * @param {object} reportData JSON test data
  *
- * @return {Object} User options merged with default options
+ * @return {object} User options merged with default options
  */
-function getOptions(opts) {
+function getOptions(opts, reportData) {
   const mergedOptions = getMergedOptions(opts || {});
 
   // For saving JSON from mochawesome reporter
   if (mergedOptions.saveJson) {
-    mergedOptions.jsonFile = `${getFilename(mergedOptions)}.json`;
+    mergedOptions.jsonFile = `${getFilename(mergedOptions, reportData)}.json`;
   }
 
-  mergedOptions.htmlFile = `${getFilename(mergedOptions)}.html`;
+  mergedOptions.htmlFile = `${getFilename(mergedOptions, reportData)}.html`;
   return mergedOptions;
 }
 
@@ -159,7 +186,7 @@ function _shouldCopyAssets(assetsDir) {
 /**
  * Copy the report assets to the report dir, ignoring inline assets
  *
- * @param {Object} opts Report options
+ * @param {object} opts Report options
  */
 function copyAssets({ assetsDir }) {
   if (_shouldCopyAssets(assetsDir)) {
@@ -172,8 +199,8 @@ function copyAssets({ assetsDir }) {
 /**
  * Get the report assets object
  *
- * @param {Object} reportOptions Options
- * @return {Object} Object with assets props
+ * @param {object} reportOptions Options
+ * @return {object} Object with assets props
  */
 function getAssets(reportOptions) {
   const { assetsDir, cdn, dev, inlineAssets, reportDir } = reportOptions;
@@ -220,20 +247,14 @@ function getAssets(reportOptions) {
 /**
  * Prepare options, assets, and html for saving
  *
- * @param {string} reportData JSON test data
- * @param {Object} opts Report options
+ * @param {object} reportData JSON test data
+ * @param {object} opts Report options
  *
- * @return {Object} Prepared data for saving
+ * @return {object} Prepared data for saving
  */
 function prepare(reportData, opts) {
-  // Stringify the data if needed
-  let data = reportData;
-  if (typeof data === 'object') {
-    data = JSON.stringify(reportData);
-  }
-
   // Get the options
-  const reportOptions = getOptions(opts);
+  const reportOptions = getOptions(opts, reportData);
 
   // Stop here if we're not generating an HTML report
   if (!reportOptions.saveHtml) {
@@ -245,7 +266,7 @@ function prepare(reportData, opts) {
 
   // Render basic template to string
   const renderedHtml = renderMainHTML({
-    data,
+    data: JSON.stringify(reportData),
     options: reportOptions,
     title: reportOptions.reportPageTitle,
     useInlineAssets: reportOptions.inlineAssets && !reportOptions.cdn,
@@ -259,8 +280,8 @@ function prepare(reportData, opts) {
 /**
  * Create the report
  *
- * @param {string} data JSON test data
- * @param {Object} opts Report options
+ * @param {object} data JSON test data
+ * @param {object} opts Report options
  *
  * @return {Promise} Resolves if report was created successfully
  */
@@ -302,8 +323,8 @@ function create(data, opts) {
 /**
  * Create the report synchronously
  *
- * @param {string} data JSON test data
- * @param {Object} opts Report options
+ * @param {object} data JSON test data
+ * @param {object} opts Report options
  *
  */
 function createSync(data, opts) {

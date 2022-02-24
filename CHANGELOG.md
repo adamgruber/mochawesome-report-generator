@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+### Added
+- `reportFilename` option: support replacement tokens (`[name]`, `[status]`, `[datetime]`)
 
 ## [6.0.1] - 2021-11-05
 ### Fixed

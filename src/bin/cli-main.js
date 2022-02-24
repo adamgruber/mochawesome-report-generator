@@ -2,6 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
 const t = require('tcomb-validation');
+const dateFormat = require('dateformat');
 const report = require('../lib/main');
 const types = require('./types');
 const logger = require('./logger');
@@ -121,24 +122,75 @@ function handleResolved(resolvedValues) {
 }
 
 /**
+ * Get the dateformat format string based on the timestamp option
+ *
+ * @param {string|boolean} ts Timestamp option value
+ *
+ * @return {string} Valid dateformat format string
+ */
+function getTimestampFormat(ts) {
+  return ts === undefined ||
+    ts === true ||
+    ts === 'true' ||
+    ts === false ||
+    ts === 'false'
+    ? 'isoDateTime'
+    : ts;
+}
+
+/**
  * Get the reportFilename option to be passed to `report.create`
  *
  * Returns the `reportFilename` option if provided otherwise
  * it returns the base filename stripped of path and extension
  *
- * @param {Object} file.filename Name of file to be processed
+ * @param {Object} file File object
+ * @param {string} file.filename Name of file to be processed
+ * @param {Object} file.data JSON test data
  * @param {Object} args CLI process arguments
  *
  * @return {string} Filename
  */
-function getReportFilename({ filename }, { reportFilename }) {
-  return (
-    reportFilename ||
-    filename
-      .split(path.sep)
-      .pop()
-      .replace(JsonFileRegex, '')
-  );
+function getReportFilename({ filename, data }, { reportFilename, timestamp }) {
+  const DEFAULT_FILENAME = filename
+    .split(path.sep)
+    .pop()
+    .replace(JsonFileRegex, '');
+  const NAME_REPLACE = '[name]';
+  const STATUS_REPLACE = '[status]';
+  const DATETIME_REPLACE = '[datetime]';
+  const STATUSES = {
+    Pass: 'pass',
+    Fail: 'fail',
+  };
+
+  let outFilename = reportFilename || DEFAULT_FILENAME;
+
+  const hasDatetimeReplacement = outFilename.includes(DATETIME_REPLACE);
+  const tsFormat = getTimestampFormat(timestamp);
+  const ts = dateFormat(new Date(), tsFormat)
+    // replace commas, spaces or comma-space combinations with underscores
+    .replace(/(,\s*)|,|\s+/g, '_')
+    // replace forward and back slashes with hyphens
+    .replace(/\\|\//g, '-')
+    // remove colons
+    .replace(/:/g, '');
+
+  if (timestamp) {
+    if (!hasDatetimeReplacement) {
+      outFilename = `${outFilename}_${DATETIME_REPLACE}`;
+    }
+  }
+
+  // Special handling of replacement tokens
+  const status = data.stats.failures > 0 ? STATUSES.Fail : STATUSES.Pass;
+
+  outFilename = outFilename
+    .replace(NAME_REPLACE, DEFAULT_FILENAME)
+    .replace(STATUS_REPLACE, status)
+    .replace(DATETIME_REPLACE, ts);
+
+  return outFilename;
 }
 
 /**

@@ -4,6 +4,7 @@ import sinon from 'sinon';
 import chai, { expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import fs from 'fs-extra';
+import dateFormat from 'dateformat';
 
 import invalidTestData from 'sample-data/invalid.json';
 
@@ -24,6 +25,12 @@ const cli = proxyquire('../../../src/bin/cli-main', {
 
 const error = { code: 12345, message: 'Err' };
 const getArgs = (files, args) => Object.assign({}, { _: files }, args);
+
+const cleanDateStr = fmt =>
+  dateFormat(new Date(), fmt)
+    .replace(/(,\s*)|,|\s+/g, '_')
+    .replace(/\\|\//g, '-')
+    .replace(/:/g, '');
 
 afterEach(() => {
   createStub.reset();
@@ -201,6 +208,33 @@ describe('bin/cli', () => {
           expect(createStub.args[0][1]).to.have.property(
             'reportFilename',
             'sample'
+          );
+        });
+      });
+
+      it('should handle replacement tokens', () => {
+        const args = getArgs(['test/sample-data/test.json'], {
+          reportFilename: '[status]-[name]-[datetime]',
+        });
+
+        return cli(args).then(() => {
+          expect(createStub.args[0][1]).to.have.property(
+            'reportFilename',
+            `fail-test-${cleanDateStr('isoDateTime')}`
+          );
+        });
+      });
+
+      it('should handle replacement tokens and timestamp', () => {
+        const args = getArgs(['test/sample-data/test.json'], {
+          timestamp: 'fullDate',
+          reportFilename: '[status]-[name]-[datetime]',
+        });
+
+        return cli(args).then(() => {
+          expect(createStub.args[0][1]).to.have.property(
+            'reportFilename',
+            `fail-test-${cleanDateStr('fullDate')}`
           );
         });
       });
