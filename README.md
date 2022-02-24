@@ -75,7 +75,7 @@ mochawesome-report/
 
 Flag | Type | Default | Description 
 :--- | :--- | :------ | :----------
--f, --reportFilename | string | mochawesome | Filename of saved report. *See [notes](#reportFilename) for available token replacements.*
+-f, --reportFilename | string | mochawesome | Filename of saved report. *See [notes](#reportfilename-replacement-tokens) for available token replacements.*
 -o, --reportDir | string | [cwd]/mochawesome-report | Path to save report
 -t, --reportTitle | string | mochawesome | Report title
 -p, --reportPageTitle | string | mochawesome-report | Browser title
