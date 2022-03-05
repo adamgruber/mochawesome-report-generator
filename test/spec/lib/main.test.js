@@ -300,6 +300,30 @@ describe('lib/main', () => {
         const promise = mareport.create(testData, opts);
         return expect(promise).to.become([expectedHtmlFile, null]);
       });
+
+      it('with html extension', () => {
+        opts.reportFilename = '[name].spec.html';
+        const expectedHtmlFile = path.resolve(
+          process.cwd(),
+          'test',
+          'test.spec.html'
+        );
+        outputFileStub.onCall(0).resolves(expectedHtmlFile);
+        const promise = mareport.create(testData, opts);
+        return expect(promise).to.become([expectedHtmlFile, null]);
+      });
+
+      it('with json extension', () => {
+        opts.reportFilename = '[name].spec.json';
+        const expectedHtmlFile = path.resolve(
+          process.cwd(),
+          'test',
+          'test.spec.html'
+        );
+        outputFileStub.onCall(0).resolves(expectedHtmlFile);
+        const promise = mareport.create(testData, opts);
+        return expect(promise).to.become([expectedHtmlFile, null]);
+      });
     });
 
     it('with overwrite:false', () => {

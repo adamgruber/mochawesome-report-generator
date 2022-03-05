@@ -9,6 +9,7 @@ const logger = require('./logger');
 
 const JsonErrRegex = /Unexpected token/;
 const JsonFileRegex = /\.json{1}$/;
+const htmlJsonExtRegex = /\.(?:html|json)$/;
 const mapJsonErrors = errors => errors.map(e => `  ${e.message}`).join('\n');
 const ERRORS = {
   NOT_FOUND: '  File not found.',
@@ -188,7 +189,8 @@ function getReportFilename({ filename, data }, { reportFilename, timestamp }) {
   outFilename = outFilename
     .replace(NAME_REPLACE, DEFAULT_FILENAME)
     .replace(STATUS_REPLACE, status)
-    .replace(DATETIME_REPLACE, ts);
+    .replace(DATETIME_REPLACE, ts)
+    .replace(htmlJsonExtRegex, '');
 
   return outFilename;
 }

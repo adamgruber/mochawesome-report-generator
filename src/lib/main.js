@@ -9,6 +9,7 @@ const { getMergedOptions } = require('./options');
 
 const distDir = path.join(__dirname, '..', 'dist');
 const fileExtRegex = /\.[^.]*?$/;
+const htmlJsonExtRegex = /\.(?:html|json)$/;
 const semverRegex = /\d+\.\d+\.\d+(?:-(alpha|beta)\.\d+)?/;
 
 /**
@@ -126,7 +127,8 @@ function getFilename({ reportDir, reportFilename, timestamp }, reportData) {
   filename = filename
     .replace(NAME_REPLACE, specFilename || DEFAULT_FILENAME)
     .replace(STATUS_REPLACE, status)
-    .replace(DATETIME_REPLACE, ts);
+    .replace(DATETIME_REPLACE, ts)
+    .replace(htmlJsonExtRegex, '');
 
   return path.resolve(process.cwd(), reportDir, filename);
 }
@@ -142,13 +144,14 @@ function getFilename({ reportDir, reportFilename, timestamp }, reportData) {
  */
 function getOptions(opts, reportData) {
   const mergedOptions = getMergedOptions(opts || {});
+  const filename = getFilename(mergedOptions, reportData);
 
   // For saving JSON from mochawesome reporter
   if (mergedOptions.saveJson) {
-    mergedOptions.jsonFile = `${getFilename(mergedOptions, reportData)}.json`;
+    mergedOptions.jsonFile = `${filename}.json`;
   }
 
-  mergedOptions.htmlFile = `${getFilename(mergedOptions, reportData)}.html`;
+  mergedOptions.htmlFile = `${filename}.html`;
   return mergedOptions;
 }
 

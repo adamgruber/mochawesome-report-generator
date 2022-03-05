@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+### Fixed
+- Regression: prevent saving reports with duplicate `.html` or `.json` extensions when the `reportFilename` option includes the extension. [#195](https://github.com/adamgruber/mochawesome-report-generator/issues/195)
 ## [6.1.0] - 2022-02-24
 ### Added
 - `reportFilename` option: support replacement tokens (`[name]`, `[status]`, `[datetime]`)

@@ -212,6 +212,32 @@ describe('bin/cli', () => {
         });
       });
 
+      it('should handle html extension', () => {
+        const args = getArgs(['test/sample-data/test.json'], {
+          reportFilename: 'test.html',
+        });
+
+        return cli(args).then(() => {
+          expect(createStub.args[0][1]).to.have.property(
+            'reportFilename',
+            'test'
+          );
+        });
+      });
+
+      it('should handle json extension', () => {
+        const args = getArgs(['test/sample-data/test.json'], {
+          reportFilename: 'test.json',
+        });
+
+        return cli(args).then(() => {
+          expect(createStub.args[0][1]).to.have.property(
+            'reportFilename',
+            'test'
+          );
+        });
+      });
+
       it('should handle replacement tokens', () => {
         const args = getArgs(['test/sample-data/test.json'], {
           reportFilename: '[status]-[name]-[datetime]',
