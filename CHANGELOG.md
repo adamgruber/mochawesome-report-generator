@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+
+## [6.1.1] - 2022-03-05
 ### Fixed
 - Regression: prevent saving reports with duplicate `.html` or `.json` extensions when the `reportFilename` option includes the extension. [#195](https://github.com/adamgruber/mochawesome-report-generator/issues/195)
 ## [6.1.0] - 2022-02-24
@@ -190,7 +192,8 @@ No release is complete without a quick hotfix.
 ## 1.0.0 - 2016-12-18
 - Initial release
 
-[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.1.0...HEAD
+[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.1.1...HEAD
+[6.1.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.1.0...6.1.1
 [6.1.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.0.1...6.1.0
 [6.0.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.0.0...6.0.1
 [6.0.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/5.2.0...6.0.0
