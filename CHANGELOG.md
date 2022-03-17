@@ -1,6 +1,8 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+### Added
+- Support adding video in context via data uri [mochawesome #372](https://github.com/adamgruber/mochawesome/issues/372)
 
 ## [6.1.1] - 2022-03-05
 ### Fixed
