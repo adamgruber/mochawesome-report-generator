@@ -20,6 +20,7 @@ describe('<TestContext />', () => {
       imgLink: wrapper.find('.test-image-link'),
       video: wrapper.find('.test-video'),
       videoLink: wrapper.find('.test-video-link'),
+      videoSource: wrapper.find('.test-video source'),
       link: wrapper.find('.test-text-link'),
       snippet: wrapper.find(CodeSnippet),
     };
@@ -141,9 +142,9 @@ describe('<TestContext />', () => {
       expect(img).to.have.lengthOf(1);
     });
 
-    it('renders local video', () => {
+    it('renders local video - mp4', () => {
       const context = '/testvideo.mp4';
-      const { wrapper, snippet, video } = getInstance({
+      const { wrapper, snippet, videoSource } = getInstance({
         context: JSON.stringify(context),
         className: 'test',
       });
@@ -152,7 +153,23 @@ describe('<TestContext />', () => {
       expect(wrapper)
         .to.have.exactly(1)
         .descendants('video');
-      expect(video).to.have.attr('src', '/testvideo.mp4');
+      expect(videoSource).to.have.attr('type', 'video/mp4');
+      expect(videoSource).to.have.attr('src', '/testvideo.mp4');
+    });
+
+    it('renders local video - webm', () => {
+      const context = '/testvideo.webm';
+      const { wrapper, snippet, videoSource } = getInstance({
+        context: JSON.stringify(context),
+        className: 'test',
+      });
+      expect(wrapper).to.have.className('test');
+      expect(snippet).to.have.lengthOf(0);
+      expect(wrapper)
+        .to.have.exactly(1)
+        .descendants('video');
+      expect(videoSource).to.have.attr('type', 'video/webm');
+      expect(videoSource).to.have.attr('src', '/testvideo.webm');
     });
 
     it('renders video url with protocol', () => {
@@ -195,7 +212,7 @@ describe('<TestContext />', () => {
       );
     });
 
-    it('renders image url without protocol', () => {
+    it('renders video url without protocol', () => {
       const context = 'test.url.com/testvideo.mp4';
       const { wrapper, snippet, videoLink } = getInstance({
         context: JSON.stringify(context),
@@ -213,6 +230,42 @@ describe('<TestContext />', () => {
         'href',
         'http://test.url.com/testvideo.mp4'
       );
+    });
+
+    it('renders base64 video - mp4', () => {
+      const context = 'data:video/mp4;base64,AAAAIGZ';
+      const { wrapper, snippet, video, videoSource } = getInstance({
+        context: JSON.stringify(context),
+        className: 'test',
+      });
+      expect(wrapper).to.have.className('test');
+      expect(snippet).to.have.lengthOf(0);
+      expect(wrapper)
+        .to.have.exactly(1)
+        .descendants('video');
+      expect(video)
+        .to.have.exactly(0)
+        .descendants('a');
+      expect(videoSource).to.have.attr('type', 'video/mp4');
+      expect(videoSource).to.have.attr('src', context);
+    });
+
+    it('renders base64 video - webm', () => {
+      const context = 'data:video/webm;base64,AAAAIGZ';
+      const { wrapper, snippet, video, videoSource } = getInstance({
+        context: JSON.stringify(context),
+        className: 'test',
+      });
+      expect(wrapper).to.have.className('test');
+      expect(snippet).to.have.lengthOf(0);
+      expect(wrapper)
+        .to.have.exactly(1)
+        .descendants('video');
+      expect(video)
+        .to.have.exactly(0)
+        .descendants('a');
+      expect(videoSource).to.have.attr('type', 'video/webm');
+      expect(videoSource).to.have.attr('src', context);
     });
   });
 

@@ -6,7 +6,7 @@
     "lint": "eslint src test --ext js",
     "stylelint": "stylelint src/**/*.css src/components/**/*.css",
     "pretest": "npm run lint",
-    "test": "cross-env NODE_ENV=test nyc mocha \"test/spec/**/*.test.js\"",
+    "test": "cross-env NODE_ENV=test nyc mocha \"test/spec/**/*.test.js\" --exit",
     "tdd": "cross-env NODE_ENV=test nyc mocha --watch \"test/spec/**/*.test.js\"",
     "test:single": "cross-env NODE_ENV=test nyc mocha ",
     "test:functional": "cross-env NODE_ENV=test node ./test-functional/index.js",

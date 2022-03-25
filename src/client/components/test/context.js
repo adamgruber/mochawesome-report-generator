@@ -7,20 +7,26 @@ import styles from './test.css';
 
 const cx = classNames.bind(styles);
 
-const videoRegEx = /(?:mp4|webm)$/i;
+const videoRegEx = /(mp4|webm)$/i;
 const imgRegEx = /(?:png|jpe?g|gif)$/i;
 const protocolRegEx = /^(?:(?:https?|ftp):\/\/)/i;
 const urlRegEx = /^(?:(?:https?|ftp):\/\/)?(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/; // eslint-disable-line
 const base64ImgRegEx = /^data:image\/([a-zA-Z0-9-_.])+;base64,([^"]*)$/i;
+const base64VidRegEx = /^data:video\/(mp4|webm);base64,(?:[^"]*)$/i;
 
-const isVideo = str => {
+const getVideoType = str => {
   if (!isString(str)) {
-    return false;
+    return undefined;
   }
 
   const hashIndex = str.indexOf('#');
-  return videoRegEx.test(hashIndex > 0 ? str.slice(0, hashIndex) : str);
-}
+
+  const [, type] =
+    videoRegEx.exec(hashIndex > 0 ? str.slice(0, hashIndex) : str) ||
+    base64VidRegEx.exec(str) ||
+    [];
+  return type || undefined;
+};
 
 class TestContext extends Component {
   static displayName = 'TestContext';
@@ -34,22 +40,25 @@ class TestContext extends Component {
     ]),
   };
 
-  renderVideo = (ctx, title) => {
+  renderVideo = (ctx, title, type) => {
     const isUrl = urlRegEx.test(ctx);
     const hasProtocol = protocolRegEx.test(ctx);
     const linkUrl = isUrl && !hasProtocol ? `http://${ctx}` : ctx;
 
     return (
-      <video controls src={linkUrl} className={cx('video')}>
+      <video controls className={cx('video')}>
+        <source type={`video/${type}`} src={linkUrl} />
         <track kind="captions" />
         {title}
-        <a
-          href={linkUrl}
-          className={cx('video-link')}
-          rel="noopener noreferrer"
-          target="_blank">
-          {linkUrl}
-        </a>
+        {isUrl && (
+          <a
+            href={linkUrl}
+            className={cx('video-link')}
+            rel="noopener noreferrer"
+            target="_blank">
+            {linkUrl}
+          </a>
+        )}
       </video>
     );
   };
@@ -89,8 +98,9 @@ class TestContext extends Component {
 
   renderContextContent = (content, title, highlight = false) => {
     // Videos
-    if (isVideo(content)) {
-      return this.renderVideo(content, title);
+    const videoType = getVideoType(content);
+    if (videoType) {
+      return this.renderVideo(content, title, videoType);
     }
 
     // Images
