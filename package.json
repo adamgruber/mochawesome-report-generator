@@ -124,7 +124,7 @@
     "faker": "^4.1.0",
     "file-loader": "^3.0.1",
     "highlight.js": "^9.15.6",
-    "jsdom": "^14.0.0",
+    "jsdom": "^16.5.0",
     "jsdom-global": "^3.0.2",
     "json-loader": "^0.5.7",
     "lodash": "^4.16.4",
