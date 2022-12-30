@@ -133,7 +133,7 @@
     "mobx": "^5.9.0",
     "mobx-react": "^5.2.8",
     "mobx-react-devtools": "^6.1.1",
-    "mocha": "^6.0.2",
+    "mocha": "^10.2.0",
     "nodemon": "^1.18.10",
     "normalize.css": "^8.0.0",
     "nyc": "^13.3.0",
