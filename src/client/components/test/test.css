@@ -90,6 +90,11 @@
     background-color: var(--red500);
   }
 
+  &.flaky {
+    color: var(--red300);
+    background-color: var(--amber500);
+  }
+
   &.pending {
     color: var(--ltblue100);
     background-color: var(--ltblue500);

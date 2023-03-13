@@ -12,6 +12,7 @@ class NavMenuList extends Component {
     suites: PropTypes.array,
     showPassed: PropTypes.bool,
     showFailed: PropTypes.bool,
+    showFlaky: PropTypes.bool,
     showPending: PropTypes.bool,
     showSkipped: PropTypes.bool,
   };
@@ -25,10 +26,11 @@ class NavMenuList extends Component {
       suites,
       showPassed,
       showFailed,
+      showFlaky,
       showPending,
       showSkipped,
     } = this.props;
-    const navItemProps = { showPassed, showFailed, showPending, showSkipped };
+    const navItemProps = { showPassed, showFailed, showFlaky, showPending, showSkipped };
 
     return (
       !!suites && (

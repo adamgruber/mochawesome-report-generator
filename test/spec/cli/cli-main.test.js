@@ -194,7 +194,7 @@ describe('bin/cli', () => {
         return cli(args).then(() => {
           expect(createStub.args[0][1]).to.have.property(
             'reportFilename',
-            'test'
+            'test/sample-data/test'
           );
         });
       });
@@ -246,7 +246,7 @@ describe('bin/cli', () => {
         return cli(args).then(() => {
           expect(createStub.args[0][1]).to.have.property(
             'reportFilename',
-            `fail-test-${cleanDateStr('isoDateTime')}`
+            `fail-test/sample-data/test-${cleanDateStr('isoDateTime')}`
           );
         });
       });
@@ -260,7 +260,7 @@ describe('bin/cli', () => {
         return cli(args).then(() => {
           expect(createStub.args[0][1]).to.have.property(
             'reportFilename',
-            `fail-test-${cleanDateStr('fullDate')}`
+            `fail-test/sample-data/test-${cleanDateStr('fullDate')}`
           );
         });
       });

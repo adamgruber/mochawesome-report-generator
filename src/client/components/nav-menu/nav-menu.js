@@ -21,6 +21,7 @@ class NavMenu extends Component {
       reportTitle: PropTypes.string,
       setShowHooks: PropTypes.func,
       showFailed: PropTypes.bool,
+      showFlaky: PropTypes.bool,
       showHooks: PropTypes.string,
       showHooksOptions: PropTypes.array,
       showPassed: PropTypes.bool,
@@ -76,6 +77,7 @@ class NavMenu extends Component {
       reportTitle,
       setShowHooks,
       showFailed,
+      showFlaky,
       showHooks,
       showHooksOptions,
       showPassed,
@@ -89,6 +91,7 @@ class NavMenu extends Component {
     const navItemProps = {
       showPassed,
       showFailed,
+      showFlaky,
       showPending,
       showSkipped,
     };
@@ -143,6 +146,18 @@ class NavMenu extends Component {
               active={showFailed}
               disabled={stats.failures === 0}
               toggleFn={() => toggleFilter('showFailed')}
+            />
+
+            <ToggleSwitch
+              className={cx('control')}
+              label="Show Flaky"
+              labelClassName={cx('control-label')}
+              icon="warning"
+              iconClassName={cx('toggle-icon-flaky')}
+              id="flaky-toggle"
+              active={showFlaky}
+              disabled={stats.flaky === 0}
+              toggleFn={() => toggleFilter('showFlaky')}
             />
 
             <ToggleSwitch

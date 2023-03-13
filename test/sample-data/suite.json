@@ -11,6 +11,7 @@
       "speed": "medium",
       "pass": true,
       "fail": false,
+      "flaky": false,
       "pending": false,
       "code": "true.should.be.ok;\ndone();",
       "err": {},
@@ -27,6 +28,7 @@
       "state": "failed",
       "pass": false,
       "fail": true,
+      "flaky": false,
       "pending": false,
       "code": "var o = retObj();\no.should.eql({});\ndone();",
       "err": {

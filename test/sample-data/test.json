@@ -5,6 +5,7 @@
     "passes": 0,
     "pending": 0,
     "failures": 1,
+    "flaky": 0,
     "start": "2017-06-05T12:31:54.955Z",
     "end": "2017-06-05T12:31:54.968Z",
     "duration": 13,
@@ -32,6 +33,7 @@
               "state": "failed",
               "pass": false,
               "fail": true,
+              "flaky": false,
               "pending": false,
               "code": "// true.should.eql(bool);\nexp.should.eql({\n  foo: true,\n  bar: true,\n  baz: 1\n});\nshouldAddContext && addContext(this, 'context');",
               "err": {

@@ -2,7 +2,7 @@ const t = require('tcomb');
 const { isUUID, isISO8601 } = require('validator');
 
 const TestState = t.enums.of(
-  ['passed', 'failed', 'pending', 'skipped'],
+  ['passed', 'failed', 'pending', 'skipped', 'flaky'],
   'TestState'
 );
 const TestSpeed = t.enums.of(['slow', 'medium', 'fast'], 'TestSpeed');
@@ -33,6 +33,7 @@ const Test = t.struct({
   speed: t.maybe(TestSpeed),
   pass: t.Boolean,
   fail: t.Boolean,
+  flaky: t.Boolean,
   pending: t.Boolean,
   code: t.String,
   err: t.Object,
@@ -58,6 +59,7 @@ Suite.define(
     afterHooks: t.list(Test),
     passes: t.list(Uuid),
     failures: t.list(Uuid),
+    flaky: t.list(Uuid),
     pending: t.list(Uuid),
     skipped: t.list(Uuid),
     duration: Duration,
@@ -82,6 +84,7 @@ const TestReport = t.struct({
     hasOther: t.Boolean,
     skipped: t.Integer,
     hasSkipped: t.Boolean,
+    flaky: t.Integer,
   }),
   results: t.list(Suite),
   meta: t.maybe(ReportMeta)

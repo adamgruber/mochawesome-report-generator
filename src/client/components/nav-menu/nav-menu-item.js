@@ -14,6 +14,7 @@ class NavMenuItem extends Component {
     suite: PropTypes.object,
     showPassed: PropTypes.bool,
     showFailed: PropTypes.bool,
+    showFlaky: PropTypes.bool,
     showPending: PropTypes.bool,
     showSkipped: PropTypes.bool,
   };
@@ -27,19 +28,22 @@ class NavMenuItem extends Component {
       suite,
       showPassed,
       showFailed,
+      showFlaky,
       showPending,
       showSkipped,
     } = this.props;
     const { suites, uuid, title } = suite;
-    const navItemProps = { showPassed, showFailed, showPending, showSkipped };
+    const navItemProps = { showPassed, showFailed, showFlaky, showPending, showSkipped };
 
     const hasTests = !isEmpty(suite.tests);
     const hasPasses = !isEmpty(suite.passes);
     const hasFailures = !isEmpty(suite.failures);
     const hasPending = !isEmpty(suite.pending);
     const hasSkipped = !isEmpty(suite.skipped);
+    const hasFlaky = !isEmpty(suite.flaky);
 
     const fail = hasTests && hasFailures;
+    const flaky = hasTests && hasFlaky;
     const pend = hasTests && hasPending && !hasFailures;
     const skip = hasTests && hasSkipped && !hasFailures && !hasPending;
     const pass =
@@ -52,10 +56,12 @@ class NavMenuItem extends Component {
       if (hasFailures) count += 1;
       if (hasPending) count += 1;
       if (hasSkipped) count += 1;
+      if (hasFlaky) count += 1;
 
       if (!showSkipped && hasSkipped) count -= 1;
       if (!showPending && hasPending) count -= 1;
       if (!showFailed && hasFailures) count -= 1;
+      if (!showFlaky && hasFlaky) count -= 1;
       if (!showPassed && hasPasses) count -= 1;
       if (
         !showSkipped &&
@@ -91,6 +97,10 @@ class NavMenuItem extends Component {
       if (fail) {
         iconName = 'close';
         iconClassName = 'fail';
+      }
+      if (flaky) {
+        iconName = 'warning';
+        iconClassName = 'flaky';
       }
       return (
         <Icon

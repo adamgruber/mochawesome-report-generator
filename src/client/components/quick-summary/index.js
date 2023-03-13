@@ -15,6 +15,7 @@ const QuickSummary = ({ onQuickFilterClick, singleFilter, stats }) => {
     failures,
     pending,
     skipped,
+    flaky,
   } = stats;
 
   const filterClasses = singleFilter
@@ -52,6 +53,14 @@ const QuickSummary = ({ onQuickFilterClick, singleFilter, stats }) => {
             onClick={() => onQuickFilterClick('showFailed')}>
             <Icon name="close" className={cx('icon', 'circle-icon')} />
             {failures}
+          </button>
+        </li>
+        <li className={cx('item', 'flaky')} title="Flaky">
+          <button
+            type="button"
+            onClick={() => onQuickFilterClick('showFlaky')}>
+            <Icon name="warning" className={cx('icon', 'circle-icon')} />
+            {flaky}
           </button>
         </li>
         {!!pending && (

@@ -74,6 +74,23 @@
     }
   }
 
+  &.flaky {
+    & .icon {
+      color: var(--red300);
+      background-color: var(--amber300);
+
+      @nest .single-filter & {
+        background-color: var(--grey300);
+        color: var(--grey500);
+      }
+
+      @nest .single-filter--flaky & {
+        color: #fff;
+        background-color: var(--amber500);
+      }
+    }
+  }
+
   &.pending {
     & .icon {
       color: var(--ltblue700);

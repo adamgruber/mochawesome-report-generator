@@ -1,5 +1,5 @@
 {
-  "name": "mochawesome-report-generator",
+  "name": "@squaredup/mochawesome-report-generator",
   "version": "6.2.0",
   "description": "Generates gorgeous HTML reports from mochawesome reporter.",
   "scripts": {
@@ -8,7 +8,7 @@
     "pretest": "npm run lint",
     "test": "cross-env NODE_ENV=test nyc mocha \"test/spec/**/*.test.js\" --exit",
     "tdd": "cross-env NODE_ENV=test nyc mocha --watch \"test/spec/**/*.test.js\"",
-    "test:single": "cross-env NODE_ENV=test nyc mocha ",
+    "test:single": "cross-env nyc mocha ",
     "test:functional": "cross-env NODE_ENV=test node ./test-functional/index.js",
     "compile:main": "babel ./src/lib -d lib/",
     "compile:cli": "babel ./src/bin -d bin/",

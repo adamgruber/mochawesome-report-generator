@@ -12,7 +12,7 @@ class ReportStore {
       devMode: !!config.dev,
       enableChart: !!config.enableCharts,
       enableCode: !!config.enableCode,
-      filters: ['showPassed', 'showFailed', 'showPending', 'showSkipped'],
+      filters: ['showPassed', 'showFailed', 'showPending', 'showSkipped', 'showFlaky'],
       initialLoadTimeout: 300,
       initialFilterState: null,
       reportTitle: config.reportTitle || data.reportTitle,
@@ -26,6 +26,7 @@ class ReportStore {
       filteredSuites: [],
       isLoading: true,
       showFailed: config.showFailed !== undefined ? config.showFailed : true,
+      showFlaky: config.showFlaky !== undefined ? config.showFlaky : true,
       showHooks: this._getShowHooks(config),
       showPassed: config.showPassed !== undefined ? config.showPassed : true,
       showPending: config.showPending !== undefined ? config.showPending : true,
@@ -111,6 +112,7 @@ class ReportStore {
   _mapTest = test =>
     ((this.showPassed && test.pass) ||
       (this.showFailed && test.fail) ||
+      (this.showFlaky && test.flaky) ||
       (this.showPending && test.pending) ||
       (this.showSkipped && test.skipped)) &&
     test;

@@ -19,6 +19,7 @@ class ReportBody extends React.Component {
         const {
           showPassed,
           showFailed,
+          showFlaky,
           showPending,
           showSkipped,
           showHooks,
@@ -26,6 +27,7 @@ class ReportBody extends React.Component {
         return {
           showPassed,
           showFailed,
+          showFlaky,
           showPending,
           showSkipped,
           showHooks,

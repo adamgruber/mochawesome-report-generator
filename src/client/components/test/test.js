@@ -49,6 +49,7 @@ class Test extends PureComponent {
       duration,
       pass,
       fail,
+      flaky,
       pending,
       skipped,
       isHook,
@@ -67,6 +68,10 @@ class Test extends PureComponent {
       if (fail) {
         iconName = 'close';
         iconClassName = 'fail';
+      }
+      if (flaky) {
+        iconName = 'warning';
+        iconClassName = 'flaky';
       }
       if (pending) {
         iconName = 'pause';
@@ -99,6 +104,7 @@ class Test extends PureComponent {
       expanded: this.state.expanded,
       passed: pass,
       failed: fail,
+      flaky,
       pending,
       skipped,
       hook: isHook,

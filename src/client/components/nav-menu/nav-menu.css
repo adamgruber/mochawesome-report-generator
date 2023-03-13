@@ -100,6 +100,10 @@
   color: var(--red500);
 }
 
+.toggle-icon-flaky {
+  color: var(--amber500);
+}
+
 .toggle-icon-pending {
   color: var(--ltblue500);
 }
@@ -183,6 +187,10 @@
 
   &.fail {
     color: var(--red500);
+  }
+
+  &.flaky {
+    color: var(--amber500);
   }
 
   &.pending {
