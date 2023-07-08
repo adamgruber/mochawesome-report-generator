@@ -52,7 +52,7 @@ class ReportBody extends React.Component {
     } = this.props.reportStore;
 
     return (
-      <div id="details" className={cx('details', 'container')}>
+      <ul id="details" className={cx('details', 'container', 'list-unstyled')}>
         {suites.map(suite => (
           <Suite
             key={suite.uuid}
@@ -61,7 +61,7 @@ class ReportBody extends React.Component {
             enableCode={enableCode}
           />
         ))}
-      </div>
+      </ul>
     );
   }
 }
