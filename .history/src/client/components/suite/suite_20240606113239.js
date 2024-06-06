@@ -23,17 +23,16 @@ class Suite extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return !isEqual(this.props, nextProps) || !isEqual(this.state, nextState);
   }
-  
-  copyToClipboard = () => {
-    navigator.clipboard.writeText(this.props.suite.title);
-    alert(`Copied the text: ${this.props.suite.title}`);
-  }
 
   toggleExpandedState() {
     const { expanded } = this.state;
     this.setState({ expanded: !expanded });
   }
 
+  copyToClipboard() {
+    navigator.clipboard.writeText(this.props.suite.title);
+    alert(`Copied the text: ${this.props.suite.title}`);
+  }
 
   render() {
     const { className, suite, enableChart, enableCode } = this.props;

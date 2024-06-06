@@ -23,17 +23,18 @@ class Suite extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return !isEqual(this.props, nextProps) || !isEqual(this.state, nextState);
   }
-  
+
+  toggleExpandedState() {
+    const { expanded } = this.state;
+    navigator.clipboard.writeText(this.props.suite.title);
+    alert(`Copied the text: ${this.props.suite.title}`);
+    this.setState({ expanded: !expanded });
+  }
+
   copyToClipboard = () => {
     navigator.clipboard.writeText(this.props.suite.title);
     alert(`Copied the text: ${this.props.suite.title}`);
   }
-
-  toggleExpandedState() {
-    const { expanded } = this.state;
-    this.setState({ expanded: !expanded });
-  }
-
 
   render() {
     const { className, suite, enableChart, enableCode } = this.props;
@@ -126,8 +127,6 @@ class Suite extends Component {
         <section className={cxname}>
           {!hideHeader && (
             <header className={cx('header')}>
-              
-                
             <button
               aria-expanded={expanded}
               type="button"
@@ -141,13 +140,9 @@ class Suite extends Component {
               {hasTests && enableChart && <SuiteChart {...chartProps} />}
               {hasTests && <SuiteSummary {...summaryProps} />}
               </button>
-              
             </header>
           )}
           <div className={cx('body', !expanded && 'hide')}>
-          <button onClick={this.copyToClipboard}  type='button'>
-          <Icon name="content_copy" className={cx('icon')} size={18} />
-          </button>
             {testListComp()}
             {subSuites()}
           </div>

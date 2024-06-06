@@ -23,17 +23,16 @@ class Suite extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return !isEqual(this.props, nextProps) || !isEqual(this.state, nextState);
   }
-  
-  copyToClipboard = () => {
-    navigator.clipboard.writeText(this.props.suite.title);
-    alert(`Copied the text: ${this.props.suite.title}`);
-  }
 
   toggleExpandedState() {
     const { expanded } = this.state;
     this.setState({ expanded: !expanded });
   }
 
+  copyToClipboard() {
+    navigator.clipboard.writeText(this.props.suite.title);
+    alert(`Copied the text: ${this.props.suite.title}`);
+  }
 
   render() {
     const { className, suite, enableChart, enableCode } = this.props;
@@ -125,17 +124,18 @@ class Suite extends Component {
       <li id={uuid}>
         <section className={cxname}>
           {!hideHeader && (
-            <header className={cx('header')}>
-              
-                
-            <button
-              aria-expanded={expanded}
-              type="button"
-              onClick={this.toggleExpandedState}
-              className={cx('header-btn')}>
+            <header className={cx('header')} style={{ zIndex: 9999 }}>
+              <button
+                aria-expanded={expanded}
+                type="button"
+                onClick={this.toggleExpandedState}
+                className={cx('header-btn')}>
+                {title !== '' && (
+                  <h3 className={cx('title')}>
               {title !== '' && <h3 className={cx('title')}>
                 <span>{title}</span>
                 <Icon name={expanded ? 'expand_less' : 'expand_more'} className={cx('icon')} size={18} />
+                <Icon name="content_copy" className={cx('icon')} size={18} onClick={this.copyToClipboard} />
               </h3>}
               {file !== '' && <h6 className={cx('filename')}>{file}</h6>}
               {hasTests && enableChart && <SuiteChart {...chartProps} />}
@@ -145,9 +145,6 @@ class Suite extends Component {
             </header>
           )}
           <div className={cx('body', !expanded && 'hide')}>
-          <button onClick={this.copyToClipboard}  type='button'>
-          <Icon name="content_copy" className={cx('icon')} size={18} />
-          </button>
             {testListComp()}
             {subSuites()}
           </div>
