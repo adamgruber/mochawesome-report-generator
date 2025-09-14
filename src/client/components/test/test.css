@@ -5,14 +5,14 @@
 
   &.expanded.passed {
     & .body-wrap,
-    & .header-btn {
+    & .header {
       border-left-color: var(--green500);
     }
   }
 
   &.expanded.failed {
     & .body-wrap,
-    & .header-btn {
+    & .header {
       border-left-color: var(--red500);
     }
   }
@@ -24,7 +24,18 @@
   padding: 0;
 }
 
-.header-btn {
+.details {
+  &:focus-within {
+    box-shadow: 0 0 2px 0 var(--ltblue500);
+    outline: none;
+  }
+
+  @nest .inactive & {
+    pointer-events: none;
+  }
+}
+
+.header {
   display: flex;
   position: relative;
   background: #fff;
@@ -41,13 +52,16 @@
   }
 
   &:focus {
-    box-shadow: 0 0 2px 0 var(--ltblue500);
     outline: none;
   }
 
-  &:focus:not([disabled]),
-  &:hover:not([disabled]) {
+  &:focus,
+  &:hover {
     border-left-color: var(--grey500);
+  }
+
+  @nest .inactive & {
+    cursor: default;
   }
 }
 
