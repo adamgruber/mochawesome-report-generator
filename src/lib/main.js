@@ -119,7 +119,7 @@ function getFilename({ reportDir, reportFilename, timestamp }, reportData) {
   }
 
   const specFilename = path
-    .basename(reportData.results[0].file || '')
+    .basename(reportData.results[0]?.file || '')
     .replace(/\..+/, '');
 
   const status = reportData.stats.failures > 0 ? STATUSES.Fail : STATUSES.Pass;
