@@ -43,6 +43,7 @@ const plugins = [
 module.exports = {
   mode: env,
   devServer: {
+    disableHostCheck: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
@@ -86,11 +87,16 @@ module.exports = {
   },
   optimization: {
     minimize: env === 'production',
-    minimizer: [new TerserPlugin({
-      extractComments: {
-        banner: () => `mochawesome-report-generator ${pkg.version} | https://github.com/adamgruber/mochawesome-report-generator`,
-      },
-    })],
+    minimizer: [
+      new TerserPlugin({
+        extractComments: {
+          banner: () =>
+            `mochawesome-report-generator ${
+              pkg.version
+            } | https://github.com/adamgruber/mochawesome-report-generator`,
+        },
+      }),
+    ],
   },
   plugins,
 };

@@ -27,16 +27,17 @@ class Test extends PureComponent {
     expanded: false,
   };
 
-  toggleExpandedState() {
+  toggleExpandedState(e) {
+    e.stopPropagation();
     const { test, enableCode } = this.props;
-    const { expanded } = this.state;
+
     if (
       (enableCode && test.pass) ||
       !!test.context ||
       test.fail ||
       test.isHook
     ) {
-      this.setState({ expanded: !expanded });
+      this.setState({ expanded: e.target.open });
     }
   }
 
@@ -93,7 +94,8 @@ class Test extends PureComponent {
       );
     };
 
-    const isInactive = !context && (pending || skipped || (pass && !enableCode));
+    const isInactive =
+      !context && (pending || skipped || (pass && !enableCode));
 
     const cxname = cx('component', {
       expanded: this.state.expanded,
@@ -110,13 +112,10 @@ class Test extends PureComponent {
 
     return (
       <li id={uuid} className={cxname}>
-        <header>
-          <button
-            aria-expanded={expanded}
-            type="button"
-            onClick={this.toggleExpandedState}
-            disabled={isInactive}
-            className={cx('header-btn')}>
+        <details onToggle={this.toggleExpandedState} className={cx('details')}>
+          <summary
+            className={cx('header')}
+            tabIndex={isInactive ? '-1' : undefined}>
             {testIcon()}
             <h4 className={cx('title')} title={title}>
               {title}
@@ -140,39 +139,42 @@ class Test extends PureComponent {
                 />
               )}
             </div>
-            {!!err.message && <p className={cx('error-message')}>{err.message}</p>}
-          </button>
-        </header>
-        {expanded && (
-          <div className={cx('body-wrap')}>
-            <div className={cx('body')}>
-              {
-                <CodeSnippet
-                  className={cx('code-snippet')}
-                  code={err.estack}
-                  highlight={false}
-                  label="Stack Trace"
-                />
-              }
-              {
-                <CodeSnippet
-                  className={cx('code-snippet')}
-                  code={err.diff}
-                  lang="diff"
-                  label="Diff"
-                />
-              }
-              {enableCode && (
-                <CodeSnippet
-                  className={cx('code-snippet')}
-                  code={code}
-                  label="Test Code"
-                />
-              )}
-              {!!context && <TestContext context={context} />}
+            {!!err.message && (
+              <p className={cx('error-message')}>{err.message}</p>
+            )}
+          </summary>
+
+          {expanded && (
+            <div className={cx('body-wrap')}>
+              <div className={cx('body')}>
+                {
+                  <CodeSnippet
+                    className={cx('code-snippet')}
+                    code={err.estack}
+                    highlight={false}
+                    label="Stack Trace"
+                  />
+                }
+                {
+                  <CodeSnippet
+                    className={cx('code-snippet')}
+                    code={err.diff}
+                    lang="diff"
+                    label="Diff"
+                  />
+                }
+                {enableCode && (
+                  <CodeSnippet
+                    className={cx('code-snippet')}
+                    code={code}
+                    label="Test Code"
+                  />
+                )}
+                {!!context && <TestContext context={context} />}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </details>
       </li>
     );
   }

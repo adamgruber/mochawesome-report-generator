@@ -32,6 +32,7 @@ describe('<Suite />', () => {
     return {
       wrapper,
       chart: wrapper.find(SuiteChart),
+      details: wrapper.find('.suite-details'),
       summary: wrapper.find(SuiteSummary),
       testList: wrapper.find(TestList),
       suiteList: wrapper.find(SuiteList),
@@ -177,6 +178,30 @@ describe('<Suite />', () => {
       wrapper.setProps({ suite: initialSuite });
       expect(scuSpy.calledOnce).to.equal(true);
       expect(scuSpy.returned(false)).to.equal(true);
+    });
+  });
+
+  describe('focus state', () => {
+    it('updates focus state when header is focused', () => {
+      const instProps = Object.assign({}, props, {
+        suite: basicSuite,
+        enableChart: false,
+      });
+      const { wrapper, header } = getInstance(instProps);
+      expect(wrapper.state('focused')).to.eq(false);
+      header.simulate('focus');
+      expect(wrapper.state('focused')).to.eq(true);
+    });
+
+    it('updates focus state when header is blurred', () => {
+      const instProps = Object.assign({}, props, {
+        suite: basicSuite,
+        enableChart: false,
+      });
+      const { wrapper, header } = getInstance(instProps);
+      wrapper.setState({ focused: true });
+      header.simulate('blur');
+      expect(wrapper.state('focused')).to.eq(false);
     });
   });
 });

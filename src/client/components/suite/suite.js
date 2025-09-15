@@ -14,19 +14,30 @@ class Suite extends Component {
   constructor() {
     super();
     this.toggleExpandedState = this.toggleExpandedState.bind(this);
+    this.onFocusSummary = this.onFocusSummary.bind(this);
+    this.onBlurSummary = this.onBlurSummary.bind(this);
   }
 
   state = {
     expanded: true,
-  }
+    focused: false,
+  };
 
   shouldComponentUpdate(nextProps, nextState) {
     return !isEqual(this.props, nextProps) || !isEqual(this.state, nextState);
   }
 
-  toggleExpandedState() {
-    const { expanded } = this.state;
-    this.setState({ expanded: !expanded });
+  onFocusSummary() {
+    this.setState({ focused: true });
+  }
+
+  onBlurSummary() {
+    this.setState({ focused: false });
+  }
+
+  toggleExpandedState(e) {
+    e.stopPropagation();
+    this.setState({ expanded: e.target.open });
   }
 
   render() {
@@ -113,32 +124,48 @@ class Suite extends Component {
       return subSuites(true);
     }
 
+    const body = () => {
+      return (
+        <div className={cx('body', !expanded && 'hide')}>
+          {testListComp()}
+          {subSuites()}
+        </div>
+      );
+    };
+
     const hideHeader = root && !hasTests && (hasBeforeHooks || hasAfterHooks);
 
     return (
       <li id={uuid}>
         <section className={cxname}>
-          {!hideHeader && (
-            <header className={cx('header')}>
-            <button
-              aria-expanded={expanded}
-              type="button"
-              onClick={this.toggleExpandedState}
-              className={cx('header-btn')}>
-              {title !== '' && <h3 className={cx('title')}>
-                <span>{title}</span>
-                <Icon name={expanded ? 'expand_less' : 'expand_more'} className={cx('icon')} size={18} />
-              </h3>}
-              {file !== '' && <h6 className={cx('filename')}>{file}</h6>}
-              {hasTests && enableChart && <SuiteChart {...chartProps} />}
-              {hasTests && <SuiteSummary {...summaryProps} />}
-              </button>
-            </header>
+          {!hideHeader ? (
+            <details
+              open
+              onToggle={this.toggleExpandedState}
+              className={cx('details', { focused: this.state.focused })}>
+              <summary
+                className={cx('header')}
+                onFocus={this.onFocusSummary}
+                onBlur={this.onBlurSummary}>
+                {title !== '' && (
+                  <h3 className={cx('title')}>
+                    <span>{title}</span>
+                    <Icon
+                      name={expanded ? 'expand_less' : 'expand_more'}
+                      className={cx('icon')}
+                      size={18}
+                    />
+                  </h3>
+                )}
+                {file !== '' && <h6 className={cx('filename')}>{file}</h6>}
+                {hasTests && enableChart && <SuiteChart {...chartProps} />}
+                {hasTests && <SuiteSummary {...summaryProps} />}
+              </summary>
+              {body()}
+            </details>
+          ) : (
+            body()
           )}
-          <div className={cx('body', !expanded && 'hide')}>
-            {testListComp()}
-            {subSuites()}
-          </div>
         </section>
       </li>
     );
