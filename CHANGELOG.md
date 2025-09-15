@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [6.3.0] - 2025-09-15
+### Fixed
+- Addressed an issue where text in the report was not selectable [#140](https://github.com/adamgruber/mochawesome-report-generator/issues/140)
+
 ## [6.2.0] - 2022-03-25
 ### Added
 - Support adding video in context via data uri [mochawesome #372](https://github.com/adamgruber/mochawesome/issues/372)
@@ -196,7 +200,8 @@ No release is complete without a quick hotfix.
 ## 1.0.0 - 2016-12-18
 - Initial release
 
-[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.2.0...HEAD
+[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.3.0...HEAD
+[6.3.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.2.0...6.3.0
 [6.2.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.1.1...6.2.0
 [6.1.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.1.0...6.1.1
 [6.1.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.0.1...6.1.0
