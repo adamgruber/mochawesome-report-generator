@@ -1,6 +1,10 @@
 # mochawesome-report-generator changelog
 
 ## [Unreleased]
+## [6.3.1] - 2025-11-04
+### Fixed
+- Removed [`validator.js`](https://github.com/validatorjs/validator.js) dependency, opting instead to inline the two validation functions that were being used. This addresses a vulnerability in the package version that was being included and should reduce overall bundle size [#234](https://github.com/adamgruber/mochawesome-report-generator/issues/234)
+
 
 ## [6.3.0] - 2025-09-15
 ### Fixed
@@ -200,7 +204,8 @@ No release is complete without a quick hotfix.
 ## 1.0.0 - 2016-12-18
 - Initial release
 
-[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.3.0...HEAD
+[Unreleased]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.3.1...HEAD
+[6.3.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.3.0...6.3.1
 [6.3.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.2.0...6.3.0
 [6.2.0]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.1.1...6.2.0
 [6.1.1]: https://github.com/adamgruber/mochawesome-report-generator/compare/6.1.0...6.1.1
