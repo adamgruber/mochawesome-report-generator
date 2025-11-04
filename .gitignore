@@ -13,3 +13,4 @@ test-functional/*.html
 dist
 bin/
 lib/
+!src/*

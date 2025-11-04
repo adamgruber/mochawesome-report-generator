@@ -1,5 +1,5 @@
 const t = require('tcomb');
-const { isUUID, isISO8601 } = require('validator');
+const { isUUID, isISO8601 } = require('./validators');
 
 const TestState = t.enums.of(
   ['passed', 'failed', 'pending', 'skipped'],
@@ -12,16 +12,16 @@ const Uuid = t.refinement(t.String, isUUID, 'UUID');
 
 const ReportMeta = t.struct({
   mocha: t.struct({
-    version: t.String
+    version: t.String,
   }),
   mochawesome: t.struct({
     options: t.Object,
-    version: t.String
+    version: t.String,
   }),
   marge: t.struct({
     options: t.Object,
-    version: t.String
-  })
+    version: t.String,
+  }),
 });
 
 const Test = t.struct({
@@ -84,7 +84,7 @@ const TestReport = t.struct({
     hasSkipped: t.Boolean,
   }),
   results: t.list(Suite),
-  meta: t.maybe(ReportMeta)
+  meta: t.maybe(ReportMeta),
 });
 
 module.exports = { TestReport, Test, Suite };
