@@ -1,6 +1,6 @@
 {
   "name": "mochawesome-report-generator",
-  "version": "6.3.1",
+  "version": "6.3.2",
   "description": "Generates gorgeous HTML reports from mochawesome reporter.",
   "scripts": {
     "lint": "eslint src test --ext js",
@@ -46,6 +46,7 @@
     "bin/cli-main.js",
     "bin/types.js",
     "bin/logger.js",
+    "bin/validators.js",
     "lib/main.js",
     "lib/main-html.js",
     "lib/options.js",
