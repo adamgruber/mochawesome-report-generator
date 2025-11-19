@@ -1,4 +1,4 @@
-@import '../../styles/vars';
+@import url('../../styles/vars');
 
 .item {
   @extend %column;
@@ -66,7 +66,7 @@
   top: calc(var(--navbar-height) + var(--summary-height-stacked));
   padding: 4px 0;
   color: var(--gray);
-  background: color(#fff alpha(95%));
+  background: rgb(f f f / 95%);
   border-bottom: 1px solid var(--gray-border);
   z-index: 1030;
   transition: border 0.2s ease-out;

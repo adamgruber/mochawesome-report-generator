@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import classNames from 'classnames/bind';
-import styles from './dropdown.css';
+import styles from './dropdown.module.css';
 import DropdownMenu from './menu';
 
 const cx = classNames.bind(styles);

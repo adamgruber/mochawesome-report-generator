@@ -1,4 +1,4 @@
-@import '../../styles/vars';
+@import url('../../styles/vars');
 
 .component {
   @extend %clearfix;
@@ -79,7 +79,7 @@
 
 .title {
   display: flex;
-  font-family: var(--font-family--light);
+  font-family: var(--font-family-light);
   font-size: 21px;
   margin: 0;
 
@@ -94,7 +94,7 @@
 
 .filename {
   color: var(--black54);
-  font-family: var(--font-family--regular);
+  font-family: var(--font-family-regular);
   margin: 6px 0 0 0;
 }
 

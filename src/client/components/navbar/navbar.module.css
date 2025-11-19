@@ -1,4 +1,4 @@
-@import '../../styles/vars';
+@import url('../../styles/vars');
 
 .component {
   @extend %clearfix;
@@ -38,7 +38,7 @@
 
 .report-title {
   flex-grow: 1;
-  font-family: var(--font-family--light);
+  font-family: var(--font-family-light);
   color: #fff;
   font-size: 18px;
   line-height: calc(var(--navbar-height-short) - 4px);

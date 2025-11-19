@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Test } from 'components/test';
 import classNames from 'classnames/bind';
-import styles from './test.css';
+import styles from './test.module.css';
 
 const cx = classNames.bind(styles);
 

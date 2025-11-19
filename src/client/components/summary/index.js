@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Duration } from 'components';
 import classNames from 'classnames/bind';
-import styles from './summary.css';
+import styles from './summary.module.css';
 
 const cx = classNames.bind(styles);
 

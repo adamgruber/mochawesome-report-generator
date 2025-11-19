@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Duration, Icon } from 'components';
 import classNames from 'classnames/bind';
-import styles from './quick-summary.css';
+import styles from './quick-summary.module.css';
 
 const cx = classNames.bind(styles);
 

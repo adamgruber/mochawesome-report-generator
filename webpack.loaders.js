@@ -1,129 +1,139 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
 const JS_REGEX = /\.js$|\.jsx$/;
+const ESLintPlugin = require('eslint-webpack-plugin');
+const cssnano = require('cssnano');
 
-function eslint(attrs) {
-  return Object.assign(
-    {
-      test: JS_REGEX,
-      exclude: /node_modules/,
-      use: ['eslint-loader'],
-    },
-    attrs
-  );
-}
+// Webpack plugins
+const plugins = [
+  new ESLintPlugin({
+    extensions: ['js', 'jsx'],
+    emitWarning: true,
+  }),
+  new MiniCssExtractPlugin({
+    filename: '[name].css',
+    chunkFilename: '[id].css',
+  }),
+];
 
-function babel(attrs, version) {
-  return Object.assign(
-    {
-      test: JS_REGEX,
-      exclude: /node_modules/,
-      use: [
-        { loader: 'babel-loader' },
-        {
-          loader: 'string-replace-loader',
-          options: {
-            search: '__VERSION__',
-            replace: version,
-          },
-        },
-      ],
-    },
-    attrs
-  );
-}
-
-function css(options) {
+// Babel loader
+function babel(attrs = {}, version) {
   return {
-    loader: 'css-loader',
-    options,
+    test: JS_REGEX,
+    exclude: /node_modules/,
+    use: [
+      { loader: 'babel-loader' },
+      {
+        loader: 'string-replace-loader',
+        options: {
+          search: '__VERSION__',
+          replace: version,
+        },
+      },
+    ],
+    ...attrs,
   };
 }
 
-function postcss(opts) {
+// PostCSS loader helper
+function postcss(opts = {}) {
   return {
     loader: 'postcss-loader',
-    options: Object.assign(
-      {
-        plugins: () => [
+    options: {
+      postcssOptions: {
+        plugins: [
           require('postcss-import')(),
           require('postcss-url')(),
           require('postcss-extend-rule')(),
           require('postcss-preset-env')({
             stage: 0,
-            browsers: ['>0.25%, not ie 11, not op_mini all, not dead'],
+            overrideBrowserslist: ['>0.25%, not ie 11, not op_mini all, not dead'],
           }),
-          require('cssnano')(),
+          cssnano(),
           require('postcss-reporter')(),
         ],
       },
-      opts
-    ),
+      ...opts,
+    },
   };
 }
 
-function globalCss(opts) {
+// Local CSS (CSS Modules)
+function localCss() {
   return {
-    test: /\.global\.css$/,
-    use: [{ loader: MiniCssExtractPlugin.loader }, css(opts), postcss()],
-  };
-}
-
-function localCss(opts) {
-  return {
-    test: /^((?!\.global).)*\.css$/,
-    use: [{ loader: MiniCssExtractPlugin.loader }, css(opts), postcss()],
-  };
-}
-
-function url(options) {
-  return {
-    loader: 'url-loader',
-    options,
-  };
-}
-
-function font(type, opts) {
-  let test;
-  let mimetype;
-  switch (type) {
-    case 'woff':
-    case 'woff2':
-      test = /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/;
-      mimetype = 'application/font-woff';
-      break;
-    case 'ttf':
-    case 'truetype':
-      test = /\.ttf(\?v=\d+\.\d+\.\d+)?$/;
-      mimetype = 'application/octet-stream';
-      break;
-    case 'svg':
-      test = /\.svg(\?v=\d+\.\d+\.\d+)?$/;
-      mimetype = 'image/svg+xml';
-      break;
-    default:
-    // nothing
-  }
-  return {
-    test,
+    test: /\.module\.css$/i,
     use: [
-      url(
-        Object.assign(
-          {
-            mimetype,
-            name: '[name].[ext]',
+      MiniCssExtractPlugin.loader,
+      {
+        loader: 'css-loader',
+        options: {
+          esModule: false,
+          importLoaders: 1,
+          modules: {
+            localIdentName: '[local]__[hash:base64:5]',
           },
-          opts
-        )
-      ),
+        },
+      },
+      postcss(),
     ],
   };
 }
 
+// Global CSS (no CSS modules)
+function globalCss() {
+  return {
+    test: /\.css$/i,
+    exclude: /\.module\.css$/i,
+    use: [
+      MiniCssExtractPlugin.loader,
+      {
+        loader: 'css-loader',
+        options: {
+          esModule: false,
+          importLoaders: 1,
+          modules: false,
+        },
+      },
+      postcss(),
+    ],
+  };
+}
+
+// Font / asset loader
+function font(type, opts = {}) {
+  let test;
+  switch (type) {
+    case 'woff':
+    case 'woff2':
+      test = /\.(woff2?)(\?v=\d+\.\d+\.\d+)?$/;
+      break;
+    case 'ttf':
+    case 'truetype':
+      test = /\.ttf(\?v=\d+\.\d+\.\d+)?$/;
+      break;
+    case 'svg':
+      test = /\.svg(\?v=\d+\.\d+\.\d+)?$/;
+      break;
+    default:
+      throw new Error(`Unsupported font type: ${type}`);
+  }
+
+  const isInline = opts.limit && opts.limit > 50000;
+
+  return {
+    test,
+    type: isInline ? 'asset/inline' : 'asset/resource',
+    generator: {
+      filename: '[name][ext]',
+    },
+  };
+}
+
 module.exports = {
-  eslint,
+  plugins,
+  ESLintPlugin,
   babel,
   globalCss,
   localCss,
   font,
+  postcss,
 };

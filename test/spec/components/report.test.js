@@ -22,15 +22,19 @@ describe('<MochawesomeReport />', () => {
     };
   };
 
-  it('should render', () => {
+  it('should not render dev tool in normal mode', () => {
     store = createStore(testData);
     const { wrapper } = getInstance({ store });
+
+    // If not dev mode → MobxDevTool should not appear
     expect(wrapper.find(MobxDevTool)).to.have.lengthOf(0);
   });
 
-  it('should render dev tool', () => {
+  it('should render dev tool in dev mode', () => {
     store = createStore(testData, { dev: true });
     const { wrapper } = getInstance({ store });
+
+    // In dev mode → MobxDevTool component should be present
     expect(wrapper.find(MobxDevTool)).to.have.lengthOf(1);
   });
 });

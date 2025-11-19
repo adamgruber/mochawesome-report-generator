@@ -1,4 +1,4 @@
-@import '../../styles/vars';
+@import url('../../styles/vars');
 
 .component {
   @extend %clearfix;
@@ -17,6 +17,7 @@
 
   &:checked + .toggle {
     background-color: var(--green200);
+
     &:before {
       background-color: var(--green500);
       transform: translateX(14px);
@@ -24,7 +25,7 @@
   }
 
   &:focus + .toggle:before {
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12), 0 0 2px 0 var(--ltblue500);
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%), 0 0 2px 0 var(--ltblue500);
   }
 }
 

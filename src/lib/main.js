@@ -1,5 +1,4 @@
 const fs = require('fs-extra');
-const fsu = require('fsu');
 const path = require('path');
 const opener = require('opener');
 const dateFormat = require('dateformat');
@@ -21,19 +20,30 @@ const semverRegex = /\d+\.\d+\.\d+(?:-(alpha|beta)\.\d+)?/;
  *
  * @return {Promise} Resolves with filename if successfully saved
  */
-function saveFile(filename, data, overwrite) {
+async function saveFile(filename, data, overwrite) {
   if (overwrite) {
-    return fs.outputFile(filename, data).then(() => filename);
+    await fs.outputFile(filename, data);
+    return filename;
   }
 
-  return new Promise((resolve, reject) => {
-    fsu.writeFileUnique(
-      filename.replace(fileExtRegex, '{_###}$&'),
-      data,
-      { force: true },
-      (err, savedFile) => (err === null ? resolve(savedFile) : reject(err))
-    );
-  });
+  const base = filename.replace(fileExtRegex, '');
+  const ext = filename.match(fileExtRegex)?.[0] ?? '';
+  let counter = 0;
+  let finalName = filename;
+
+  while (true) {
+    try {
+      // try opening with “wx” → fails if file exists
+      const handle = await fs.open(finalName, 'wx');
+      await handle.writeFile(data);
+      await handle.close();
+      return finalName; // success
+    } catch {
+      // file exists → try next
+      counter++;
+      finalName = `${base}_${String(counter).padStart(3, '0')}${ext}`;
+    }
+  }
 }
 
 /**
@@ -179,7 +189,7 @@ function _shouldCopyAssets(assetsDir) {
     if (!appCssVersion || appCssVersion[0] !== pkg.version) {
       return true;
     }
-  } catch (e) {
+  } catch {
     return true;
   }
 

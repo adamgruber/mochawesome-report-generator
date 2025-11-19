@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import styles from './suite.css';
+import styles from './suite.module.css';
 import Suite from './suite';
 
 const cx = classNames.bind(styles);

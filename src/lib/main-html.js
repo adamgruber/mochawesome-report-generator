@@ -8,7 +8,7 @@ const escapeHtml = require('escape-html');
  * @return {string}
  */
 function e(str) {
-  return escapeHtml(str).replace(/&#39/g, '&#x27')
+  return escapeHtml(str).replace(/&#39;/g, '&#x27;')
 }
 
 /**

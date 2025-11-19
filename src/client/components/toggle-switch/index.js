@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from 'components';
 import classNames from 'classnames/bind';
-import styles from './toggle-switch.css';
+import styles from './toggle-switch.module.css';
 
 const cx = classNames.bind(styles);
 

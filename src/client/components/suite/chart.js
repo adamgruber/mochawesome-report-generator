@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import Chartist from 'chartist';
 import classNames from 'classnames/bind';
-import styles from './suite.css';
+import styles from './suite.module.css';
 
 const cx = classNames.bind(styles);
 

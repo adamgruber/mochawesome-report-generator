@@ -7,7 +7,7 @@ import find from 'lodash/find';
 import { Icon, ToggleSwitch, DropdownSelector } from 'components';
 import { NavMenuItem } from 'components/nav-menu';
 import classNames from 'classnames/bind';
-import styles from './nav-menu.css';
+import styles from './nav-menu.module.css';
 
 const cx = classNames.bind(styles);
 
@@ -117,7 +117,7 @@ class NavMenu extends Component {
           <div className={cx('section')}>
             <h3 className={cx('title')}>{reportTitle}</h3>
             <h6 className={cx('date')}>
-              {format(stats.end, 'dddd, MMMM D, YYYY h:mma')}
+              {format(stats.end, 'eeee, MMMM d, yyyy h:mma')}
             </h6>
           </div>
           <div className={cx('section')}>

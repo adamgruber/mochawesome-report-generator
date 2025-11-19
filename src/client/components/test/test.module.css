@@ -1,4 +1,4 @@
-@import '../../styles/vars';
+@import url('../../styles/vars');
 
 .component {
   border-bottom: 1px solid var(--grey300);
@@ -69,7 +69,7 @@
   @extend %text-overflow;
 
   flex-grow: 1;
-  font-family: var(--font-family--regular);
+  font-family: var(--font-family-regular);
   font-size: 13px;
   line-height: 24px;
   margin: 0;
@@ -129,7 +129,7 @@
 }
 
 .duration {
-  font-family: var(--font-family--regular);
+  font-family: var(--font-family-regular);
   line-height: 24px;
   color: var(--black54);
 
@@ -243,7 +243,7 @@
 
 .code-label {
   position: absolute;
-  font-family: var(--font-family--regular);
+  font-family: var(--font-family-regular);
   top: 0;
   right: 0;
   padding: 0.2em 0.6em;
@@ -261,7 +261,7 @@
 .context-title {
   @extend %text-overflow;
 
-  font-family: var(--font-family--regular);
+  font-family: var(--font-family-regular);
   font-size: 13px;
   color: var(--black54);
   margin: 0;
@@ -279,7 +279,7 @@
 .context-item-title {
   @extend %text-overflow;
 
-  font-family: var(--font-family--medium);
+  font-family: var(--font-family-medium);
   font-size: 13px;
   margin: 0;
   padding: 0 11px 11px 11px;

@@ -1,11 +1,11 @@
-@import '../../styles/vars';
+@import url('../../styles/vars');
 
 .component {
   position: fixed;
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: color(var(--body-bg) alpha(60%));
+  background-color: rgb(from var(--body-bg) r g b / 60%);
   padding-top: var(--navbar-height);
 }
 

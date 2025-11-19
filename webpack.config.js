@@ -6,7 +6,8 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const loaders = require('./webpack.loaders');
 const pkg = require('./package.json');
 
-const { eslint, babel, globalCss, localCss, font } = loaders;
+const { babel, globalCss, localCss, font } = loaders;
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const env =
   (!!process.env.BABEL_ENV && process.env.BABEL_ENV) ||
@@ -28,22 +29,27 @@ const plugins = [
   new StyleLintPlugin({
     context: 'src',
     files: '**/*.css',
-    color: true,
     emitErrors: false,
   }),
-  new MiniCssExtractPlugin({ filename: cssFilename, allChunks: true }),
+  new MiniCssExtractPlugin({ filename: cssFilename }),
   new webpack.BannerPlugin(
     `mochawesome-report-generator ${
       pkg.version
     } | https://github.com/adamgruber/mochawesome-report-generator`
   ),
   new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(env) }),
+  new ESLintPlugin({
+    extensions: ['js', 'jsx'],
+    overrideConfigFile: path.resolve(__dirname, 'eslint.config.js'),
+    failOnError: false,
+    emitWarning: true,
+  }),
 ];
 
 module.exports = {
   mode: env,
   devServer: {
-    disableHostCheck: true,
+    allowedHosts: 'all',
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
@@ -65,26 +71,72 @@ module.exports = {
     modules: ['node_modules', 'src', 'src/client', 'styles'],
   },
   module: {
-    rules: [
-      eslint({ enforce: 'pre' }),
-      babel({}, pkg.version),
-      globalCss({
-        importLoaders: 1,
-        sourceMap: isDev,
-      }),
-      localCss({
-        modules: true,
-        importLoaders: 1,
-        localIdentName: isDev
-          ? '[name]--[local]'
-          : '[name]--[local]---[hash:base64:5]',
-        sourceMap: isDev,
-      }),
-      font('woff', { limit: fontLimit }),
-      font('ttf', { limit: fontLimit }),
-      font('svg', { limit: fontLimit }),
-    ],
-  },
+  rules: [
+    babel({}, pkg.version),
+
+    //
+    // CSS MODULES — ONLY for *.module.css
+    //
+    {
+      test: /\.module\.css$/i,
+      use: [
+        MiniCssExtractPlugin.loader,
+        {
+          loader: "css-loader",
+          options: {
+            esModule: false,
+            importLoaders: 1,
+            modules: {
+              localIdentName: isDev
+                ? "[name]--[local]"
+                : "[name]--[local]---[hash:base64:5]",
+            },
+            sourceMap: isDev,
+          },
+        },
+        loaders.postcss(),
+      ],
+    },
+
+	//
+    // GLOBAL CSS — runs on everything EXCEPT *.module.css
+    //
+    {
+      test: /\.css$/i,
+      exclude: /\.module\.css$/i,
+      use: [
+        MiniCssExtractPlugin.loader,
+        {
+          loader: "css-loader",
+          options: {
+            esModule: false,
+            importLoaders: 1,
+            modules: false
+          }
+        },
+        loaders.postcss(),
+      ],
+    },
+
+
+    //
+    // FONT + ASSET LOADERS
+    //
+    {
+      test: /\.woff2?$/,
+      type: assets === "external" ? "asset/resource" : "asset/inline",
+    },
+    {
+      test: /\.ttf$/,
+      type: assets === "external" ? "asset/resource" : "asset/inline",
+    },
+    {
+      test: /\.svg$/,
+      type: assets === "external" ? "asset/resource" : "asset/inline",
+    },
+  ],
+},
+
   optimization: {
     minimize: env === 'production',
     minimizer: [

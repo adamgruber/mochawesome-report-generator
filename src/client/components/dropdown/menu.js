@@ -4,7 +4,7 @@ import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 import isFunction from 'lodash/isFunction';
 import classNames from 'classnames/bind';
-import styles from './dropdown.css';
+import styles from './dropdown.module.css';
 
 const cx = classNames.bind(styles);
 
