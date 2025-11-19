@@ -3,9 +3,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import isArray from 'lodash/isArray';
-import hljs from 'highlight.js/lib/highlight';
+import hljs from 'highlight.js';
+import javascript from 'highlight.js/lib/languages/javascript';
 import classNames from 'classnames/bind';
-import styles from './test.css';
+import styles from './test.module.css';
+
+// Register the language(s) you need
+hljs.registerLanguage('javascript', javascript);
 
 const cx = classNames.bind(styles);
 
@@ -31,6 +35,10 @@ class CodeSnippet extends Component {
     this.highlightCode();
   }
 
+  componentDidUpdate() {
+    this.highlightCode();
+  }
+
   shouldComponentUpdate(nextProps) {
     return !isEqual(this.props, nextProps);
   }
@@ -44,8 +52,8 @@ class CodeSnippet extends Component {
   }
 
   highlightCode() {
-    if (this.shouldHighlight()) {
-      hljs.highlightBlock(this.node);
+    if (this.shouldHighlight() && this.node) {
+      hljs.highlightElement(this.node);
     }
   }
 

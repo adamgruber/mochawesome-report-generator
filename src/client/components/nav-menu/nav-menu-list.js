@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import { NavMenuItem } from 'components/nav-menu';
 import classNames from 'classnames/bind';
-import styles from './nav-menu.css';
+import styles from './nav-menu.module.css';
 
 const cx = classNames.bind(styles);
 

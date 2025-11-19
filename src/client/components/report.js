@@ -7,7 +7,15 @@ import 'styles/app.global.css';
 import MobxDevTool from './mobxDevtool';
 
 const MochawesomeReport = observer(props => {
-  const { openSideNav, toggleSingleFilter, singleFilter, reportTitle, stats, devMode, VERSION } = props.store;
+  const {
+    openSideNav,
+    toggleSingleFilter,
+    singleFilter,
+    reportTitle,
+    stats,
+    devMode,
+    VERSION
+  } = props.store;
 
   return (
     <Provider reportStore={props.store}>
@@ -23,7 +31,9 @@ const MochawesomeReport = observer(props => {
         <Loader />
         <Footer version={VERSION} />
         <NavMenu />
-        {devMode && <MobxDevTool position={{ bottom: 0, right: 20 }} />}
+
+        {/* DevTool removed → keep call but with no props */}
+        {devMode && <MobxDevTool />}
       </main>
     </Provider>
   );

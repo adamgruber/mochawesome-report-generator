@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Duration, Icon } from 'components';
 import { CodeSnippet, TestContext } from 'components/test';
 import classNames from 'classnames/bind';
-import styles from './test.css';
+import styles from './test.module.css';
 
 const cx = classNames.bind(styles);
 

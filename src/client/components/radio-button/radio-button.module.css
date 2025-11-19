@@ -1,4 +1,4 @@
-@import '../../styles/vars';
+@import url('../../styles/vars');
 
 .component {
   @extend %clearfix;

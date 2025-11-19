@@ -6,7 +6,7 @@ import { TestList } from 'components/test';
 import { SuiteChart, SuiteList, SuiteSummary } from 'components/suite';
 import classNames from 'classnames/bind';
 import isEqual from 'lodash/isEqual';
-import styles from './suite.css';
+import styles from './suite.module.css';
 
 const cx = classNames.bind(styles);
 

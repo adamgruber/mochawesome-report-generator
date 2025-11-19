@@ -5,7 +5,7 @@ import isEmpty from 'lodash/isEmpty';
 import { Icon } from 'components';
 import { NavMenuList } from 'components/nav-menu';
 import classNames from 'classnames/bind';
-import styles from './nav-menu.css';
+import styles from './nav-menu.module.css';
 
 const cx = classNames.bind(styles);
 

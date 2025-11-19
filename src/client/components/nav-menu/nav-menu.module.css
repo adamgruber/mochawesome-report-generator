@@ -1,19 +1,16 @@
-@import '../../styles/vars';
+@import url('../../styles/vars');
 
 .wrap {
   position: fixed;
   z-index: 2010;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  inset: 0;
   overflow: hidden;
   visibility: hidden;
 }
 
 .overlay {
   display: none;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgb(0 0 0 / 50%);
 }
 
 .close-btn {
@@ -78,7 +75,7 @@
 .control-label {
   display: inline-block;
   flex-grow: 1;
-  font-family: var(--font-family--regular);
+  font-family: var(--font-family-regular);
   font-size: 13px;
   vertical-align: top;
   line-height: 24px;
@@ -170,6 +167,7 @@
 
   & span {
     transition: var(--link-transition);
+
     @extend %text-overflow;
   }
 }
@@ -210,10 +208,7 @@
     display: block;
     position: fixed;
     transition: all 0.2s ease-out;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+	inset: 0;
     cursor: pointer;
     opacity: 0;
   }

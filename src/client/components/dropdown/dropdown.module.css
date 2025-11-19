@@ -1,4 +1,4 @@
-@import '../../styles/vars';
+@import url('../../styles/vars');
 
 .component {
   position: relative;
@@ -52,6 +52,7 @@
   0% {
     opacity: 0;
   }
+  
   100% {
     opacity: 1;
   }
@@ -62,6 +63,7 @@
     opacity: 1;
     visibility: visible;
   }
+  
   100% {
     opacity: 0;
   }

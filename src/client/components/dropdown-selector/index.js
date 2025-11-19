@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Dropdown, Icon } from 'components';
 import classNames from 'classnames/bind';
-import styles from './dropdown-selector.css';
+import styles from './dropdown-selector.module.css';
 
 const cx = classNames.bind(styles);
 
@@ -24,10 +24,13 @@ function DropdownSelector(props) {
     ddMenuClassName,
     ddSelectedClassName,
   } = props;
-  const labelCxName = cx('label', { 'with-icon': !!icon }, labelClassName);
+
+  // CSS module has NO label class, so this is just passthrough external class
+  const labelCxName = classNames(labelClassName);
+
   return (
-    <div className={cx('component', className)}>
-      {!!icon && <Icon name={icon} className={cx('icon', iconClassName)} />}
+    <div className={classNames(className)}>
+      {!!icon && <Icon name={icon} className={classNames(iconClassName)} />}
       {!!label && <span className={labelCxName}>{label}</span>}
       <Dropdown
         className={cx('dropdown', ddClassName)}

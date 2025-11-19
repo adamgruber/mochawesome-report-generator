@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from 'components';
 import classNames from 'classnames/bind';
-import styles from './radio-button.css';
+import styles from './radio-button.module.css';
 
 const cx = classNames.bind(styles);
 

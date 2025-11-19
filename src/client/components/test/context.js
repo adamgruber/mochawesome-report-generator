@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { CodeSnippet } from 'components/test';
 import isString from 'lodash/isString';
 import classNames from 'classnames/bind';
-import styles from './test.css';
+import styles from './test.module.css';
 
 const cx = classNames.bind(styles);
 
